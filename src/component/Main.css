@@ -1,0 +1,241 @@
+
+body{
+    display: block;
+    margin-left: 0px;
+}
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 10px;
+    overflow: hidden;
+    
+}
+
+.sidebar-logo {
+    transition: all 0.2s;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.span1 {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 0 10px;
+  display: block;
+  max-width: 210px;
+  word-wrap: break-word;
+  text-align: center;
+  margin-top: 15px;
+}
+.span2{
+font-Size: 10px;
+font-Weight: bold;
+}
+
+.header{
+    background: var(--header-bg) !important; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--header-border);
+}
+
+.ant-btn.btnMenu {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  font-size: 18px;
+  transition: all 0.5s ease-in-out !important;
+}
+
+.btnMenu:active, 
+.btnMenu:focus, 
+.btnMenu:focus-visible {
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.content {
+    margin: 24px 16px;
+    padding: 24px;
+    flex: 1;
+}
+
+.dashboard {
+  width: 98%;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-left: 2px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 60px;
+  font-size: 22px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background: #10066c;
+  color: #ffffff;
+}
+.dashboard.collapsed {
+  height: 32px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+.dashboard.active {
+  background: #10066c;
+  border-color: rgb(20, 12, 250);
+  color: #ffffff;
+}
+.dashboard:hover{
+transform: translatey(0.5px);
+box-shadow: 2px 3px rgb(202, 201, 201) ;
+transition: 0.2s;
+}
+.ant-menu-item:hover {
+  color: white !important;
+  background-color: #1005a3 !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #1005a3 !important;
+  color: white !important;
+}
+
+
+/*dashbordPage*/
+.criclebox{
+box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; 
+margin-bottom: 25px;
+}
+
+.chartbar{
+box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; 
+}
+
+.ant-card-head {
+  width: 100% !important;
+  background: linear-gradient(to bottom, #1a1c28, #0303de) !important;
+  color: #ffffff !important;
+}
+
+/*studentPage*/
+.ant-table-wrapper{
+  border-radius: 4px;
+box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; }
+.textContain{
+  display: flex; 
+    flex-Direction: column; 
+    font-Size: 18px;
+    letter-Spacing: 0.5px;
+    line-Height: 1.6;
+    align-Items:flex-end;
+    font-Weight:bold;
+    text-Align: center;
+    margin-right:75px;
+}
+.textRight{
+  font-family: "Moul", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-Size: 16px;
+}
+.textContainLeft{
+  margin-left: 75px;
+}
+.textLeft1{
+  font-family: "Moul", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-Size: 16px;
+  line-Height: 1.4;
+}
+.textLeft2{
+  font-Size: 11.7px;
+  letter-Spacing: 0.5px;
+  font-weight: bold;
+}
+.ant-table-cell{
+  font-family: "Battambang", system-ui;
+  font-weight: 100;
+  font-style: normal;
+}
+.ant-table-column-title{
+  font-weight: bold;
+  text-align: center;
+}
+.ant-table-row > .ant-table-cell:first-child {
+  text-align: center !important;
+}
+.ant-table-row > .ant-table-cell:nth-child(5) {
+  text-align: center !important;
+}
+.ant-table-row > .ant-table-cell:nth-child(4) {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+}
+
+/*createStudent*/
+.headerText{
+  display: flex;
+  font-size: 24px;
+  justify-content: center !important;
+  font-family: "Moul", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.ant-col{
+    font-family: "Battambang", system-ui;
+  font-weight: 100;
+  font-style: normal;
+}
+.ant-divider-inner-text{
+  font-family: "Battambang", system-ui;
+  font-weight: 100;
+  font-style: normal;
+}
+.title{
+  font-size: 24px;
+    margin: 0;
+    font-family: "Bokor", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*academic*/
+.acad{
+  display:flex !important;
+    justify-Content: center!important;
+    align-Items: center!important;
+    margin-top: 250px;
+    
+}
+        
+.watermak{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      opacity: 0.1;
+      zIndex: 0;
+      pointerEvents: none;
+}
+.ant-card-head{
+  background-color: wheat;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Student",
+    "value": 32
+  },
+  {
+    "label": "Subject",
+    "value": 45
+  },
+  {
+    "label": "Faculty",
+    "value": 23
+  },
+  {
+    "label": "Major",
+    "value": 32
+  },
+  {
+    "label": "Active",
+    "value": 45
+  },
+  {
+    "label": "Suspended",
+    "value": 23
+  }
+]
