@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import MainPage from './component/layouts/MainPage.jsx';
+import LoginPage from './component/layouts/LoginPage.jsx';
 import StudentPage from './pages/student/StudentPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScorePage from './pages/score/ScorePage.jsx';
@@ -12,12 +13,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<MainPage/>}>
-          <Route path="/" element={<DashboardPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/student" element={<StudentPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/academic" element={<Academic />} />
           <Route path="/score" element={<ScorePage />} />
           <Route path="/attendant" element={<AttendantPage />} />
+        </Route>
+        
+        <Route element={<LoginPage/>}>
+          <Route path="/" element={<LoginPage/>} />
         </Route>
       </Routes>
     </BrowserRouter>

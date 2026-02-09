@@ -61,7 +61,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark }) => {
         )}
       </div>
 
-      <NavLink to="/" className={({ isActive }) => `dashboard ${collapsed ? "collapsed" : ""} ${isActive ? "active" : ""}`}>
+      <NavLink to="/dashboard" className={({ isActive }) => `dashboard ${collapsed ? "collapsed" : ""} ${isActive ? "active" : ""}`}>
         Dashboard
       </NavLink>
       
