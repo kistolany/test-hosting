@@ -1,0 +1,612 @@
+/*scholarship*/
+
+:root {
+  --theme-blue: #000080;
+  --font-family-khmer: "Khmer OS Battambang", "Khmer OS", "Moul", "Arial", sans-serif;
+  --font-family-khmer-title: "Khmer OS Moul", "Moul", "Arial", sans-serif;
+}
+
+/*​dot Input Width */
+.w-2 { width: 20px; }
+.w-3 { width: 32px; }
+.w-4 { width: 35px; }
+.w-5 { width: 40px; }
+.w-7 { width: 50px; }
+.w-8 { width: 60px; }
+.w-9 { width: 70px; }
+.w-10 { width: 80px; }
+.w-11 { width: 85px; }
+.w-12 { width: 90px; }
+.w-13 { width: 100px; }
+.w-14 { width: 105px; }
+.w-15 { width: 120px; }
+.w-16 { width: 130px; }
+.w-17 { width: 135px; }
+.w-19 { width: 150px; }
+.w-20 { width: 160px; }
+.w-21 { width: 165px; }
+.w-24 { width: 190px; }
+.w-25 { width: 200px; }
+.w-30 { width: 230px; }
+.w-40 { width: 320px; }
+
+
+.scholarship-container {
+  background: #ffffff;
+  padding: 20px 10px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sticky-search {
+  width: 100%;
+  max-width: 210mm;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 60px;
+  z-index: 1000;
+  background: #ffffff;
+
+}
+
+.search-form-item {
+  margin-bottom: 0;
+}
+
+.search-button-space {
+  width: 100%;
+  justify-content: center;
+}
+
+.search-button {
+  background-color: #070f7a !important;
+}
+
+.clear-button:hover {
+  border-color: #070f7a !important;
+  color: #070f7a !important;
+}
+.header-decorative {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.decorative-image {
+  display: block;
+  margin: 0 auto;
+  filter: invert(20%) sepia(51%) saturate(3453%) hue-rotate(224deg) brightness(60%) contrast(101%);
+}
+.scholarship-form {
+  width: 210mm;
+  height: 297mm;   
+  max-width: 100%;       /* Fixed A4 height */
+  padding: 10mm;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-family: var(--font-family-khmer);
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  /* transform: scale(1.3);  */
+
+}
+/* .ant-form{
+    transform: scale(1.1); 
+
+} */
+.form-content {
+  flex: 1;
+  
+}
+
+.national-header {
+  text-align: center;
+  margin-bottom: 0px;
+top: 5px;
+}
+
+.national-title {
+  color: var(--theme-blue) !important;
+  margin: 0 !important;
+  font-family: var(--font-family-khmer-title) !important;
+  font-size: 16px !important;
+}
+
+.national-subtitle {
+  color: var(--theme-blue) !important;
+  margin: 0 !important;
+  font-family: var(--font-family-khmer-title) !important;
+  font-size: 16px !important;
+}
+
+.university-header {
+  margin-bottom: 20px;
+  margin-top: 0px !important;
+}
+
+.university-logo-space {
+  display: flex;
+  width: fit-content;
+  margin-top: 0px;
+}
+
+.university-logo {
+  width: 80px;
+  height: auto;
+}
+
+.university-text-container {
+  text-align: center;
+}
+
+.university-name-kh {
+  color: var(--theme-blue) !important;
+ font-family:"Moul"!important;
+  font-size: 11px !important;  display: block;
+}
+
+.university-name-en {
+  color: var(--theme-blue) !important;
+   font-family:"Arial"!important;
+  font-size: 8px !important;
+  display: block;
+}
+
+.form-title-section {
+  text-align: center;
+  margin-bottom: 20px;
+  
+}
+.form-title-section2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+
+.form-main-title {
+  color: var(--theme-blue) !important;
+  margin-bottom: 5px !important;
+  font-family:"Moul"!important;
+  font-size: 12px !important;  display: block;
+}
+
+.form-subtitle {
+  color: var(--theme-blue) !important;
+  margin-top: 0 !important;
+  font-family:"Moul"!important;
+  font-size: 12px !important;  display: block;
+}
+
+.form-university-name {
+  color: var(--theme-blue) !important;
+  font-family:"Moul"!important;
+  font-size: 12px !important;  display: block;
+}
+
+.responsive-lines {
+  margin-bottom: 20px;
+}
+
+.form-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+  
+}
+
+.form-line span {
+  font-family: var(--font-family-khmer);
+  font-size: 10px;
+  color: var(--theme-blue) !important;
+}
+
+/* .dotted-input {
+  border-bottom: 2px dotted #070f7a !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-radius: 0 !important;
+  padding: 2px 0 !important;
+  background: transparent !important;
+  font-family: var(--font-family-khmer) !important;
+  
+} */
+
+
+.sign-end {
+  font-family: var(--font-family-khmer) !important;
+  font-size: 11px;
+  color: var(--theme-blue) !important;
+}
+
+.nameKh{
+    margin-left: 45px;
+
+}
+.input-title-year{
+  color: var(--theme-blue) !important;
+  font-family:"Moul"!important;
+  font-size: 12px !important;
+}
+.input{
+  font-family: var(--font-family-khmer) !important;
+  font-size: 11px;
+}
+
+
+.commitment-section {
+  margin-top: 20px;
+    font-size: 10px;
+  color: var(--theme-blue) !important;
+
+}
+.subject-bold{
+  font-weight: bold;
+  font-family:"Moul"!important;
+}
+
+.EK{
+  font-weight: bold;
+  font-family:"Moul"!important;
+}
+.subject-line2{
+  margin-left: 45px;
+  margin-top: 20px;
+}
+.commitment-text {
+  margin: 0;
+  margin-top: 20px;
+  margin-left: 45px;
+}
+
+/*signature*/
+.date-section {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  float: right;
+  font-size: 11px;
+  color: var(--theme-blue) !important;
+width: 60%;
+}
+
+.signature-label {
+  margin-top: 10px;
+margin-right: 100px;
+font-weight: bold;
+  font-family:"Moul"!important;
+}
+
+.date-line{
+margin-right: 20px;
+}
+
+.date-line1 #khmer_date_day{
+  width: 100px !important;
+    font-size: 11px;
+
+}
+.date-line1 #khmer_date_month{
+  width: 60px !important;
+    font-size: 11px;
+
+}
+.date-line1 #khmer_date_year{
+  width: 150px !important;
+    font-size: 11px;
+
+}
+
+.form-footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid var(--theme-blue);
+  text-align: center;
+  color: var(--theme-blue) !important;
+
+}
+
+.footer-address {
+  margin-bottom: 5px;
+  color: var(--theme-blue) !important;
+font-size: 12px;
+opacity: 0.8;
+}
+
+.footer-contact {
+ color: var(--theme-blue) !important;
+font-size: 11px;
+opacity: 0.8;
+
+}
+
+.attachment-section{
+  margin-top: 50px;
+}
+.form-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-note{
+  color: var(--theme-blue) !important;
+  margin: 0 !important;
+  font-family: var(--font-family-khmer) !important;
+  font-size: 8px !important;
+  font-weight: bold;
+  padding: 2px;
+}
+.form-note span {
+  color: var(--theme-blue) !important;
+  font-family: var(--font-family-khmer) !important;
+  font-size: 8px !important;
+  font-weight: bold;
+  padding: 2px;
+}
+
+
+/* --- RESPONSIVE UPDATES --- */
+@media (max-width: 768px) {
+  .student-page-wrapper {
+    padding: 10px 5px;
+  }
+
+  /* Fixed .scholarship-form syntax and width */
+  .scholarship-form, 
+  .paper-sheet {
+    padding: 5mm;
+    width: 98% !important; /* Prevents edge overflow */
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
+  }
+
+  .search-inner-container {
+    width: 100% !important;
+    padding: 0;
+  }
+
+  /* Responsive Search Grid */
+  .ant-col {
+    width: 100% !important; /* Stacks inputs vertically */
+    max-width: 100% !important;
+  }
+
+  /* Button container adjustment */
+  .search-button-space,
+  .ant-flex {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  /* Force buttons to fill width for easier tapping */
+  .ant-btn {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Signature & Date Realignment */
+  .signature-area {
+    float: none !important;
+    width: 100% !important;
+    text-align: center;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  .date-line {
+    justify-content: center !important;
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+}
+
+
+.ant-picker.dotted-input .ant-picker-input input {
+  font-family: var(--font-family-khmer);
+}
+
+
+/*reciept*/
+.khmer-moul {
+  font-family: 'Khmer OS Muol Light', serif;
+}
+
+/* Receipt Header */
+.receipt-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.uni-brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns stack to the left */
+  padding-left: 10px;
+  margin-bottom: 25px;
+}
+
+.uni-brand-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers text under the logo icon */
+  text-align: center;
+}
+
+.uni-brand-logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 8px;
+
+}
+
+.uni-brand-text-kh {
+  color: var(--theme-blue) !important;
+ font-family:"Moul"!important;
+  font-size: 11px !important;  display: block;
+  line-height: 1.2;
+}
+
+.uni-brand-text-en {
+   color: var(--theme-blue) !important;
+   font-family:"Arial"!important;
+  font-size: 8px !important;
+  display: block;
+  
+}
+
+.uni-serial-line {
+   font-family: var(--font-family-khmer);
+  font-size: 10px;
+  color: var(--theme-blue) !important;
+  margin-top: 5px;
+  width: 100%;
+  text-align: center;
+}
+.photo-box {
+  width: 75px;
+  height: 95px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-right: 30px;
+}
+
+/* Titles */
+.receipt-title {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  color: var(--theme-blue) !important;
+
+}
+
+/* Form Styling */
+.receipt-body {
+  font-size: 13px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+.dotted-input {
+  border: none !important;
+  border-bottom: 1px dotted var(--theme-blue) !important;
+  border-radius: 0 !important;
+  padding: 0 5px !important;
+  height: 20px !important;
+  background: transparent !important;
+}
+
+.clean-input {
+  border: none !important;
+  text-align: center !important;
+  background: transparent !important;
+}
+
+/* Signature Section */
+.signature-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  text-align: center;
+  color: var(--theme-blue) !important;
+  font-family: var(--font-family-khmer) !important;
+  font-size: 10px !important;
+}
+
+.sig-date-info {
+  font-size: 10px;
+}
+
+.staff-date-offset{
+    margin-top: 20px;
+}
+.sig-title {
+  font-size: 11px;
+  margin-top: 5px;
+  
+}
+
+.sig-name-placeholder {
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+.perforation {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+}
+
+.perforation-divider {
+  border-color: #999 !important;
+}
+
+.receipt-body{
+    margin-bottom: 45px;
+}
+
+@media print {
+  /* Set A4 Page Dimensions */
+  @page {
+    size: A4;
+    margin: 0; /* We control margins via padding for better accuracy */
+  }
+
+  /* Hide everything except the form */
+  
+
+  .scholarship-form, .scholarship-form * {
+    visibility: visible;
+  }
+
+  .scholarship-form {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    padding: 5mm 20mm !important; /* Standard A4 padding */
+    margin: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide Web-only UI */
+  .sticky-search, .ant-btn, .web-ui-controls {
+    display: none !important;
+  }
+
+  /* Maintain dotted lines in print */
+  .dotted-input {
+    border-bottom: 1px dotted #000 !important;
+    background: transparent !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Ensure Khmer fonts render clearly */
+  .national-title, .national-subtitle, .university-name-kh {
+    color: #000080 !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Remove any Ant Design input focus/hover borders */
+  .ant-input-affix-wrapper, .ant-input {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}

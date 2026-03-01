@@ -2,7 +2,27 @@
 body{
     display: block;
     margin-left: 0px;
+    
 }
+.ant-layout-sider {
+  height: 100vh;
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.ant-layout-header {
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--header-border);
+} 
 .logo-container {
     display: flex;
     flex-direction: column;
@@ -35,15 +55,6 @@ font-Size: 10px;
 font-Weight: bold;
 }
 
-.header{
-    
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 24px;
-    border-bottom: 1px solid var(--header-border);
-}
-
 .ant-btn.btnMenu {
   background: transparent !important;
   border: none !important;
@@ -67,7 +78,9 @@ font-Weight: bold;
 .content {
     margin: 24px 16px;
     padding: 24px;
-    flex: 1;
+    flex: 1;  /* transform: scale(1.1);  */
+  /* overflow: hidden; */
+
 }
 
 .dashboard {
@@ -115,174 +128,15 @@ transition: 0.2s;
   color: white !important;
 }
 
+/* A4 Container */
 
-/*dashbordPage*/
-.criclebox{
-box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; 
-margin-bottom: 25px;
-}
-
-.chartbar{
-box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; 
-}
-
-.ant-card-head {
-  width: 100% !important;
-  background: linear-gradient(to bottom, #1a1c28, #0303de) !important;
-  color: #ffffff !important;
+/* Sticky Search */
+.sticky-search-a4 {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-/*studentPage*/
-.ant-table-wrapper{
-  border-radius: 4px;
-box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; }
-.textContain{
-  display: flex; 
-    flex-Direction: column; 
-    font-Size: 18px;
-    letter-Spacing: 0.5px;
-    line-Height: 1.6;
-    align-Items:flex-end;
-    font-Weight:bold;
-    text-Align: center;
-    margin-right:75px;
-}
-.textRight{
-  font-family: "Moul", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-Size: 16px;
-}
-.textContainLeft{
-  margin-left: 75px;
-}
-.textLeft1{
-  font-family: "Moul", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-Size: 16px;
-  line-Height: 1.4;
-}
-.textLeft2{
-  font-Size: 11.7px;
-  letter-Spacing: 0.5px;
-  font-weight: bold;
-}
-.ant-table-cell{
-  font-family: "Battambang", system-ui;
-  font-weight: 100;
-  font-style: normal;
-}
-.ant-table-column-title{
-  font-weight: bold;
-  text-align: center;
-}
-.ant-table-row > .ant-table-cell:first-child {
-  text-align: center !important;
-}
-.ant-table-row > .ant-table-cell:nth-child(5) {
-  text-align: center !important;
-}
-.ant-table-row > .ant-table-cell:nth-child(4) {
-  font-family: "DM Serif Text", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 15px;
-}
 
-/*createStudent*/
-.headerText{
-  display: flex;
-  font-size: 24px;
-  justify-content: center !important;
-  font-family: "Moul", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.ant-col{
-    font-family: "Battambang", system-ui;
-  font-weight: 100;
-  font-style: normal;
-}
-.ant-divider-inner-text{
-  font-family: "Battambang", system-ui;
-  font-weight: 100;
-  font-style: normal;
-}
-.title{
-  font-size: 24px;
-    margin: 0;
-    font-family: "Bokor", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-/*academic*/
-.acad{
-  display:flex !important;
-    justify-Content: center!important;
-    align-Items: center!important;
-    margin-top: 250px;
-    
-}
-/*login*/
-.login{
-  height: 100vh;
-  display:flex;
-  justify-Content:center;
-  align-Items:center;
-  background:radial-gradient(circle, #3b71db 0%, #1a4299 100%);
-}
-.login-card{
-  height:600;
-  width: 500;
-  border-Radius:50px;
-  padding:20px;
-  background:#f0f2f5;
-  box-Shadow:0 20px 50px rgba(0,0,0,0.3);
-  border:none;
-}
-.loginTitle1{
-  margin: 0;
-  font-Size: '1rem';
-  color: '#1a1a1a';
-  font-family: "Moul", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.loginTitle2{
-  font-family: "DM Serif Text", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-Size: 14px; 
-  letter-Spacing:0.5px; 
-  color: #333;
-}
-.inputName{
-  border-Radius:25px;
-  height:55px;
-  border:none;
-  box-Shadow:inset 0 2px 5px rgba(0,0,0,0.1), 0 2px 5px rgba(255,255,255,0.7);
-  backgroundColor:#ffffff;
-    
-            
-}
-.inputPass{
-  border-Radius:25px; 
-  height:55px; 
-  border:none;
-  boxShadow:inset 0 2px 5px rgba(0,0,0,0.1), 0 2px 5px rgba(255,255,255,0.7);
-  backgroundColor:#ffffff;
-    
-            
-}
-.btnSubmit{
-  border-Radius:10px;
-  padding:0 35px;
-  height:40px;
-  background-Color:#2b549a;
-  font-Size:14px;
-  font-Weight:bold;
-  box-Shadow:0 4px 10px rgba(43, 84, 154, 0.3);
-    
-}

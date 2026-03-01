@@ -8,6 +8,9 @@ import ScorePage from './pages/score/ScorePage.jsx';
 import AttendantPage from './pages/attendant/AttendantPage.jsx';
 import DashboardPage from './pages/dashboard/DashboardPage.jsx';
 import Academic from './pages/academic/academic.jsx';
+import ScholarshipForm from './pages/form/ScholarshipForm.jsx'
+import Receipt from './pages/form/Receipt.jsx';
+import Cover from './pages/form/Cover.jsx';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +20,9 @@ function App() {
           <Route path="/student" element={<StudentPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/academic" element={<Academic />} />
+          <Route path="/scholarshipForm" element={<ScholarshipForm />} />
+          <Route path="/receipt" element={<Receipt />} />
+          <Route path="/cover" element={<Cover />} />
           <Route path="/score" element={<ScorePage />} />
           <Route path="/attendant" element={<AttendantPage />} />
         </Route>

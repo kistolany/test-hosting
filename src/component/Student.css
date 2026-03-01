@@ -1,0 +1,182 @@
+/* Main Wrapper */
+.student-page-wrapper {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* A4 Paper Sheet */
+.paper-sheet {
+  background: white;
+  width: 95%; /* Use percentage for mobile */
+  max-width: 210mm; /* Restrict to A4 width on desktop */
+  min-height: 297mm;
+  margin: 20px auto; /* Centered */
+  padding: 10mm;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  font-family: 'Battambang', sans-serif;
+  overflow-x: auto; /* Handle table overflow on very small screens */
+}
+
+/* Adjust Sticky Search for Mobile */
+.web-ui-controls {
+  position: sticky;
+  top: 60px;
+  z-index: 1000;
+  width: 100%; /* Full width on mobile */
+  background: white;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.search-inner-container {
+  width: 100%;
+  max-width: 210mm;
+}
+
+.ant-table-cell{
+  color: #070f7a!important;
+  border-radius: 0px !important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+.ant-table-content{
+  border-radius: 0px !important;
+
+  color: #070f7a!important;
+}
+
+/* Typography & Table */
+.khmer-moul { font-family: 'Moul', serif; 
+    color: #070f7a;
+
+}
+.official-table .ant-table-thead > tr > th {
+  background-color: #d9d9d9 !important;
+  border: 1px solid #070f7a !important;
+  text-align: center !important;
+  font-weight: bold !important;
+}
+.official-table .ant-table-tbody > tr > td { border: 1px solid #070f7a !important; }
+
+.signature-area {
+  margin-top: 30px;
+  margin-left: auto; /* Pushes the entire block to the right */
+  width: fit-content; /* Ensures the container only takes as much space as the text */
+  min-width: 40%;   /* Provides a stable base for the centered text */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Keeps the internal lines centered relative to each other */
+  text-align: end;
+  float: right; /* Aligns the signature area to the right */
+  color: #070f7a;
+  font-family: var(--font-family-khmer); /* Ensure consistent font */
+  
+}
+@media (max-width: 700px) {
+  .official-header {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .document-title-block .khmer-moul {
+    font-size: 12px !important;
+  }
+
+  .signature-area {
+    float: none; /* Center signature on mobile */
+    margin-top: 50px;
+  }
+}
+
+/* --- PRINT LOGIC --- */
+@media print {
+  @page {
+    size: A4;
+margin: 0.8cm 0cm;  
+margin-right: 1cm;
+}
+#layout-container{
+    padding-top: 0mm !important;
+  }
+.ant-table {
+    table-layout: auto !important;
+    width: 662px !important;
+  }
+
+  .ant-table-tbody > tr > td:nth-last-child(2) {
+    width: auto !important;
+    min-width: 150px;
+  }
+
+  /* Hide UI elements */
+  .web-ui-controls, 
+  .action-column, 
+  .ant-layout-sider, 
+  .ant-layout-header {
+    display: none !important;
+  }
+
+  .student-page-wrapper { 
+    background: none !important; 
+    
+  padding: 0 !important; 
+}
+  
+  .paper-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    padding: 10mm !important;
+    
+  }
+
+  /* Ensure table fills space */
+  .official-table { 
+    width: 100% !important; 
+  }
+
+.signature-block {
+    float: right !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    display: block !important;
+  }
+  
+}
+
+/*createStudent*/
+.headerText{
+  display: flex;
+  font-size: 24px;
+  justify-content: center !important;
+  font-family: "Moul", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.ant-col{
+    font-family: "Battambang", system-ui;
+  font-weight: 100;
+  font-style: normal;
+}
+.ant-divider-inner-text{
+  font-family: "Battambang", system-ui;
+  font-weight: 100;
+  font-style: normal;
+}
+.title{
+  font-size: 24px;
+    margin: 0;
+    font-family: "Bokor", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+

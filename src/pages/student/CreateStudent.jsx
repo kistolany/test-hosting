@@ -104,7 +104,7 @@ const CreateStudent = () => {
           <Form.Item 
             label="Email" 
             name="Email" 
-            rules={[{ required: true, message: "សូមបញ្ជាក់ Email!" }, { type: 'email', message: 'Email មិនត្រឹមត្រូវ!' }]}
+            rules={[{ type: 'email', message: 'Email មិនត្រឹមត្រូវ!' }]}
           >
             <Input />
           </Form.Item>
@@ -133,12 +133,12 @@ const CreateStudent = () => {
         <Divider orientation="left">អាសយដ្ឋាន (Address)</Divider>
 
         <Col xs={12} sm={6} md={4} lg={3}>
-          <Form.Item label="ផ្លូវលេខ" name="StreetNo" rules={[{ required: true, message: "បញ្ជាក់លេខផ្លូវ!" }]}>
+          <Form.Item label="ផ្លូវលេខ" name="StreetNo">
             <Input />
           </Form.Item>
         </Col>
         <Col xs={12} sm={6} md={4} lg={3}>
-          <Form.Item label="ផ្ទះលេខ" name="HouseNo" rules={[{ required: true, message: "បញ្ជាក់លេខផ្ទះ!" }]}>
+          <Form.Item label="ផ្ទះលេខ" name="HouseNo">
             <Input />
           </Form.Item>
         </Col>
@@ -166,12 +166,12 @@ const CreateStudent = () => {
         <Divider orientation="left">អាសយដ្ឋានបច្ចុប្បន្ន (Current Address)</Divider>
 
         <Col xs={12} sm={6} md={4} lg={4}>
-          <Form.Item label="ផ្លូវលេខបច្ចុប្បន្ន" name="CurrStreetNo" rules={[{ required: true, message: "ស្ទួន!" }]}>
+          <Form.Item label="ផ្លូវលេខបច្ចុប្បន្ន" name="CurrStreetNo">
             <Input />
           </Form.Item>
         </Col>
         <Col xs={12} sm={6} md={4} lg={4}>
-          <Form.Item label="ផ្ទះលេខបច្ចុប្បន្ន" name="CurrHouseNo" rules={[{ required: true, message: "ស្ទួន!" }]}>
+          <Form.Item label="ផ្ទះលេខបច្ចុប្បន្ន" name="CurrHouseNo">
             <Input />
           </Form.Item>
         </Col>
@@ -267,7 +267,13 @@ const CreateStudent = () => {
 
         <Col xs={24} sm={12} md={8} lg={6}>
           <Form.Item label="ថ្ងៃសិក្សា" name="StudyDays" rules={[{ required: true, message: "បញ្ជាក់ថ្ងៃសិក្សា!" }]}>
-            <Select />
+            <Select 
+            placeholder="ថ្ងៃសិក្សា"
+                        options={[
+                          { label: 'ច័ន្ទ-សុក្រ', value: 1 },
+                          { label: 'សៅរ៍-អាទិត្យ', value: 2 }
+                        ]}
+            />
           </Form.Item>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6}>
@@ -275,19 +281,19 @@ const CreateStudent = () => {
             <Select />
           </Form.Item>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        {/* <Col xs={24} sm={12} md={8} lg={6}>
           <Form.Item label="ថ្ងៃ ខែ ឆ្នាំ ចុះឈ្មោះ" name="RegisterDate" rules={[{ required: true, message: "ជ្រើសរើសថ្ងៃចុះឈ្មោះ!" }]}>
             <DatePicker style={{ width: "100%" }} />
           </Form.Item>
-        </Col>
+        </Col> */}
         <Col xs={24} sm={12} md={8} lg={6}>
-          <Form.Item label="ផ្សេងៗ" name="Others" rules={[{ required: true, message: "បញ្ជាក់បន្ថែម!" }]}>
+          <Form.Item label="ផ្សេងៗ" name="Others">
             <Input />
           </Form.Item>
         </Col>
 
         <Col xs={20} sm={10} md={6} lg={4}>
-          <Form.Item label="ឯកសារខ្វះ" name="doc" rules={[{ required: true, message: "បញ្ជាក់ឯកសារ!" }]}>
+          <Form.Item label="ឯកសារខ្វះ" name="doc">
             <Input />
           </Form.Item>
         </Col>

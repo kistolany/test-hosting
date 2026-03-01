@@ -39,12 +39,6 @@ const Header = ({ isDark, setIsDark }) => {
       className="header"
       style={{
         background: colorBgContainer,
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        padding: '0 24px',
-        borderBottom: `1px solid ${isDark ? "#303030" : "#f0f0f0"}`,
-        lineHeight: '64px',
       }}
     >
       <Space size={25}>

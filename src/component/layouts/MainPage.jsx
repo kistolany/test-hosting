@@ -5,6 +5,11 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../Main.css";
+import "../Scholar.css";
+import "../Dashboard.css";
+import "../Academic.css";
+import "../Student.css";
+import "../Login.css";
 
 const { Content } = Layout;
 
@@ -15,7 +20,7 @@ const MainPage = () => {
 
   return (
     <ConfigProvider theme={{ algorithm: isDark ? darkAlgorithm : defaultAlgorithm }}>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout>
         
         <Sidebar 
           collapsed={collapsed} 

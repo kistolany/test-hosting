@@ -2,7 +2,7 @@ import React from "react";
 import { Chart as ChartJS, defaults } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Card, Col, Row, Typography } from "antd";
-import "../../component/Main.css"; // Ensure this path matches your folder structure exactly
+import "../../component/Main.css";
 import sourceData from "../../data/sourceData.json";
 
 const { Title } = Typography;

@@ -6,21 +6,23 @@ import {
   MenuUnfoldOutlined,
   ReadOutlined,
   UsergroupAddOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 const { Sider } = Layout;
 const menuItems = [
   { key: "/student", icon: <UsergroupAddOutlined />, label: "Student" },
   { key: "/academic", icon: <ReadOutlined />, label: "Academic" },
-  // {
-  //   key: "sub2",
-  //   label: "Academic",
-  //   icon: <AppstoreOutlined />,
-  //   children: [
-  //     { key: "/faculty", label: "Faculty" },
-  //     { key: "/major", label: "Major" },
-  //     { key: "/subject", label: "Subject" },
-  //   ],
-  // },
+  // { key: "/scholarshipForm", icon: <ReadOutlined />, label: "ScholarshipForm" },
+  {
+    key: "sub2",
+    label: "Scholarship",
+    icon: <AppstoreOutlined />,
+    children: [
+      { key: "/ScholarshipForm", label: "Form" },
+      { key: "/receipt", label: "Receipt" },
+      { key: "/cover", label: "Cover" },
+    ],
+  },
 ];
 
 const Sidebar = ({ collapsed, setCollapsed, isDark }) => {

@@ -1,0 +1,15 @@
+/*dashbordPage*/
+.criclebox{
+box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; 
+margin-bottom: 25px;
+}
+
+.chartbar{
+box-shadow: 3px 3px 8px 2px rgb(205, 204, 204) !important; 
+}
+
+.ant-card-head {
+  width: 100% !important;
+  background: linear-gradient(to bottom, #1a1c28, #0303de) !important;
+  color: #ffffff !important;
+}
