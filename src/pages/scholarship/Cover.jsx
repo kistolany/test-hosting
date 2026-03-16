@@ -337,16 +337,16 @@ const Cover = () => {
   </span>
 </div>
  </div>
-            <div className="signature-area">
+            <div className="signature-area sign-cover">
               <div className="lunar-date">ថ្ងៃ................ កើត ខែ............ ឆ្នាំ..................ស័ក ព.ស. ............</div>
               <div className="gregorian-date">រាជធានីភ្នំពេញ ថ្ងៃទី........ ខែ........ ឆ្នាំ២០២៥</div>
               <div className="sig-label khmer-moul">ហត្ថលេខា និងឈ្មោះ</div>
             </div>
+            
           </div>
-          </div>
-
-        {/* Footer */}
-        <div className="form-footer">
+          
+          {/* Footer */}
+        <div className="form-footer footer-cover" style={{ marginTop:'360px' }}>
           <div className="footer-address">
             អាសយដ្ឋានៈ អគារលេខ១៤៧ក ផ្លូវឥដ្ឋច្រាស សង្កាត់ទូលសង្កែទី២
             ខណ្ឌឫស្សីកែវ រាជធានីភ្នំពេញ
@@ -354,7 +354,11 @@ const Cover = () => {
           <div className="footer-contact">
 Hot Line: 023 902 220 | FAX: 023 902 221 | E-mail: cumt.cambodia@gmail.com | Website: www.cumt.edu.kh          </div>
         </div>
+          </div>
+
+        
       </Form>
+      
     </div>
   );
 };

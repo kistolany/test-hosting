@@ -45,6 +45,7 @@ const AdvancedSearchForm = () => {
     <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
     <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
       <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/createStudent")}>Add New</Button>
+      <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/sortingpage")}>Sort</Button>
     </ConfigProvider>
   </Flex>
 </Form>
@@ -140,7 +141,6 @@ const StudentPage = () => {
       <div className="web-ui-controls "> 
         <AdvancedSearchForm />
       </div>
-
       <div className="paper-sheet">
         <div className="official-header" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div className="uni-logo-section" style={{ textAlign: 'center' }}>

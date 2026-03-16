@@ -395,13 +395,20 @@ opacity: 0.8;
   }
 
   /* Signature & Date Realignment */
-  .signature-area {
-    float: none !important;
-    width: 100% !important;
-    text-align: center;
-    margin-top: 20px;
-    align-items: center;
-  }
+.signature-area {
+  margin-top: 30px;
+  margin-left: auto; /* Pushes the entire block to the right */
+  width: fit-content; /* Ensures the container only takes as much space as the text */
+  min-width: 40%;   /* Provides a stable base for the centered text */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Keeps the internal lines centered relative to each other */
+  text-align: end;
+  float: right; /* Aligns the signature area to the right */
+  color: #070f7a;
+  font-family: var(--font-family-khmer); /* Ensure consistent font */
+  
+}
 
   .date-line {
     justify-content: center !important;
@@ -482,6 +489,8 @@ opacity: 0.8;
   justify-content: center;
   font-size: 12px;
   margin-right: 30px;
+  margin-Left:300px;
+  margin-top: 50px;
 }
 
 /* Titles */
@@ -554,6 +563,8 @@ opacity: 0.8;
 
 .perforation-divider {
   border-color: #999 !important;
+  margin-top: 130px !important;
+    margin-bottom: 30px !important;
 }
 
 .receipt-body{
@@ -567,9 +578,7 @@ opacity: 0.8;
     margin: 0; /* We control margins via padding for better accuracy */
   }
 
-  /* Hide everything except the form */
   
-
   .scholarship-form, .scholarship-form * {
     visibility: visible;
   }
@@ -580,10 +589,12 @@ opacity: 0.8;
     top: 0;
     width: 210mm !important;
     min-height: 297mm !important;
-    padding: 5mm 20mm !important; /* Standard A4 padding */
+    padding: 10mm 5mm !important; /* Standard A4 padding */
     margin: 0 !important;
     background: white !important;
     box-shadow: none !important;
+    margin-left: 25px !important;
+
   }
 
   /* Hide Web-only UI */
@@ -593,20 +604,65 @@ opacity: 0.8;
 
   /* Maintain dotted lines in print */
   .dotted-input {
-    border-bottom: 1px dotted #000 !important;
-    background: transparent !important;
-    -webkit-print-color-adjust: exact;
+    border: none !important;
+  border-bottom: 1px dotted var(--theme-blue) !important;
+  border-radius: 0 !important;
+  padding: 0 5px !important;
+  background: transparent !important;
   }
-
+.form-main-title,.form-subtitle,.form-university-name{
+        font-size: 11px !important;
+}
   /* Ensure Khmer fonts render clearly */
   .national-title, .national-subtitle, .university-name-kh {
     color: #000080 !important;
     -webkit-print-color-adjust: exact;
+    font-size: 13px !important;
   }
+.university-name-kh{
+      font-size: 10px !important;
 
-  /* Remove any Ant Design input focus/hover borders */
-  .ant-input-affix-wrapper, .ant-input {
-    border: none !important;
-    box-shadow: none !important;
+}
+.form-footer{
+  margin-top: 50px !important;
+}
+
+/*cover*/
+.sign-cover{
+  .signature-block {
+    float: right !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    display: block !important;
   }
 }
+.footer-cover{
+  margin-top: 398px !important;
+}
+.perforation-divider {
+    border-top: 1px dashed #000 !important;
+    width: 100%;
+    margin-top: 130px !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+/*enrollment*/
+.student-id{
+  font-family: var(--font-family-khmer) !important;
+  font-size: 11px;
+  color: var(--theme-blue) !important;
+  display: flex;
+  justify-content: flex-end;
+  height: auto;
+  width: 350px;
+  margin-right: 70px;
+}
+.form-main-title-en{
+  color: var(--theme-blue) !important;
+  font-family: ('Arial', sans-serif) !important;
+  font-size: 11px !important;
+  margin-top: 0px !important;
+  }

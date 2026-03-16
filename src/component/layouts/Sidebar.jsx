@@ -22,6 +22,15 @@ const menuItems = [
       { key: "/receipt", label: "Receipt" },
       { key: "/cover", label: "Cover" },
     ],
+  }, 
+  {
+    key: "sub3",
+    label: "Enrollment",
+    icon: <AppstoreOutlined />,
+    children: [
+      { key: "/enrollmentForm", label: "Form" },
+      { key: "/enrollmentReciept", label: "Receipt" },
+    ],
   },
 ];
 

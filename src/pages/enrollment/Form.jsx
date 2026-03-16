@@ -71,7 +71,7 @@ const HeaderDecorative = () => (
   </div>
 );
 
-const ScholarshipForm = () => {
+const EnrollmentForm = () => {
   
   const { token } = theme.useToken();
   const [form] = Form.useForm();
@@ -186,47 +186,25 @@ const ScholarshipForm = () => {
           </div>
 
           {/* University Logo Section */}
-          <div className="university-header">
-            <Row justify="start">
-              <Col xs={24} sm={12}>
-                <Space
-                  direction="vertical"
-                  align="center"
-                  className="university-logo-space"
-                >
-                  <img
-                    src="/asset/image/logo.png"
-                    alt="CUMT Logo"
-                    className="university-logo"
-                  />
-                  <div className="university-text-container">
-                    <Text strong className="university-name-kh">
-                      សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា
-                    </Text>
-                    <Text className="university-name-en">
-                      CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY
-                    </Text>
-                  </div>
-                </Space>
-              </Col>
-            </Row>
+          <div className="receipt-header">
+            <div className="uni-brand-header">
+              <div className="uni-brand-stack">
+                <img src="/asset/image/logo.png" className="uni-brand-logo" alt="CUMT" />
+                <div className="uni-brand-text-kh">សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</div>
+                <div className="uni-brand-text-en">CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY</div>
+              </div>
+              <div className="uni-serial-line">លេខ:..........................................................សកតប</div>
+            </div>
+            <div className="photo-box">4x6</div>
           </div>
 
           <div className="form-title-section">
             <Title level={3} className="form-main-title">
-              ពាក្យស្នើសុំអាហារូបករណ៍
+              ពាក្យចុះឈ្មោះសិក្សា
             </Title>
-            <Title level={4} className="form-subtitle">
-              ថ្នាក់បរិញ្ញាបត្រ ឆ្នាំសិក្សា<Form.Item name="year-study" noStyle>
-                <Input
-                  bordered={false}
-                  className="input-title-year w-16 year-study-input"
-                />
-              </Form.Item>
+            <Title level={3} className="form-main-title-en">
+              APPLYCATION FORM
             </Title>
-            <Text strong className="form-university-name">
-              នៅសាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា
-            </Text>
           </div>
 
           {/* Form Fields Area */}
@@ -371,7 +349,7 @@ const ScholarshipForm = () => {
               </Form.Item>
             </div>
 
-            {/* Line 3: Address */}
+            {/* Line 3 (Repeat in your code): Emergency Address */}
             <div className="form-line">
               <span>អាសយដ្ឋាននៅភូមិ</span>
               <Form.Item name="village" noStyle>
@@ -574,10 +552,8 @@ const ScholarshipForm = () => {
               <Title className="form-note">០៦ច្បាប់</Title>
             </div>
           </Space>
-        </div>
-
-        {/* Footer */}
-        <div className="form-footer">
+           {/* Footer */}
+          <div className="form-footer">
           <div className="footer-address">
             អាសយដ្ឋានៈ អគារលេខ១៤៧ក ផ្លូវឥដ្ឋច្រាស សង្កាត់ទូលសង្កែទី២
             ខណ្ឌឫស្សីកែវ រាជធានីភ្នំពេញ
@@ -585,9 +561,13 @@ const ScholarshipForm = () => {
           <div className="footer-contact">
 Hot Line: 023 902 220 | FAX: 023 902 221 | E-mail: cumt.cambodia@gmail.com | Website: www.cumt.edu.kh          </div>
         </div>
+        </div>
+
+       
+        
       </Form>
     </div>
   );
 };
 
-export default ScholarshipForm;
+export default EnrollmentForm;
