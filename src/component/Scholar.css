@@ -360,7 +360,7 @@ opacity: 0.8;
   }
 
   /* Fixed .scholarship-form syntax and width */
-  .scholarship-form, 
+
   .paper-sheet {
     padding: 5mm;
     width: 98% !important; /* Prevents edge overflow */
@@ -415,6 +415,7 @@ opacity: 0.8;
     flex-wrap: wrap;
     font-size: 11px;
   }
+
 }
 
 
@@ -593,10 +594,12 @@ opacity: 0.8;
     margin: 0 !important;
     background: white !important;
     box-shadow: none !important;
-    margin-left: 25px !important;
 
   }
 
+  .form-content{
+    margin:0px 15px !important;
+  }
   /* Hide Web-only UI */
   .sticky-search, .ant-btn, .web-ui-controls {
     display: none !important;
@@ -624,7 +627,7 @@ opacity: 0.8;
 
 }
 .form-footer{
-  margin-top: 50px !important;
+  margin-top: 45px !important;
 }
 
 /*cover*/

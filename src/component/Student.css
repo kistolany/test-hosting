@@ -51,7 +51,8 @@
 }
 
 /* Typography & Table */
-.khmer-moul { font-family: 'Moul', serif; 
+.khmer-moul { 
+  font-family: 'Moul', serif; 
     color: #070f7a;
 
 }
@@ -193,3 +194,248 @@ thead:before {
 }
 
 
+
+/* Enrollment Form Specific Styles */
+.form-title-section1 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+/* Layout Alignment */
+.enroll-field-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 8px;
+}
+
+/* Box Input Styling */
+.enroll-box-input {
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    height: 23px;
+    background: transparent;
+    padding: 2px 8px;
+    width: 200px !important;
+    flex: none !important;
+
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+/* Box 2: Set to 150px as per your right-column logic */
+.enroll-box-input2 {
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    height: 23px;
+    background: transparent;
+    padding: 2px 8px;
+    width: 150px !important;
+    flex: none !important;
+
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 12px;
+}
+
+/* Equal Box Styling */
+.enroll-form-box {
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    height: 23px;
+    background: transparent;
+    padding: 2px 8px;
+    flex: 1;
+
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 12px;
+}
+
+.enroll-right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.enroll-field-group-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.enroll-label-right {
+    white-space: nowrap;
+    text-align: right;
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+/* Label Widths */
+.enroll-label-kh {
+    white-space: nowrap;
+    min-width: 170px;
+    display: inline-block;
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+/* Status & Checkboxes */
+.enroll-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.enroll-check-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+.enroll-check-item {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+.enroll-square-indicator {
+    width: 28px;
+    height: 20px;
+    border: 1px solid #000;
+    background: #fff;
+
+}
+
+/* Middle Header Section */
+.enroll-formal-center-header {
+    text-align: center;
+    margin: 1px 0;
+}
+
+
+.enroll-kh-bold {
+    font-weight: bold !important;
+    margin-bottom: 2px !important;
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 12px;
+}
+
+.enroll-en-sub {
+    font-size: 12px;
+color: #070f7a;}
+
+.enroll-footer-notes{
+  color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+/* Tight spacing for the Year row */
+.enroll-year-row {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+/* Specific small box for year digits */
+.enroll-box-year {
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    height: 23px;
+    width: 70px !important; /* Matches image proportions */
+    text-align: center;
+    flex: none !important;
+}
+
+.enroll-dash-spacer {
+    margin: 0 2px;
+    font-weight: bold;
+}
+/* Small box for the right-side details */
+.enroll-box-small {
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    height: 23px;
+    width: 100px !important; /* Fixed width to match image */
+    flex: none !important;
+    background: transparent;
+    padding: 2px 8px;
+    margin-left: auto; 
+
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 12px;
+}
+
+.enroll-label-sub {
+    white-space: nowrap;
+    color: #070f7a!important;
+  font-family: "Khmer OS Battambang", system-ui;
+  font-size: 11px;
+}
+
+/* Utilities */
+.enroll-mt-15 { margin-top: 15px; }
+.enroll-mt-20 { margin-top: 20px; }
+
+/*signature*/
+.enroll-date-section {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  float: right;
+  font-size: 11px;
+  color: var(--theme-blue) !important;
+width: 60%;
+}
+
+@media print {
+  .ant-row {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    margin-right: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  /* 5. Clean up Input appearances */
+  .enroll-box-input, 
+  .enroll-box-input2, 
+  .enroll-form-box,
+  .enroll-square-indicator {
+    border: 1px solid #000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+.form-title-section1 {
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+.enroll-formal-center-header {
+    text-align: center;
+    margin: 1px 0 !important;
+}
+  .enroll-footer{
+  margin-top: 26px !important;
+  }
+  }
