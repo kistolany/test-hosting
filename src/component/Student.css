@@ -124,7 +124,6 @@ margin:0mm;
 
   .student-page-wrapper { 
     background: none !important; 
-    
   padding: 0 !important; 
 }
   
@@ -144,9 +143,12 @@ thead:before {
     content: "";
 
   }
+
+  
   /* Ensure table fills space */
   .official-table { 
     width: 100% !important;
+    margin-bottom: 0px !important;
   }
 .ant-table-wrapper .ant-table-container {
   border-top: none !important;
@@ -162,6 +164,7 @@ thead:before {
     margin-left: auto !important;
     margin-right: 0 !important;
     display: block !important;
+    margin-bottom: 30px;
   }
   
 }
@@ -438,4 +441,107 @@ width: 60%;
   .enroll-footer{
   margin-top: 26px !important;
   }
-  }
+}
+
+
+/* sortpage */
+.sort-container, 
+.sort-khmer-text,
+.sort-container .ant-select-selection-placeholder, 
+.sort-container .ant-select-selection-item, 
+.sort-container .ant-form-item-label label,
+.sort-container .ant-table-pagination, 
+.sort-container .ant-table-thead th,
+.sort-container .ant-table-tbody > tr > td.ant-table-cell {
+  font-family: "Khmer OS Battambang", system-ui !important;
+}
+
+.sort-container {
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.sort-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sort-header-title {
+  margin: 0 !important;
+  color: #160579 !important;
+  font-family: "Khmer moul" !important;
+  font-size: 24px !important;
+}
+
+.sort-statistic-pending {
+  margin-right: 40px;
+}
+
+.sort-btn-enroll {
+  background-color: #160579 !important;
+  border-radius: 8px;
+  height: 45px;
+  font-weight: bold;
+  font-family: "Khmer OS Battambang", system-ui !important;
+}
+
+.sort-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+}
+
+.sort-filter-row {
+  align-items: bottom;
+}
+
+.sort-form-item {
+  margin-bottom: 0 !important;
+}
+
+.sort-btn-search {
+  background-color: #070f7a !important;
+  flex: 1;
+  font-family: "Khmer OS Battambang", system-ui !important;
+  margin-top: 30px;
+}
+.sort-btn-clear{
+    margin-top: 30px;
+
+}
+.sort-student-name-kh {
+  font-family: "Khmer OS Battambang", sans-serif;
+  color: #000080; /* Deep Navy Blue */
+  font-weight: 700; /* Bold */
+  font-size: 14px;
+  display: block;
+  padding: 8px 0; /* Add some breathing room like the image */
+}
+
+.sort-student-number{
+  color: #000080; /* Deep Navy Blue */
+  font-size: 12px;
+}
+.sort-student-name-en {
+    color: #000080; /* Deep Navy Blue */
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: system-ui, sans-serif !important; /* Usually better in standard sans-serif */
+}
+
+.sort-gender-tag {
+  border-radius: 10px;
+  padding: 0 10px;
+  font-family: "Khmer OS Battambang", system-ui !important;
+}
+
+.sort-action-edit {
+  color: #faad14;
+}
+
+/* Ensure the empty state "No Data" also uses the font */
+.sort-container .ant-empty-description {
+  font-family: "Khmer OS Battambang", system-ui !important;
+}

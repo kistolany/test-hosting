@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, PrinterOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, PrinterOutlined,ClearOutlined } from '@ant-design/icons';
 import { useOutletContext, useNavigate } from "react-router-dom";
 import {
   Table, Button, Flex, Typography, Space, ConfigProvider, Skeleton, theme, Form, Row, Col, Select, Popconfirm
@@ -41,7 +41,7 @@ const AdvancedSearchForm = () => {
   {/* Flex wrap ensures buttons don't overflow on small screens */}
   <Flex justify="flex-start" gap="middle" wrap="wrap">
     <Button type="primary" icon={<SearchOutlined />} style={{ backgroundColor: '#070f7a' }}>Search</Button>
-    <Button onClick={() => form.resetFields()}>Clear</Button>
+    <Button icon={<ClearOutlined/>} onClick={() => form.resetFields()}/>
     <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
     <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
       <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/createStudent")}>Add New</Button>
@@ -73,16 +73,7 @@ const StudentPage = () => {
     { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
     { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
     { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-    
+  
     
     
   ]);

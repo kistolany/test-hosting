@@ -16,7 +16,7 @@ import {
 import {
   SaveOutlined,
   PrinterOutlined,
-  SearchOutlined,
+  SearchOutlined,ClearOutlined
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 import flourishSign from "../../assets/image_69b387.png";
@@ -152,15 +152,13 @@ const Cover = () => {
                               </Button>
                                 <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
                               
-                              <Button
+                              <Button icon={<ClearOutlined />}
                                 onClick={() => {
                                   form.resetFields();
                                   searchForm.resetFields();
                                 }}
                                 className="clear-button"
-                              >
-                                Clear
-                              </Button>
+                              />
                             </Space>
                           </Form.Item>
                         </Col>

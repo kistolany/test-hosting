@@ -44,7 +44,7 @@ const CreateStudent = () => {
           </Form.Item>
         </Col>
        <Col xs={24} sm={24} md={24} lg={24}>
-          <div className="headerText">
+          <div className="headerText" style={{ color:'#070f7a ' }}>
             បញ្ជីរាយនាមនិស្សិតស្នើសុំអាហាររូបករណ៍
           </div>
         </Col>

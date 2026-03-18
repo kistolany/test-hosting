@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Divider, Button, Row, Col, Select, Space, theme } from "antd";
-import { SearchOutlined,PrinterOutlined} from "@ant-design/icons";
+import { SearchOutlined,PrinterOutlined,ClearOutlined} from "@ant-design/icons";
 
 const MOCK_STUDENTS = {
   "Batch 1-រដ្ឋបាលសាធារណៈ-LIM FAHIMA": {
@@ -106,14 +106,13 @@ const ScholarshipForm = () => {
                             <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
 
                             <Button
+                            icon={<ClearOutlined />}
                               onClick={() => {
                                 form.resetFields();
                                 searchForm.resetFields();
                               }}
                               className="clear-button"
-                            >
-                              Clear
-                            </Button>
+                            />
                           </Space>
                         </Form.Item>
                       </Col>

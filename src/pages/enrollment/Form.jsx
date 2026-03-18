@@ -14,7 +14,7 @@ import {
 } from "antd";
 import {
   PrinterOutlined,
-  SearchOutlined,
+  SearchOutlined,ClearOutlined
 } from "@ant-design/icons";
 // import dayjs from "dayjs";
 import flourishSign from "../../assets/image_69b387.png";
@@ -109,9 +109,9 @@ const EnrollmentForm = () => {
             <Col xs={24} sm={12} md={8} lg={4.8}>
               <Form.Item className="search-form-item">
                 <Space>
-                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>Search</Button>
+                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor:'#070f7a' }}>Search</Button>
                   <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
-                  <Button onClick={() => { form.resetFields(); searchForm.resetFields(); }}>Clear</Button>
+                  <Button icon={<ClearOutlined/>} onClick={() => { form.resetFields(); searchForm.resetFields(); }}/>
                 </Space>
               </Form.Item>
             </Col>
