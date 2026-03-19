@@ -73,7 +73,9 @@ const StudentPage = () => {
     { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
     { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
     { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
-  
+    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
+    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
+    { key: "4", No: "4", ID: "B260027", nameKhmer: "សុភីយ៉ាន អាលី", name: "SORPIYAN ALY", gender: "M", dob: "8-Feb-06", Note: "" },
     
     
   ]);
