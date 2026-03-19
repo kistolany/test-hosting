@@ -1,0 +1,114 @@
+.att-page-wrapper {
+  padding: 20px;
+  background-color: #f0f2f5;
+  font-size: 14px;
+}
+
+.att-paper-sheet {
+  background: white;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  min-height: 297mm;
+}
+
+.khmer-moul {
+  font-family: 'Khmer OS Muol Light', serif;
+  font-size: 14px; 
+}
+
+/* --- រចនាបថតារាង (Table) --- */
+.att-main-table .ant-table {
+  font-size: 14px !important;
+}
+
+.att-main-table .ant-table-thead > tr > th {
+  background-color: #fafafa !important;
+  text-align: center !important;
+  font-size: 14px !important; 
+  padding: 8px 2px !important;
+  font-weight: bold;
+}
+
+.att-main-table .ant-table-tbody > tr > td {
+  padding: 6px 4px !important;
+  font-size: 14px;
+}
+
+/* --- រចនាបថពេលកំពុង Edit Row --- */
+.ant-table-row.editing-row td {
+  background-color: #f0f5ff !important;
+}
+
+/* --- រចនាបថប៊ូតុង Att / P / A (Radio Group) --- */
+.att-radio-group .ant-radio-button-wrapper {
+  padding: 0 4px;
+  font-size: 11px; /* បន្ថយទំហំអក្សរបន្តិចដើម្បីឱ្យដាក់បាន ៣ ប៊ូតុងក្នុងមួយប្រអប់ */
+  height: 28px;
+  line-height: 26px;
+  border-color: #d9d9d9;
+}
+
+/* ពណ៌ខៀវសម្រាប់ Attention (វត្តមានមកផ្ទាល់) - បានពិន្ទុពេញ */
+.selection-Att .ant-radio-button-wrapper-checked {
+  background-color: #070f7a !important; 
+  border-color: #070f7a !important;
+  color: white !important;
+}
+
+/* ពណ៌បៃតងសម្រាប់ Permission (ច្បាប់) - មិនគិតពិន្ទុ */
+.selection-P .ant-radio-button-wrapper-checked {
+  background-color: #52c41a !important; 
+  border-color: #52c41a !important;
+  color: white !important;
+}
+
+/* ពណ៌ក្រហមសម្រាប់ Absent (អវត្តមាន) - មិនគិតពិន្ទុ និងជាប់ពិន័យ */
+.selection-A .ant-radio-button-wrapper-checked {
+  background-color: #ff4d4f !important; 
+  border-color: #ff4d4f !important;
+  color: white !important;
+}
+
+/* បន្ថយភាពច្បាស់នៃប៊ូតុងដែលជាប់ Disabled */
+.att-radio-group.ant-radio-group-disabled {
+  opacity: 0.8;
+}
+
+/* --- រចនាបថសម្រាប់ពិន្ទុ (Score) --- */
+.att-main-table strong {
+  font-family: 'Arial', sans-serif;
+  color: #070f7a;
+  font-size: 14px;
+}
+
+/* --- កែសម្រួល Tag ពិន័យ --- */
+.ant-tag {
+  font-size: 13px !important;
+  padding: 0 5px !important;
+  margin: 0 !important;
+  border-radius: 2px;
+}
+
+/* --- ការកំណត់សម្រាប់ការបោះពុម្ព (Print) --- */
+@media print {
+  .web-ui-controls, .search-inner-container, .ant-table-fixed-right {
+    display: none !important;
+  }
+  
+  .att-page-wrapper {
+    padding: 0;
+    background: none;
+  }
+  
+  .att-paper-sheet {
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  /* បង្ហាញពណ៌ប៊ូតុងឱ្យច្បាស់ពេល Print */
+  .ant-radio-button-wrapper-checked {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

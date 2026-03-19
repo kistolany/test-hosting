@@ -10,6 +10,7 @@ import "../Dashboard.css";
 import "../Academic.css";
 import "../Student.css";
 import "../Login.css";
+import "../Attendant.css";
 
 const { Content } = Layout;
 

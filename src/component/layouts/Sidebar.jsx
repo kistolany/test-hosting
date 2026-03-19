@@ -32,6 +32,8 @@ const menuItems = [
       { key: "/enrollmentReciept", label: "Receipt" },
     ],
   },
+  { key: "/attendant", icon: <ReadOutlined />, label: "Attendant" },
+
 ];
 
 const Sidebar = ({ collapsed, setCollapsed, isDark }) => {
