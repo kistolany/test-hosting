@@ -33,6 +33,7 @@ const menuItems = [
     ],
   },
   { key: "/attendant", icon: <ReadOutlined />, label: "Attendant" },
+  { key: "/attenlist", icon: <ReadOutlined />, label: "List" },
 
 ];
 

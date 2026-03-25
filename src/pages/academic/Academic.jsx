@@ -31,6 +31,7 @@ const Academic = () => {
               key: '1-1-1', 
               name: 'Web Dev', 
               level: 'subject', 
+              teacher: 'Mr. Sophal', // Added teacher field
               year: 1, 
               semester: 2,
               children: [
@@ -39,8 +40,8 @@ const Academic = () => {
                   name: 'Room 302', 
                   level: 'class', 
                   room: 'Room 302',
-                  year: 1, // Store context for filtering
-                  semester: 2, // Store context for filtering
+                  year: 1, 
+                  semester: 2, 
                   studyDay: 'Monday',
                   shift: 'Morning'
                 }
@@ -106,13 +107,19 @@ const Academic = () => {
       }
     },
     { 
+      title: 'Teacher', // Added Teacher Column
+      dataIndex: 'teacher',
+      key: 'teacher',
+      width: 150,
+      render: (teacher, record) => record.level === 'subject' ? <Text type="secondary">{teacher}</Text> : '-'
+    },
+    { 
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
       width: 120,
       filters: [1, 2, 3, 4].map(y => ({ text: `Year ${y}`, value: y })),
       onFilter: (value, record) => {
-        // Keep parents visible, filter only Subjects and Classes
         if (record.level === 'faculty' || record.level === 'major') return true;
         return record.year === value;
       },
@@ -128,7 +135,6 @@ const Academic = () => {
         { text: 'Sem 2', value: 2 },
       ],
       onFilter: (value, record) => {
-        // Keep parents visible, filter only Subjects and Classes
         if (record.level === 'faculty' || record.level === 'major') return true;
         return record.semester === value;
       },
@@ -163,7 +169,7 @@ const Academic = () => {
   return (
     <ConfigProvider theme={{ token: { colorPrimary: PRIMARY_COLOR } }}>
       <Flex justify="center" align="flex-start" style={{ padding: '30px 10px' }}>
-        <Card bordered={false} style={{ width: '100%', maxWidth: 1000, borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+        <Card bordered={false} style={{ width: '100%', maxWidth: 1100, borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           <Flex gap="small" wrap="wrap" style={{ marginBottom: 20 }}>
             <Button className='ant-btn-head' type="primary" ghost icon={<UserOutlined />} onClick={() => setActiveModal('faculty')}>+ Faculty</Button>
             <Button className='ant-btn-head' type="primary" ghost icon={<BookOutlined />} onClick={() => setActiveModal('major')}>+ Major</Button>
@@ -199,6 +205,14 @@ const Academic = () => {
                   </Flex>
                 </>
               )}
+
+              {/* Added: Teacher Input - Only for Subject Modal */}
+              {activeModal === 'subject' && (
+                <Form.Item name="teacher" label="Teacher Name" rules={[{ required: true, message: 'Please input teacher name!' }]}>
+                  <Input placeholder="Enter teacher name" prefix={<UserOutlined />} />
+                </Form.Item>
+              )}
+
               {activeModal === 'class' && (
                 <>
                   <Flex gap={10}>

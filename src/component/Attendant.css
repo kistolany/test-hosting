@@ -112,3 +112,91 @@
     print-color-adjust: exact;
   }
 }
+
+
+.att-list-container {
+  font-family: 'Kantumruy Pro', sans-serif;
+  padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+/* Form Styling */
+.att-list-search-card {
+  background: white;
+  width: 1000% !important;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Official Sheet Styling */
+.att-list-sheet {
+  background: white;
+  padding: 15mm;
+  width: 100%;
+  min-height: 210mm;
+  margin: 0 auto;
+}
+
+.att-list-header {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #000;
+}
+
+.att-list-header h2, .att-list-header h3 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.att-list-sub-info {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Table Customizations */
+.att-list-table .ant-table-thead > tr > th {
+  background-color: #fafafa !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+  text-align: center !important;
+  font-weight: bold;
+  padding: 4px !important;
+}
+
+.att-list-table .ant-table-tbody > tr > td {
+  border: 1px solid #000 !important;
+  color: #000;
+}
+
+.att-list-vertical-col {
+  font-size: 11px;
+  white-space: normal;
+  line-height: 1.2;
+  display: block;
+  text-align: center;
+}
+
+/* Status: Withdrawn (ដកសិទ្ធ) */
+.att-list-row-withdrawn {
+  color: red !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Footer Styling */
+.att-list-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.att-list-khmer-date {
+  text-align: right;
+  font-style: italic;
+  margin-top: 10px;
+}

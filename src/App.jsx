@@ -11,6 +11,7 @@ import StudentPage from './pages/student/StudentPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScorePage from './pages/score/ScorePage.jsx';
 import AttendantPage from './pages/attendant/AttendantPage.jsx';
+import AttenList from './pages/attendant/AttenList.jsx';
 import DashboardPage from './pages/dashboard/DashboardPage.jsx';
 import Academic from './pages/academic/academic.jsx';
 import ScholarshipForm from './pages/scholarship/ScholarshipForm.jsx';
@@ -44,6 +45,7 @@ function App() {
           <Route path="/enrollmentReciept" element={<Reciept />} />
           <Route path="/score" element={<ScorePage />} />
           <Route path="/attendant" element={<AttendantPage />} />
+          <Route path="/attenlist" element={<AttenList />} />
         </Route>
       </Routes>
     </BrowserRouter>
