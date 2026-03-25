@@ -63,7 +63,13 @@
   font-weight: bold !important;
 }
 .official-table .ant-table-tbody > tr > td { border: 1px solid #070f7a !important; }
+.totalStu{
+  margin-Top: 15px; 
+  font-Size: 13px; 
+  font-Weight: 'bold';
+   color: #070f7a!important;
 
+}
 .signature-area {
   margin-top: 30px;
   margin-left: auto; /* Pushes the entire block to the right */
@@ -415,6 +421,11 @@ color: #070f7a;}
 width: 60%;
 }
 
+.enroll-footer{
+  margin-top: 37px !important;
+  margin-bottom: 0px !important;
+  }
+
 @media print {
   .ant-row {
     display: flex !important;
@@ -442,7 +453,12 @@ width: 60%;
     margin: 1px 0 !important;
 }
   .enroll-footer{
-  margin-top: 26px !important;
+  margin-top: 37px !important;
+  margin-bottom: 0px !important;
+  }
+
+  .enroll-footer-notes{
+    line-Height: 7.5
   }
 }
 

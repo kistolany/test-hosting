@@ -34,20 +34,45 @@ const SortingPage = () => {
   const [filterForm] = Form.useForm();
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-  const [students, setStudents] = useState([
+  // This is your Master Data
+  const initialStudents = [
     { 
       key: "1", id: "STU-001", nameKh: "ហេង សុវណ្ណ", nameEn: "Heng Sovann", 
-      gender: "M", dob: "2002-05-20", phone: "012 345 678" 
+      gender: "M", dob: "2002-05-20", phone: "012 345 678", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1"
     },
     { 
       key: "2", id: "STU-002", nameKh: "លី ម៉ារីណា", nameEn: "Ly Marina", 
-      gender: "F", dob: "2003-11-12", phone: "098 765 432" 
+      gender: "F", dob: "2003-11-12", phone: "098 765 432", faculty: "law", major: "ba", batch: "21", year: "2", class: "B1"
     },
     { 
       key: "3", id: "STU-003", nameKh: "កែវ វិសាល", nameEn: "Keo Visal", 
-      gender: "M", dob: "2001-01-30", phone: "010 111 222" 
+      gender: "M", dob: "2001-01-30", phone: "010 111 222", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1"
     },
-  ]);
+  ];
+
+  // State for the data currently visible in the table
+  const [students, setStudents] = useState(initialStudents);
+
+  // --- Search Logic ---
+  const handleSearch = (values) => {
+    const filteredData = initialStudents.filter((student) => {
+      return (
+        (!values.faculty || student.faculty === values.faculty) &&
+        (!values.major || student.major === values.major) &&
+        (!values.batch || student.batch === values.batch) &&
+        (!values.year || student.year === values.year) &&
+        (!values.class || student.class === values.class)
+      );
+    });
+    setStudents(filteredData);
+    message.info(`រកឃើញនិស្សិតចំនួន ${filteredData.length} នាក់`);
+  };
+
+  // --- Reset/Clear Logic (Back to All) ---
+  const handleClear = () => {
+    filterForm.resetFields();
+    setStudents(initialStudents); // Reset table to full list
+  };
 
   const onEnroll = () => {
     if (selectedRowKeys.length === 0) {
@@ -59,7 +84,9 @@ const SortingPage = () => {
       icon: <CheckCircleOutlined style={{ color: '#52c41a' }} />,
       className: "sort-khmer-text"
     });
-    setStudents(students.filter(s => !selectedRowKeys.includes(s.key)));
+    // Update both master and visible list if you want them removed after enrollment
+    const remaining = students.filter(s => !selectedRowKeys.includes(s.key));
+    setStudents(remaining);
     setSelectedRowKeys([]);
   };
 
@@ -130,7 +157,7 @@ const SortingPage = () => {
             Back
           </Button>
           <div>
-            <Title className="sort-header-title">បញ្ជីឈ្មោះនិស្សិតទាំងអស់</Title>
+            <Title className="sort-header-title" level={3}>បញ្ជីឈ្មោះនិស្សិតទាំងអស់</Title>
             <Text type="secondary" className="sort-khmer-text">គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ</Text>
           </div>
         </Space>
@@ -149,6 +176,7 @@ const SortingPage = () => {
              icon={<CheckCircleOutlined />} 
              onClick={onEnroll}
              className="sort-btn-enroll"
+             style={{ backgroundColor: '#070f7a' }}
            >
              Enroll Selected ({selectedRowKeys.length})
            </Button>
@@ -156,7 +184,8 @@ const SortingPage = () => {
       </div>
 
       <Card bordered={false} className="sort-card">
-        <Form form={filterForm} layout="vertical">
+        {/* Added onFinish to trigger Search */}
+        <Form form={filterForm} layout="vertical" onFinish={handleSearch}>
           <Row gutter={[16, 16]} className="sort-filter-row">
             <Col xs={24} sm={12} lg={5}>
               <Form.Item label={<Text strong className="sort-khmer-text">មហាវិទ្យាល័យ</Text>} name="faculty" className="sort-form-item">
@@ -176,7 +205,7 @@ const SortingPage = () => {
             </Col>
             <Col xs={12} sm={8} lg={3}>
               <Form.Item label={<Text strong className="sort-khmer-text">ជំនាន់</Text>} name="batch" className="sort-form-item">
-                <Select placeholder="ជំនាន់" size="large">
+                <Select placeholder="ជំនាន់" size="large" allowClear>
                   <Select.Option value="20">Gen 20</Select.Option>
                   <Select.Option value="21">Gen 21</Select.Option>
                 </Select>
@@ -184,7 +213,7 @@ const SortingPage = () => {
             </Col>
             <Col xs={12} sm={8} lg={3}>
               <Form.Item label={<Text strong className="sort-khmer-text">ឆ្នាំសិក្សា</Text>} name="year" className="sort-form-item">
-                <Select placeholder="ឆ្នាំ" size="large">
+                <Select placeholder="ឆ្នាំ" size="large" allowClear>
                   <Select.Option value="1">Year 1</Select.Option>
                   <Select.Option value="2">Year 2</Select.Option>
                 </Select>
@@ -192,27 +221,29 @@ const SortingPage = () => {
             </Col>
             <Col xs={24} sm={8} lg={3}>
               <Form.Item label={<Text strong className="sort-khmer-text">ថ្នាក់</Text>} name="class" className="sort-form-item">
-                <Select placeholder="ថ្នាក់" size="large">
+                <Select placeholder="ថ្នាក់" size="large" allowClear>
                   <Select.Option value="A1">A1</Select.Option>
                   <Select.Option value="B1">B1</Select.Option>
                 </Select>
               </Form.Item>
             </Col>
             <Col xs={24} lg={5}>
-              <Space style={{ width: '100%' }}>
+              <Space style={{ width: '100%', marginTop: '0px' }}>
                 <Button 
                   type="primary" 
+                  htmlType="submit" // Trigger handleSearch
                   icon={<SearchOutlined />} 
                   size="large" 
                   className="sort-btn-search"
+                  style={{ backgroundColor: '#070f7a' }}
                 >
                   ស្វែងរក
                 </Button>
                 <Button 
-                 className="sort-btn-clear"
+                  className="sort-btn-clear"
                   size="large" 
                   icon={<ClearOutlined />} 
-                  onClick={() => filterForm.resetFields()}
+                  onClick={handleClear} // Trigger handleClear
                 />
               </Space>
             </Col>

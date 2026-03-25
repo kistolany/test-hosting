@@ -189,7 +189,7 @@ const EnrollmentForm = () => {
               </Col>
             </Row>
 
-            <div className="enroll-formal-center-header">
+            <div className="enroll-formal-center-header" style={{ lineHeight: 1 }}>
               <Title className="form-main-title">សូមគោរពជូន</Title>
               <Title className="form-main-title">ឯកឧត្តមបណ្ឌិត សាកលវិទ្យាធិការ នៃសាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</Title>
               <Text className="enroll-en-sub">To H.E Dr. Rector of Cambodia University of Management and Technology</Text>
@@ -235,7 +235,7 @@ const EnrollmentForm = () => {
               </Col>
             </Row>
 
-            <div className="enroll-footer-notes">
+            <div className="enroll-footer-notes" style={{ lineHeight: 1 }}> 
               <p>ខ្ញុំបាទ/នាងខ្ញុំសូមសន្យា នឹងគោរពគោលការណ៍ និងបទបញ្ជាផ្ទៃក្នុងទាំងអស់របស់សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា។</p>
               <p className="enroll-en-sub">I acknowledge that I have to adhere the policies, regulation and all requirements for admission for university's rules.</p>
               <p className="enroll-mt-20">សូម <b>ឯកឧត្តមបណ្ឌិត សាកលវិទ្យាធិការ</b> មេត្តាពិនិត្យអនុញ្ញាតឱ្យខ្ញុំបាទ/នាងខ្ញុំ បានចុះឈ្មោះចូលសិក្សានៅមហាវិទ្យាល័យដែលមានជំនាញដូចខាងលើដោយក្តីអនុគ្រោះ។</p>

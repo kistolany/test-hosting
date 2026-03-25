@@ -1,5 +1,4 @@
 /*scholarship*/
-
 :root {
   --theme-blue: #000080;
   --font-family-khmer: "Khmer OS Battambang", "Khmer OS", "Moul", "Arial", sans-serif;
@@ -79,9 +78,10 @@
 }
 .scholarship-form {
   width: 210mm;
-  height: 297mm;   
+  min-height: 297mm;
   max-width: 100%;       /* Fixed A4 height */
   padding: 10mm;
+  margin: 20px auto;
   background: #fff;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   font-family: var(--font-family-khmer);
@@ -89,9 +89,8 @@
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: auto; /* Handle table overflow on very small screens */
   box-sizing: border-box;
-  /* transform: scale(1.3);  */
 
 }
 /* .ant-form{
@@ -396,7 +395,7 @@ opacity: 0.8;
 
   /* Signature & Date Realignment */
 .signature-area {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: auto; /* Pushes the entire block to the right */
   width: fit-content; /* Ensures the container only takes as much space as the text */
   min-width: 40%;   /* Provides a stable base for the centered text */
@@ -627,7 +626,7 @@ opacity: 0.8;
 
 }
 .form-footer{
-  margin-top: 45px !important;
+  margin-top: 14px !important;
 }
 
 /*cover*/
@@ -642,7 +641,7 @@ opacity: 0.8;
   }
 }
 .footer-cover{
-  margin-top: 398px !important;
+  margin-top: 364px !important;
 }
 .perforation-divider {
     border-top: 1px dashed #000 !important;

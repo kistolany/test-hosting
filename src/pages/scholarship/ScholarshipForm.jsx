@@ -50,12 +50,12 @@ const MOCK_STUDENTS = {
     emergency_city: "ភ្នំពេញ",
     emergency_phone: "099 888 777",
     grade: "A",
-    year_exam: "2023",
+    year_exam: "២០២៣",
     major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ",
     faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា",
     batch: "Batch 10",
-    duration: "4",
-    year_study: "2024-2025",
+    duration: "៤",
+    year_study: "២០២៤-២០២៥",
     year: "២០២៤"
   },
   "CHHAY LINDA": {
@@ -84,12 +84,12 @@ const MOCK_STUDENTS = {
     emergency_city: "ភ្នំពេញ",
     emergency_phone: "012 000 111",
     grade: "B",
-    year_exam: "2023",
+    year_exam: "២០២៣",
     major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ",
     faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា",
     batch: "Batch 10",
-    duration: "4",
-    year_study: "2024-2025",
+    duration: "៥",
+    year_study: "២០២៤-២០២៥",
     year: "២០២៤"
   },
   "KEP MUNY": {
@@ -118,12 +118,12 @@ const MOCK_STUDENTS = {
     emergency_city: "បាត់ដំបង",
     emergency_phone: "017 444 333",
     grade: "C",
-    year_exam: "2022",
+    year_exam: "២០២២",
     major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ",
     faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា",
     batch: "Batch 10",
-    duration: "4",
-    year_study: "2024-2025",
+    duration: "៤",
+    year_study: "២០២៤-២០២៥",
     year: "២០២៤"
   },
   "LIM SREYROTH": {
@@ -152,12 +152,12 @@ const MOCK_STUDENTS = {
     emergency_city: "កណ្តាល",
     emergency_phone: "012 999 000",
     grade: "A",
-    year_exam: "2024",
+    year_exam: "២០២៤",
     major: "សេដ្ឋកិច្ចឌីជីថល",
     faculty: "វិទ្យាសាស្ត្រសេដ្ឋកិច្ច",
     batch: "Batch 11",
-    duration: "4",
-    year_study: "2024-2025"
+    duration: "៤",
+    year_study: "២០២៤-២០២៥"
   },
   "VONG RAKSMEY": {
     name_kh: "វង្ស រស្មី",
@@ -185,12 +185,12 @@ const MOCK_STUDENTS = {
     emergency_city: "ស្វាយរៀង",
     emergency_phone: "092 333 444",
     grade: "B",
-    year_exam: "2021",
+    year_exam: "២០២១",
     major: "រដ្ឋបាលសាធារណៈ",
     faculty: "វិទ្យាសាស្ត្រសង្គម",
     batch: "Batch 08",
-    duration: "4",
-    year_study: "2022-2023"
+    duration: "៤",
+    year_study: "២០២២-២០២៣"
   },
 };
 
@@ -335,7 +335,7 @@ const ScholarshipForm = () => {
               <Title level={3} className="form-main-title">ពាក្យស្នើសុំអាហារូបករណ៍</Title>
               <Title level={4} className="form-subtitle">
                 ថ្នាក់បរិញ្ញាបត្រ ឆ្នាំសិក្សា
-                <Form.Item name="year-study" noStyle><Input bordered={false} className="input-title-year w-16 year-study-input" /></Form.Item>
+                <Form.Item name="year_study" noStyle><Input bordered={false} className="input-title-year w-16 year-study-input" /></Form.Item>
               </Title>
               <Text strong className="form-university-name">នៅសាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</Text>
             </div>

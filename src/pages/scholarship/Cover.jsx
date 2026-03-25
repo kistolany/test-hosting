@@ -10,6 +10,7 @@ import {
   Image,
   Select,
   theme,
+  Flex,
 } from "antd";
 import {
   PrinterOutlined,
@@ -102,7 +103,7 @@ const MOCK_STUDENTS = {
 
     faculty: "វិទ្យាសាស្ត្រសង្គម",
 
-    study_year: "២០២៦-២០២៧"
+    year_study: "២០២៦-២០២៧"
 
   },
 
@@ -186,7 +187,7 @@ const MOCK_STUDENTS = {
 
     faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា",
 
-    study_year: "២០២៥-២០២៦"
+    year_study: "២០២៥-២០២៦"
 
   },
 
@@ -270,7 +271,7 @@ const MOCK_STUDENTS = {
 
     faculty: "គ្រប់គ្រងពាណិជ្ជកម្ម",
 
-    study_year: "២០២៥-២០២៦"
+    year_study: "២០២៥-២០២៦"
 
   },
 
@@ -354,7 +355,7 @@ const MOCK_STUDENTS = {
 
     faculty: "សេដ្ឋកិច្ច",
 
-    study_year: "២០២៧-២០២៨"
+    year_study: "២០២៧-២០២៨"
 
   },
 
@@ -438,7 +439,7 @@ const MOCK_STUDENTS = {
 
     faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា",
 
-    study_year: "២០២៦-២០២៧"
+    year_study: "២០២៦-២០២៧"
 
   }
 
@@ -469,7 +470,7 @@ const Cover = () => {
     const filteredResults = Object.values(MOCK_STUDENTS).filter((s) => {
       return (
         (!values.batch || s.batch === values.batch) &&
-        (!values.studyYear || s.study_year === values.studyYear) &&
+        (!values.studyYear || s.year_study === values.studyYear) &&
         (!values.major || s.major === values.major) &&
         (!values.faculty || s.faculty === values.faculty) &&
         (!values.Name || s.name_en === values.Name)
@@ -492,38 +493,52 @@ const Cover = () => {
           <Row gutter={[16, 16]} align="bottom">
             {searchFields.map((field) => (
               <Col xs={24} sm={20} md={8} lg={4.8} key={field.name}>
-                <Form.Item name={field.name} label={field.label} className="search-form-item">
-                  <Select
-                    showSearch
-                    allowClear
-                    placeholder={field.placeholder}
-                    options={
-                      field.name === "Name"
-                        ? Object.values(MOCK_STUDENTS).map((s) => ({ value: s.name_en, label: s.name_en }))
-                        : field.name === "major"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.major))].map((m) => ({ value: m, label: m }))
-                        : field.name === "batch"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.batch))].map((b) => ({ value: b, label: b }))
-                        : field.name === "studyYear"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.study_year))].map((y) => ({ value: y, label: y }))
-                        : field.name === "faculty"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).filter(s => s.faculty).map((s) => s.faculty))].map((f) => ({ value: f, label: f }))
-                        : []
-                    }
-                    optionFilterProp="label"
-                  />
-                </Form.Item>
-              </Col>
+                                            <Form.Item name={field.name} label={field.label} className="search-form-item">
+                                              <Select
+                                                showSearch
+                                                placeholder={field.placeholder}
+                                                allowClear
+                                                options={
+                                                  field.name === "Name"
+                                                    ? Object.values(MOCK_STUDENTS).map((s) => ({ value: s.name_en, label: s.name_en }))
+                                                    : field.name === "major"
+                                                    ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.major))].map((m) => ({ value: m, label: m }))
+                                                    : field.name === "batch"
+                                                    ? [...new Set(Object.values(MOCK_STUDENTS).filter(s => s.batch).map((s) => s.batch))].map((b) => ({ value: b, label: b }))
+                                                    : field.name === "studyYear"
+                                                    ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.year_study))].map((y) => ({ value: y, label: y }))
+                                                    : field.name === "faculty"
+                                                    ? [...new Set(Object.values(MOCK_STUDENTS).filter(s => s.faculty).map((s) => s.faculty))].map((f) => ({ value: f, label: f }))
+                                                    : []
+                                                }
+                                                optionFilterProp="label"
+                                              />
+                                            </Form.Item>
+                                          </Col>
             ))}
             <Col xs={24} sm={12} md={8} lg={4.8}>
-              <Form.Item className="search-form-item">
-                <Space className="search-button-space">
-                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />} className="search-button">Search</Button>
-                  <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
-                  <Button icon={<ClearOutlined />} onClick={() => { searchForm.resetFields(); setStudentList([{}]); }} />
-                </Space>
-              </Form.Item>
-            </Col>
+                                      <Form.Item className="search-form-item">
+                                        <Space>
+                                          <Button style={{ backgroundColor: "#070f7a"}} type="primary" htmlType="submit" icon={<SearchOutlined />}>
+                                            Search
+                                          </Button>
+                                          <Button
+                                            icon={<PrinterOutlined />}
+                                            onClick={() => window.print()}
+                                            style={{ backgroundColor: "#070f7a", color: "white" }}
+                                          >
+                                            Print
+                                          </Button>
+                                          <Button
+                                            icon={<ClearOutlined />}
+                                            onClick={() => {
+                                              searchForm.resetFields();
+                                              setStudentList([{}]);
+                                            }}
+                                          />
+                                        </Space>
+                                      </Form.Item>
+                                    </Col>
           </Row>
         </Form>
       </div>
