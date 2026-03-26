@@ -277,26 +277,46 @@ const AttendancePage = () => {
           <Button type="primary" icon={<PrinterOutlined />} onClick={() => window.print()} style={{ background: PRIMARY_COLOR }}>បោះពុម្ព (Print)</Button>
         </Flex>
 
-        <div style={{ textAlign: 'center', marginBottom: 25, color: '#000' }}>
-            <Title level={4} style={{ margin: 0, fontFamily: 'Khmer OS Muol Light' }}>
-                ទម្រង់វត្តមាននិស្សិតឆ្នាំទី {searchSummary?.year} ឆមាសទី {searchSummary?.semester} ជំនាន់ទី {searchSummary?.batch}
-            </Title>
-            <Title level={4} style={{ margin: '5px 0', fontFamily: 'Khmer OS Muol Light' }}>
-                ថ្ងៃសិក្សា {searchSummary?.day} វេនសិក្សា {searchSummary?.shift}
-            </Title>
-            <Title level={4} style={{ margin: '5px 0', fontFamily: 'Khmer OS Muol Light' }}>
-                មហាវិទ្យាល័យ {searchSummary?.faculty}
-            </Title>
-            <Title level={4} style={{ margin: 0, textDecoration: 'underline', fontFamily: 'Khmer OS Muol Light' }}>
-                ជំនាញ៖ {searchSummary?.major}
-            </Title>
+      <div className="official-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div className="uni-logo-section" style={{ textAlign: 'center' }}>
+            <img src="/asset/image/logo.png" alt="logo" className="print-logo" style={{ width: 80, filter: isDark ? "brightness(0) invert(1)" : "none" }} />
+            <div className="khmer-moul" style={{ fontSize: 11 }}>សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</div>
+            <div style={{ fontSize: 9, fontWeight: 'bold', color:'#070f7a'}}>CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY</div>
+          </div>
+          <div className="kingdom-section" style={{ textAlign: 'center' }}>
+            <div className="khmer-moul" style={{ fontSize: 14 }}>ព្រះរាជាណាចក្រកម្ពុជា</div>
+            <div className="khmer-moul" style={{ fontSize: 14 }}>ជាតិ សាសនា ព្រះមហាក្សត្រ</div>
+            <img src="/src/assets/devider.png" alt="divider" style={{ width: '90px', marginTop: 5 }} />
+          </div>
         </div>
+
+        <div style={{ textAlign: 'center', marginBottom: 25, color: '#070f7a' }}>
+    <div style={{ fontSize: '12px', fontWeight: 'bold', margin: 0, fontFamily: 'Khmer OS Muol Light' }}>
+        ទម្រង់វត្តមាននិស្សិតឆ្នាំទី {searchSummary?.year} ឆមាសទី {searchSummary?.semester} ជំនាន់ទី {searchSummary?.batch}
+    </div>
+    <div style={{ fontSize: '12px', fontWeight: 'bold', margin: '2px 0', fontFamily: 'Khmer OS Muol Light' }}>
+        ថ្ងៃសិក្សា {searchSummary?.day} វេនសិក្សា {searchSummary?.shift}
+    </div>
+    <div style={{ fontSize: '12px', fontWeight: 'bold', margin: '2px 0', fontFamily: 'Khmer OS Muol Light' }}>
+        មហាវិទ្យាល័យ {searchSummary?.faculty}
+    </div>
+    <div style={{ fontSize: '12px', fontWeight: 'bold', margin: 0, textDecoration: 'underline', fontFamily: 'Khmer OS Muol Light' }}>
+        ជំនាញ៖ {searchSummary?.major}
+    </div>
+</div>
 
         <Table columns={reportCols} dataSource={reportDataSource} pagination={false} bordered size="small" />
         
         <Flex justify="space-between" style={{ marginTop: 20 }}>
           <Text strong>សម្គាល់៖ បញ្ជីវត្តមានបញ្ចប់ត្រឹមចំនួន {reportDataSource.length.toString().padStart(2, '0')} នាក់</Text>
-          <Text strong>ថ្ងៃ ពុធ ២ រោច ខែ មាឃ ឆ្នាំម្សាញ់ សប្តស័ក ព.ស. ២៥៦៩</Text>
+          <div className="signature-block" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 30 }}>
+          <div className="signature-area" style={{ textAlign: 'center' }}>
+            <div>ថ្ងៃ.................ខែ...........ឆ្នាំ................ស័ក ព.ស...........</div>
+            <div>រាជធានីភ្នំពេញ ថ្ងៃទី...........ខែ...........ឆ្នាំ...........</div>
+            <div className="khmer-moul" style={{ marginTop: 5 }}>ការិយាល័យសិក្សា និងកិច្ចការនិស្សិត</div>
+            <div className="khmer-moul" style={{ marginTop: 60 }}>ប្រធាន</div>
+          </div>
+        </div>
         </Flex>
         <style>{`@media print { .no-print { display: none !important; } body { background: #fff; } }`}</style>
       </div>
