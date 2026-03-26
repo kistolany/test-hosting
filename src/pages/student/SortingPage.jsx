@@ -227,7 +227,7 @@ const SortingPage = () => {
       </Col>
 
       {/* Batch */}
-      <Col xs={12} sm={8} lg={3}>
+      <Col xs={12} sm={4} lg={2}>
         <Form.Item 
           label={<Text strong className="sort-khmer-text">Batch</Text>} 
           name="batch"
@@ -240,7 +240,7 @@ const SortingPage = () => {
       </Col>
 
       {/* Academic Year */}
-      <Col xs={12} sm={8} lg={3}>
+      <Col xs={12} sm={8} lg={2}>
         <Form.Item 
           label={<Text strong className="sort-khmer-text">Year</Text>} 
           name="year"
@@ -266,9 +266,9 @@ const SortingPage = () => {
       </Col>
 
       {/* Action Buttons */}
-      <Col xs={24} lg={6}>
+      <Col xs={24} lg={8}>
         <Form.Item>
-          <Space size="middle" style={{ width: '100%', justifyContent: 'flex-end' }}>
+          <Space size="middle" style={{ width: '100%', justifyContent: 'flex-start' }}>
             <Button 
               type="primary" 
               htmlType="submit" 

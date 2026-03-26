@@ -325,7 +325,12 @@ const AttendancePage = () => {
 
   return (
     <div className="att-page-wrapper">
-      <div className="att-search-inner-container" style={{ marginBottom: 20 }}>
+      <div className="att-search-inner-container" style={{background:'white', 
+  marginBottom: 20, 
+  position: 'sticky', 
+  top: 60, 
+  zIndex: 1000 
+}}>
         <Form form={form} layout="vertical" style={{ background: token.colorFillAlter, borderRadius: token.borderRadiusLG, padding: "20px" }}>
           <Row gutter={[24, 0]}>
             <Col xs={24} sm={12} md={2}><Form.Item name="batch" label="Batch"><Select allowClear placeholder="Batch" options={[{value: '26', label: 'B26'}, {value: '27', label: 'B27'}]}/></Form.Item></Col>
