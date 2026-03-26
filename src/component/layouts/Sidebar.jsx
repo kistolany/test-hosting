@@ -7,6 +7,9 @@ import {
   ReadOutlined,
   UsergroupAddOutlined,
   AppstoreOutlined,
+  GiftOutlined,
+  FormOutlined,
+  CheckSquareOutlined,
 } from "@ant-design/icons";
 const { Sider } = Layout;
 const menuItems = [
@@ -16,7 +19,7 @@ const menuItems = [
   {
     key: "sub2",
     label: "Scholarship",
-    icon: <AppstoreOutlined />,
+    icon: <GiftOutlined />,
     children: [
       { key: "/ScholarshipForm", label: "Form" },
       { key: "/receipt", label: "Receipt" },
@@ -26,13 +29,13 @@ const menuItems = [
   {
     key: "sub3",
     label: "Enrollment",
-    icon: <AppstoreOutlined />,
+    icon: <FormOutlined />,
     children: [
       { key: "/enrollmentForm", label: "Form" },
       { key: "/enrollmentReciept", label: "Receipt" },
     ],
   },
-  { key: "/attendant", icon: <ReadOutlined />, label: "Attendant" },
+  { key: "/attendant", icon: <CheckSquareOutlined />, label: "Attendant" },
   { key: "/attenlist", icon: <ReadOutlined />, label: "List" },
 
 ];
