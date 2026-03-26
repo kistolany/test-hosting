@@ -10,12 +10,15 @@ import {
   GiftOutlined,
   FormOutlined,
   CheckSquareOutlined,
+  SettingOutlined, // Added for User Managed icon
+  UserAddOutlined,    // Added for User Managed icon
 } from "@ant-design/icons";
+
 const { Sider } = Layout;
+
 const menuItems = [
   { key: "/student", icon: <UsergroupAddOutlined />, label: "Student" },
   { key: "/academic", icon: <ReadOutlined />, label: "Academic" },
-  // { key: "/scholarshipForm", icon: <ReadOutlined />, label: "ScholarshipForm" },
   {
     key: "sub2",
     label: "Scholarship",
@@ -37,7 +40,13 @@ const menuItems = [
   },
   { key: "/attendant", icon: <CheckSquareOutlined />, label: "Attendant" },
   { key: "/attenlist", icon: <ReadOutlined />, label: "List" },
-
+  // --- USER MANAGED ADDED HERE ---
+  { type: 'divider',style: { backgroundColor: "#070f7a", height: "2px", margin: "12px 0" } }, 
+  { 
+    key: "/userManage", 
+    icon: <UserAddOutlined/>, 
+    label: <span style={{ fontWeight: "600" }}>User Managed</span> 
+  },
 ];
 
 const Sidebar = ({ collapsed, setCollapsed, isDark }) => {
@@ -60,7 +69,6 @@ const Sidebar = ({ collapsed, setCollapsed, isDark }) => {
           justifyContent: collapsed ? "center" : "flex-end",
           paddingRight: collapsed ? "0" : "16px",
           color: isDark ? "#fff" : "#000",
-          
         }}
         className="btnMenu"
         type="text"

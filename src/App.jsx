@@ -7,6 +7,7 @@ import LoginPage from './component/layouts/LoginPage.jsx';
 import RegisterPage from './component/layouts/RegisterPage.jsx';
 
 // Pages
+import UserManage from './pages/user/UserManage.jsx';
 import StudentPage from './pages/student/StudentPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScorePage from './pages/score/ScorePage.jsx';
@@ -35,6 +36,7 @@ function App() {
         {/* Private Routes (Inside MainPage Layout) */}
         <Route element={<MainPage />}>
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/userManage" element={<UserManage />} />
           <Route path="/student" element={<StudentPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/academic" element={<Academic />} />
