@@ -31,26 +31,13 @@ const Academic = () => {
               key: '1-1-1', 
               name: 'Web Dev', 
               level: 'subject', 
-              teacher: 'Mr. Sophal', // Added teacher field
               year: 1, 
-              semester: 2,
-              children: [
-                { 
-                  key: '1-1-1-1', 
-                  name: 'Room 302', 
-                  level: 'class', 
-                  room: 'Room 302',
-                  year: 1, 
-                  semester: 2, 
-                  studyDay: 'Monday',
-                  shift: 'Morning'
-                }
-              ]
+              semester: 2
             }
           ]
         }
       ]
-    }
+    },
   ]);
 
   const handleCancel = () => {
@@ -75,7 +62,7 @@ const Academic = () => {
   const onFinish = (values) => {
     if (editingRecord) {
       const updateRecursive = (data) => data.map(item => {
-        if (item.key === editingRecord.key) return { ...item, ...values };
+        if (item.key === editingRecord.key) return { ...item, ...values, name: activeModal === 'class' ? values.room : values.name };
         if (item.children) return { ...item, children: updateRecursive(item.children) };
         return item;
       });
@@ -107,23 +94,18 @@ const Academic = () => {
       }
     },
     { 
-      title: 'Teacher', // Added Teacher Column
-      dataIndex: 'teacher',
-      key: 'teacher',
-      width: 150,
-      render: (teacher, record) => record.level === 'subject' ? <Text type="secondary">{teacher}</Text> : '-'
-    },
-    { 
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
       width: 120,
       filters: [1, 2, 3, 4].map(y => ({ text: `Year ${y}`, value: y })),
       onFilter: (value, record) => {
-        if (record.level === 'faculty' || record.level === 'major') return true;
-        return record.year === value;
+        if (record.level === 'subject') {
+          return record.year === value;
+        }
+        return true; // Keep Faculty/Major visible when filtering
       },
-      render: (year, record) => (record.level === 'subject' || record.level === 'class') ? `Year ${year}` : '-'
+      render: (year, record) => (record.level === 'subject') ? (year ? `Year ${year}` : '-') : '-'
     },
     { 
       title: 'Semester',
@@ -135,21 +117,12 @@ const Academic = () => {
         { text: 'Sem 2', value: 2 },
       ],
       onFilter: (value, record) => {
-        if (record.level === 'faculty' || record.level === 'major') return true;
-        return record.semester === value;
-      },
-      render: (sem, record) => (record.level === 'subject' || record.level === 'class') ? `Sem ${sem}` : '-'
-    },
-    {
-      title: 'Schedule',
-      key: 'schedule',
-      width: 180,
-      render: (_, record) => {
-        if (record.level === 'class') {
-          return <Tag color="volcano">{record.studyDay} ({record.shift})</Tag>;
+        if (record.level === 'subject') {
+          return record.semester === value;
         }
-        return '-';
-      }
+        return true; // Keep Faculty/Major visible when filtering
+      },
+      render: (sem, record) => (record.level === 'subject') ? (sem ? `Sem ${sem}` : '-') : '-'
     },
     { 
       title: 'Action',
@@ -177,19 +150,39 @@ const Academic = () => {
             <Button className='ant-btn-head' type="primary" ghost icon={<TeamOutlined />} onClick={() => setActiveModal('class')}>+ Class</Button>
           </Flex>
 
-          <Table size="large" columns={columns} dataSource={dataSource} bordered expandable={{ defaultExpandAllRows: true }} pagination={false} scroll={{ x: 'max-content' }} />
+          <Table 
+            size="large" 
+            columns={columns} 
+            dataSource={dataSource} 
+            bordered 
+            expandable={{ defaultExpandAllRows: true }} 
+            pagination={false} 
+            scroll={{ x: 'max-content' }} 
+          />
 
-          <Modal title={`${editingRecord ? 'Edit' : 'Add New'} ${activeModal?.toUpperCase()}`} open={activeModal !== null} onCancel={handleCancel} footer={null} destroyOnClose>
+          <Modal 
+            title={`${editingRecord ? 'Edit' : 'Add New'} ${activeModal?.toUpperCase()}`} 
+            open={activeModal !== null} 
+            onCancel={handleCancel} 
+            footer={null} 
+            destroyOnClose
+          >
             <Form form={form} layout="vertical" onFinish={onFinish}>
-              {(activeModal === 'major' || activeModal === 'subject' || activeModal === 'class') && (
+              {activeModal === 'major' && (
                 <Form.Item name="faculty" label="Faculty" rules={[{ required: true }]}>
                   <Select placeholder="Choose Faculty">
                     <Select.Option value="science">Science</Select.Option>
                   </Select>
                 </Form.Item>
               )}
-              {(activeModal === 'subject' || activeModal === 'class') && (
+
+              {activeModal === 'subject' && (
                 <>
+                  <Form.Item name="faculty" label="Faculty" rules={[{ required: true }]}>
+                    <Select placeholder="Choose Faculty">
+                      <Select.Option value="science">Science</Select.Option>
+                    </Select>
+                  </Form.Item>
                   <Form.Item name="major" label="Major" rules={[{ required: true }]}>
                     <Select placeholder="Choose Major">
                       <Select.Option value="cs">Computer Science</Select.Option>
@@ -206,41 +199,20 @@ const Academic = () => {
                 </>
               )}
 
-              {/* Added: Teacher Input - Only for Subject Modal */}
-              {activeModal === 'subject' && (
-                <Form.Item name="teacher" label="Teacher Name" rules={[{ required: true, message: 'Please input teacher name!' }]}>
-                  <Input placeholder="Enter teacher name" prefix={<UserOutlined />} />
-                </Form.Item>
-              )}
-
-              {activeModal === 'class' && (
+              {activeModal === 'class' ? (
                 <>
                   <Flex gap={10}>
-                    <Form.Item name="studyDay" label="Study Day" rules={[{ required: true }]} style={{ flex: 1 }}>
-                      <Select placeholder="Select Day">
-                        {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
-                          <Select.Option key={day} value={day}>{day}</Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Form.Item name="shift" label="Shift" rules={[{ required: true }]} style={{ flex: 1 }}>
-                      <Select placeholder="Select Shift">
-                        <Select.Option value="Morning">Morning</Select.Option>
-                        <Select.Option value="Afternoon">Afternoon</Select.Option>
-                        <Select.Option value="Evening">Evening</Select.Option>
-                      </Select>
-                    </Form.Item>
                   </Flex>
                   <Form.Item name="room" label="Room" rules={[{ required: true }]}>
-                    <Input placeholder="Enter Room (e.g. Lab 1)" />
+                    <Input placeholder="Enter Room (e.g. Room 302)" />
                   </Form.Item>
                 </>
-              )}
-              {activeModal !== 'class' && (
+              ) : (
                 <Form.Item name="name" label="Name" rules={[{ required: true }]}>
                   <Input placeholder={`Enter ${activeModal} name`} />
                 </Form.Item>
               )}
+
               <Form.Item style={{ textAlign: 'right', marginBottom: 0 }}>
                 <Space>
                   <Button onClick={handleCancel}>Cancel</Button>

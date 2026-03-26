@@ -1,4 +1,9 @@
 /*academic*/
 .ant-btn-head{
-   width: 230px !important;
+   width: 255px !important;
+   background-color: #070f7a;
+   color: aliceblue;
+}
+.ant-table-thead > tr > th {
+   font-size: 14px !important;
 }
