@@ -89,7 +89,6 @@ const SortingPage = () => {
 
   const handleClear = () => {
     filterForm.resetFields();
-    setWaitingStudents(initialStudents.filter(s => !enrolledStudents.some(e => e.key === s.key)));
   };
 
   const columnTextStyle = { fontSize: '16px', fontWeight: '500' };
