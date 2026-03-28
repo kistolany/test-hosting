@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Layouts
 import MainPage from './component/layouts/MainPage.jsx';
 import LoginPage from './component/layouts/LoginPage.jsx';
-import RegisterPage from './component/layouts/RegisterPage.jsx';
+// import RegisterPage from './component/layouts/RegisterPage.jsx';
 
 // Pages
 import UserManage from './pages/user/UserManage.jsx';
@@ -30,7 +30,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        {/* <Route path="/register" element={<RegisterPage />} /> */}
         <Route path="/sortingpage" element={<SortingPage />} />
 
         {/* Private Routes (Inside MainPage Layout) */}

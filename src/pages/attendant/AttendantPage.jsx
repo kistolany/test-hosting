@@ -190,7 +190,7 @@ const AttendancePage = () => {
     { title: "ល.រ", dataIndex: "No", width: 50, align: "center", fixed: 'left' },
     { title: "អត្តលេខ", dataIndex: "ID", width: 90, align: "center", fixed: 'left' },
     { title: "ឈ្មោះនិស្សិត", dataIndex: "nameKhmer", width: 160, fixed: 'left' },
-    { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: 140, align: "center", fixed: 'left' },
+    { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: 140, align: "center"},
     ...attendanceColumns,
     {
       title: "ពិន័យ",
@@ -331,23 +331,24 @@ const AttendancePage = () => {
   top: 60, 
   zIndex: 1000 
 }}>
-        <Form form={form} layout="vertical" style={{ background: token.colorFillAlter, borderRadius: token.borderRadiusLG, padding: "20px" }}>
-          <Row gutter={[24, 0]}>
-            <Col xs={24} sm={12} md={2}><Form.Item name="batch" label="Batch"><Select allowClear placeholder="Batch" options={[{value: '26', label: 'B26'}, {value: '27', label: 'B27'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={2}><Form.Item name="studyYear" label="Year"><Select allowClear placeholder="Year" options={[{value: '1', label: 'Year 1'}, {value: '2', label: 'Year 2'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={2}><Form.Item name="semester" label="Semester"><Select allowClear placeholder="Semester" options={[{value: '1', label: 'Sem 1'}, {value: '2', label: 'Sem 2'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="faculty" label="Faculty"><Select allowClear placeholder="Faculty" options={[{value: 'IT', label: 'IT'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="major" label="Major"><Select allowClear placeholder="Major" options={[{value: 'SNA', label: 'SNA'}, {value: 'English', label: 'English'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="subject" label="Subject"><Select allowClear placeholder="Subject" options={academicSetup.map(a => ({value: a.subject, label: a.subject}))}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={3}><Form.Item name="studyDay" label="Study Day"><Select allowClear placeholder="Day" options={[{value: 'ចន្ទ-សុក្រ', label: 'ចន្ទ-សុក្រ'}, {value: 'សៅរ៍-អាទិត្យ', label: 'សៅរ៍-អាទិត្យ'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={3}><Form.Item name="shift" label="Shift"><Select allowClear placeholder="Shift" options={[{value: 'ព្រឹក', label: 'ព្រឹក'}, {value: 'ល្ងាច', label: 'ល្ងាច'}]}/></Form.Item></Col>
-          </Row>
-          <Flex gap="middle">
+        <Form form={form} layout="vertical" style={{ background: token.colorFillAlter, borderRadius: token.borderRadiusLG, padding: "20px"}}>
+          <Row gutter={[24, 24]}>
+            <Col xs={24} sm={12} md={4}><Form.Item name="batch" label="Batch"><Select allowClear placeholder="Batch" options={[{value: '26', label: 'B26'}, {value: '27', label: 'B27'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="studyYear" label="Year"><Select allowClear placeholder="Year" options={[{value: '1', label: 'Year 1'}, {value: '2', label: 'Year 2'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="semester" label="Semester"><Select allowClear placeholder="Semester" options={[{value: '1', label: 'Sem 1'}, {value: '2', label: 'Sem 2'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={6}><Form.Item name="faculty" label="Faculty"><Select allowClear placeholder="Faculty" options={[{value: 'IT', label: 'IT'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={6}><Form.Item name="major" label="Major"><Select allowClear placeholder="Major" options={[{value: 'SNA', label: 'SNA'}, {value: 'English', label: 'English'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={6}><Form.Item name="subject" label="Subject"><Select allowClear placeholder="Subject" options={academicSetup.map(a => ({value: a.subject, label: a.subject}))}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="studyDay" label="Study Day"><Select allowClear placeholder="Day" options={[{value: 'ចន្ទ-សុក្រ', label: 'ចន្ទ-សុក្រ'}, {value: 'សៅរ៍-អាទិត្យ', label: 'សៅរ៍-អាទិត្យ'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="shift" label="Shift"><Select allowClear placeholder="Shift" options={[{value: 'ព្រឹក', label: 'ព្រឹក'}, {value: 'ល្ងាច', label: 'ល្ងាច'}]}/></Form.Item></Col>
+          <Flex gap="middle" style={{ marginTop:'30px' }}>
             <Button type="primary" icon={<SearchOutlined />} onClick={handleSearch} style={{ backgroundColor: PRIMARY_COLOR }}>Search Student</Button>
             <Button icon={<EyeOutlined />} onClick={() => setShowMajorReport(true)} disabled={!searchSummary}>View Report</Button>
             <Button icon={<ClearOutlined/>} onClick={handleClear}></Button>
             <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: PRIMARY_COLOR, color: 'white' }}>Print List</Button>
           </Flex>
+          </Row>
+          
         </Form>
       </div>
 
