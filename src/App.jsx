@@ -10,6 +10,9 @@ import LoginPage from './component/layouts/LoginPage.jsx';
 import UserManage from './pages/user/UserManage.jsx';
 import StudentPage from './pages/student/StudentPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
+import ScholarExam from './pages/student/ScholarExam.jsx';
+import ResultScholar from './pages/student/ResultScholar.jsx';
+import SortConfirm from './pages/student/SortConfirm.jsx';
 import ScorePage from './pages/score/ScorePage.jsx';
 import AttendantPage from './pages/attendant/AttendantPage.jsx';
 import AttenList from './pages/attendant/AttenList.jsx';
@@ -39,6 +42,9 @@ function App() {
           <Route path="/userManage" element={<UserManage />} />
           <Route path="/student" element={<StudentPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
+          <Route path="/scholarExam" element={<ScholarExam />} />
+          <Route path="/resultScholar" element={<ResultScholar />} />
+          <Route path="/sortConfirm" element={<SortConfirm />} />
           <Route path="/academic" element={<Academic />} />
           <Route path="/scholarshipForm" element={<ScholarshipForm />} />
           <Route path="/receipt" element={<Receipt />} />

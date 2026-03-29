@@ -79,7 +79,7 @@ const LoginPage = () => {
           </div>
 
           {/* --- NEW SIGN UP SECTION --- */}
-          <div style={{ textAlign: 'center', marginTop: '0px' }}>
+          {/* <div style={{ textAlign: 'center', marginTop: '0px' }}>
             <Text style={{ color: '#666' }}>Don't have an account? </Text>
             <Button 
               type="link" 
@@ -88,7 +88,7 @@ const LoginPage = () => {
             >
               Sign Up Now
             </Button>
-          </div>
+          </div> */}
         </Form>
       </Card>
     </div>

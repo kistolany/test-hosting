@@ -34,10 +34,9 @@ const CreateStudent = () => {
       style={{ width: "100%", padding: "20px" }}
     >
       <Row gutter={[16, 0]}>
-        
       <Col xs={24}>
           <Form.Item>
-            <Button onClick={() => navigate("/Student")} htmlType="back">
+            <Button onClick={() => navigate("/Student")} htmlType="button">
               <SwapLeftOutlined />
               Back
             </Button>
@@ -45,9 +44,27 @@ const CreateStudent = () => {
         </Col>
        <Col xs={24} sm={24} md={24} lg={24}>
           <div className="headerText" style={{ color:'#070f7a ' }}>
-            បញ្ជីរាយនាមនិស្សិតស្នើសុំអាហាររូបករណ៍
+            ចុះឈ្មោះនិស្សិត
           </div>
         </Col>
+
+        {/* --- Added Student Type Option Here --- */}
+        <Col xs={24} sm={12} md={8} lg={6}>
+          <Form.Item 
+            label="ប្រភេទនិស្សិត" 
+            name="StudentType" 
+            rules={[{ required: true, message: "សូមជ្រើសរើសប្រភេទនិស្សិត!" }]}
+          >
+            <Select 
+              placeholder="ជ្រើសរើសប្រភេទ"
+              options={[
+                { label: 'បង់ថ្លៃ (Pay)', value: 'pay' },
+                { label: 'អាហាររូបករណ៍ (Scholarship)', value: 'scholarship' }
+              ]}
+            />
+          </Form.Item>
+        </Col>
+        <Col xs={24}></Col> {/* Spacer */}
 
         <Divider orientation="left">ព័ត៍មានផ្ទាល់ខ្លួន (yourself)</Divider>
         <Col xs={20} sm={10} md={6} lg={4}>
@@ -86,7 +103,12 @@ const CreateStudent = () => {
             name="Gender" 
             rules={[{ required: true, message: "សូមជ្រើសរើសភេទ!" }]}
           >
-            <Select />
+            <Select 
+               options={[
+                { label: 'ប្រុស', value: 'M' },
+                { label: 'ស្រី', value: 'F' }
+              ]}
+            />
           </Form.Item>
         </Col>
 
@@ -262,6 +284,15 @@ const CreateStudent = () => {
             <Mentions />
           </Form.Item>
         </Col>
+        <Col xs={18} sm={8} md={6} lg={4}>
+          <Form.Item
+            label="និន្ទេស"
+            name="Grade"
+            rules={[{ required: true, message: "បញ្ជាក់និន្ទេស!" }]}
+          >
+            <Mentions />
+          </Form.Item>
+        </Col>
 
         <Divider orientation="left">ចុះឈ្មោះសិក្សា (Education)</Divider>
 
@@ -281,11 +312,7 @@ const CreateStudent = () => {
             <Select />
           </Form.Item>
         </Col>
-        {/* <Col xs={24} sm={12} md={8} lg={6}>
-          <Form.Item label="ថ្ងៃ ខែ ឆ្នាំ ចុះឈ្មោះ" name="RegisterDate" rules={[{ required: true, message: "ជ្រើសរើសថ្ងៃចុះឈ្មោះ!" }]}>
-            <DatePicker style={{ width: "100%" }} />
-          </Form.Item>
-        </Col> */}
+
         <Col xs={24} sm={12} md={8} lg={6}>
           <Form.Item label="ផ្សេងៗ" name="Others">
             <Input />
@@ -300,6 +327,25 @@ const CreateStudent = () => {
         <Col xs={16} sm={8} md={6} lg={4}>
           <Form.Item label="ជំនាញ" name="major" rules={[{ required: true, message: "ជ្រើសរើសជំនាញ!" }]}>
             <Select />
+          </Form.Item>
+        </Col>
+
+        {/* --- Added Year Study Here --- */}
+        <Col xs={16} sm={8} md={6} lg={4}>
+          <Form.Item 
+            label="ឆ្នាំសិក្សា" 
+            name="YearStudy" 
+            rules={[{ required: true, message: "ជ្រើសរើសឆ្នាំសិក្សា!" }]}
+          >
+            <Select 
+              placeholder="ជ្រើសរើសឆ្នាំ"
+              options={[
+                { label: '2026-2027', value: 1 },
+                { label: '2027-2028', value: 2 },
+                { label: '2028-2029', value: 3 },
+                { label: '2030-2031', value: 4 },
+              ]}
+            />
           </Form.Item>
         </Col>
 

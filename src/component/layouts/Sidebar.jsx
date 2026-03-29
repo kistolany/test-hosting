@@ -17,7 +17,17 @@ import {
 const { Sider } = Layout;
 
 const menuItems = [
-  { key: "/student", icon: <UsergroupAddOutlined />, label: "Student" },
+  // { key: "/student", icon: <UsergroupAddOutlined />, label: "Student" },
+  {
+    key: "sub1",
+    label: "Student",
+    icon: <GiftOutlined />,
+    children: [
+      { key: "/student", label: "List Student" },
+      { key: "/scholarExam", label: "Scholarship Exam" },
+      { key: "/sortingpage", label: "Sort Student" },
+    ],
+  },
   { key: "/academic", icon: <ReadOutlined />, label: "Academic" },
   {
     key: "sub2",

@@ -17,9 +17,9 @@ const SortingPage = () => {
   const [enrollForm] = Form.useForm(); 
 
   const initialStudents = [
-    { key: "1", id: "STU-001", nameKh: "ហេង សុវណ្ណ", nameEn: "Heng Sovann", gender: "M", dob: "2002-05-20", phone: "012 345 678", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1" },
-    { key: "2", id: "STU-002", nameKh: "លី ម៉ារីណា", nameEn: "Ly Marina", gender: "F", dob: "2003-11-12", phone: "098 765 432", faculty: "law", major: "ba", batch: "21", year: "2", class: "B1" },
-    { key: "3", id: "STU-003", nameKh: "កែវ វិសាល", nameEn: "Keo Visal", gender: "M", dob: "2001-01-30", phone: "010 111 222", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1" },
+    { key: "1", id: "STU-001", nameKh: "ហេង សុវណ្ណ", nameEn: "Heng Sovann", gender: "M", dob: "2002-05-20", phone: "012 345 678", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1", type: "Scholarship", note: "Full Scholarship" },
+    { key: "2", id: "STU-002", nameKh: "លី ម៉ារីណា", nameEn: "Ly Marina", gender: "F", dob: "2003-11-12", phone: "098 765 432", faculty: "law", major: "ba", batch: "21", year: "2", class: "B1", type: "Pay", note: "" },
+    { key: "3", id: "STU-003", nameKh: "កែវ វិសាល", nameEn: "Keo Visal", gender: "M", dob: "2001-01-30", phone: "010 111 222", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1", type: "Scholarship", note: "50% Discount" },
   ];
 
   const [waitingStudents, setWaitingStudents] = useState(initialStudents); 
@@ -46,7 +46,6 @@ const SortingPage = () => {
           class: values.class,
         }));
 
-      // Move from waiting to enrolled
       setEnrolledStudents(prev => [...prev, ...moving]);
       setWaitingStudents(prev => prev.filter(s => !selectedRowKeys.includes(s.key)));
       
@@ -60,12 +59,10 @@ const SortingPage = () => {
   const handleSearch = (values) => {
     const { searchText, faculty, major, batch, year, class: className } = values;
 
-    // Combine all sources to find matches
     const allData = [...initialStudents, ...enrolledStudents, ...waitingStudents];
     const uniqueData = Array.from(new Map(allData.map(item => [item.key, item])).values());
 
     const filteredData = uniqueData.filter((s) => {
-      // Search by Name (KH/EN) or ID
       const matchSearch = !searchText || 
         s.id.toLowerCase().includes(searchText.toLowerCase()) || 
         s.nameKh.includes(searchText) || 
@@ -81,7 +78,6 @@ const SortingPage = () => {
       );
     });
 
-    // Move search results to Waiting Table and remove from Enrolled
     setWaitingStudents(filteredData);
     setEnrolledStudents(prev => prev.filter(e => !filteredData.some(f => f.key === e.key)));
     setSelectedRowKeys([]);
@@ -105,9 +101,18 @@ const SortingPage = () => {
         </Tag>
       ),
     },
+    
     { title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">ថ្ងៃខែឆ្នាំកំណើត</Text>, dataIndex: "dob", key: "dob", render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
     { title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">ជំនាញ</Text>, dataIndex: "major", key: "major", render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
     { title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">លេខទូរស័ព្ទ</Text>, dataIndex: "phone", key: "phone", render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
+    { 
+      title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">ប្រភេទនិស្សិត</Text>, dataIndex: "type", key: "type", width: 140,
+      render: (type) => (
+        <Tag color={type === "Scholarship" ? "gold" : "cyan"} style={{ fontSize: '14px' }}>
+          {type === "Scholarship" ? "Scholarship" : "Pay"}
+        </Tag>
+      )
+    },
   ];
 
   const waitingColumns = [
@@ -126,7 +131,13 @@ const SortingPage = () => {
     <div className="sort-container">
       <div className="sort-header-wrapper">
         <Space size="large">
-          <Button type="default" icon={<SwapLeftOutlined />} onClick={() => navigate(-1)}>Back</Button>
+<Button 
+            type="default" 
+            icon={<SwapLeftOutlined />} 
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </Button>
           <div>
             <Title className="sort-header-title" level={3}>បញ្ជីឈ្មោះនិស្សិតទាំងអស់</Title>
             <Text type="secondary" className="sort-khmer-text">គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ</Text>
@@ -187,11 +198,11 @@ const SortingPage = () => {
       </Modal>
 
       <Card bordered={false} style={{ marginBottom: '20px' }} title={<Space className="sort-khmer-text"><TeamOutlined style={{ color: '#faad14' }} /><span>បញ្ជីរងចាំ (Waiting to Enroll)</span></Space>}>
-        <Table rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }} columns={waitingColumns} dataSource={waitingStudents} pagination={{ pageSize: 5 }} scroll={{ x: 1200 }} />
+        <Table rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }} columns={waitingColumns} dataSource={waitingStudents} pagination={{ pageSize: 5 }} scroll={{ x: 1500 }} />
       </Card>
 
       <Card bordered={false} title={<Space className="sort-khmer-text"><CheckCircleOutlined style={{ color: '#52c41a' }} /><span>បែងចែករួច (Already Enrolled)</span></Space>}>
-        <Table columns={enrolledColumns} dataSource={enrolledStudents} pagination={{ pageSize: 5 }} scroll={{ x: 1300 }} locale={{ emptyText: 'មិនទាន់មាននិស្សិតបែងចែកនៅឡើយទេ' }} />
+        <Table columns={enrolledColumns} dataSource={enrolledStudents} pagination={{ pageSize: 5 }} scroll={{ x: 1600 }} locale={{ emptyText: 'មិនទាន់មាននិស្សិតបែងចែកនៅឡើយទេ' }} />
       </Card>
     </div>
   );
