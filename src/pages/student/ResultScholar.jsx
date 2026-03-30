@@ -31,7 +31,9 @@ const AdvancedSearchForm = ({ onSearch, onClear, initialData }) => {
   };
 
   return (
+    
     <div className="search-inner-container sticky-search no-print">
+  
       <Row gutter={[16, 0]} style={{ marginBottom: 10, width: '100%' }}>
         <Col xs={6}>
           <Button onClick={() => navigate("/scholarExam")} icon={<SwapLeftOutlined />}>
@@ -200,7 +202,7 @@ const ResultScholar = () => {
     { 
       title: "លទ្ធផល", 
       dataIndex: "Result",
-      width: "100px",
+      width: "90px",
       align: "center",
       render: (text, record) => (
         <Select
@@ -311,12 +313,12 @@ const ResultScholar = () => {
             <Row align="middle" justify="space-between">
               <Col span={10}>
                 <Text strong style={{ fontSize: '18px', marginLeft: '20px' }}>
-                  បានជ្រើសរើស: <span style={{ color: '#070f7a' }}>{toKhmerNum(selectedStudents.length)} នាក់</span>
+                  បានជ្រើសរើស: <span style={{ color: '#070f7a' }}>{(selectedStudents.length)} នាក់</span>
                 </Text>
               </Col>
               <Col>
                 <Space size="middle"  style={{ marginRight: '20px' }}>
-                  <Button size="large" onClick={() => { setSelectedRowKeys([]); setSelectedStudents([]); }}>បោះបង់</Button>
+                  <Button size="large" onClick={() => { setSelectedRowKeys([]); setSelectedStudents([]); }}>Cancel</Button>
                   <Button 
                     size="large"
                     type="primary" 
@@ -324,7 +326,7 @@ const ResultScholar = () => {
                     style={{ backgroundColor: '#070f7a', minWidth: '180px' }}
                     onClick={() => navigate("/final-enrollment-form", { state: { students: selectedStudents } })}
                   >
-                    បញ្ជាក់ការចូលរៀន (Confirm Enroll)
+                    Confirm Study
                   </Button>
                 </Space>
               </Col>

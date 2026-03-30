@@ -279,7 +279,7 @@ const ScholarExam = () => {
 
         <Skeleton loading={loading} active>
             <div className="document-title-block" style={{ textAlign: 'center', margin: '20px 0' }}>
-              <div className="khmer-moul" style={{ fontSize: 15 }}>បញ្ជីរាយនាមនិស្សិត ប្រឡងអាហារូបកណ៍ </div>
+              <div className="khmer-moul" style={{ fontSize: 14 }}>បញ្ជីរាយនាមនិស្សិត ប្រឡងអាហារូបកណ៍ </div>
               <div className="khmer-moul" style={{ fontSize: 14 }}>ជំនាញ {headerData.major}</div>
 
               <div style={{ fontSize: 13, fontWeight: 'bold', marginTop: 5 }}>កាលបរិច្ឆេទប្រឡង៖ {headerData.examDate}</div>

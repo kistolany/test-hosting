@@ -49,7 +49,7 @@ const menuItems = [
     ],
   },
   { key: "/attendant", icon: <CheckSquareOutlined />, label: "Attendant" },
-  { key: "/attenlist", icon: <ReadOutlined />, label: "List" },
+  { key: "/listNameExam", icon: <ReadOutlined />, label: "Final" },
   // --- USER MANAGED ADDED HERE ---
   { type: 'divider',style: { backgroundColor: "#070f7a", height: "2px", margin: "12px 0" } }, 
   { 
