@@ -649,7 +649,12 @@ opacity: 0.8;
     margin-bottom: 30px !important;
   }
 
-  
+  .no-print,
+  .ant-table-selection-column,
+          .ant-table-thead th.ant-table-selection-column,
+          .ant-table-tbody td.ant-table-selection-column{
+    display: none !important;
+  }
 }
 
 /*enrollment*/

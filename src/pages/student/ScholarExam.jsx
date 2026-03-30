@@ -117,7 +117,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, initialData }) => {
               </ConfigProvider>
             </Form.Item>
           </Col>
-          <Col xs={8} sm={8} md={4}>
+          {/* <Col xs={8} sm={8} md={4}>
             <Form.Item style={{ marginBottom: 12 }}>
               <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
                 <Button 
@@ -130,7 +130,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, initialData }) => {
                 </Button>
               </ConfigProvider>
             </Form.Item>
-          </Col>
+          </Col> */}
         </Row>
       </Form>
     </div>

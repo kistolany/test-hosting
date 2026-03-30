@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { 
   SearchOutlined, 
-  PlusOutlined, 
-  EditOutlined, 
-  DeleteOutlined, 
   PrinterOutlined, 
   ClearOutlined,
-  SwapLeftOutlined 
+  SwapLeftOutlined,
+  CheckCircleOutlined 
 } from '@ant-design/icons';
 import { useOutletContext, useNavigate } from "react-router-dom";
 import {
-  Table, Button, Flex, Typography, Space, ConfigProvider, Skeleton, theme, Form, Row, Col, Select, Popconfirm, DatePicker, TimePicker
+  Table, Button, Typography, Space, Skeleton, theme, Form, Row, Col, Select, DatePicker, Card
 } from "antd";
-import dayjs from "dayjs";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 // --- Sub-component for the Search Form ---
 const AdvancedSearchForm = ({ onSearch, onClear, initialData }) => {
@@ -63,7 +60,6 @@ const AdvancedSearchForm = ({ onSearch, onClear, initialData }) => {
             </Form.Item>
           </Col>
 
-          {/* ADDED: Result Picker (Pass/Fail) */}
           <Col xs={24} sm={24} md={6}>
             <Form.Item name="result" label="Result" style={{ marginBottom: 12 }}>
               <Select allowClear placeholder="Select Result">
@@ -119,13 +115,17 @@ const ResultScholar = () => {
   const { isDark } = useOutletContext();
   const navigate = useNavigate();
 
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [selectedStudents, setSelectedStudents] = useState([]);
+
+  const toKhmerNum = (num) => {
+    const khmerNumbers = ["០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"];
+    return num.toString().split('').map(digit => khmerNumbers[digit] || digit).join('');
+  };
+
   const formatKhmerDate = (date) => {
     if (!date) return "........................";
     const khmerMonths = ["មករា", "កុម្ភៈ", "មីនា", "មេសា", "ឧសភា", "មិថុនា", "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "វិច្ឆិកា", "ធ្នូ"];
-    const toKhmerNum = (num) => {
-      const khmerNumbers = ["០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"];
-      return num.toString().split('').map(digit => khmerNumbers[digit] || digit).join('');
-    };
     const day = toKhmerNum(date.date());
     const month = khmerMonths[date.month()];
     const year = toKhmerNum(date.year());
@@ -136,12 +136,12 @@ const ResultScholar = () => {
     major: "បង្រៀនភាសាអង់គ្លេស", 
     studyYear: "២០២៨-២០២៩",
     examDate: "........................",
-    resultFilter: null // Track if we are filtering for Pass/Fail
+    resultFilter: null 
   });
 
   const [masterData, setMasterData] = useState([
     { key: "1", ID: "B260013", nameKhmer: "អាត ភីយ៉ា", name: "ART PHIYA", gender: "F", dob: "11-Jan-06", major: "បង្រៀនភាសាអង់គ្លេស", studyYear: "២០២៨-២០២៩", Result: "ជាប់" },
-    { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", major: "វិទ្យាសាស្ត្សកុំព្យូទ័រ", studyYear: "២០២៥-២០២៦", Result: "ជាប់" },
+    { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", major: "វិទ្យាសាស្ត្សកុំព្យូទ័រ", studyYear: "២០២៥-២០២៦", Result: "ធ្លាក់" },
     { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", major: "បង្រៀនភាសាអង់គ្លេស", studyYear: "២០២៦-២០២៧", Result: "ជាប់" },
   ]);
 
@@ -153,34 +153,42 @@ const ResultScholar = () => {
 
   const handleSearch = (values) => {
     const dateText = values.examDate ? formatKhmerDate(values.examDate) : "........................";
-    
     setHeaderData(prev => ({
       ...prev,
       studyYear: values.studyYear || prev.studyYear,
       examDate: dateText,
-      resultFilter: values.result // Update header state with the result choice
+      resultFilter: values.result 
     }));
 
-    const results = masterData.filter(item => {
-      return (
-        (!values.studyYear || item.studyYear === values.studyYear) &&
-        (!values.result || item.Result === values.result) // FILTER BY PASS/FAIL
-      );
-    });
-
+    const results = masterData.filter(item => (
+      (!values.studyYear || item.studyYear === values.studyYear) &&
+      (!values.result || item.Result === values.result)
+    ));
     setFilteredData(results);
   };
 
   const handleClear = () => {
     setFilteredData(null);
     setHeaderData(prev => ({ ...prev, resultFilter: null }));
+    setSelectedRowKeys([]);
+    setSelectedStudents([]);
+  };
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: (keys, selectedRows) => {
+      setSelectedRowKeys(keys);
+      setSelectedStudents(selectedRows);
+
+    },
+    ClassName: "no-print",
   };
 
   const columns = [
     { 
       title: "ល.រ", 
       key: "index", 
-      width: "15px", 
+      width: "40px", 
       align: "center",
       render: (text, record, index) => index + 1, 
     },
@@ -190,39 +198,39 @@ const ResultScholar = () => {
     { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: "100px", align: "center" },
     { title: "ជំនាញ", dataIndex: "major", width: "150px", align: "center" },
     { 
-  title: "លទ្ធផល", 
-  dataIndex: "Result",
-  width: "100px",
-  align: "center",
-  render: (text, record) => (
-    <Select
-      value={text || "ជាប់"} 
-      variant="borderless"
-      suffixIcon={null} // This removes the arrow icon completely
-      className="hidden-select" 
-      style={{ 
-        width: '100%', 
-        fontWeight: 'bold',
-        color: text === "ធ្លាក់" ? 'red' : '#070f7a',
-        textAlign: 'center'
-      }}
-      onChange={(value) => {
-        const updateData = (data) => data.map(item => 
-          item.key === record.key ? { ...item, Result: value } : item
-        );
-        setMasterData(prev => updateData(prev));
-        if (filteredData) setFilteredData(prev => updateData(prev));
-      }}
-    >
-      <Select.Option value="ជាប់">ជាប់</Select.Option>
-      <Select.Option value="ធ្លាក់">ធ្លាក់</Select.Option>
-    </Select>
-  )
-},
+      title: "លទ្ធផល", 
+      dataIndex: "Result",
+      width: "100px",
+      align: "center",
+      render: (text, record) => (
+        <Select
+          value={text || "ជាប់"} 
+          variant="borderless"
+          suffixIcon={null} 
+          className="hidden-select" 
+          style={{ 
+            width: '100%', 
+            fontWeight: 'bold',
+            color: text === "ធ្លាក់" ? 'red' : '#070f7a',
+            textAlign: 'center'
+          }}
+          onChange={(value) => {
+            const updateData = (data) => data.map(item => 
+              item.key === record.key ? { ...item, Result: value } : item
+            );
+            setMasterData(prev => updateData(prev));
+            if (filteredData) setFilteredData(prev => updateData(prev));
+          }}
+        >
+          <Select.Option value="ជាប់">ជាប់</Select.Option>
+          <Select.Option value="ធ្លាក់">ធ្លាក់</Select.Option>
+        </Select>
+      )
+    },
   ];
 
   return (
-    <div className="student-page-wrapper">
+    <div className="student-page-wrapper" style={{ paddingBottom: selectedStudents.length > 0 ? 120 : 20 }}>
       <AdvancedSearchForm onSearch={handleSearch} onClear={handleClear} initialData={masterData} />
 
       <div className="paper-sheet">
@@ -252,6 +260,7 @@ const ResultScholar = () => {
         </Skeleton>
 
         <Table
+          rowSelection={rowSelection}
           columns={columns}
           dataSource={finalTableData}
           loading={loading}
@@ -261,12 +270,14 @@ const ResultScholar = () => {
           className="official-table"
         />
 
+        {/* --- RESTORED: Total Count Block --- */}
         <div className="totalStu" style={{ marginTop: 15, fontSize: 13, fontWeight: 'bold' }}>
-          <div>សម្គាល់៖ បញ្ជីនិស្សិតបញ្ចប់ត្រឹមចំនួន {finalTableData.length.toLocaleString('km-KH')} នាក់។</div>
-          <div style={{ marginLeft: 55 }}>ស្រី ចំនួន {femaleCount.toLocaleString('km-KH')} នាក់។</div>
-          <div style={{ marginLeft: 55 }}>ប្រុស ចំនួន {maleCount.toLocaleString('km-KH')} នាក់។</div>
+          <div>សម្គាល់៖ បញ្ជីនិស្សិតបញ្ចប់ត្រឹមចំនួន {toKhmerNum(finalTableData.length)} នាក់។</div>
+          <div style={{ marginLeft: 55 }}>ស្រី ចំនួន {toKhmerNum(femaleCount)} នាក់។</div>
+          <div style={{ marginLeft: 55 }}>ប្រុស ចំនួន {toKhmerNum(maleCount)} នាក់។</div>
         </div>
 
+        {/* --- RESTORED: Signature Block --- */}
         <div className="signature-block" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 30 }}>
           <div className="signature-area" style={{ textAlign: 'center' }}>
             <div>ថ្ងៃ.................ខែ...........ឆ្នាំ................ស័ក ព.ស...........</div>
@@ -275,7 +286,52 @@ const ResultScholar = () => {
             <div className="khmer-moul" style={{ marginTop: 60 }}>ប្រធាន</div>
           </div>
         </div>
+        
       </div>
+
+      {/* --- CENTERED POP-UP --- */}
+      {selectedStudents.length > 0 && (
+        <div className="no-print" style={{
+          position: 'fixed',
+          bottom: '30px',
+          left: '50%',
+          transform: 'translateX(-38%)',
+          width: '90%',
+          maxWidth: '800px',
+          zIndex: 1000
+        }}>
+          <Card 
+            style={{ 
+              borderRadius: '12px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+              border: '1.5px solid #070f7a',
+              padding: '4px 0'
+            }}
+          >
+            <Row align="middle" justify="space-between">
+              <Col span={10}>
+                <Text strong style={{ fontSize: '18px', marginLeft: '20px' }}>
+                  បានជ្រើសរើស: <span style={{ color: '#070f7a' }}>{toKhmerNum(selectedStudents.length)} នាក់</span>
+                </Text>
+              </Col>
+              <Col>
+                <Space size="middle"  style={{ marginRight: '20px' }}>
+                  <Button size="large" onClick={() => { setSelectedRowKeys([]); setSelectedStudents([]); }}>បោះបង់</Button>
+                  <Button 
+                    size="large"
+                    type="primary" 
+                    icon={<CheckCircleOutlined />} 
+                    style={{ backgroundColor: '#070f7a', minWidth: '180px' }}
+                    onClick={() => navigate("/final-enrollment-form", { state: { students: selectedStudents } })}
+                  >
+                    បញ្ជាក់ការចូលរៀន (Confirm Enroll)
+                  </Button>
+                </Space>
+              </Col>
+            </Row>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };

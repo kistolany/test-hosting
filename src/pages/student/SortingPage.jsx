@@ -27,6 +27,12 @@ const SortingPage = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
 
+  // Helper for Khmer Numbers
+  // const toKhmerNum = (num) => {
+  //   const khmerNumbers = ["០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"];
+  //   return num.toString().split('').map(digit => khmerNumbers[digit] || digit).join('');
+  // };
+
   const handleOpenEnrollModal = () => {
     if (selectedRowKeys.length === 0) {
       message.warning({ content: "សូមជ្រើសរើសនិស្សិតដើម្បីបន្ត!", className: "sort-khmer-text" });
@@ -58,7 +64,6 @@ const SortingPage = () => {
 
   const handleSearch = (values) => {
     const { searchText, faculty, major, batch, year, class: className } = values;
-
     const allData = [...initialStudents, ...enrolledStudents, ...waitingStudents];
     const uniqueData = Array.from(new Map(allData.map(item => [item.key, item])).values());
 
@@ -101,7 +106,6 @@ const SortingPage = () => {
         </Tag>
       ),
     },
-    
     { title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">ថ្ងៃខែឆ្នាំកំណើត</Text>, dataIndex: "dob", key: "dob", render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
     { title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">ជំនាញ</Text>, dataIndex: "major", key: "major", render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
     { title: <Text strong style={{ fontSize: '16px' }} className="sort-khmer-text">លេខទូរស័ព្ទ</Text>, dataIndex: "phone", key: "phone", render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
@@ -128,16 +132,17 @@ const SortingPage = () => {
   ];
 
   return (
-    <div className="sort-container">
+    <div className="sort-container" style={{ paddingBottom: selectedRowKeys.length > 0 ? 120 : 20 }}>
+      {/* Print CSS */}
+      <style>{`
+        @media print {
+          .no-print, .ant-table-selection-column { display: none !important; }
+        }
+      `}</style>
+
       <div className="sort-header-wrapper">
         <Space size="large">
-<Button 
-            type="default" 
-            icon={<SwapLeftOutlined />} 
-            onClick={() => navigate(-1)}
-          >
-            Back
-          </Button>
+          <Button type="default" icon={<SwapLeftOutlined />} onClick={() => navigate(-1)}>Back</Button>
           <div>
             <Title className="sort-header-title" level={3}>បញ្ជីឈ្មោះនិស្សិតទាំងអស់</Title>
             <Text type="secondary" className="sort-khmer-text">គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ</Text>
@@ -168,18 +173,6 @@ const SortingPage = () => {
               </Form.Item>
             </Col>
           </Row>
-
-          <Row style={{ marginTop: '10px' }}>
-            <Col span={24}>
-              <Button 
-                type="primary" size="large" icon={<CheckCircleOutlined />} 
-                onClick={handleOpenEnrollModal} 
-                style={{ backgroundColor: '#070f7a', height: '45px', padding: '0 40px' }}
-              >
-                Enroll Selected ({selectedRowKeys.length})
-              </Button>
-            </Col>
-          </Row>
         </Form>
       </Card>
 
@@ -198,12 +191,66 @@ const SortingPage = () => {
       </Modal>
 
       <Card bordered={false} style={{ marginBottom: '20px' }} title={<Space className="sort-khmer-text"><TeamOutlined style={{ color: '#faad14' }} /><span>បញ្ជីរងចាំ (Waiting to Enroll)</span></Space>}>
-        <Table rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }} columns={waitingColumns} dataSource={waitingStudents} pagination={{ pageSize: 5 }} scroll={{ x: 1500 }} />
+        <Table 
+          rowSelection={{ 
+            selectedRowKeys, 
+            onChange: setSelectedRowKeys,
+            columnClassName: "no-print" 
+          }} 
+          columns={waitingColumns} 
+          dataSource={waitingStudents} 
+          pagination={{ pageSize: 5 }} 
+          scroll={{ x: 1500 }} 
+        />
       </Card>
 
       <Card bordered={false} title={<Space className="sort-khmer-text"><CheckCircleOutlined style={{ color: '#52c41a' }} /><span>បែងចែករួច (Already Enrolled)</span></Space>}>
         <Table columns={enrolledColumns} dataSource={enrolledStudents} pagination={{ pageSize: 5 }} scroll={{ x: 1600 }} locale={{ emptyText: 'មិនទាន់មាននិស្សិតបែងចែកនៅឡើយទេ' }} />
       </Card>
+
+      {/* FLOATING ACTION BAR: Matches your Result page pop-up */}
+      {selectedRowKeys.length > 0 && (
+        <div className="no-print" style={{
+          position: 'fixed',
+          bottom: '30px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100%',
+          maxWidth: '900px',
+          zIndex: 1000
+        }}>
+          <Card 
+            style={{ 
+              borderRadius: '12px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+              border: '1.5px solid #070f7a',
+              padding: '4px 0'
+            }}
+          >
+            <Row align="middle" justify="space-between">
+              <Col span={10}>
+                <Text strong style={{ fontSize: '18px', marginLeft: '20px' }} className="sort-khmer-text">
+                  បានជ្រើសរើស: <span style={{ color: '#070f7a' }}>{(selectedRowKeys.length)} នាក់</span>
+                </Text>
+              </Col>
+              <Col>
+                <Space size="middle" style={{ marginRight: '20px' }}>
+                  <Button size="large" onClick={() => setSelectedRowKeys([])}>Cancel</Button>
+                  <Button 
+                    size="large"
+                    type="primary" 
+                    icon={<CheckCircleOutlined />} 
+                    style={{ backgroundColor: '#070f7a', minWidth: '220px' }}
+                    onClick={handleOpenEnrollModal}
+                  >
+                    Enrollment
+                  </Button>
+                </Space>
+              </Col>
+            </Row>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };
