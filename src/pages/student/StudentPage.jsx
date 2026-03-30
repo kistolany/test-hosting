@@ -104,7 +104,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, initialData }) => {
           <Button icon={<ClearOutlined/>} onClick={() => { form.resetFields(); onClear(); }} />
           <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
           <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
-            <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/createStudent")}>Add New</Button>
+            <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/createStudent", { state: { mode: "create" } })}>Add New</Button>
             {/* <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/scholarExam")}>Schorlaship Examination</Button> */}
             {/* <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/sortingpage")}>Sort</Button> */}
           </ConfigProvider>
@@ -224,7 +224,12 @@ const StudentPage = () => {
       align: "center",
       render: (_, record) => (
         <Space>
-          <Button type="text" size="small" icon={<EditOutlined />} onClick={() => navigate(`/createStudent${record.key}`)} />
+          <Button
+            type="text"
+            size="small"
+            icon={<EditOutlined />}
+            onClick={() => navigate("/createStudent", { state: { mode: "edit", student: record } })}
+          />
           <Popconfirm title="លុប?" onConfirm={() => {
               const updated = masterData.filter(i => i.key !== record.key);
               setMasterData(updated);

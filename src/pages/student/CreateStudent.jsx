@@ -1,5 +1,6 @@
-import React from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 import {
   Button,
   Cascader,
@@ -22,8 +23,39 @@ const { RangePicker } = DatePicker;
 
 const CreateStudent = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [form] = Form.useForm();
   const variant = Form.useWatch("variant", form);
+  const isEdit = location.state?.mode === "edit";
+  const student = location.state?.student;
+
+  useEffect(() => {
+    if (!isEdit || !student) return;
+
+    const parsedDob = dayjs(student.dob);
+    const yearStudyMap = {
+      "2026-2027": 1,
+      "2027-2028": 2,
+      "2028-2029": 3,
+      "2030-2031": 4,
+      "២០២៦-២០២៧": 1,
+      "២០២៧-២០២៨": 2,
+      "២០២៨-២០២៩": 3,
+      "២០៣០-២០៣១": 4,
+    };
+
+    form.setFieldsValue({
+      Input: student.ID || "",
+      NameKhmer: student.nameKhmer || "",
+      NameEnglish: student.name || "",
+      Gender: student.gender || undefined,
+      DOB: parsedDob.isValid() ? parsedDob : undefined,
+      StudyShift: student.shift || undefined,
+      major: student.major || undefined,
+      YearStudy: yearStudyMap[student.studyYear] || undefined,
+      Others: student.Note || "",
+    });
+  }, [isEdit, student, form]);
 
   return (
     <Form
@@ -36,7 +68,7 @@ const CreateStudent = () => {
       <Row gutter={[16, 0]}>
       <Col xs={24}>
           <Form.Item>
-            <Button onClick={() => navigate("/Student")} htmlType="button">
+            <Button onClick={() => navigate("/student")} htmlType="button">
               <SwapLeftOutlined />
               Back
             </Button>
@@ -44,7 +76,7 @@ const CreateStudent = () => {
         </Col>
        <Col xs={24} sm={24} md={24} lg={24}>
           <div className="headerText" style={{ color:'#070f7a ' }}>
-            ចុះឈ្មោះនិស្សិត
+            {isEdit ? "កែប្រែព័ត៌មាននិស្សិត" : "ចុះឈ្មោះនិស្សិត"}
           </div>
         </Col>
 
@@ -352,7 +384,7 @@ const CreateStudent = () => {
         <Col xs={24}>
           <Form.Item>
             <Button type="primary" style={{ background:'#160579' }} htmlType="submit">
-              Submit
+              {isEdit ? "Update Student" : "Submit"}
             </Button>
           </Form.Item>
         </Col>
