@@ -34,31 +34,34 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
         onFinish={onSearch}
       >
         <Row gutter={[12, 0]} align="bottom">
-          <Col xs={24} md={5}>
+          <Col xs={24} md={8}>
             <Form.Item name="major" label="Major" style={{ marginBottom: 12 }}>
               <Select allowClear placeholder="Select Major" options={getOptions('major')} />
             </Form.Item>
           </Col>
-          <Col xs={12} md={3}>
+          <Col xs={12} md={5}>
             <Form.Item name="batch" label="Batch" style={{ marginBottom: 12 }}>
               <Select allowClear placeholder="Batch" options={getOptions('batch')} />
             </Form.Item>
           </Col>
-          <Col xs={12} md={2}>
+          <Col xs={12} md={4}>
             <Form.Item name="year" label="Year" style={{ marginBottom: 12 }}>
               <Select allowClear placeholder="Year" options={getOptions('year')} />
             </Form.Item>
           </Col>
-          <Col xs={12} md={2}>
+          <Col xs={12} md={4}>
             <Form.Item name="semester" label="Semester" style={{ marginBottom: 12 }}>
               <Select allowClear placeholder="Sem..." options={getOptions('semester')} />
             </Form.Item>
           </Col>
-          <Col xs={12} md={2}>
+          <Col xs={12} md={3}>
             <Form.Item name="shift" label="Shift" style={{ marginBottom: 12 }}>
               <Select allowClear placeholder="Shift" options={getOptions('shift')} />
             </Form.Item>
           </Col>
+        </Row>
+
+        <Row gutter={[12, 0]} align="bottom">
           <Col xs={24} md={5}>
             <Form.Item name="examDateRange" label="Exam Date" style={{ marginBottom: 12 }}>
               <RangePicker style={{ width: '100%' }} format="DD-MM-YYYY" />
@@ -69,15 +72,41 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
               <TimePicker.RangePicker style={{ width: '100%' }} format="HH:mm" />
             </Form.Item>
           </Col>
-          <Col xs={24}>
-            <Flex gap="small" justify="end">
-              <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: '#070f7a' }}>Search</Button>
-              <Button icon={<ClearOutlined/>} onClick={() => { form.resetFields(); onClear(); }} />
-              <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
+          <Col xs={24} md={14}>
+            <Form.Item label=" " style={{ marginBottom: 12 }}>
+            <Flex gap="small" justify="end" wrap>
+              <Button
+                type="primary"
+                htmlType="submit"
+                icon={<SearchOutlined />}
+                style={{ backgroundColor: '#070f7a', minWidth: 120 }}
+              >
+                Search
+              </Button>
+              <Button
+                icon={<ClearOutlined/>}
+                onClick={() => { form.resetFields(); onClear(); }}
+                style={{ minWidth: 44 }}
+              />
+              <Button
+                icon={<PrinterOutlined />}
+                onClick={() => window.print()}
+                style={{ backgroundColor: '#070f7a', color: "white", minWidth: 100 }}
+              >
+                Print
+              </Button>
               <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
-                <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/ResultScholar")}>Result</Button>
+                <Button
+                  type="primary"
+                  icon={<PlusOutlined />}
+                  onClick={() => navigate("/ResultScholar")}
+                  style={{ minWidth: 120 }}
+                >
+                  Result
+                </Button>
               </ConfigProvider>
             </Flex>
+            </Form.Item>
           </Col>
         </Row>
       </Form>

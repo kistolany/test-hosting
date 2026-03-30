@@ -468,6 +468,7 @@ width: 60%;
 .sort-container {
   padding: 40px;
   min-height: 100vh;
+  background: #f7f9fc;
   font-family: "Khmer OS Battambang", system-ui !important;
 }
 
@@ -482,17 +483,27 @@ width: 60%;
   margin-bottom: 30px;
 }
 
+.sort-header-text {
+  text-align: center;
+}
+
 .sort-header-title {
   margin: 8px 0 0 0 !important;
   color: #160579 !important;
   font-family: "Khmer moul", serif !important;
   font-size: 28px !important;
+  text-align: center;
+}
+
+.sort-header-subtitle {
+  display: block;
+  text-align: center;
 }
 
 .sort-card {
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  border: 1px solid #f0f0f0;
+  box-shadow: none;
+  border: 1px solid #e6eaf2;
   overflow: hidden;
   margin-bottom: 25px;
 }
@@ -552,4 +563,38 @@ width: 60%;
   border-radius: 12px;
   padding: 0 12px;
   font-weight: 500;
+}
+
+@media (max-width: 992px) {
+  .sort-container {
+    padding: 20px 14px;
+  }
+
+  .sort-header-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .sort-header-wrapper .ant-space {
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .sort-header-text {
+    flex: 1;
+  }
+
+  .sort-header-title {
+    font-size: 22px !important;
+  }
+
+  .sort-header-subtitle {
+    font-size: 14px;
+  }
+
+  .sort-header-wrapper .ant-statistic {
+    align-self: flex-end;
+  }
 }

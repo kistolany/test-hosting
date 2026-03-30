@@ -257,7 +257,7 @@ const CreateStudent = () => {
         </Col>
 
         <Divider orientation="left">បាក់ឌុប (Bacll)</Divider>
-        <Col xs={12} sm={6} md={4} lg={2}>
+        <Col xs={24} sm={12} md={6} lg={6}>
           <Form.Item
             label="ឆ្នាំប្រឡង"
             name="ExamYear"
@@ -266,7 +266,7 @@ const CreateStudent = () => {
             <Select />
           </Form.Item>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} sm={12} md={6} lg={6}>
           <Form.Item
             label="បណ្ឌលប្រឡង"
             name="ExamPlace"
@@ -275,7 +275,7 @@ const CreateStudent = () => {
             <Mentions />
           </Form.Item>
         </Col>
-        <Col xs={18} sm={8} md={6} lg={4}>
+        <Col xs={24} sm={12} md={6} lg={6}>
           <Form.Item
             label="លេខកូដបាក់ឌុប"
             name="BacllCode"
@@ -284,7 +284,7 @@ const CreateStudent = () => {
             <Mentions />
           </Form.Item>
         </Col>
-        <Col xs={18} sm={8} md={6} lg={4}>
+        <Col xs={24} sm={12} md={6} lg={6}>
           <Form.Item
             label="និន្ទេស"
             name="Grade"

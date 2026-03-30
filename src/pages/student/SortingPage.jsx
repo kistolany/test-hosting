@@ -136,16 +136,64 @@ const SortingPage = () => {
       {/* Print CSS */}
       <style>{`
         @media print {
+          @page {
+            size: A4 landscape;
+            margin: 10mm;
+          }
+
+          .content,
+          .main-inner-layout,
+          .sort-container {
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+          }
+
           .no-print, .ant-table-selection-column { display: none !important; }
+
+          .sort-container {
+            padding: 0 !important;
+            background: #ffffff !important;
+          }
+
+          .ant-card,
+          .ant-card-body,
+          .ant-table-wrapper,
+          .ant-spin-nested-loading,
+          .ant-spin-container,
+          .ant-table,
+          .ant-table-container,
+          .ant-table-content,
+          .ant-table-body {
+            overflow: visible !important;
+            max-height: none !important;
+            height: auto !important;
+          }
+
+          .ant-table table {
+            width: 100% !important;
+            table-layout: auto !important;
+          }
+
+          .ant-table-cell {
+            white-space: normal !important;
+            word-break: break-word !important;
+            font-size: 11px !important;
+            padding: 6px 8px !important;
+          }
+
+          .ant-pagination {
+            display: none !important;
+          }
         }
       `}</style>
 
       <div className="sort-header-wrapper">
         <Space size="large">
           <Button type="default" icon={<SwapLeftOutlined />} onClick={() => navigate(-1)}>Back</Button>
-          <div>
+          <div className="sort-header-text">
             <Title className="sort-header-title" level={3}>បញ្ជីឈ្មោះនិស្សិតទាំងអស់</Title>
-            <Text type="secondary" className="sort-khmer-text">គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ</Text>
+            <Text type="secondary" className="sort-khmer-text sort-header-subtitle">គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ</Text>
           </div>
         </Space>
         <Statistic title={<span className="sort-khmer-text">Pending Students</span>} value={waitingStudents.length} prefix={<UserOutlined />} valueStyle={{ color: '#cf1322', fontSize: '20px' }} />

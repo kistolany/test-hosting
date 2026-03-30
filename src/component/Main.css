@@ -73,6 +73,18 @@ body{
   overflow: hidden;
 }
 
+@media print {
+  .main-inner-layout,
+  .content,
+  .app-sider,
+  .app-sider .ant-layout-sider-children,
+  .sidebar-menu-scroll {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
 .app-sider {
   height: 100vh;
   position: sticky !important;
