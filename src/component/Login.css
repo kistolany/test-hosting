@@ -140,3 +140,50 @@
   padding: 2px 10px;
   font-weight: 500;
 }
+
+.theme-dark .user-container {
+  background-color: #0b1220;
+}
+
+.theme-dark .user-header-section .ant-typography,
+.theme-dark .user-header-section .ant-typography-secondary,
+.theme-dark .user-container .ant-typography,
+.theme-dark .user-container .ant-typography-secondary {
+  color: #e5e7eb !important;
+}
+
+.theme-dark .user-card-main,
+.theme-dark .user-card-main .ant-card,
+.theme-dark .user-card-main .ant-card-body,
+.theme-dark .user-container .ant-modal-content {
+  background: #111827 !important;
+  border: 1px solid #2b3648;
+}
+
+.theme-dark .user-container .ant-table,
+.theme-dark .user-container .ant-table-container,
+.theme-dark .user-container .ant-table-content {
+  background: #111827 !important;
+}
+
+.theme-dark .user-container .ant-table-thead > tr > th {
+  background: #1f2937 !important;
+  color: #e5e7eb !important;
+  border-bottom-color: #334155 !important;
+}
+
+.theme-dark .user-container .ant-table-tbody > tr > td {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+  border-bottom-color: #334155 !important;
+}
+
+.theme-dark .user-avatar-wrapper {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+
+.theme-dark .user-upload-group {
+  border-color: #334155;
+  background: #0f172a;
+}

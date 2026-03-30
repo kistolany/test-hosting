@@ -351,6 +351,88 @@ opacity: 0.8;
   padding: 2px;
 }
 
+@media screen {
+  .theme-dark .scholarship-container {
+    background: #0b1220;
+  }
+
+  .theme-dark .sticky-search {
+    background: #0b1220;
+  }
+
+  .theme-dark .scholarship-form {
+    background: #111827;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    border: 1px solid #2b3648;
+  }
+
+  .theme-dark .scholarship-container,
+  .theme-dark .scholarship-form,
+  .theme-dark .form-line span,
+  .theme-dark .form-note,
+  .theme-dark .form-note span,
+  .theme-dark .sign-end,
+  .theme-dark .commitment-section,
+  .theme-dark .footer-address,
+  .theme-dark .footer-contact,
+  .theme-dark .date-section,
+  .theme-dark .uni-brand-text-kh,
+  .theme-dark .uni-brand-text-en,
+  .theme-dark .uni-serial-line,
+  .theme-dark .receipt-title,
+  .theme-dark .signature-grid,
+  .theme-dark .student-id,
+  .theme-dark .form-main-title-en {
+    color: #e5e7eb !important;
+  }
+
+  .theme-dark .national-title,
+  .theme-dark .national-subtitle,
+  .theme-dark .form-main-title,
+  .theme-dark .form-subtitle,
+  .theme-dark .form-university-name,
+  .theme-dark .input-title-year,
+  .theme-dark .subject-bold,
+  .theme-dark .EK,
+  .theme-dark .signature-label {
+    color: #cbd5e1 !important;
+  }
+
+  .theme-dark .form-footer {
+    border-top-color: #475569;
+  }
+
+  .theme-dark .dotted-input {
+    border-bottom-color: #64748b !important;
+    color: #e5e7eb !important;
+  }
+
+  .theme-dark .photo-box {
+    border-color: #64748b;
+    color: #cbd5e1;
+    background: #0f172a;
+  }
+
+  .theme-dark .scholarship-container .ant-select-selector,
+  .theme-dark .scholarship-container .ant-input,
+  .theme-dark .scholarship-container .ant-picker,
+  .theme-dark .scholarship-container .ant-btn-default {
+    background: #0f172a !important;
+    color: #e5e7eb !important;
+    border-color: #334155 !important;
+  }
+
+  .theme-dark .scholarship-container .ant-form-item-label > label,
+  .theme-dark .scholarship-container .ant-typography {
+    color: #e5e7eb !important;
+  }
+
+  .theme-dark .clear-button:hover {
+    border-color: #93c5fd !important;
+    color: #93c5fd !important;
+  }
+}
+
 
 /* --- RESPONSIVE UPDATES --- */
 @media (max-width: 768px) {

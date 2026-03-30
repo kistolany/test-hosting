@@ -145,7 +145,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
           menu={{ items: settingMenuItems, onClick: handleSettingClick }}
           trigger={["click"]}
           placement="topRight"
-          overlayClassName="setting-popup-menu"
+          overlayClassName={`setting-popup-menu ${isDark ? "setting-popup-menu-dark" : ""}`}
         >
           <button
             type="button"

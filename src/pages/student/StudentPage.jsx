@@ -188,27 +188,32 @@ const StudentPage = () => {
   };
 
   const columns = [
-    { 
-      title: "ល.រ", 
-      key: "index", 
-      width: "15px", 
+    {
+      title: "ល.រ",
+      key: "index",
+      width: "15px",
       align: "center",
-      render: (text, record, index) => index + 1, 
+      render: (text, record, index) => index + 1,
     },
     { title: "អត្តលេខ", dataIndex: "ID", width: "70px", align: "center" },
     { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: "150px" },
     { title: "អក្សរឡាតាំង", dataIndex: "name", width: "150px", render: (t) => t.toUpperCase() },
-    { title: "ភេទ", dataIndex: "gender", width: "30px", align: "center" },
+    {
+      title: "ភេទ",
+      dataIndex: "gender",
+      width: "30px",
+      align: "center",
+    },
     { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: "100px", align: "center" },
-    { 
-      title: "ផ្សេងៗ", 
+    {
+      title: "ផ្សេងៗ",
       dataIndex: "Note",
       render: (text, record) => (
-        <input 
-          style={{ width: '110%', border: 'none', background: 'transparent' }} 
-          value={text} 
+        <input
+          style={{ width: '110%', border: 'none', background: 'transparent' }}
+          value={text}
           onChange={(e) => {
-            const updated = masterData.map(item => 
+            const updated = masterData.map(item =>
               item.key === record.key ? { ...item, Note: e.target.value } : item
             );
             setMasterData(updated);
@@ -219,7 +224,7 @@ const StudentPage = () => {
     {
       title: "សកម្មភាព",
       key: "action",
-      className: "action-column no-print", 
+      className: "action-column no-print",
       width: "20px",
       align: "center",
       render: (_, record) => (
@@ -276,7 +281,7 @@ const StudentPage = () => {
           pagination={false}
           bordered
           size="small"
-          className="official-table"
+          className="official-table student-screen-table"
         />
 
         {/* --- Summary Section with Gender Breakdown --- */}

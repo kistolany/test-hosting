@@ -38,7 +38,6 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<LoginPage />} />
         {/* <Route path="/register" element={<RegisterPage />} /> */}
-        <Route path="/sortingpage" element={<SortingPage />} />
 
         {/* Private Routes (Inside MainPage Layout) */}
         <Route element={<MainPage />}>
@@ -48,6 +47,7 @@ function App() {
           <Route path="/auditLog" element={<AuditLog />} />
           <Route path="/profile" element={<ProfileSettings />} />
           <Route path="/student" element={<StudentPage />} />
+          <Route path="/sortingpage" element={<SortingPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/scholarExam" element={<ScholarExam />} />
           <Route path="/resultScholar" element={<ResultScholar />} />

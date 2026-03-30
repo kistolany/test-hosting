@@ -5,7 +5,7 @@ import {
   EyeOutlined, ArrowLeftOutlined,
   UserOutlined, BookOutlined
 } from '@ant-design/icons';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   Table, Button, Flex, Space, Skeleton, 
   theme, Form, Row, Col, Select, Tag, Radio, message, Typography, Card, Progress, Statistic, Empty
@@ -18,6 +18,7 @@ const AttendancePage = () => {
   const [loading, setLoading] = useState(true);
   const { token } = theme.useToken();
   const navigate = useNavigate();
+  const { isDark } = useOutletContext();
   
   const [editingKey, setEditingKey] = useState("");
   const [searchSummary, setSearchSummary] = useState(null);
@@ -271,7 +272,7 @@ const AttendancePage = () => {
     ];
 
     return (
-      <div style={{ padding: '30px', background: '#fff', minHeight: '100vh' }}>
+      <div style={{ padding: '30px', background: isDark ? '#0b1220' : '#fff', minHeight: '100vh' }}>
         <Flex justify="space-between" className="no-print" style={{ marginBottom: 20 }}>
           <Button icon={<ArrowLeftOutlined />} onClick={() => setShowMajorReport(false)}>Back</Button>
           <Button type="primary" icon={<PrinterOutlined />} onClick={() => window.print()} style={{ background: PRIMARY_COLOR }}>បោះពុម្ព (Print)</Button>
@@ -281,7 +282,7 @@ const AttendancePage = () => {
           <div className="uni-logo-section" style={{ textAlign: 'center' }}>
             <img src="/asset/image/logo.png" alt="logo" className="print-logo" style={{ width: 80, filter: isDark ? "brightness(0) invert(1)" : "none" }} />
             <div className="khmer-moul" style={{ fontSize: 11 }}>សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</div>
-            <div style={{ fontSize: 9, fontWeight: 'bold', color:'#070f7a'}}>CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY</div>
+            <div style={{ fontSize: 9, fontWeight: 'bold', color: isDark ? '#e5e7eb' : '#070f7a' }}>CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY</div>
           </div>
           <div className="kingdom-section" style={{ textAlign: 'center' }}>
             <div className="khmer-moul" style={{ fontSize: 14 }}>ព្រះរាជាណាចក្រកម្ពុជា</div>
@@ -290,7 +291,7 @@ const AttendancePage = () => {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginBottom: 25, color: '#070f7a' }}>
+        <div style={{ textAlign: 'center', marginBottom: 25, color: isDark ? '#e5e7eb' : '#070f7a' }}>
     <div style={{ fontSize: '12px', fontWeight: 'bold', margin: 0, fontFamily: 'Khmer OS Muol Light' }}>
         ទម្រង់វត្តមាននិស្សិតឆ្នាំទី {searchSummary?.year} ឆមាសទី {searchSummary?.semester} ជំនាន់ទី {searchSummary?.batch}
     </div>
@@ -325,7 +326,7 @@ const AttendancePage = () => {
 
   return (
     <div className="att-page-wrapper">
-      <div className="att-search-inner-container" style={{background:'white', 
+      <div className="att-search-inner-container" style={{background: isDark ? '#111827' : 'white', 
   marginBottom: 20, 
   position: 'sticky', 
   top: 60, 
@@ -353,7 +354,7 @@ const AttendancePage = () => {
       </div>
 
       {searchSummary && (
-        <div style={{ textAlign: 'center', marginBottom: 30, color: '#000' }}>
+        <div style={{ textAlign: 'center', marginBottom: 30, color: isDark ? '#e5e7eb' : '#000' }}>
           <div style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '4px' }}>
             ទម្រង់វត្តមាននិស្សិតឆ្នាំទី {searchSummary.year} ឆមាសទី {searchSummary.semester} ជំនាន់ទី {searchSummary.batch}
           </div>
@@ -366,7 +367,7 @@ const AttendancePage = () => {
           <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>
             ជំនាញ៖ {searchSummary.major}
           </div>
-          <div style={{ fontSize: '15px', borderTop: '1px solid #000', paddingTop: '8px', marginTop: '10px', display: 'inline-block', minWidth: '500px' }}>
+          <div style={{ fontSize: '15px', borderTop: `1px solid ${isDark ? '#475569' : '#000'}`, paddingTop: '8px', marginTop: '10px', display: 'inline-block', minWidth: '500px' }}>
              <Text strong>មុខវិជ្ជា៖ </Text> <span style={{ color: 'red', fontWeight: 'bold' }}>{searchSummary.subject}</span>
              <Text strong style={{ marginLeft: 40 }}>គ្រូបង្រៀន៖ </Text> <Text style={{ fontWeight: 'bold' }}>{searchSummary.teacher}</Text>
           </div>

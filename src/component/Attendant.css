@@ -10,6 +10,57 @@
   min-height: 297mm;
 }
 
+.theme-dark .att-page-wrapper {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+.theme-dark .att-search-inner-container,
+.theme-dark .att-paper-sheet {
+  background: #111827 !important;
+  border: 1px solid #2b3648;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.theme-dark .att-page-wrapper .ant-form-item-label > label,
+.theme-dark .att-page-wrapper .ant-typography,
+.theme-dark .att-page-wrapper .khmer-moul,
+.theme-dark .att-page-wrapper .ant-statistic-title,
+.theme-dark .att-page-wrapper .ant-statistic-content {
+  color: #e5e7eb !important;
+}
+
+.theme-dark .att-page-wrapper .ant-input,
+.theme-dark .att-page-wrapper .ant-select-selector,
+.theme-dark .att-page-wrapper .ant-picker,
+.theme-dark .att-page-wrapper .ant-btn-default {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .att-main-table .ant-table,
+.theme-dark .att-main-table .ant-table-container,
+.theme-dark .att-main-table .ant-table-content {
+  background: #111827 !important;
+}
+
+.theme-dark .att-main-table .ant-table-thead > tr > th {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .att-main-table .ant-table-tbody > tr > td {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .ant-table-row.editing-row td {
+  background-color: #1e293b !important;
+}
+
 .khmer-moul {
   font-family: 'Khmer OS Muol Light', serif;
   font-size: 14px; 
