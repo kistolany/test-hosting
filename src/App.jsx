@@ -12,6 +12,7 @@ import ProfileSettings from './pages/user/ProfileSettings.jsx';
 import RoleManage from './pages/user/RoleManage.jsx';
 import AuditLog from './pages/user/AuditLog.jsx';
 import StudentPage from './pages/student/StudentPage.jsx';
+import StudentPrintPage from './pages/student/StudentPrintPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScholarExam from './pages/student/ScholarExam.jsx';
 import ResultScholar from './pages/student/ResultScholar.jsx';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/auditLog" element={<AuditLog />} />
           <Route path="/profile" element={<ProfileSettings />} />
           <Route path="/student" element={<StudentPage />} />
+          <Route path="/studentPrint" element={<StudentPrintPage />} />
           <Route path="/sortingpage" element={<SortingPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/scholarExam" element={<ScholarExam />} />

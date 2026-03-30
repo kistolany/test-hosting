@@ -6,51 +6,49 @@ body{
 }
 
 /* Let browser pick native scrollbar colors from system light/dark theme */
-.sidebar-menu-scroll,
-.content {
+.sidebar-menu-scroll {
   color-scheme: light dark;
   scrollbar-color: auto;
 }
 
 /* Blue gradient scrollbar theme */
-.sidebar-menu-scroll,
-.content {
+.sidebar-menu-scroll {
   scrollbar-width: auto;
   scrollbar-color: #1d4ed8 #dbeafe;
 }
 
 .sidebar-menu-scroll::-webkit-scrollbar,
-.content::-webkit-scrollbar {
+.sidebar-menu-scroll::-webkit-scrollbar {
   width: 12px;
 }
 
 .sidebar-menu-scroll::-webkit-scrollbar-track,
-.content::-webkit-scrollbar-track {
+.sidebar-menu-scroll::-webkit-scrollbar-track {
   background: linear-gradient(180deg, #e0ecff 0%, #c7dcff 100%);
   border-radius: 999px;
 }
 
 .sidebar-menu-scroll::-webkit-scrollbar-thumb,
-.content::-webkit-scrollbar-thumb {
+.sidebar-menu-scroll::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 55%, #1e40af 100%);
   border-radius: 999px;
   border: 2px solid #dbeafe;
 }
 
 .sidebar-menu-scroll::-webkit-scrollbar-thumb:hover,
-.content::-webkit-scrollbar-thumb:hover {
+.sidebar-menu-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
 }
 
 .sidebar-menu-scroll::-webkit-scrollbar-button,
-.content::-webkit-scrollbar-button {
+.sidebar-menu-scroll::-webkit-scrollbar-button {
   display: none;
   width: 0;
   height: 0;
 }
 
 .theme-dark .sidebar-menu-scroll,
-.theme-dark .content {
+.theme-dark .sidebar-menu-scroll {
   scrollbar-color: #2563eb #0f172a;
 }
 
@@ -61,12 +59,12 @@ body{
 }
 
 .theme-dark .sidebar-menu-scroll::-webkit-scrollbar-track,
-.theme-dark .content::-webkit-scrollbar-track {
+.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-track {
   background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
 }
 
 .theme-dark .sidebar-menu-scroll::-webkit-scrollbar-thumb,
-.theme-dark .content::-webkit-scrollbar-thumb {
+.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
   border-color: #111827;
 }
@@ -131,6 +129,9 @@ body{
   margin-right: 6px !important;
 }
 
+body.student-list-only-table-scroll .content {
+  overflow-y: hidden !important;
+}
 .sidebar-bottom-user {
   flex: 0 0 auto;
   padding: 0 0 20px;
