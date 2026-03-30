@@ -8,6 +8,9 @@ import LoginPage from './component/layouts/LoginPage.jsx';
 
 // Pages
 import UserManage from './pages/user/UserManage.jsx';
+import ProfileSettings from './pages/user/ProfileSettings.jsx';
+import RoleManage from './pages/user/RoleManage.jsx';
+import AuditLog from './pages/user/AuditLog.jsx';
 import StudentPage from './pages/student/StudentPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScholarExam from './pages/student/ScholarExam.jsx';
@@ -41,6 +44,9 @@ function App() {
         <Route element={<MainPage />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/userManage" element={<UserManage />} />
+          <Route path="/roleManage" element={<RoleManage />} />
+          <Route path="/auditLog" element={<AuditLog />} />
+          <Route path="/profile" element={<ProfileSettings />} />
           <Route path="/student" element={<StudentPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/scholarExam" element={<ScholarExam />} />

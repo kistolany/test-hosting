@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Layout, ConfigProvider, theme as antdTheme } from "antd";
+import React, { useEffect, useState } from "react";
+import { Layout, ConfigProvider, theme as antdTheme, Grid } from "antd";
 import { Outlet } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
@@ -13,26 +13,40 @@ import "../Login.css";
 import "../Attendant.css";
 
 const { Content } = Layout;
+const { useBreakpoint } = Grid;
 
 const MainPage = () => {
+  const screens = useBreakpoint();
+  const isMobile = !screens.lg;
   const [collapsed, setCollapsed] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const { defaultAlgorithm, darkAlgorithm } = antdTheme;
 
+  useEffect(() => {
+    setCollapsed(isMobile);
+  }, [isMobile]);
+
   return (
     <ConfigProvider theme={{ algorithm: isDark ? darkAlgorithm : defaultAlgorithm }}>
-      <Layout>
+      <Layout className={`main-shell ${isDark ? "theme-dark" : "theme-light"}`}>
         
         <Sidebar 
           collapsed={collapsed} 
           setCollapsed={setCollapsed} 
-          isDark={isDark} 
+          isDark={isDark}
+          isMobile={isMobile}
         />
 
-        <Layout>
+        {isMobile && !collapsed && (
+          <div className="sidebar-backdrop" onClick={() => setCollapsed(true)} />
+        )}
+
+        <Layout className="main-inner-layout">
           <Header
             isDark={isDark} 
             setIsDark={setIsDark} 
+            collapsed={collapsed}
+            setCollapsed={setCollapsed}
           />
 
           <ContentWrapper isDark={isDark} />
@@ -54,7 +68,8 @@ const ContentWrapper = ({ isDark }) => {
         padding: 24,
         background: colorBgContainer, 
         borderRadius: borderRadiusLG,
-        minHeight: 280 
+        minHeight: 280,
+        overflowY: "auto"
       }}
     >
       <div style={{ color: isDark ? "#fff" : "#000" }}>

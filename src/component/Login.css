@@ -64,12 +64,25 @@
 .user-container {
   padding: 24px;
   background-color: #f5f7fa;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .user-wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .user-container {
+    padding: 12px;
+  }
+
+  .user-header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
 
 .user-header-section {
