@@ -1,0 +1,242 @@
+
+
+/*main*/
+@media print {
+  .main-inner-layout,
+  .content,
+  .app-sider,
+  .app-sider .ant-layout-sider-children,
+  .sidebar-menu-scroll {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+
+/* --- student --- */
+@media print {
+  @page {
+    size: A4;
+margin:0mm;
+}
+#layout-container{
+    padding-top: 0mm !important;
+  }
+.ant-table {
+    table-layout: auto !important;
+    width: 662px !important;
+  }
+
+  .ant-table-tbody > tr > td:nth-last-child(2) {
+    width: auto !important;
+    min-width: 150px;
+  }
+
+  /* Hide UI elements */
+  .web-ui-controls, 
+  .action-column, 
+  .ant-layout-sider, 
+  .ant-layout-header {
+    display: none !important;
+  }
+
+  .student-page-wrapper { 
+    background: none !important; 
+  padding: 0 !important; 
+}
+  
+  .paper-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    padding: 10mm !important;
+    margin-top: -10mm !important;
+  }
+
+/*at second page, add margin to top*/
+   
+thead:before {
+  display: block;
+    height: 10mm; /* The margin you want on the next pages */
+    content: "";
+
+  }
+
+  /* Ensure table fills space */
+  .official-table { 
+    width: 100% !important;
+    margin-bottom: 0px !important;
+  }
+.ant-table-wrapper .ant-table-container {
+  border-top: none !important;
+}
+.ant-table-wrapper .ant-table-container {
+  border-left: none !important;
+}
+
+.signature-block {
+    float: right !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    display: block !important;
+    margin-bottom: 30px;
+    page-break-before: always;
+    break-before: page;
+    margin-top: 0;
+    page-break-inside: avoid;
+  }
+}
+
+
+/*scholar*/
+@media print {
+  /* Set A4 Page Dimensions */
+  @page {
+    size: A4;
+    margin: 0; /* We control margins via padding for better accuracy */
+  }
+
+  
+  .scholarship-form, .scholarship-form * {
+    visibility: visible;
+  }
+
+  .scholarship-form {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    padding: 10mm 5mm !important; /* Standard A4 padding */
+    margin: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+
+  }
+
+  .form-content{
+    margin:0px 15px !important;
+  }
+  /* Hide Web-only UI */
+  .sticky-search, .ant-btn, .web-ui-controls {
+    display: none !important;
+  }
+
+  /* Maintain dotted lines in print */
+  .dotted-input {
+    border: none !important;
+  border-bottom: 1px dotted var(--theme-blue) !important;
+  border-radius: 0 !important;
+  padding: 0 5px !important;
+  background: transparent !important;
+  }
+.form-main-title,.form-subtitle,.form-university-name{
+        font-size: 11px !important;
+}
+  /* Ensure Khmer fonts render clearly */
+  .national-title, .national-subtitle, .university-name-kh {
+    color: #000080 !important;
+    -webkit-print-color-adjust: exact;
+    font-size: 13px !important;
+  }
+.university-name-kh{
+      font-size: 10px !important;
+
+}
+.form-footer{
+  margin-top: 14px !important;
+}
+
+/*cover*/
+.sign-cover{
+  .signature-block {
+    float: right !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    display: block !important;
+  }
+}
+.footer-cover{
+  margin-top: 364px !important;
+}
+.perforation-divider {
+    border-top: 1px dashed #000 !important;
+    width: 100%;
+    margin-top: 130px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .no-print,
+  .ant-table-selection-column,
+          .ant-table-thead th.ant-table-selection-column,
+          .ant-table-tbody td.ant-table-selection-column{
+    display: none !important;
+  }
+}
+
+
+/*enroll*/
+@media print {
+  .ant-row {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    margin-right: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  /* 5. Clean up Input appearances */
+  .enroll-box-input, 
+  .enroll-box-input2, 
+  .enroll-form-box,
+  .enroll-square-indicator {
+    border: 1px solid #000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+.form-title-section1 {
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+.enroll-formal-center-header {
+    text-align: center;
+    margin: 1px 0 !important;
+}
+  .enroll-footer{
+  margin-top: 37px !important;
+  margin-bottom: 0px !important;
+  }
+
+  .enroll-footer-notes{
+    line-Height: 7.5
+  }
+}
+
+
+/*attendance*/
+@media print {
+  .web-ui-controls, .search-inner-container, .ant-table-fixed-right {
+    display: none !important;
+  }
+  
+  .att-page-wrapper {
+    padding: 0;
+    background: none;
+  }
+  
+  .att-paper-sheet {
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .ant-radio-button-wrapper-checked {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

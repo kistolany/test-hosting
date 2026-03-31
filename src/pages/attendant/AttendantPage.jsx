@@ -40,7 +40,16 @@ const AttendancePage = () => {
     { id: "B260015", nameKh: "ចាន់ សុខា", nameEn: "Chan Sokha", gender: "ប្រុស", dob: "15-Mar-2003", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
     { id: "B260016", nameKh: "លី ម៉ារីណា", nameEn: "Ly Marina", gender: "ស្រី", dob: "05-Jul-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
     { id: "B260017", nameKh: "សេង ហុង", nameEn: "Seng Hong", gender: "ប្រុស", dob: "30-Nov-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-  ];
+    { id: "B260018", nameKh: "មាស សុភ័ក្ត្រ", nameEn: "Meas Sopheak", gender: "ស្រី", dob: "14-Feb-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260019", nameKh: "ណុប រតនា", nameEn: "Nop Rothana", gender: "ប្រុស", dob: "22-Jun-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260020", nameKh: "ហ៊ាន ម៉ារី", nameEn: "Hean Mary", gender: "ស្រី", dob: "09-Sep-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260021", nameKh: "សុខ វីរៈ", nameEn: "Sok Virak", gender: "ប្រុស", dob: "11-Dec-2003", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260022", nameKh: "កែវ សុវណ្ណ", nameEn: "Keo Sovan", gender: "ប្រុស", dob: "30-Apr-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260023", nameKh: "ថន ស្រីនិច", nameEn: "Thorn Sreynich", gender: "ស្រី", dob: "05-Aug-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260024", nameKh: "រ៉េត សម្បត្តិ", nameEn: "Reth Sambath", gender: "ប្រុស", dob: "19-May-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260025", nameKh: "ស៊ឹម ដានី", nameEn: "Sim Dany", gender: "ស្រី", dob: "27-Oct-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+    { id: "B260026", nameKh: "ឡុង សុជាតិ", nameEn: "Long Socheat", gender: "ប្រុស", dob: "12-Jan-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+];
 
   // Generating 25 records (5 students x 5 subjects each)
   const initialData = [];
@@ -257,7 +266,10 @@ const AttendancePage = () => {
 
     const reportDataSource = Object.values(studentsMap).map((s, index) => ({ ...s, No: index + 1 }));
     const reportCols = [
-        { title: "ល.រ", dataIndex: "No", width: 50, align: 'center' },
+        { title: "ល.រ", dataIndex: "No", width: 50, align: 'center',
+         render: (text, record, index) => index + 1,
+
+        },
         { title: "អត្តលេខ", dataIndex: "ID", width: 100, align: 'center' },
         { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: 180 },
         { title: "អក្សរឡាតាំង", dataIndex: "nameLatin", width: 160 },
