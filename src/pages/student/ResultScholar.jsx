@@ -194,16 +194,16 @@ const ResultScholar = () => {
       align: "center",
       render: (text, record, index) => index + 1, 
     },
-    { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: "150px" },
-    { title: "អក្សរឡាតាំង", dataIndex: "name", width: "150px", render: (t) => t.toUpperCase() },
-    { title: "ភេទ", dataIndex: "gender", width: "30px", align: "center" },
-    { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: "100px", align: "center" },
-    { title: "ជំនាញ", dataIndex: "major", width: "150px", align: "center" },
+    { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: "150px",className:"namKh-column-custom" },
+    { title: "អក្សរឡាតាំង", dataIndex: "name", width: "150px",className:"namEn-column-custom", render: (t) => t.toUpperCase() },
+    { title: "ភេទ", dataIndex: "gender",width: "20px",  align: "center",className:"sex-column-custom" },
+    { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: "100px", align: "center", className:"dob-column-custom"},
+    { title: "ជំនាញ", dataIndex: "major", width: "150px", align: "center",className:"major-column-custom" },
     { 
       title: "លទ្ធផល", 
       dataIndex: "Result",
-      width: "90px",
       align: "center",
+      className:"result-column-custom",
       render: (text, record) => (
         <Select
           value={text || "ជាប់"} 
@@ -269,7 +269,7 @@ const ResultScholar = () => {
           pagination={false}
           bordered
           size="small"
-          className="official-table"
+          className="official-table result-scholar-table"
         />
 
         {/* --- RESTORED: Total Count Block --- */}

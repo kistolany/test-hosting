@@ -25,14 +25,41 @@ margin:0mm;
   }
 .ant-table {
     table-layout: auto !important;
-    width: 662px !important;
+    width: 695px !important;
+  }
+  .student-table .ant-table {
+    table-layout: auto !important;
+    width: 675px !important;
+  }
+  .result-scholar-table .ant-table {
+    table-layout: auto !important;
+    width: 100% !important;
   }
 
-  .ant-table-tbody > tr > td:nth-last-child(2) {
-    width: auto !important;
-    min-width: 150px;
-  }
-
+.result-scholar-table .dob-column-custom {
+  width: 110px !important;
+  display: table-cell;
+}
+.result-scholar-table .major-column-custom {
+  width: 150px !important;
+  display: table-cell;
+}
+.result-scholar-table  .sex-column-custom {
+  width: 10px !important;
+  display: table-cell;
+}
+.result-scholar-table .result-column-custom {
+  width: 10px !important;
+  display: table-cell;
+}
+.result-scholar-table .namKh-column-custom {
+  width: 180px !important;
+  display: table-cell;
+}
+.result-scholar-table .namEn-column-custom {
+  width: 180px !important;
+  display: table-cell;
+}
   /* Hide UI elements */
   .web-ui-controls, 
   .action-column, 
@@ -50,7 +77,7 @@ margin:0mm;
     box-shadow: none !important;
     margin: 0 !important;
     width: 100% !important;
-    padding: 10mm !important;
+    padding: 5mm !important;
     margin-top: -10mm !important;
   }
 
@@ -74,6 +101,7 @@ thead:before {
 .ant-table-wrapper .ant-table-container {
   border-left: none !important;
 }
+
 
 .signature-block {
     float: right !important;

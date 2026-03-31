@@ -304,13 +304,13 @@ const ScholarExam = () => {
           className="official-table student-screen-table"
         />
 
-        <div className="totalStu" style={{ marginTop: 15, fontSize: 13, fontWeight: 'bold' }}>
+        <div className="totalStu" style={{  fontSize: 13, fontWeight: 'bold' }}>
           <div>សម្គាល់៖ បញ្ជីនិស្សិតបញ្ចប់ត្រឹមចំនួន {toKhmerNum(finalTableData.length)} នាក់។</div>
           <div style={{ marginLeft: 55 }}>ស្រី ចំនួន {toKhmerNum(femaleCount)} នាក់។</div>
           <div style={{ marginLeft: 55 }}>ប្រុស ចំនួន {toKhmerNum(maleCount)} នាក់។</div>
         </div>
 
-        <div className="signature-block" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 30 }}>
+        <div className="signature-block" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 0 }}>
           <div className="signature-area" style={{ textAlign: 'center' }}>
             <div>ថ្ងៃ.................ខែ...........ឆ្នាំ................ស័ក ព.ស...........</div>
             <div>រាជធានីភ្នំពេញ ថ្ងៃទី...........ខែ...........ឆ្នាំ...........</div>

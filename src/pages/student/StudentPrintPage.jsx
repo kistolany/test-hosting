@@ -43,7 +43,7 @@ const StudentPrintPage = () => {
   ];
 
   return (
-    <div className="student-page-wrapper student-print-page-wrapper">
+    <div className="student-page-wrapper">
       <div className="paper-sheet">
         <div className="web-ui-controls no-print student-print-actions" style={{ marginBottom: 12 }}>
           <Flex justify="space-between" style={{ width: "100%" }}>
@@ -82,11 +82,11 @@ const StudentPrintPage = () => {
           pagination={false}
           bordered
           size="small"
-          className="official-table student-screen-table"
+          className="official-table student-table"
           rowKey={(record, index) => `${record.ID || "row"}-${index}`}
         />
 
-        <div className="totalStu" style={{ marginTop: 15, fontSize: 13, fontWeight: "bold" }}>
+        <div className="totalStu" style={{ fontSize: 13, fontWeight: "bold" }}>
           <div>សម្គាល់៖ បញ្ជីនិស្សិតបញ្ចប់ត្រឹមចំនួន {rows.length.toLocaleString("km-KH")} នាក់។</div>
           <div style={{ marginLeft: 55 }}>ស្រី ចំនួន {femaleCount.toLocaleString("km-KH")} នាក់។</div>
           <div style={{ marginLeft: 55 }}>ប្រុស ចំនួន {maleCount.toLocaleString("km-KH")} នាក់។</div>
