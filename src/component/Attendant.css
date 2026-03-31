@@ -139,30 +139,6 @@
   border-radius: 2px;
 }
 
-/*(Print)*/
-@media print {
-  .web-ui-controls, .search-inner-container, .ant-table-fixed-right {
-    display: none !important;
-  }
-  
-  .att-page-wrapper {
-    padding: 0;
-    background: none;
-  }
-  
-  .att-paper-sheet {
-    box-shadow: none;
-    padding: 0;
-    width: 100%;
-  }
-
-  .ant-radio-button-wrapper-checked {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-}
-
-
 .att-list-container {
   font-family: 'Kantumruy Pro', sans-serif;
   padding: 20px;

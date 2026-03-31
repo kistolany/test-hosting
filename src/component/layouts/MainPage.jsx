@@ -11,6 +11,7 @@ import "../Academic.css";
 import "../Student.css";
 import "../Login.css";
 import "../Attendant.css";
+import "../Print.css";
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;

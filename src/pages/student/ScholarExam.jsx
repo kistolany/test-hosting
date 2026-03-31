@@ -167,10 +167,17 @@ const ScholarExam = () => {
   });
 
   const [masterData, setMasterData] = useState([
-    { key: "1", ID: "B260013", nameKhmer: "អាត ភីយ៉ា", name: "ART PHIYA", gender: "F", dob: "11-Jan-06", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៨-២០២៩", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", yearLevel: "២", batch: "4", major: "វិទ្យាសាស្ត្សកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្គេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "រសៀល", Note: "" },
-  ]);
+  { key: "1", ID: "B260013", nameKhmer: "អាត ភីយ៉ា", name: "ART PHIYA", gender: "F", dob: "11-Jan-06", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៨-២០២៩", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", yearLevel: "២", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "រសៀល", Note: "" },
+  { key: "4", ID: "B240017", nameKhmer: "ញ៉ សុខញ៉ែន", name: "NHOR SOKNHEN", gender: "M", dob: "01-Apr-02", yearLevel: "៤", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "5", ID: "B240028", nameKhmer: "ប៉េង សំណាង", name: "PENG SAMNANG", gender: "M", dob: "09-Jan-03", yearLevel: "៤", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "6", ID: "B240085", nameKhmer: "សៀត យូសុះ", name: "SEAT YUSOS", gender: "M", dob: "07-Jan-05", yearLevel: "៤", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "រសៀល", Note: "" },
+  { key: "7", ID: "B240089", nameKhmer: "ស្មាន ម៉ូស្លីម", name: "SMAN MOSLIM", gender: "M", dob: "22-Jul-06", yearLevel: "៤", batch: "4", major: "បណ្តាញកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" },
+  { key: "8", ID: "B240092", nameKhmer: "ស្រ៊ិន មូភីល", name: "SREN MOPEL", gender: "M", dob: "02-Dec-04", yearLevel: "៤", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "9", ID: "B240098", nameKhmer: "ហួត ពៅលក្ខិណា", name: "HOUT POV LEAKHENA", gender: "F", dob: "31-Mar-03", yearLevel: "៤", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "គ្រប់គ្រងពាណិជ្ជកម្ម", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "10", ID: "B240105", nameKhmer: "ចាន់ សុភ័ក្ត្រ", name: "CHAN SOPHEAK", gender: "M", dob: "15-May-04", yearLevel: "៤", batch: "4", major: "គណនេយ្យ", faculty: "គ្រប់គ្រងពាណិជ្ជកម្ម", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" },
+]);
 
   const [filteredData, setFilteredData] = useState(null);
   const finalTableData = filteredData !== null ? filteredData : masterData;
@@ -215,7 +222,7 @@ const ScholarExam = () => {
       key: "index", 
       width: "15px", 
       align: "center",
-      render: (text, record, index) => toKhmerNum(index + 1), 
+      render: (text, record, index) => index + 1, 
     },
     { title: "អត្តលេខ", dataIndex: "ID", width: "70px", align: "center" },
     { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: "150px" },
@@ -294,7 +301,7 @@ const ScholarExam = () => {
           pagination={false}
           bordered
           size="small"
-          className="official-table"
+          className="official-table student-screen-table"
         />
 
         <div className="totalStu" style={{ marginTop: 15, fontSize: 13, fontWeight: 'bold' }}>

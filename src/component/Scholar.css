@@ -434,13 +434,13 @@ opacity: 0.8;
 }
 
 
-/* --- RESPONSIVE UPDATES --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .student-page-wrapper {
     padding: 10px 5px;
   }
 
-  /* Fixed .scholarship-form syntax and width */
+  /* scholarship-form  */
 
   .paper-sheet {
     padding: 5mm;
@@ -652,107 +652,5 @@ opacity: 0.8;
     margin-bottom: 45px;
 }
 
-@media print {
-  /* Set A4 Page Dimensions */
-  @page {
-    size: A4;
-    margin: 0; /* We control margins via padding for better accuracy */
-  }
 
-  
-  .scholarship-form, .scholarship-form * {
-    visibility: visible;
-  }
 
-  .scholarship-form {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 210mm !important;
-    min-height: 297mm !important;
-    padding: 10mm 5mm !important; /* Standard A4 padding */
-    margin: 0 !important;
-    background: white !important;
-    box-shadow: none !important;
-
-  }
-
-  .form-content{
-    margin:0px 15px !important;
-  }
-  /* Hide Web-only UI */
-  .sticky-search, .ant-btn, .web-ui-controls {
-    display: none !important;
-  }
-
-  /* Maintain dotted lines in print */
-  .dotted-input {
-    border: none !important;
-  border-bottom: 1px dotted var(--theme-blue) !important;
-  border-radius: 0 !important;
-  padding: 0 5px !important;
-  background: transparent !important;
-  }
-.form-main-title,.form-subtitle,.form-university-name{
-        font-size: 11px !important;
-}
-  /* Ensure Khmer fonts render clearly */
-  .national-title, .national-subtitle, .university-name-kh {
-    color: #000080 !important;
-    -webkit-print-color-adjust: exact;
-    font-size: 13px !important;
-  }
-.university-name-kh{
-      font-size: 10px !important;
-
-}
-.form-footer{
-  margin-top: 14px !important;
-}
-
-/*cover*/
-.sign-cover{
-  .signature-block {
-    float: right !important;
-    width: auto !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    display: block !important;
-  }
-}
-.footer-cover{
-  margin-top: 364px !important;
-}
-.perforation-divider {
-    border-top: 1px dashed #000 !important;
-    width: 100%;
-    margin-top: 130px !important;
-    margin-bottom: 30px !important;
-  }
-
-  .no-print,
-  .ant-table-selection-column,
-          .ant-table-thead th.ant-table-selection-column,
-          .ant-table-tbody td.ant-table-selection-column{
-    display: none !important;
-  }
-}
-
-/*enrollment*/
-.student-id{
-  font-family: var(--font-family-khmer) !important;
-  font-size: 11px;
-  color: var(--theme-blue) !important;
-  display: flex;
-  justify-content: flex-end;
-  height: auto;
-  width: 350px;
-  margin-right: 70px;
-}
-.form-main-title-en{
-  color: var(--theme-blue) !important;
-  font-family: ('Arial', sans-serif) !important;
-  font-size: 11px !important;
-  margin-top: 0px !important;
-  }

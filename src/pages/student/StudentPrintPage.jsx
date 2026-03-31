@@ -82,7 +82,7 @@ const StudentPrintPage = () => {
           pagination={false}
           bordered
           size="small"
-          className="official-table"
+          className="official-table student-screen-table"
           rowKey={(record, index) => `${record.ID || "row"}-${index}`}
         />
 

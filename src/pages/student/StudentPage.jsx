@@ -134,21 +134,21 @@ const StudentPage = () => {
   });
 
   const [masterData, setMasterData] = useState([
-    { key: "1", ID: "B260013", nameKhmer: "អាត ភីយ៉ា", name: "ART PHIYA", gender: "F", dob: "11-Jan-06", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៨-២០២៩", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", yearLevel: "២", batch: "4", major: "វិទ្យាសាស្ត្សកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "រសៀល", Note: "" },
-    { key: "4", ID: "B260030", nameKhmer: "លីម សុភ័ក្ត្រ", name: "LIM SOPHEAK", gender: "M", dob: "05-May-05", yearLevel: "៣", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "5", ID: "B260045", nameKhmer: "ឆាយ លីនដា", name: "CHHAY LINDA", gender: "F", dob: "20-Nov-04", yearLevel: "១", batch: "4", major: "សេដ្ឋកិច្ចឌីជីថល", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" },
-    { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", yearLevel: "២", batch: "4", major: "វិទ្យាសាស្ត្សកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "រសៀល", Note: "" },
-    { key: "4", ID: "B260030", nameKhmer: "លីម សុភ័ក្ត្រ", name: "LIM SOPHEAK", gender: "M", dob: "05-May-05", yearLevel: "៣", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", yearLevel: "២", batch: "4", major: "វិទ្យាសាស្ត្សកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "រសៀល", Note: "" },
-    { key: "4", ID: "B260030", nameKhmer: "លីម សុភ័ក្ត្រ", name: "LIM SOPHEAK", gender: "M", dob: "05-May-05", yearLevel: "៣", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "5", ID: "B260045", nameKhmer: "ឆាយ លីនដា", name: "CHHAY LINDA", gender: "F", dob: "20-Nov-04", yearLevel: "១", batch: "4", major: "សេដ្ឋកិច្ចឌីជីថល", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" },
-    { key: "4", ID: "B260030", nameKhmer: "លីម សុភ័ក្ត្រ", name: "LIM SOPHEAK", gender: "M", dob: "05-May-05", yearLevel: "៣", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "ព្រឹក", Note: "" },
-    { key: "5", ID: "B260045", nameKhmer: "ឆាយ លីនដា", name: "CHHAY LINDA", gender: "F", dob: "20-Nov-04", yearLevel: "១", batch: "4", major: "សេដ្ឋកិច្ចឌីជីថល", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" }
-  ]);
+  { key: "1", ID: "B260013", nameKhmer: "អាត ភីយ៉ា", name: "ART PHIYA", gender: "F", dob: "11-Jan-06", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៨-២០២៩", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "2", ID: "B260023", nameKhmer: "ហានួន ហុយស្នា", name: "HARUN HUYSNA", gender: "F", dob: "28-Apr-06", yearLevel: "២", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "3", ID: "B260026", nameKhmer: "សុគ្រី សាអ៊ីទី", name: "SOKRY SAIDI", gender: "M", dob: "12-Feb-08", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "រសៀល", Note: "" },
+  { key: "4", ID: "B260030", nameKhmer: "លីម សុភ័ក្ត្រ", name: "LIM SOPHEAK", gender: "M", dob: "05-May-05", yearLevel: "៣", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "5", ID: "B260045", nameKhmer: "ឆាយ លីនដា", name: "CHHAY LINDA", gender: "F", dob: "20-Nov-04", yearLevel: "១", batch: "4", major: "សេដ្ឋកិច្ចឌីជីថល", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" },
+  { key: "6", ID: "B260050", nameKhmer: "សុខ វីរៈ", name: "SOK VIRAK", gender: "M", dob: "15-Mar-05", yearLevel: "២", batch: "4", major: "អាយធី", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "2", shift: "ព្រឹក", Note: "" },
+  { key: "7", ID: "B260055", nameKhmer: "ចាន់ ស្រីនី", name: "CHAN SREYNEA", gender: "F", dob: "22-Jun-06", yearLevel: "១", batch: "4", major: "គណនេយ្យ", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "រសៀល", Note: "" },
+  { key: "8", ID: "B260060", nameKhmer: "សៅរ៍ ឧត្តម", name: "SAO ODOM", gender: "M", dob: "10-Oct-04", yearLevel: "៣", batch: "4", major: "ទីផ្សារ", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៥-២០២៦", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "9", ID: "B260065", nameKhmer: "ហ៊ាន ម៉ារី", name: "HEAN MARY", gender: "F", dob: "14-Feb-05", yearLevel: "៤", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "1", shift: "យប់", Note: "" },
+  { key: "10", ID: "B260070", nameKhmer: "កែវ សុវណ្ណ", name: "KEO SOVAN", gender: "M", dob: "30-Apr-06", yearLevel: "១", batch: "4", major: "បណ្តាញកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៦-២០២៧", semester: "2", shift: "ព្រឹក", Note: "" },
+  { key: "11", ID: "B260075", nameKhmer: "ណុប រតនា", name: "NOP ROTHANA", gender: "M", dob: "12-Dec-05", yearLevel: "២", batch: "4", major: "គ្រប់គ្រងពាណិជ្ជកម្ម", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៥-២០២៦", semester: "1", shift: "រសៀល", Note: "" },
+  { key: "12", ID: "B260080", nameKhmer: "ថន ស្រីនិច", name: "THORN SREYNICH", gender: "F", dob: "05-Aug-06", yearLevel: "១", batch: "4", major: "បង្រៀនភាសាអង់គ្លេស", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", studyYear: "២០២៧-២០២៨", semester: "1", shift: "ព្រឹក", Note: "" },
+  { key: "13", ID: "B260085", nameKhmer: "រ៉េត សម្បត្តិ", name: "RETH SAMBATH", gender: "M", dob: "19-May-04", yearLevel: "៤", batch: "4", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", studyYear: "២០២៥-២០២៦", semester: "2", shift: "យប់", Note: "" },
+  { key: "14", ID: "B260090", nameKhmer: "ស៊ឹម ដានី", name: "SIM DANY", gender: "F", dob: "27-Sep-05", yearLevel: "៣", batch: "4", major: "គណនេយ្យ", faculty: "សេដ្ឋកិច្ច និងគ្រប់គ្រង", studyYear: "២០២៦-២០២៧", semester: "1", shift: "ព្រឹក", Note: "" }
+]);
 
   const [filteredData, setFilteredData] = useState(null);
   const finalTableData = filteredData !== null ? filteredData : masterData;
@@ -196,13 +196,12 @@ const StudentPage = () => {
   };
 
   const columns = [
-    {
-      title: "ល.រ",
-      key: "index",
-      width: "15px",
+    { 
+      title: "ល.រ", 
+      key: "index", 
+      width: "15px", 
       align: "center",
-      render: (text, record, index) => index + 1,
-    },
+render: (text, record, i) => i + 1,    },
     { title: "អត្តលេខ", dataIndex: "ID", width: "100px", align: "center", render: (t) => textOrDash(t) },
     { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: "180px", render: (t) => textOrDash(t) },
     { title: "អក្សរឡាតាំង", dataIndex: "name", width: "180px", render: (t) => textOrDash(t).toUpperCase() },
@@ -307,6 +306,8 @@ const StudentPage = () => {
           bordered
           size="small"
           className="official-table student-screen-table"
+          rowKey={(record, index) => `${record.ID || "row"}-${index}`}
+
         />
       </Card>
     </div>
