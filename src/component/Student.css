@@ -387,82 +387,6 @@
   }
 }
 
-/* --- PRINT LOGIC --- */
-@media print {
-  @page {
-    size: A4;
-margin:0mm;
-}
-#layout-container{
-    padding-top: 0mm !important;
-  }
-.ant-table {
-    table-layout: auto !important;
-    width: 662px !important;
-  }
-
-  .ant-table-tbody > tr > td:nth-last-child(2) {
-    width: auto !important;
-    min-width: 150px;
-  }
-
-  /* Hide UI elements */
-  .web-ui-controls, 
-  .action-column, 
-  .ant-layout-sider, 
-  .ant-layout-header {
-    display: none !important;
-  }
-
-  .student-page-wrapper { 
-    background: none !important; 
-  padding: 0 !important; 
-}
-  
-  .paper-sheet {
-    box-shadow: none !important;
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 10mm !important;
-    margin-top: -10mm !important;
-  }
-
-  /*at second page, add margin to top*/
-   
-thead:before {
-  display: block;
-    height: 10mm; /* The margin you want on the next pages */
-    content: "";
-
-  }
-
-  /* Ensure table fills space */
-  .official-table { 
-    width: 100% !important;
-    margin-bottom: 0px !important;
-  }
-.ant-table-wrapper .ant-table-container {
-  border-top: none !important;
-}
-.ant-table-wrapper .ant-table-container {
-  border-left: none !important;
-}
-
-.signature-block {
-    float: right !important;
-    width: auto !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    display: block !important;
-    margin-bottom: 30px;
-    page-break-before: always;
-    break-before: page;
-    margin-top: 0;
-    page-break-inside: avoid;
-  }
-
-}
 
 /*createStudent*/
 .headerText{
@@ -710,42 +634,6 @@ width: 60%;
   margin-bottom: 0px !important;
   }
 
-@media print {
-  .ant-row {
-    display: flex !important;
-    flex-flow: row nowrap !important;
-    margin-right: 10px !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-  }
-
-  /* 5. Clean up Input appearances */
-  .enroll-box-input, 
-  .enroll-box-input2, 
-  .enroll-form-box,
-  .enroll-square-indicator {
-    border: 1px solid #000 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-.form-title-section1 {
-  text-align: center;
-  margin-bottom: 0px !important;
-}
-.enroll-formal-center-header {
-    text-align: center;
-    margin: 1px 0 !important;
-}
-  .enroll-footer{
-  margin-top: 37px !important;
-  margin-bottom: 0px !important;
-  }
-
-  .enroll-footer-notes{
-    line-Height: 7.5
-  }
-}
-
 
 /* sortpage.css */
 
@@ -952,3 +840,21 @@ width: 60%;
     align-self: flex-end;
   }
 }
+
+/*enrollment*/
+.student-id{
+  font-family: var(--font-family-khmer) !important;
+  font-size: 11px;
+  color: var(--theme-blue) !important;
+  display: flex;
+  justify-content: flex-end;
+  height: auto;
+  width: 350px;
+  margin-right: 70px;
+}
+.form-main-title-en{
+  color: var(--theme-blue) !important;
+  font-family: ('Arial', sans-serif) !important;
+  font-size: 11px !important;
+  margin-top: 0px !important;
+  }
