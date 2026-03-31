@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, PrinterOutlined, ClearOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import {
-  Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card
+  Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag
 } from "antd";
 
 // --- Sub-component for the Search Form ---
@@ -199,78 +199,48 @@ const StudentPage = () => {
     {
       title: "ល.រ",
       key: "index",
-      width: "15px",
+      width: 70,
       align: "center",
-      render: (text, record, index) => index + 1,
+      render: (_, __, index) => index + 1,
     },
-    { title: "អត្តលេខ", dataIndex: "ID", width: "100px", align: "center", render: (t) => textOrDash(t) },
-    { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: "180px", render: (t) => textOrDash(t) },
-    { title: "អក្សរឡាតាំង", dataIndex: "name", width: "180px", render: (t) => textOrDash(t).toUpperCase() },
+    { title: "អត្តលេខ", dataIndex: "ID", width: 120, align: "center", render: (t) => textOrDash(t) },
+    { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: 220, render: (t) => textOrDash(t) },
+    { title: "អក្សរឡាតាំង", dataIndex: "name", width: 210, render: (t) => textOrDash(t) },
     {
       title: "ភេទ",
       dataIndex: "gender",
-      width: "70px",
+      width: 90,
       align: "center",
-      render: (t) => textOrDash(t),
+      render: (gender) => (
+        <Tag color={gender === "M" ? "geekblue" : "volcano"} style={{ fontSize: "12px", border: "none" }}>
+          {gender === "M" ? "ប្រុស" : gender === "F" ? "ស្រី" : textOrDash(gender)}
+        </Tag>
+      ),
     },
-    { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: "140px", align: "center", render: (t) => textOrDash(t) },
-    { title: "ប្រភេទនិស្សិត", dataIndex: "studentType", width: 130, render: (_, r) => textOrDash(r.studentType || r.StudentType) },
-    { title: "Email", dataIndex: "email", width: 180, render: (_, r) => textOrDash(r.email || r.Email) },
-    { title: "អត្តសញ្ញាណបណ្ណ", dataIndex: "idCard", width: 150, render: (_, r) => textOrDash(r.idCard || r.IdCard) },
-    { title: "លេខទូរស័ព្ទ", dataIndex: "phone", width: 140, render: (_, r) => textOrDash(r.phone || r.Phone) },
-    { title: "ផ្លូវលេខ", dataIndex: "streetNo", width: 110, render: (_, r) => textOrDash(r.streetNo || r.StreetNo) },
-    { title: "ផ្ទះលេខ", dataIndex: "houseNo", width: 110, render: (_, r) => textOrDash(r.houseNo || r.HouseNo) },
-    { title: "ភូមិ", dataIndex: "village", width: 140, render: (_, r) => textOrDash(r.village || r.Village) },
-    { title: "ឃុំ", dataIndex: "commune", width: 140, render: (_, r) => textOrDash(r.commune || r.Commune) },
-    { title: "ស្រុក", dataIndex: "district", width: 140, render: (_, r) => textOrDash(r.district || r.District) },
-    { title: "ខេត្ត/រាជធានី", dataIndex: "province", width: 170, render: (_, r) => textOrDash(r.province || r.Province) },
-    { title: "ផ្លូវលេខបច្ចុប្បន្ន", dataIndex: "currStreetNo", width: 170, render: (_, r) => textOrDash(r.currStreetNo || r.CurrStreetNo) },
-    { title: "ផ្ទះលេខបច្ចុប្បន្ន", dataIndex: "currHouseNo", width: 170, render: (_, r) => textOrDash(r.currHouseNo || r.CurrHouseNo) },
-    { title: "ភូមិបច្ចុប្បន្ន", dataIndex: "currVillage", width: 150, render: (_, r) => textOrDash(r.currVillage || r.CurrVillage) },
-    { title: "ឃុំបច្ចុប្បន្ន", dataIndex: "currCommune", width: 150, render: (_, r) => textOrDash(r.currCommune || r.CurrCommune) },
-    { title: "ស្រុកបច្ចុប្បន្ន", dataIndex: "currDistrict", width: 150, render: (_, r) => textOrDash(r.currDistrict || r.CurrDistrict) },
-    { title: "ខេត្តបច្ចុប្បន្ន", dataIndex: "currProvince", width: 150, render: (_, r) => textOrDash(r.currProvince || r.CurrProvince) },
-    { title: "ឈ្មោះឪពុក", dataIndex: "fatherName", width: 160, render: (_, r) => textOrDash(r.fatherName || r.FatherName) },
-    { title: "មុខរបរឪពុក", dataIndex: "fatherJob", width: 160, render: (_, r) => textOrDash(r.fatherJob || r.FatherJob) },
-    { title: "ឈ្មោះម្តាយ", dataIndex: "motherName", width: 160, render: (_, r) => textOrDash(r.motherName || r.MotherName) },
-    { title: "មុខរបរម្តាយ", dataIndex: "motherJob", width: 160, render: (_, r) => textOrDash(r.motherJob || r.MotherJob) },
-    { title: "ឈ្មោះអាណាព្យាបាល", dataIndex: "guardianName", width: 180, render: (_, r) => textOrDash(r.guardianName || r.GuardianName) },
-    { title: "មុខរបរអាណាព្យាបាល", dataIndex: "guardianJob", width: 180, render: (_, r) => textOrDash(r.guardianJob || r.GuardianJob) },
-    { title: "លេខអាណាព្យាបាល", dataIndex: "guardianPhone", width: 160, render: (_, r) => textOrDash(r.guardianPhone || r.GuardianPhone) },
-    { title: "ឆ្នាំប្រឡង", dataIndex: "examYear", width: 120, render: (_, r) => textOrDash(r.examYear || r.ExamYear) },
-    { title: "បណ្ឌលប្រឡង", dataIndex: "examPlace", width: 160, render: (_, r) => textOrDash(r.examPlace || r.ExamPlace) },
-    { title: "លេខកូដបាក់ឌុប", dataIndex: "bacllCode", width: 150, render: (_, r) => textOrDash(r.bacllCode || r.BacllCode) },
-    { title: "និន្ទេស", dataIndex: "grade", width: 100, render: (_, r) => textOrDash(r.grade || r.Grade) },
-    { title: "ថ្ងៃសិក្សា", dataIndex: "studyDays", width: 120, render: (_, r) => textOrDash(r.studyDays || r.StudyDays) },
-    { title: "វេនសិក្សា", dataIndex: "shift", width: 120, render: (_, r) => textOrDash(r.shift || r.StudyShift) },
-    { title: "ឯកសារខ្វះ", dataIndex: "doc", width: 140, render: (_, r) => textOrDash(r.doc) },
-    { title: "ឆ្នាំទី", dataIndex: "yearLevel", width: 100, align: "center", render: (t) => textOrDash(t) },
-    { title: "ជំនាន់", dataIndex: "batch", width: 100, align: "center", render: (t) => textOrDash(t) },
-    { title: "ឆមាស", dataIndex: "semester", width: 100, align: "center", render: (t) => textOrDash(t) },
-    { title: "ឆ្នាំសិក្សា", dataIndex: "studyYear", width: 140, render: (t) => textOrDash(t) },
-    { title: "មហាវិទ្យាល័យ", dataIndex: "faculty", width: 220, render: (t) => textOrDash(t) },
-    { title: "ជំនាញ", dataIndex: "major", width: 180, render: (t) => textOrDash(t) },
+    { title: "ថ្ងៃខែឆ្នាំកំណើត", dataIndex: "dob", width: 160, align: "center", render: (t) => textOrDash(t) },
     {
-      title: "ផ្សេងៗ",
-      dataIndex: "Note",
-      render: (text, record) => (
-        <input
-          style={{ width: '110%', border: 'none', background: 'transparent' }}
-          value={text}
-          onChange={(e) => {
-            const updated = masterData.map(item =>
-              item.key === record.key ? { ...item, Note: e.target.value } : item
-            );
-            setMasterData(updated);
-          }}
-        />
-      )
+      title: "ប្រភេទនិស្សិត",
+      dataIndex: "studentType",
+      width: 170,
+      render: (_, r) => {
+        const type = r.studentType || r.StudentType;
+        if (!type) return "-";
+        const isScholar = String(type).toLowerCase().includes("scholar");
+        return (
+          <Tag color={isScholar ? "gold" : "cyan"} style={{ border: "none" }}>
+            {isScholar ? "Scholarship" : "Pay"}
+          </Tag>
+        );
+      }
     },
+    { title: "Email", dataIndex: "email", width: 210, render: (_, r) => textOrDash(r.email || r.Email) },
+    { title: "អត្តសញ្ញាណបណ្ណ", dataIndex: "idCard", width: 190, render: (_, r) => textOrDash(r.idCard || r.IdCard) },
+    { title: "លេខទូរស័ព្ទ", dataIndex: "phone", width: 170, render: (_, r) => textOrDash(r.phone || r.Phone) },
     {
       title: "សកម្មភាព",
       key: "action",
       className: "action-column no-print",
-      width: "20px",
+      width: 90,
       fixed: "right",
       align: "center",
       render: (_, record) => (
@@ -284,7 +254,7 @@ const StudentPage = () => {
           <Popconfirm title="លុប?" onConfirm={() => {
               const updated = masterData.filter(i => i.key !== record.key);
               setMasterData(updated);
-              if(filteredData) setFilteredData(updated.filter(i => filteredData.some(f => f.key === i.key)));
+              if (filteredData) setFilteredData(updated.filter(i => filteredData.some(f => f.key === i.key)));
           }}>
             <Button type="text" size="small" danger icon={<DeleteOutlined />} />
           </Popconfirm>
@@ -297,16 +267,14 @@ const StudentPage = () => {
     <div className="student-page-wrapper student-list-page-wrapper">
       <AdvancedSearchForm onSearch={handleSearch} onClear={handleClear} onPrint={handlePrintPage} initialData={masterData} />
 
-      <Card className="user-card-main student-table-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
+      <Card className="user-card-main student-table-card sort-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
         <Table
           columns={columns}
           dataSource={finalTableData}
           loading={loading}
-          pagination={{ pageSize: 10 }}
-          scroll={{ x: "max-content", y: "calc(100vh - 330px)" }}
-          bordered
-          size="small"
-          className="official-table student-screen-table"
+          pagination={{ pageSize: 10, position: ["bottomRight"], showSizeChanger: false }}
+          scroll={{ x: 1500, y: "calc(100vh - 430px)" }}
+          bordered={false}
         />
       </Card>
     </div>
