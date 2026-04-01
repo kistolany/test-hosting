@@ -46,8 +46,17 @@ const menuItems = [
       { key: "/enrollmentReciept", label: "Receipt" },
     ],
   },
+  {
+    key: "sub4",
+    label: "Final",
+    icon: <FormOutlined />,
+    children: [
+      { key: "/listNameExam", label: "List Name" },
+      { key: "/score", label: "Score" },
+      { key: "/scoreTeacher", label: "Score By Teacher" },
+    ],
+  },
   { key: "/attendant", icon: <CheckSquareOutlined />, label: "Attendant" },
-  { key: "/listNameExam", icon: <ReadOutlined />, label: "Final" },
 ];
 
 const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {

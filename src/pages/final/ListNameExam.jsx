@@ -74,7 +74,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
           </Col>
           <Col xs={24} md={14}>
             <Form.Item label=" " style={{ marginBottom: 12 }}>
-            <Flex gap="small" justify="end" wrap>
+            <Flex gap="small"  wrap>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -95,16 +95,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
               >
                 Print
               </Button>
-              <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
-                <Button
-                  type="primary"
-                  icon={<PlusOutlined />}
-                  onClick={() => navigate("/ResultScholar")}
-                  style={{ minWidth: 120 }}
-                >
-                  Result
-                </Button>
-              </ConfigProvider>
+
             </Flex>
             </Form.Item>
           </Col>

@@ -17,7 +17,8 @@ import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScholarExam from './pages/student/ScholarExam.jsx';
 import ResultScholar from './pages/student/ResultScholar.jsx';
 // import SortConfirm from './pages/student/SortConfirm.jsx';
-import ScorePage from './pages/score/ScorePage.jsx';
+import ScorePage from './pages/final/ScorePage.jsx';
+import ScoreByTeacher from './pages/final/ScoreByTeacher.jsx';
 import AttendantPage from './pages/attendant/AttendantPage.jsx';
 import DashboardPage from './pages/dashboard/DashboardPage.jsx';
 import Academic from './pages/academic/academic.jsx';
@@ -29,8 +30,6 @@ import SortingPage from './pages/student/SortingPage.jsx';
 import ListNameExam from './pages/final/ListNameExam.jsx';
 import SearchForm from './component/layouts/SearchForm.jsx';
 
-
-// IMPORTANT: Renamed your local Form to EnrollmentForm to avoid errors
 import Form from './pages/enrollment/Form.jsx';
 
 function App() {
@@ -62,6 +61,7 @@ function App() {
           <Route path="/enrollmentForm" element={<Form />} />
           <Route path="/enrollmentReciept" element={<Reciept />} />
           <Route path="/score" element={<ScorePage />} />
+          <Route path="/scoreTeacher" element={<ScoreByTeacher />} />
           <Route path="/attendant" element={<AttendantPage />} />
           <Route path="/listNameExam" element={<ListNameExam />} />
           <Route path="/searchForm" element={<SearchForm />} />
