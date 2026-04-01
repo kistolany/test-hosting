@@ -33,6 +33,9 @@ const CreateStudent = () => {
     if (!isEdit || !student) return;
 
     const parsedDob = dayjs(student.dob);
+    const parsedRegisterDate = dayjs(
+      student.registerDate || student.registrationDate || student.RegDate || student.regDate
+    );
     const yearStudyMap = {
       "2026-2027": 1,
       "2027-2028": 2,
@@ -50,7 +53,10 @@ const CreateStudent = () => {
       NameEnglish: student.name || "",
       Gender: student.gender || undefined,
       DOB: parsedDob.isValid() ? parsedDob : undefined,
+      RegisterDate: parsedRegisterDate.isValid() ? parsedRegisterDate : undefined,
       StudyShift: student.shift || undefined,
+      Batch: student.batch || undefined,
+      YearLevel: student.yearLevel || undefined,
       major: student.major || undefined,
       YearStudy: yearStudyMap[student.studyYear] || undefined,
       Others: student.Note || "",
@@ -149,6 +155,16 @@ const CreateStudent = () => {
             label="ថ្ងៃខែឆ្នាំកំណើត"
             name="DOB"
             rules={[{ required: true, message: "សូមជ្រើសរើសថ្ងៃខែឆ្នាំកំណើត!" }]}
+          >
+            <DatePicker style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+
+        <Col xs={24} sm={12} md={8} lg={6}>
+          <Form.Item
+            label="ចុះឈ្មោះថ្ងៃ"
+            name="RegisterDate"
+            rules={[{ required: true, message: "សូមជ្រើសរើសថ្ងៃចុះឈ្មោះ!" }]}
           >
             <DatePicker style={{ width: "100%" }} />
           </Form.Item>
@@ -359,6 +375,44 @@ const CreateStudent = () => {
         <Col xs={16} sm={8} md={6} lg={4}>
           <Form.Item label="ជំនាញ" name="major" rules={[{ required: true, message: "ជ្រើសរើសជំនាញ!" }]}>
             <Select />
+          </Form.Item>
+        </Col>
+
+        <Col xs={16} sm={8} md={6} lg={4}>
+          <Form.Item
+            label="ជំនាន់"
+            name="Batch"
+            rules={[{ required: true, message: "ជ្រើសរើសជំនាន់!" }]}
+          >
+            <Select
+              placeholder="ជ្រើសរើសជំនាន់"
+              options={[
+                { label: "Batch 1", value: "1" },
+                { label: "Batch 2", value: "2" },
+                { label: "Batch 3", value: "3" },
+                { label: "Batch 4", value: "4" },
+                { label: "Batch 5", value: "5" },
+                { label: "Batch 6", value: "6" },
+              ]}
+            />
+          </Form.Item>
+        </Col>
+
+        <Col xs={16} sm={8} md={6} lg={4}>
+          <Form.Item
+            label="ឆ្នាំ"
+            name="YearLevel"
+            rules={[{ required: true, message: "ជ្រើសរើសឆ្នាំ!" }]}
+          >
+            <Select
+              placeholder="ជ្រើសរើសឆ្នាំ"
+              options={[
+                { label: "ឆ្នាំទី១", value: "១" },
+                { label: "ឆ្នាំទី២", value: "២" },
+                { label: "ឆ្នាំទី៣", value: "៣" },
+                { label: "ឆ្នាំទី៤", value: "៤" },
+              ]}
+            />
           </Form.Item>
         </Col>
 

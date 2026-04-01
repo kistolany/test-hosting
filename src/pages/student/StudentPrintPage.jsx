@@ -80,6 +80,7 @@ const StudentPrintPage = () => {
           columns={columns}
           dataSource={rows}
           pagination={false}
+          scroll={{ x: "max-content", y: 420 }}
           bordered
           size="small"
           className="official-table student-table"

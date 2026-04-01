@@ -15,6 +15,7 @@ import StudentPage from './pages/student/StudentPage.jsx';
 import StudentPrintPage from './pages/student/StudentPrintPage.jsx';
 import CreateStudent from './pages/student/CreateStudent.jsx';
 import ScholarExam from './pages/student/ScholarExam.jsx';
+import ScholarExamPrintPage from './pages/student/ScholarExamPrintPage.jsx';
 import ResultScholar from './pages/student/ResultScholar.jsx';
 // import SortConfirm from './pages/student/SortConfirm.jsx';
 import ScorePage from './pages/final/ScorePage.jsx';
@@ -52,6 +53,7 @@ function App() {
           <Route path="/sortingpage" element={<SortingPage />} />
           <Route path="/createStudent" element={<CreateStudent />} />
           <Route path="/scholarExam" element={<ScholarExam />} />
+          <Route path="/scholarExamPrint" element={<ScholarExamPrintPage />} />
           <Route path="/resultScholar" element={<ResultScholar />} />
           {/* <Route path="/sortConfirm" element={<SortConfirm />} /> */}
           <Route path="/academic" element={<Academic />} />

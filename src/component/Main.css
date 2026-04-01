@@ -120,7 +120,10 @@ body{
 
 body.student-list-only-table-scroll .content {
   overflow-y: hidden !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
+
 .sidebar-bottom-user {
   flex: 0 0 auto;
   padding: 0 0 20px;
@@ -532,6 +535,7 @@ transition: 0.2s;
   background: white;
   border-bottom: 1px solid #f0f0f0;
 }
+
 
 @media (max-width: 992px) {
   .content {

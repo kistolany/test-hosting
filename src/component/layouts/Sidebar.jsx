@@ -22,6 +22,7 @@ const menuItems = [
     icon: <GiftOutlined />,
     children: [
       { key: "/student", label: "List Student" },
+      { key: "/createStudent", label: "Register Student" },
       { key: "/scholarExam", label: "Scholarship Exam" },
       { key: "/sortingpage", label: "Sort Student" },
     ],

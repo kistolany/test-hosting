@@ -267,6 +267,7 @@ const ResultScholar = () => {
           dataSource={finalTableData}
           loading={loading}
           pagination={false}
+          scroll={{ x: "max-content" }}
           bordered
           size="small"
           className="official-table result-scholar-table"

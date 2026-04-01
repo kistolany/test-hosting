@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, PrinterOutlined, ClearOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import {
-  Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag
+  Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag, Pagination
 } from "antd";
 
 // --- Sub-component for the Search Form ---
@@ -121,7 +121,17 @@ const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
 const StudentPage = () => {
   const [loading] = useState(false);
   const navigate = useNavigate();
+  const tableTopRef = useRef(null);
+  const PAGE_SIZE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
   const textOrDash = (value) => (value === undefined || value === null || value === "" ? "-" : value);
+
+  useEffect(() => {
+    document.body.classList.add("student-list-only-table-scroll");
+    return () => {
+      document.body.classList.remove("student-list-only-table-scroll");
+    };
+  }, []);
 
   const [headerData, setHeaderData] = useState({
     year: "១", 
@@ -152,6 +162,13 @@ const StudentPage = () => {
 
   const [filteredData, setFilteredData] = useState(null);
   const finalTableData = filteredData !== null ? filteredData : masterData;
+  const totalPages = Math.max(1, Math.ceil(finalTableData.length / PAGE_SIZE));
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
 
   const handleSearch = (values) => {
     const results = masterData.filter(item => {
@@ -168,6 +185,7 @@ const StudentPage = () => {
 
     results.sort((a, b) => a.ID.localeCompare(b.ID));
     setFilteredData(results);
+    setCurrentPage(1);
 
     // Update Header Text to match search
     setHeaderData(prev => ({
@@ -184,6 +202,7 @@ const StudentPage = () => {
 
   const handleClear = () => {
     setFilteredData(null);
+    setCurrentPage(1);
   };
 
   const handlePrintPage = () => {
@@ -201,7 +220,7 @@ const StudentPage = () => {
       key: "index",
       width: 70,
       align: "center",
-      render: (_, __, index) => index + 1,
+      render: (_, __, index) => (currentPage - 1) * PAGE_SIZE + index + 1,
     },
     { title: "អត្តលេខ", dataIndex: "ID", width: 120, align: "center", render: (t) => textOrDash(t) },
     { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: 220, render: (t) => textOrDash(t) },
@@ -237,6 +256,13 @@ const StudentPage = () => {
     { title: "អត្តសញ្ញាណបណ្ណ", dataIndex: "idCard", width: 190, render: (_, r) => textOrDash(r.idCard || r.IdCard) },
     { title: "លេខទូរស័ព្ទ", dataIndex: "phone", width: 170, render: (_, r) => textOrDash(r.phone || r.Phone) },
     {
+      title: "ចុះឈ្មោះថ្ងៃ",
+      dataIndex: "registerDate",
+      width: 160,
+      align: "center",
+      render: (_, r) => textOrDash(r.registerDate || r.registrationDate || r.RegDate || r.regDate || r.RegisterDate),
+    },
+    {
       title: "សកម្មភាព",
       key: "action",
       className: "action-column no-print",
@@ -263,19 +289,39 @@ const StudentPage = () => {
     },
   ];
 
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const paginatedTableData = finalTableData.slice(startIndex, startIndex + PAGE_SIZE);
+
   return (
-    <div className="student-page-wrapper student-list-page-wrapper">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
       <AdvancedSearchForm onSearch={handleSearch} onClear={handleClear} onPrint={handlePrintPage} initialData={masterData} />
 
-      <Card className="user-card-main student-table-card sort-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
-        <Table
-          columns={columns}
-          dataSource={finalTableData}
-          loading={loading}
-          pagination={{ pageSize: 10, position: ["bottomRight"], showSizeChanger: false }}
-          scroll={{ x: 1500, y: "calc(100vh - 430px)" }}
-          bordered={false}
-        />
+      <Card ref={tableTopRef} className="user-card-main student-table-card sort-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
+        <div className="student-table-overflow-x">
+          <div className="student-table-overflow" style={{ overflowY: "auto", maxHeight: 390 }}>
+            <Table
+              columns={columns}
+              dataSource={paginatedTableData}
+              rowKey={(record, index) => `${record.ID || "row"}-${startIndex + index}`}
+              loading={loading}
+              pagination={false}
+              bordered={false}
+              style={{ minWidth: 1560 }}
+            />
+          </div>
+        </div>
+        <div className="student-table-pagination no-print">
+          <Pagination
+            current={currentPage}
+            pageSize={PAGE_SIZE}
+            total={finalTableData.length}
+            showSizeChanger={false}
+            onChange={(page) => {
+              setCurrentPage(page);
+              tableTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          />
+        </div>
       </Card>
     </div>
   );

@@ -150,7 +150,7 @@ const TeacherScorePage = () => {
             columns={columns}
             dataSource={dataSource}
             loading={loading}
-            scroll={{ x: 1400, y: "calc(100vh - 450px)" }}
+            scroll={{ x: "max-content", y: "calc(100vh - 450px)" }}
             pagination={false}
             bordered
           />

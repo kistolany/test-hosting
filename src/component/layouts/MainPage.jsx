@@ -59,16 +59,12 @@ const MainPage = () => {
 };
 
 const ContentWrapper = ({ isDark }) => {
-  const { token: { colorBgContainer, borderRadiusLG } } = antdTheme.useToken();
-  
   return (
     <Content
       className="content"
       style={{ 
         margin: '24px 16px',
         padding: 24,
-        background: colorBgContainer, 
-        borderRadius: borderRadiusLG,
         minHeight: 280,
         overflowY: "auto"
       }}
