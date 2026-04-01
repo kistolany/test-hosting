@@ -27,6 +27,7 @@ import Cover from './pages/scholarship/Cover.jsx';
 import Reciept from './pages/enrollment/Reciept.jsx';
 import SortingPage from './pages/student/SortingPage.jsx';
 import ListNameExam from './pages/final/ListNameExam.jsx';
+import SearchForm from './component/layouts/SearchForm.jsx';
 
 
 // IMPORTANT: Renamed your local Form to EnrollmentForm to avoid errors
@@ -63,6 +64,7 @@ function App() {
           <Route path="/score" element={<ScorePage />} />
           <Route path="/attendant" element={<AttendantPage />} />
           <Route path="/listNameExam" element={<ListNameExam />} />
+          <Route path="/searchForm" element={<SearchForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

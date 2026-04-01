@@ -20,6 +20,7 @@ import {
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 import flourishSign from "../../assets/image_69b387.png";
+import SearchToolbar from "../../component/layouts/SearchForm";
 
 const { Title, Text } = Typography;
 
@@ -212,7 +213,7 @@ const ScholarshipForm = () => {
   const [displayedStudents, setDisplayedStudents] = useState([{}]);
 
   const searchFields = [
-    { name: "batch", label: "Batch", placeholder: "Select Batch" },
+    { name: "batch", label: "Batch", placeholder: "Select Batch", width: "190px" },
     { name: "studyYear", label: "Study Year", placeholder: "Select Study Year" },
     { name: "major", label: "Major", placeholder: "Select Major" },
     { name: "faculty", label: "Faculty", placeholder: "Select Faculty" },
@@ -234,73 +235,20 @@ const ScholarshipForm = () => {
   };
 
   return (
+    <div>
+    <SearchToolbar
+            form={searchForm}
+            fields={searchFields}
+            data={Object.values(MOCK_STUDENTS)}
+            onSearch={onSearchFinish}
+            onClear={() => {
+              searchForm.resetFields();
+              ScholarshipForm([{}]);
+            }}
+            token={token}
+          />
     <div className="scholarship-container">
-      <div className="sticky-search">
-        <Form
-          form={searchForm}
-          onFinish={onSearchFinish}
-          layout="vertical"
-          className="search-form"
-          style={{
-            background: token.colorFillAlter,
-            padding: "24px",
-            borderRadius: token.borderRadiusLG,
-            marginBottom: "20px",
-          }}
-        >
-          <Row gutter={[16, 16]} align="bottom">
-            {searchFields.map((field) => (
-              <Col xs={24} sm={20} md={8} lg={4.8} key={field.name}>
-                <Form.Item name={field.name} label={field.label} className="search-form-item">
-                  <Select
-                    showSearch
-                    placeholder={field.placeholder}
-                    allowClear
-                    options={
-                      field.name === "Name"
-                        ? Object.values(MOCK_STUDENTS).map((s) => ({ value: s.name_en, label: s.name_en }))
-                        : field.name === "major"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.major))].map((m) => ({ value: m, label: m }))
-                        : field.name === "batch"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).filter(s => s.batch).map((s) => s.batch))].map((b) => ({ value: b, label: b }))
-                        : field.name === "studyYear"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).map((s) => s.year_study))].map((y) => ({ value: y, label: y }))
-                        : field.name === "faculty"
-                        ? [...new Set(Object.values(MOCK_STUDENTS).filter(s => s.faculty).map((s) => s.faculty))].map((f) => ({ value: f, label: f }))
-                        : []
-                    }
-                    optionFilterProp="label"
-                  />
-                </Form.Item>
-              </Col>
-            ))}
-
-            <Col xs={24} sm={12} md={8} lg={4.8}>
-              <Form.Item className="search-form-item">
-                <Space>
-                  <Button style={{ backgroundColor: "#070f7a"}} type="primary" htmlType="submit" icon={<SearchOutlined />}>
-                    Search
-                  </Button>
-                  <Button
-                    icon={<PrinterOutlined />}
-                    onClick={() => window.print()}
-                    style={{ backgroundColor: "#070f7a", color: "white" }}
-                  >
-                    Print
-                  </Button>
-                  <Button
-                    icon={<ClearOutlined />}
-                    onClick={() => {
-                      searchForm.resetFields();
-                      setDisplayedStudents([{}]);
-                    }}
-                  />
-                </Space>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-      </div>
+      
 
       {displayedStudents.map((student, index) => (
         <Form
@@ -580,6 +528,7 @@ const ScholarshipForm = () => {
         </div>
       </Form>
       ))}
+    </div>
     </div>
 );
 };

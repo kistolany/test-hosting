@@ -39,11 +39,10 @@
   align-items: center;
 }
 .sticky-search {
-  width: 100%;
-  max-width: 210mm;
-  margin-bottom: 20px;
+  max-width: 100%;
+  margin-bottom: 5px !important;
   position: sticky;
-  top: 60px;
+  top: -30px;
   z-index: 1000;
   background: #ffffff;
 

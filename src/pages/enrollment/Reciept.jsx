@@ -1,104 +1,16 @@
 import React, { useState } from "react";
 import { Form, Input, Divider, Button, Row, Col, Select, Space, theme } from "antd";
 import { SearchOutlined, PrinterOutlined, ClearOutlined } from "@ant-design/icons";
+import SearchToolbar from "../../component/layouts/SearchForm";
 
-// --- EXPANDED DATASET FOR TESTING ---
+
+// --- YOUR MAIN COMPONENT ---
 const MOCK_STUDENTS = [
-  {
-    id: "B2307475",
-    name_kh: "លីម ហ្វាហ៊ីម៉ា",
-    name_en: "LIM FAHIMA",
-    gender: "ស្រី",
-    nationality: "ខ្មែរ",
-    ethnicity: "ខ្មែរ",
-    dob: "០១-មករា-២០០២",
-    house_no: "១២៣",
-    street: "០៨",
-    village: "វាលវង់",
-    commune: "វាលវង់",
-    district: "៧មករា",
-    city: "ភ្នំពេញ",
-    major: "រដ្ឋបាលសាធារណៈ",
-    faculty: "នីតិសាស្ត្រ និងវិទ្យាសាស្ត្រនយោបាយ",
-    batch: "០១",
-    study_year: "២០២៣-២០២៤"
-  },
-  {
-    id: "B2307476",
-    name_kh: "ចន សុខា",
-    name_en: "CHORN SOKHA",
-    gender: "ប្រុស",
-    nationality: "ខ្មែរ",
-    ethnicity: "ខ្មែរ",
-    dob: "១២-ឧសភា-២០០០",
-    house_no: "៤៥",
-    street: "២៧១",
-    village: "ភូមិ២",
-    commune: "ស្ទឹងមានជ័យ",
-    district: "មានជ័យ",
-    city: "ភ្នំពេញ",
-    major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ",
-    faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា",
-    batch: "០១",
-    study_year: "២០២៣-២០២៤"
-  },
-  {
-    id: "B2307477",
-    name_kh: "មាស ស្រីនាថ",
-    name_en: "MEAS SREYNEATH",
-    gender: "ស្រី",
-    nationality: "ខ្មែរ",
-    ethnicity: "ខ្មែរ",
-    dob: "០៥-កញ្ញា-២០០១",
-    house_no: "១២",
-    street: "១៩",
-    village: "ព្រែកលៀប",
-    commune: "ជ្រោយចង្វារ",
-    district: "ជ្រោយចង្វារ",
-    city: "ភ្នំពេញ",
-    major: "រដ្ឋបាលសាធារណៈ",
-    faculty: "នីតិសាស្ត្រ និងវិទ្យាសាស្ត្រនយោបាយ",
-    batch: "០១",
-    study_year: "២០២៣-២០២៤"
-  },
-  {
-    id: "B2307478",
-    name_kh: "សៅ ភារម្យ",
-    name_en: "SAO PHEAROM",
-    gender: "ប្រុស",
-    nationality: "ខ្មែរ",
-    ethnicity: "ខ្មែរ",
-    dob: "២០-វិច្ឆិកា-១៩៩៩",
-    house_no: "៩៩",
-    street: "០៣",
-    village: "ត្រពាំងថ្លឹង",
-    commune: "ចោមចៅ",
-    district: "ពោធិ៍សែនជ័យ",
-    city: "ភ្នំពេញ",
-    major: "គ្រប់គ្រង",
-    faculty: "គ្រប់គ្រងពាណិជ្ជកម្ម",
-    batch: "០២",
-    study_year: "២០២៤-២០២៥"
-  },
-  {
-    id: "B2307479",
-    name_kh: "ហេង ម៉ានិត",
-    name_en: "HENG MANIT",
-    gender: "ប្រុស",
-    nationality: "ខ្មែរ",
-    ethnicity: "ខ្មែរ",
-    dob: "១៥-កុម្ភៈ-២០០២",
-    house_no: "២០",
-    street: "៦០M",
-    village: "ព្រែកតានូ",
-    commune: "ចាក់អង្រែលើ",
-    district: "មានជ័យ",
-    city: "ភ្នំពេញ",
-    major: "រដ្ឋបាលសាធារណៈ",
-    faculty: "នីតិសាស្ត្រ និងវិទ្យាសាស្ត្រនយោបាយ",
-    batch: "០១",
-    study_year: "២០២៣-២០២៤"
-  }
+  { id: "B2307475", name_kh: "លីម ហ្វាហ៊ីម៉ា", name_en: "LIM FAHIMA", gender: "ស្រី", nationality: "ខ្មែរ", ethnicity: "ខ្មែរ", dob: "០១-មករា-២០០២", house_no: "១២៣", street: "០៨", village: "វាលវង់", commune: "វាលវង់", district: "៧មករា", city: "ភ្នំពេញ", major: "រដ្ឋបាលសាធារណៈ", faculty: "នីតិសាស្ត្រ និងវិទ្យាសាស្ត្រនយោបាយ", batch: "០១", study_year: "២០២៣-២០២៤" },
+  { id: "B2307476", name_kh: "ចន សុខា", name_en: "CHORN SOKHA", gender: "ប្រុស", nationality: "ខ្មែរ", ethnicity: "ខ្មែរ", dob: "១២-ឧសភា-២០០០", house_no: "៤៥", street: "២៧១", village: "ភូមិ២", commune: "ស្ទឹងមានជ័យ", district: "មានជ័យ", city: "ភ្នំពេញ", major: "វិទ្យាសាស្ត្រកុំព្យូទ័រ", faculty: "វិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា", batch: "០១", study_year: "២០២៣-២០២៤" },
+  { id: "B2307477", name_kh: "មាស ស្រីនាថ", name_en: "MEAS SREYNEATH", gender: "ស្រី", nationality: "ខ្មែរ", ethnicity: "ខ្មែរ", dob: "០៥-កញ្ញា-២០០១", house_no: "១២", street: "១៩", village: "ព្រែកលៀប", commune: "ជ្រោយចង្វារ", district: "ជ្រោយចង្វារ", city: "ភ្នំពេញ", major: "រដ្ឋបាលសាធារណៈ", faculty: "នីតិសាស្ត្រ និងវិទ្យាសាស្ត្រនយោបាយ", batch: "០១", study_year: "២០២៣-២០២៤" },
+  { id: "B2307478", name_kh: "សៅ ភារម្យ", name_en: "SAO PHEAROM", gender: "ប្រុស", nationality: "ខ្មែរ", ethnicity: "ខ្មែរ", dob: "២០-វិច្ឆិកា-១៩៩៩", house_no: "៩៩", street: "០៣", village: "ត្រពាំងថ្លឹង", commune: "ចោមចៅ", district: "ពោធិ៍សែនជ័យ", city: "ភ្នំពេញ", major: "គ្រប់គ្រង", faculty: "គ្រប់គ្រងពាណិជ្ជកម្ម", batch: "០២", study_year: "២០២៤-២០២៥" },
+  { id: "B2307479", name_kh: "ហេង ម៉ានិត", name_en: "HENG MANIT", gender: "ប្រុស", nationality: "ខ្មែរ", ethnicity: "ខ្មែរ", dob: "១៥-កុម្ភៈ-២០០២", house_no: "២០", street: "៦០M", village: "ព្រែកតានូ", commune: "ចាក់អង្រែលើ", district: "មានជ័យ", city: "ភ្នំពេញ", major: "រដ្ឋបាលសាធារណៈ", faculty: "នីតិសាស្ត្រ និងវិទ្យាសាស្ត្រនយោបាយ", batch: "០១", study_year: "២០២៣-២០២៤" }
 ];
 
 const Reciept = () => {
@@ -107,7 +19,7 @@ const Reciept = () => {
   const [studentList, setStudentList] = useState([{}]);
 
   const searchFields = [
-    { name: "batch", label: "Batch", placeholder: "Select Batch" },
+    { name: "batch", label: "Batch", placeholder: "Select Batch", width: "190px" },
     { name: "study_year", label: "Study Year", placeholder: "Select Study Year" },
     { name: "major", label: "Major", placeholder: "Select Major" },
     { name: "faculty", label: "Faculty", placeholder: "Select Faculty" },
@@ -130,51 +42,24 @@ const Reciept = () => {
   const receiptTypes = [{ key: "uni" }, { key: "student" }];
 
   return (
-    <div className="scholarship-container">
-      <div className="sticky-search">
-        <Form
-          form={searchForm}
-          onFinish={onSearchFinish}
-          layout="vertical"
-          className="search-form"
-          style={{
-            background: token.colorFillAlter,
-            padding: "24px",
-            borderRadius: token.borderRadiusLG,
-          }}
-        >
-          <Row gutter={[16, 16]} align="bottom">
-            {searchFields.map((field) => (
-              <Col xs={24} sm={20} md={8} lg={4.8} key={field.name}>
-                <Form.Item name={field.name} label={field.label} className="search-form-item">
-                  <Select
-                    showSearch
-                    allowClear
-                    placeholder={field.placeholder}
-                    options={[...new Set(MOCK_STUDENTS.map(s => s[field.name]))].map(val => ({ value: val, label: val }))}
-                  />
-                </Form.Item>
-              </Col>
-            ))}
-            <Col xs={24} sm={12} md={8} lg={4.8}>
-              <Form.Item className="search-form-item">
-                <Space>
-                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: '#070f7a' }}>Search</Button>
-                  <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
-                  <Button icon={<ClearOutlined />} onClick={() => { setStudentList([{}]); searchForm.resetFields(); }} />
-                </Space>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-      </div>
+    <div>
+      {/* USE THE REUSABLE SEARCH HERE */}
+      <SearchToolbar 
+        form={searchForm}
+        onSearch={onSearchFinish}
+        fields={searchFields}
+        data={MOCK_STUDENTS}
+        onClear={() => setStudentList([{}])}
+        token={token}
+      />
 
+      <div className="scholarship-container">
         {studentList.map((student, sIdx) => (
           <Form 
-          key={student.id || sIdx} 
-          className="scholarship-form" 
-          initialValues={student}
-          style={{ marginBottom: "50px",pageBreakAfter: "always" }}
+            key={student.id || sIdx} 
+            className="scholarship-form" 
+            initialValues={student}
+            style={{ marginBottom: "50px", pageBreakAfter: "always" }}
           >
             <div className="print-page-container" style={{ pageBreakAfter: 'always' }}>
               {receiptTypes.map((type, index) => (
@@ -190,9 +75,7 @@ const Reciept = () => {
                         <div className="uni-serial-line">លេខ:..........................................................សកតប</div>
                       </div>
                       <Space direction="vertical" style={{ width: 'fit-content' }}>
-                        <div className="photo-box">
-                          <div>4x6</div>
-                        </div>
+                        <div className="photo-box"><div>4x6</div></div>
                         <div className="student-id">
                           <div>អត្តលេខ/ Student ID: {student.id || "................"}</div>
                         </div>
@@ -291,16 +174,14 @@ const Reciept = () => {
                   </div>
 
                   {index === 0 && (
-                    <div className="perforation">
-                      <Divider dashed className="perforation-divider" />
-                    </div>
+                    <div className="perforation"><Divider dashed className="perforation-divider" /></div>
                   )}
                 </React.Fragment>
               ))}
             </div>
           </Form>
         ))}
-      
+      </div>
     </div>
   );
 };

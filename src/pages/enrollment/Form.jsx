@@ -16,11 +16,11 @@ import {
   SearchOutlined, ClearOutlined
 } from "@ant-design/icons";
 import flourishSign from "../../assets/image_69b387.png";
-
+import SearchToolbar from "../../component/layouts/SearchForm";
 const { Title, Text } = Typography;
 
 // --- UPDATED: 5 FAKE STUDENTS DATA ---
-const MOCK_STUDENTS_LIST = [
+const MOCK_STUDENTS = [
   { id: 1, batch: "Batch 1", studyYear: "2023-2024", faculty: "IT", major: "CS", name_kh: "លីម ហ្វាហ៊ីម៉ា", name_en: "LIM FAHIMA", dob: "01/01/2000", nationality: "ខ្មែរ", race: "ខ្មែរ", occupation: "និស្សិត", gender: "Female", civil_status: "Single", student_id: "CUMT-001", phone: "012 345 678", province: "Phnom Penh", acad_start: "2023", acad_end: "2024", year_val: "1", promotion: "8th", day: "Mon-Fri", time: "Morning" },
   { id: 2, batch: "Batch 1", studyYear: "2023-2024", faculty: "IT", major: "CS", name_kh: "ចន សុខា", name_en: "CHORN SOKHA", dob: "12/05/1998", nationality: "ខ្មែរ", race: "ខ្មែរ", occupation: "និស្សិត", gender: "Male", civil_status: "Married", student_id: "CUMT-002", phone: "099 888 777", province: "Kandal", acad_start: "2023", acad_end: "2024", year_val: "1", promotion: "8th", day: "Mon-Fri", time: "Morning" },
   { id: 3, batch: "Batch 2", studyYear: "2024-2025", faculty: "Business", major: "Accounting", name_kh: "សៅ ភារម្យ", name_en: "SAO PHEAROM", dob: "20/11/2001", nationality: "ខ្មែរ", race: "ខ្មែរ", occupation: "និស្សិត", gender: "Male", civil_status: "Single", student_id: "CUMT-003", phone: "010 222 333", province: "Takeo", acad_start: "2024", acad_end: "2025", year_val: "2", promotion: "9th", day: "Sat-Sun", time: "Afternoon" },
@@ -42,7 +42,7 @@ const EnrollmentForm = () => {
   const [studentList, setStudentList] = useState([]); 
 
   const searchFields = [
-    { name: "batch", label: "Batch", placeholder: "Select Batch" },
+    { name: "batch", label: "Batch", placeholder: "Select Batch",width: "190px" },
     { name: "studyYear", label: "Study Year", placeholder: "Select Year" },
     { name: "major", label: "Major", placeholder: "Select Major" },
     { name: "faculty", label: "Faculty", placeholder: "Select Faculty" },
@@ -50,7 +50,7 @@ const EnrollmentForm = () => {
   ];
 
   const onSearchFinish = (values) => {
-    const filtered = MOCK_STUDENTS_LIST.filter(s => {
+    const filtered = MOCK_STUDENTS.filter(s => {
       return (!values.batch || s.batch === values.batch) &&
              (!values.studyYear || s.studyYear === values.studyYear) &&
              (!values.major || s.major === values.major) &&
@@ -68,44 +68,17 @@ const EnrollmentForm = () => {
   const displayList = studentList.length > 0 ? studentList : [{}];
 
   return (
+    <div>
+        <SearchToolbar 
+        form={searchForm}
+        onSearch={onSearchFinish}
+        fields={searchFields}
+        data={MOCK_STUDENTS}
+        onClear={() => setStudentList([{}])}
+        token={token}
+      />
     <div className="scholarship-container">
-      <div className="sticky-search">
-        <Form
-          form={searchForm}
-          onFinish={onSearchFinish}
-          layout="vertical"
-          className="search-form"
-          style={{
-            background: token.colorFillAlter,
-            padding: "24px",
-            borderRadius: token.borderRadiusLG,
-          }}
-        >
-          <Row gutter={[16, 16]} align="bottom">
-            {searchFields.map((field) => (
-              <Col xs={24} sm={20} md={8} lg={4.8} key={field.name}>
-                <Form.Item name={field.name} label={field.label} className="search-form-item">
-                  <Select
-                    showSearch
-                    allowClear
-                    placeholder={field.placeholder}
-                    options={[...new Set(MOCK_STUDENTS_LIST.map(s => s[field.name === 'Name' ? 'name_en' : field.name]))].map(val => ({ value: val, label: val }))}
-                  />
-                </Form.Item>
-              </Col>
-            ))}
-            <Col xs={24} sm={12} md={8} lg={4.8}>
-              <Form.Item className="search-form-item">
-                <Space>
-                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor:'#070f7a' }}>Search</Button>
-                  <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
-                  <Button icon={<ClearOutlined/>} onClick={() => { setStudentList([]); searchForm.resetFields(); }}/>
-                </Space>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-      </div>
+      
 
       {/* --- GENERATING FORMS (BLANK OR DATA) --- */}
       {displayList.map((student, index) => (
@@ -270,6 +243,7 @@ const EnrollmentForm = () => {
           </div>
         </Form>
       ))}
+    </div>
     </div>
   );
 };

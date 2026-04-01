@@ -124,7 +124,7 @@ thead:before {
   /* Set A4 Page Dimensions */
   @page {
     size: A4;
-    margin: 0; /* We control margins via padding for better accuracy */
+    margin: 0; 
   }
 
   

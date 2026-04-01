@@ -340,9 +340,7 @@ const AttendancePage = () => {
     <div className="att-page-wrapper">
       <div className="att-search-inner-container" style={{background: isDark ? '#111827' : 'white', 
   marginBottom: 20, 
-  position: 'sticky', 
-  top: 60, 
-  zIndex: 1000 
+  
 }}>
         <Form form={form} layout="vertical" style={{ background: token.colorFillAlter, borderRadius: token.borderRadiusLG, padding: "20px"}}>
           <Row gutter={[24, 24]}>
