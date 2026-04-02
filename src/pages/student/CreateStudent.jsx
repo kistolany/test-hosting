@@ -14,11 +14,13 @@ import {
   Select,
   TreeSelect,
   Divider,
+  message,
 } from "antd";
 import {
   SwapLeftOutlined
 } from "@ant-design/icons";
 import { useLanguage } from "../../i18n/LanguageContext";
+import { pushNotification } from "../../utils/notifications";
 
 const { RangePicker } = DatePicker;
 
@@ -62,15 +64,35 @@ const CreateStudent = () => {
       YearLevel: student.yearLevel || undefined,
       major: student.major || undefined,
       YearStudy: yearStudyMap[student.studyYear] || undefined,
+      StudentType: student.studentType || student.StudentType || undefined,
       Others: student.Note || "",
     });
   }, [isEdit, student, form]);
+
+  const handleSubmit = (values) => {
+    const type = String(values.StudentType || "").trim().toLowerCase();
+    const studentName = values.NameEnglish || values.NameKhmer || values.Input || "Student";
+
+    const shouldNotifyCreate = !isEdit && type === "pay";
+    const shouldNotifyUpdate = isEdit && (type === "pass" || type === "pay");
+
+    if (shouldNotifyCreate || shouldNotifyUpdate) {
+      pushNotification({
+        title: isEdit ? "Student Type Updated" : "New PAY Student",
+        message: `${studentName} requires enrollment processing.`,
+      });
+    }
+
+    message.success(isEdit ? tr("Student updated successfully", "កែប្រែនិស្សិតបានជោគជ័យ") : tr("Student created successfully", "បង្កើតនិស្សិតបានជោគជ័យ"));
+    navigate("/student");
+  };
 
   return (
     <Form
       className="register-student-form"
       form={form}
       layout="vertical"
+      onFinish={handleSubmit}
       variant={variant || "outlined"}
       initialValues={{ variant: "outlined" }}
       style={{ width: "100%", padding: "20px" }}
@@ -100,7 +122,8 @@ const CreateStudent = () => {
               placeholder={tr("Select type", "ជ្រើសរើសប្រភេទ")}
               options={[
                 { label: tr('Pay', 'បង់ថ្លៃ (Pay)'), value: 'pay' },
-                { label: tr('Scholarship', 'អាហាររូបករណ៍ (Scholarship)'), value: 'scholarship' }
+                { label: tr('Scholarship', 'អាហាររូបករណ៍ (Scholarship)'), value: 'scholarship' },
+                { label: tr('Pass', 'ជាប់ (Pass)'), value: 'pass' }
               ]}
             />
           </Form.Item>

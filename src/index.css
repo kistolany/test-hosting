@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,6 +18,12 @@
 @font-face {
   font-family: "Khmer OS Moul Light";
   src: local("Khmer OS Moul Light"), local("KhmerOSMoulLight");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Khmer Moul Light";
+  src: local("Khmer Moul Light"), local("KhmerMoulLight"), local("Khmer OS Moul Light"), local("KhmerOSMoulLight");
   font-display: swap;
 }
 

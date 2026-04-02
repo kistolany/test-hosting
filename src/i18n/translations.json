@@ -173,6 +173,7 @@
   "actions": {
     "search": { "en": "Search", "km": "ស្វែងរក" },
     "clear": { "en": "Clear", "km": "សម្អាត" },
+    "back": { "en": "Back", "km": "ត្រឡប់" },
     "cancel": { "en": "Cancel", "km": "បោះបង់" },
     "print": { "en": "Print", "km": "បោះពុម្ព" },
     "addNew": { "en": "Add New", "km": "បន្ថែមថ្មី" },
@@ -192,5 +193,10 @@
   "studentType": {
     "scholarship": { "en": "Scholarship", "km": "អាហារូបករណ៍" },
     "pay": { "en": "Pay", "km": "បង់ថ្លៃ" }
+  },
+  "sortPage": {
+    "title": { "en": "All Student List", "km": "បញ្ជីឈ្មោះនិស្សិតទាំងអស់" },
+    "subtitle": { "en": "Manage and arrange student enrollment by section", "km": "គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ" },
+    "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" }
   }
 }

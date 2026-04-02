@@ -382,6 +382,43 @@ body.student-list-only-table-scroll .content {
   height: 30px;
 }
 
+.header-notification-btn.ant-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: #334155;
+}
+
+.header-notification-btn.ant-btn:hover,
+.header-notification-btn.ant-btn:focus {
+  background: #eef2ff !important;
+  color: #1d4ed8 !important;
+}
+
+.header-notification-dropdown .ant-dropdown-menu {
+  width: 320px;
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.header-notification-dropdown .ant-dropdown-menu-item {
+  white-space: normal;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.header-notification-title {
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.header-notification-message {
+  color: #475569;
+  font-size: 12px;
+}
+
 .header-left-group > * {
   align-self: center;
 }
@@ -394,9 +431,9 @@ body.student-list-only-table-scroll .content {
 
 .header-global-search .ant-input-affix-wrapper,
 .header-global-search .ant-input {
-  height: 30px !important;
-  min-height: 30px !important;
-  line-height: 30px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  line-height: 20px !important;
 }
 
 .header-global-search .ant-input-affix-wrapper {
@@ -430,8 +467,8 @@ body.student-list-only-table-scroll .content {
 .header-global-search .ant-select-selector,
 .header-global-search .ant-select-selection-search,
 .header-global-search .ant-select-selection-search-input {
-  height: 30px !important;
-  min-height: 30px !important;
+  height: 20px !important;
+  min-height: 20px !important;
 }
 
 .header-global-search .ant-input {
@@ -582,6 +619,14 @@ transition: 0.2s;
 .ant-menu-item-selected {
   background-color: #1005a3 !important;
   color: white !important;
+}
+
+.main-shell.lang-km .ant-menu-item-selected .ant-menu-title-content,
+.main-shell.lang-km .ant-menu-submenu-selected > .ant-menu-submenu-title .ant-menu-title-content,
+.main-shell.lang-km .ant-menu-item-active .ant-menu-title-content {
+  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em;
 }
 
 /* A4 Container */

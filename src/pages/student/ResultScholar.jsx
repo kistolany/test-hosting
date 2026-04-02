@@ -10,6 +10,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import {
   Table, Button, Typography, Space, Skeleton, theme, Form, Row, Col, Select, DatePicker, Card
 } from "antd";
+import { pushNotification } from "../../utils/notifications";
 
 const { Title, Text } = Typography;
 
@@ -217,11 +218,21 @@ const ResultScholar = () => {
             textAlign: 'center'
           }}
           onChange={(value) => {
+            const previousResult = record.Result;
             const updateData = (data) => data.map(item => 
               item.key === record.key ? { ...item, Result: value } : item
             );
             setMasterData(prev => updateData(prev));
             if (filteredData) setFilteredData(prev => updateData(prev));
+
+            if (value === "ជាប់" && previousResult !== "ជាប់") {
+              const studentName = record.nameKhmer || record.name || record.ID || "Student";
+              pushNotification({
+                title: "Sort Student",
+                message: `${studentName} passed exam. Please continue in Sort Student.`,
+                route: "/sortingpage",
+              });
+            }
           }}
         >
           <Select.Option value="ជាប់">ជាប់</Select.Option>

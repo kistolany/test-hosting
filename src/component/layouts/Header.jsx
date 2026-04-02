@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Layout, Space, Switch, Dropdown, Avatar, theme as antdTheme, Button } from "antd";
+import { Layout, Space, Switch, Dropdown, Avatar, theme as antdTheme, Button, Badge, Empty, Input } from "antd";
 import {
   UserOutlined,
   DownOutlined,
@@ -8,8 +8,11 @@ import {
   SettingOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  BellOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 import { useLanguage } from "../../i18n/LanguageContext";
+import { markNotificationRead, readNotifications } from "../../utils/notifications";
 
 const { Header: AntHeader } = Layout;
 
@@ -17,6 +20,38 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
   const navigate = useNavigate();
   const { token: { colorBgContainer } } = antdTheme.useToken();
   const { lang, setLanguage, t, fontClass } = useLanguage();
+  const [notifications, setNotifications] = useState(() => readNotifications());
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    const sync = () => setNotifications(readNotifications());
+    window.addEventListener("storage", sync);
+    window.addEventListener("app-notifications-updated", sync);
+    return () => {
+      window.removeEventListener("storage", sync);
+      window.removeEventListener("app-notifications-updated", sync);
+    };
+  }, []);
+
+  const unreadCount = useMemo(() => notifications.filter((item) => !item.read).length, [notifications]);
+
+  const notificationMenuItems = notifications.length
+    ? notifications.slice(0, 6).map((item) => ({
+        key: item.id,
+        label: (
+          <div className="header-notification-item">
+            <div className="header-notification-title">{item.title}</div>
+            <div className="header-notification-message">{item.message}</div>
+          </div>
+        ),
+      }))
+    : [
+        {
+          key: "empty",
+          disabled: true,
+          label: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t("header.noNotifications")} />,
+        },
+      ];
 
   // Define menu items inside or outside; if they need to navigate, 
   // we handle the logic in the onClick handler.
@@ -43,6 +78,19 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
     }
   };
 
+  const handleNotificationClick = ({ key }) => {
+    if (key === "empty") return;
+    const found = notifications.find((item) => item.id === key);
+    if (!found) return;
+    markNotificationRead(found.id);
+    navigate(found.route || "/enrollmentForm");
+  };
+
+  const handleGlobalSearch = (value) => {
+    const keyword = String(value || "").trim();
+    navigate("/searchForm", { state: { keyword } });
+  };
+
   return (
     <AntHeader
       className="header"
@@ -57,6 +105,15 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           onClick={() => setCollapsed(!collapsed)}
           aria-label="Toggle sidebar"
+        />
+        <Input
+          allowClear
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onPressEnter={(e) => handleGlobalSearch(e.target.value)}
+          placeholder={t("header.searchPlaceholder")}
+          className="header-global-search"
+          suffix={<SearchOutlined onClick={() => handleGlobalSearch(searchText)} style={{ cursor: "pointer" }} />}
         />
       </div>
 
@@ -91,6 +148,17 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
             unCheckedChildren="OFF"
           />
         </Space>
+
+        <Dropdown
+          menu={{ items: notificationMenuItems, onClick: handleNotificationClick }}
+          trigger={["click"]}
+          placement="bottomRight"
+          overlayClassName="header-notification-dropdown"
+        >
+          <Badge count={unreadCount} size="small" offset={[-1, 3]}>
+            <Button type="text" className="header-notification-btn" icon={<BellOutlined />} />
+          </Badge>
+        </Dropdown>
 
         <Dropdown 
           menu={{ 

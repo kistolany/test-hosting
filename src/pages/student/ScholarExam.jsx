@@ -24,6 +24,7 @@ import {
   Pagination,
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
+import { pushNotification } from "../../utils/notifications";
 
 const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
   const [form] = Form.useForm();
@@ -427,10 +428,22 @@ const ScholarExam = () => {
   };
 
   const updateStudentStatus = (key, nextStatus) => {
+    const targetStudent = masterData.find((item) => item.key === key);
+    const previousStatus = targetStudent?.status || "PENDING";
+
     const applyUpdate = (arr) => arr.map((item) => (item.key === key ? { ...item, status: nextStatus } : item));
     setMasterData((prev) => applyUpdate(prev));
     if (filteredData) {
       setFilteredData((prev) => applyUpdate(prev));
+    }
+
+    if (nextStatus === "PASS" && previousStatus !== "PASS") {
+      const studentName = targetStudent?.nameKhmer || targetStudent?.name || targetStudent?.ID || "Student";
+      pushNotification({
+        title: "Sort Student",
+        message: `${studentName} passed exam. Please continue in Sort Student.`,
+        route: "/sortingpage",
+      });
     }
   };
 

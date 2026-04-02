@@ -403,6 +403,25 @@
   border-top: 1px solid #e5e7eb;
 }
 
+.student-list-page-wrapper .sort-card .student-table-pagination {
+  background: linear-gradient(180deg, #1f2f6b 0%, #0f1fb7 100%);
+  border-top: 1px solid #2945cf;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.student-list-page-wrapper .sort-card .student-table-pagination .ant-pagination-item,
+.student-list-page-wrapper .sort-card .student-table-pagination .ant-pagination-prev,
+.student-list-page-wrapper .sort-card .student-table-pagination .ant-pagination-next {
+  background: #0a177f !important;
+  border-color: #3c58e3 !important;
+}
+
+.student-list-page-wrapper .sort-card .student-table-pagination .ant-pagination-item-active {
+  background: #070f5f !important;
+  border-color: #6b84ff !important;
+}
+
 .student-list-page-wrapper .student-table-pagination .ant-pagination-item,
 .student-list-page-wrapper .student-table-pagination .ant-pagination-prev,
 .student-list-page-wrapper .student-table-pagination .ant-pagination-next {
@@ -1535,7 +1554,7 @@ width: 60%;
 .sort-header-title {
   margin: 8px 0 0 0 !important;
   color: #160579 !important;
-  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
+  font-family: "Battambang", "Noto Sans Khmer", sans-serif !important;
   font-size: 28px !important;
   text-align: center;
 }
@@ -1543,19 +1562,25 @@ width: 60%;
 .sort-header-subtitle {
   display: block;
   text-align: center;
-  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
+  font-family: "Battambang", "Noto Sans Khmer", sans-serif !important;
+}
+
+.sort-container.sort-lang-km .sort-header-title,
+.sort-container.sort-lang-km .sort-header-subtitle {
+  font-family: "Khmer OS Moul Light", "Khmer Moul Light", "Noto Sans Khmer", serif !important;
 }
 
 .sort-card {
   border-radius: 12px;
   box-shadow: none;
   border: 1px solid #e5e7eb;
+  background: #ffffff !important;
   overflow: hidden;
   margin-bottom: 10px;
 }
 
 .sort-container .search-inner-container.sticky-search {
-  padding: 12px 12px 6px;
+  padding: 10px;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   background: #f8fafc !important;
@@ -1571,21 +1596,147 @@ width: 60%;
   border-radius: 10px !important;
 }
 
+.sort-container .student-search-form .ant-input-affix-wrapper {
+  border-radius: 10px !important;
+}
+
+.sort-container .student-search-form .ant-input-affix-wrapper .ant-input {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.sort-container .student-search-form .ant-input-affix-wrapper .ant-input::placeholder {
+  background: transparent !important;
+}
+
 .sort-container .student-table-card {
   border-radius: 12px !important;
   border: 1px solid #e5e7eb !important;
   background: #ffffff !important;
 }
 
+.sort-container .student-table-overflow .ant-table-thead > tr > th,
+.sort-container .student-table-overflow .ant-table-thead > tr > th.ant-table-cell-fix-left,
+.sort-container .student-table-overflow .ant-table-thead > tr > th.ant-table-cell-fix-right {
+  background: linear-gradient(180deg, #4dbfd2 0%, #79d6e3 100%) !important;
+  border-bottom: 1px solid #93e0ea !important;
+}
+
+.sort-container .student-table-overflow .ant-table-thead > tr > th .ant-typography {
+  color: #ffffff !important;
+}
+
+.sort-container .student-table-overflow .ant-table-thead > tr > th.ant-table-cell-fix-right-first::after,
+.sort-container .student-table-overflow .ant-table-tbody > tr > td.ant-table-cell-fix-right-first::after {
+  box-shadow: inset -8px 0 8px -8px rgba(148, 163, 184, 0.45);
+}
+
+.sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-left,
+.sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-left-first,
+.sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-left-last {
+  z-index: 7;
+  background: linear-gradient(180deg, #4dbfd2 0%, #79d6e3 100%) !important;
+}
+
+.sort-container .student-table-pagination .ant-pagination-item,
+.sort-container .student-table-pagination .ant-pagination-prev,
+.sort-container .student-table-pagination .ant-pagination-next {
+  background: #7fb1e3 !important;
+  border-color: #94bfe8 !important;
+}
+
+.sort-container .student-table-pagination .ant-pagination-item a,
+.sort-container .student-table-pagination .ant-pagination-prev .ant-pagination-item-link,
+.sort-container .student-table-pagination .ant-pagination-next .ant-pagination-item-link {
+  color: #ffffff !important;
+}
+
+.sort-container .student-table-pagination .ant-pagination-item-active {
+  background: #4d94d8 !important;
+  border-color: #6ea8df !important;
+}
+
+.sort-container .student-table-pagination .ant-pagination-item-active a {
+  color: #ffffff !important;
+}
+
+.sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-left,
+.sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-left-first,
+.sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-left-last {
+  z-index: 6;
+  background: #ffffff !important;
+}
+
+.sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-left-last::after,
+.sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-left-last::after {
+  box-shadow: inset 8px 0 8px -8px rgba(148, 163, 184, 0.45);
+}
+
+.sort-container .sort-waiting-table .ant-table-body,
+.sort-container .sort-waiting-table .ant-table-content {
+  scrollbar-width: thin !important;
+  -ms-overflow-style: auto !important;
+  scrollbar-color: #3b82f6 #dbeafe !important;
+}
+
+.sort-container .sort-waiting-table .ant-table-body::-webkit-scrollbar,
+.sort-container .sort-waiting-table .ant-table-content::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.sort-container .sort-waiting-table .ant-table-body::-webkit-scrollbar-track,
+.sort-container .sort-waiting-table .ant-table-content::-webkit-scrollbar-track {
+  background: #dbeafe !important;
+  border-radius: 999px;
+}
+
+.sort-container .sort-waiting-table .ant-table-body::-webkit-scrollbar-thumb,
+.sort-container .sort-waiting-table .ant-table-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%) !important;
+  border-radius: 999px;
+}
+
+.sort-container .sort-waiting-table .ant-table-body::-webkit-scrollbar-thumb:hover,
+.sort-container .sort-waiting-table .ant-table-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #93c5fd 0%, #60a5fa 55%, #3b82f6 100%) !important;
+}
+
 .sort-container .student-table-card .ant-card-body {
   background: #ffffff !important;
   border-radius: 12px;
+  padding: 0 !important;
+}
+
+.sort-container .student-table-pagination {
+  background: linear-gradient(180deg, #4dbfd2 0%, #79d6e3 100%) !important;
+  border-top: 1px solid #93e0ea;
+}
+
+.sort-container .sort-waiting-table .ant-table-body,
+.sort-container .sort-waiting-table .ant-table-content {
+  background: #f2fbfd !important;
+}
+
+.sort-container .sort-waiting-table .ant-table-placeholder > td {
+  background: #f2fbfd !important;
+}
+
+.sort-inline-row {
+  margin-top: 0;
+}
+
+.sort-inline-row .sort-card,
+.sort-inline-row .sort-enroll-side-card {
+  margin-top: 0;
 }
 
 .sort-enroll-modal-title {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .sort-enroll-modal-count {
@@ -1594,8 +1745,36 @@ width: 60%;
   font-weight: 600;
 }
 
+.sort-enroll-side-card {
+  border-radius: 12px !important;
+  border: 1px solid #e5e7eb !important;
+  background: #ffffff !important;
+  position: static;
+  margin-top: 0;
+}
+
+.sort-enroll-side-card .ant-card-body {
+  padding: 14px !important;
+}
+
+.sort-enroll-left-modal .ant-modal {
+  margin-left: 24px;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .sort-enroll-left-modal .ant-modal {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sort-enroll-side-card {
+    position: static;
+  }
+}
+
 .sort-container .ant-table-tbody > tr > td {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 /* Table Styling */
