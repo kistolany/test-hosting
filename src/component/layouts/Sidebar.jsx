@@ -12,74 +12,76 @@ import {
   SafetyCertificateOutlined,
   FileSearchOutlined,
 } from "@ant-design/icons";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const { Sider } = Layout;
-
-const menuItems = [
-  {
-    key: "sub1",
-    label: "Student",
-    icon: <GiftOutlined />,
-    children: [
-      { key: "/student", label: "List Student" },
-      { key: "/createStudent", label: "Register Student" },
-      { key: "/scholarExam", label: "Scholarship Exam" },
-      { key: "/sortingpage", label: "Sort Student" },
-    ],
-  },
-  { key: "/academic", icon: <ReadOutlined />, label: "Academic" },
-  {
-    key: "sub2",
-    label: "Scholarship",
-    icon: <GiftOutlined />,
-    children: [
-      { key: "/ScholarshipForm", label: "Form" },
-      { key: "/receipt", label: "Receipt" },
-      { key: "/cover", label: "Cover" },
-    ],
-  },
-  {
-    key: "sub3",
-    label: "Enrollment",
-    icon: <FormOutlined />,
-    children: [
-      { key: "/enrollmentForm", label: "Form" },
-      { key: "/enrollmentReciept", label: "Receipt" },
-    ],
-  },
-  {
-    key: "sub4",
-    label: "Final",
-    icon: <FormOutlined />,
-    children: [
-      { key: "/listNameExam", label: "List Name" },
-      { key: "/score", label: "Score" },
-      { key: "/scoreTeacher", label: "Score By Teacher" },
-    ],
-  },
-  { key: "/attendant", icon: <CheckSquareOutlined />, label: "Attendant" },
-];
 
 const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t, fontClass } = useLanguage();
   const isSettingActive = ["/userManage", "/roleManage", "/auditLog"].includes(location.pathname);
+
+  const menuItems = [
+    {
+      key: "sub1",
+      label: <span className={fontClass("body")}>{t("navigation.student")}</span>,
+      icon: <GiftOutlined />,
+      children: [
+        { key: "/student", label: <span className={fontClass("body")}>{t("navigation.listStudent")}</span> },
+        { key: "/createStudent", label: <span className={fontClass("body")}>{t("navigation.registerStudent")}</span> },
+        { key: "/scholarExam", label: <span className={fontClass("body")}>{t("navigation.scholarshipExam")}</span> },
+        { key: "/sortingpage", label: <span className={fontClass("body")}>{t("navigation.sortStudent")}</span> },
+      ],
+    },
+    { key: "/academic", icon: <ReadOutlined />, label: <span className={fontClass("body")}>{t("navigation.academic")}</span> },
+    {
+      key: "sub2",
+      label: <span className={fontClass("body")}>{t("navigation.scholarship")}</span>,
+      icon: <GiftOutlined />,
+      children: [
+        { key: "/scholarshipForm", label: <span className={fontClass("body")}>{t("navigation.form")}</span> },
+        { key: "/receipt", label: <span className={fontClass("body")}>{t("navigation.receipt")}</span> },
+        { key: "/cover", label: <span className={fontClass("body")}>{t("navigation.cover")}</span> },
+      ],
+    },
+    {
+      key: "sub3",
+      label: <span className={fontClass("body")}>{t("navigation.enrollment")}</span>,
+      icon: <FormOutlined />,
+      children: [
+        { key: "/enrollmentForm", label: <span className={fontClass("body")}>{t("navigation.form")}</span> },
+        { key: "/enrollmentReciept", label: <span className={fontClass("body")}>{t("navigation.receipt")}</span> },
+      ],
+    },
+    {
+      key: "sub4",
+      label: <span className={fontClass("body")}>{t("navigation.final")}</span>,
+      icon: <FormOutlined />,
+      children: [
+        { key: "/listNameExam", label: <span className={fontClass("body")}>{t("navigation.listName")}</span> },
+        { key: "/score", label: <span className={fontClass("body")}>{t("navigation.score")}</span> },
+        { key: "/scoreTeacher", label: <span className={fontClass("body")}>{t("navigation.scoreByTeacher")}</span> },
+      ],
+    },
+    { key: "/attendant", icon: <CheckSquareOutlined />, label: <span className={fontClass("body")}>{t("navigation.attendant")}</span> },
+  ];
 
   const settingMenuItems = [
     {
       key: "/userManage",
       icon: <SettingOutlined />,
-      label: "Manage User",
+      label: <span className={fontClass("body")}>{t("navigation.manageUser")}</span>,
     },
     {
       key: "/roleManage",
       icon: <SafetyCertificateOutlined />,
-      label: "Manage Role",
+      label: <span className={fontClass("body")}>{t("navigation.manageRole")}</span>,
     },
     {
       key: "/auditLog",
       icon: <FileSearchOutlined />,
-      label: "Audit Log",
+      label: <span className={fontClass("body")}>{t("navigation.auditLog")}</span>,
     },
   ];
 
@@ -121,16 +123,11 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
       <div className="sidebar-fixed-section">
         <div className="logo-container" style={{ height: collapsed ? 64 : 150, filter: isDark ? "brightness(0) invert(1)" : "none" }}>
           <img src="/asset/image/logo.png" alt="logo" style={{ width: collapsed ? "32px" : "80px", height: collapsed ? "32px" : "80px" }} />
-          {!collapsed && (
-            <span className="span1">
-              CAMBODIA UNIVERSITY OF <br />
-              <span className="span2">MANAGEMENT AND TECHNOLOGY</span>
-            </span>
-          )}
+          {!collapsed && <span className="logo-title-single">{t("university.nameKh")}</span>}
         </div>
 
         <NavLink to="/dashboard" className={({ isActive }) => `dashboard ${collapsed ? "collapsed" : ""} ${isActive ? "active" : ""}`}>
-          Dashboard
+          <span className={fontClass("title")}>{t("navigation.dashboard")}</span>
         </NavLink>
       </div>
 
@@ -165,7 +162,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
             <SettingOutlined />
             {!collapsed && (
               <>
-                <span>Setting</span>
+                <span className={fontClass("body")}>{t("navigation.setting")}</span>
                 <span className="setting-toggle-icon"><DownOutlined /></span>
               </>
             )}
@@ -178,7 +175,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
           onClick={handleLogout}
         >
           <LogoutOutlined />
-          {!collapsed && <span>Logout</span>}
+          {!collapsed && <span className={fontClass("body")}>{t("header.logout")}</span>}
         </button>
       </div>
     </Sider>

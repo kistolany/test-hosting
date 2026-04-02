@@ -2,8 +2,12 @@
 import React from "react";
 import { Form, Row, Col, Select, Button, Space } from "antd";
 import { SearchOutlined, PrinterOutlined, ClearOutlined } from "@ant-design/icons";
+import { useLanguage } from "../../i18n/LanguageContext";
 
-const SearchToolbar = ({ form, onSearch, fields, data, onClear, token }) => (
+const SearchToolbar = ({ form, onSearch, fields, data, onClear, token }) => {
+  const { t } = useLanguage();
+
+  return (
   <div className="sticky-search no-print">
     <Form
       form={form}
@@ -29,13 +33,18 @@ const SearchToolbar = ({ form, onSearch, fields, data, onClear, token }) => (
           >
             <Form.Item 
               name={field.name} 
-              label={field.label} 
+              label={t(`filters.${field.name}`) === `filters.${field.name}` ? field.label : t(`filters.${field.name}`)} 
               style={{ marginBottom: 0 }}
             >
               <Select
                 showSearch
                 allowClear
-                placeholder={field.placeholder}
+                placeholder={
+                  t(`filters.select${field.name.charAt(0).toUpperCase()}${field.name.slice(1)}`) ===
+                  `filters.select${field.name.charAt(0).toUpperCase()}${field.name.slice(1)}`
+                    ? field.placeholder
+                    : t(`filters.select${field.name.charAt(0).toUpperCase()}${field.name.slice(1)}`)
+                }
                 options={[...new Set(data.map(s => s[field.name]))]
                   .filter(Boolean)
                   .map(val => ({ value: val, label: val }))}
@@ -61,14 +70,14 @@ const SearchToolbar = ({ form, onSearch, fields, data, onClear, token }) => (
                 icon={<SearchOutlined />} 
                 style={{ backgroundColor: '#070f7a',width: '80px' }}
               >
-                Search
+                {t("actions.search")}
               </Button>
               <Button 
                 icon={<PrinterOutlined />} 
                 onClick={() => window.print()} 
                 style={{ backgroundColor: '#070f7a', color: "white", width: '70px' }}
               >
-                Print
+                {t("actions.print")}
               </Button>
               <Button 
                 icon={<ClearOutlined />} 
@@ -83,6 +92,7 @@ const SearchToolbar = ({ form, onSearch, fields, data, onClear, token }) => (
       </Row>
     </Form>
   </div>
-);
+  );
+};
 
 export default SearchToolbar;

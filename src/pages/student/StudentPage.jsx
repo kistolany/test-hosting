@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, PrinterOutlined, ClearOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusOutlined, EditFilled, DeleteFilled, PrinterOutlined, ClearOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../i18n/LanguageContext";
 import {
   Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag, Pagination
 } from "antd";
@@ -9,6 +10,7 @@ import {
 const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const { t } = useLanguage();
 
   const formStyle = {
     background: "transparent",
@@ -34,10 +36,10 @@ const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
         <Row gutter={[12, 10]} align="bottom">
           {/* YEAR SELECTION (Year 1, 2, 3, 4) */}
           <Col xs={24} sm={12} md={8} lg={3}>
-            <Form.Item name="yearLevel" label="Year" style={{ marginBottom: 12 }}>
+            <Form.Item name="yearLevel" label={t("filters.year")} style={{ marginBottom: 12 }}>
               <Select 
                 allowClear 
-                placeholder="Select Year" 
+                placeholder={t("filters.selectYear")} 
                 options={[
                   { value: '១', label: 'ឆ្នាំទី១' },
                   { value: '២', label: 'ឆ្នាំទី២' },
@@ -50,14 +52,14 @@ const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
 
           {/* Batch, Semester */}
           {[
-            { name: 'batch', label: 'Batch' },
-            { name: 'semester', label: 'Semester' },
+            { name: 'batch', label: t("filters.batch") },
+            { name: 'semester', label: t("filters.semester") },
           ].map((field) => (
             <Col xs={24} sm={12} md={8} lg={3} key={field.name}>
               <Form.Item name={field.name} label={field.label} style={{ marginBottom: 12 }}>
                 <Select 
                   allowClear 
-                  placeholder={`Select ${field.label}`} 
+                  placeholder={field.name === 'batch' ? t("filters.selectBatch") : t("filters.selectSemester")} 
                   options={getOptions(field.name)} 
                 />
               </Form.Item>
@@ -65,28 +67,28 @@ const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
           ))}
 
           <Col xs={24} sm={12} md={8} lg={4}>
-            <Form.Item name="studyYear" label="Study Year" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Select Study Year" options={getOptions('studyYear')} />
+            <Form.Item name="studyYear" label={t("filters.studyYear")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectStudyYear")} options={getOptions('studyYear')} />
             </Form.Item>
           </Col>
 
           <Col xs={24} sm={12} md={8} lg={4}>
-            <Form.Item name="faculty" label="Faculty" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Select Faculty" options={getOptions('faculty')} />
+            <Form.Item name="faculty" label={t("filters.faculty")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectFaculty")} options={getOptions('faculty')} />
             </Form.Item>
           </Col>
 
           <Col xs={24} sm={12} md={8} lg={4}>
-            <Form.Item name="major" label="Major" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Select Major" options={getOptions('major')} />
+            <Form.Item name="major" label={t("filters.major")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectMajor")} options={getOptions('major')} />
             </Form.Item>
           </Col>
 
           <Col xs={24} sm={12} md={8} lg={3}>
-            <Form.Item name="shift" label="Shift" style={{ marginBottom: 12 }}>
+            <Form.Item name="shift" label={t("filters.shift")} style={{ marginBottom: 12 }}>
               <Select 
                 allowClear 
-                placeholder="Select Shift" 
+                placeholder={t("filters.selectShift")} 
                 options={[
                   { value: 'ព្រឹក', label: 'ព្រឹក' },
                   { value: 'រសៀល', label: 'រសៀល' },
@@ -102,11 +104,11 @@ const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
           <Col span={24}>
             <Form.Item style={{ marginBottom: 6 }}>
               <Flex className="student-search-actions" justify="flex-start" gap="small" wrap="wrap">
-                <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: '#070f7a' }}>Search</Button>
+                <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: '#070f7a' }}>{t("actions.search")}</Button>
                 <Button icon={<ClearOutlined/>} onClick={() => { form.resetFields(); onClear(); }} />
-                <Button icon={<PrinterOutlined />} onClick={onPrint} style={{ backgroundColor: '#070f7a', color: "white" }}>Print</Button>
+                <Button icon={<PrinterOutlined />} onClick={onPrint} style={{ backgroundColor: '#070f7a', color: "white" }}>{t("actions.print")}</Button>
                 <ConfigProvider theme={{ token: { colorPrimary: "#070f7a" } }}>
-                  <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/createStudent", { state: { mode: "create" } })}>Add New</Button>
+                  <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate("/createStudent", { state: { mode: "create" } })}>{t("actions.addNew")}</Button>
                 </ConfigProvider>
               </Flex>
             </Form.Item>
@@ -274,7 +276,7 @@ const StudentPage = () => {
           <Button
             type="text"
             size="small"
-            icon={<EditOutlined />}
+            icon={<EditFilled />}
             onClick={() => navigate("/createStudent", { state: { mode: "edit", student: record } })}
           />
           <Popconfirm title="លុប?" onConfirm={() => {
@@ -282,7 +284,7 @@ const StudentPage = () => {
               setMasterData(updated);
               if (filteredData) setFilteredData(updated.filter(i => filteredData.some(f => f.key === i.key)));
           }}>
-            <Button type="text" size="small" danger icon={<DeleteOutlined />} />
+            <Button type="text" size="small" danger icon={<DeleteFilled />} />
           </Popconfirm>
         </Space>
       ),

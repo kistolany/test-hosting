@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Card, Typography, Table, Tag, Space, Button, Modal, Form, Input, Checkbox, message } from "antd";
-import { PlusOutlined, EditOutlined } from "@ant-design/icons";
+import { PlusOutlined, EditFilled } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
@@ -110,7 +110,7 @@ const RoleManage = () => {
         key: "action",
         align: "right",
         render: (_, record) => (
-          <Button type="link" icon={<EditOutlined />} onClick={() => openModal(record)}>
+          <Button type="link" icon={<EditFilled />} onClick={() => openModal(record)}>
             Edit
           </Button>
         ),

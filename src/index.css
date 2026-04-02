@@ -13,6 +13,84 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "Khmer OS Moul Light";
+  src: local("Khmer OS Moul Light"), local("KhmerOSMoulLight");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Khmer OS Battambang";
+  src: local("Khmer OS Battambang"), local("KhmerOSBattambang");
+  font-display: swap;
+}
+
+.i18n-title,
+.i18n-body {
+  transition: font-family 0.2s ease;
+}
+
+.main-shell.lang-en .i18n-title,
+.main-shell.lang-en .i18n-body {
+  font-family: Arial, sans-serif !important;
+}
+
+.main-shell.lang-km,
+.main-shell.lang-km .i18n-body,
+.main-shell.lang-km .ant-menu-title-content,
+.main-shell.lang-km .ant-dropdown-menu-title-content,
+.main-shell.lang-km .ant-btn,
+.main-shell.lang-km .ant-input,
+.main-shell.lang-km .ant-select-selection-item,
+.main-shell.lang-km .ant-select-item-option-content,
+.main-shell.lang-km .ant-typography {
+  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0.03em;
+}
+
+.main-shell.lang-km .i18n-title,
+.main-shell.lang-km .span1,
+.main-shell.lang-km .dashboard {
+  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
+  line-height: 1.45;
+}
+
+/* Force Khmer filter UI font on all pages when km is active */
+.main-shell.lang-km .search-inner-container,
+.main-shell.lang-km .sticky-search,
+.main-shell.lang-km .att-search-inner-container,
+.main-shell.lang-km .search-form,
+.main-shell.lang-km .search-inner-container .ant-form-item-label > label,
+.main-shell.lang-km .sticky-search .ant-form-item-label > label,
+.main-shell.lang-km .att-search-inner-container .ant-form-item-label > label,
+.main-shell.lang-km .search-inner-container .ant-select-selection-item,
+.main-shell.lang-km .sticky-search .ant-select-selection-item,
+.main-shell.lang-km .att-search-inner-container .ant-select-selection-item,
+.main-shell.lang-km .search-inner-container .ant-select-selection-placeholder,
+.main-shell.lang-km .sticky-search .ant-select-selection-placeholder,
+.main-shell.lang-km .att-search-inner-container .ant-select-selection-placeholder,
+.main-shell.lang-km .search-inner-container .ant-picker-input > input,
+.main-shell.lang-km .sticky-search .ant-picker-input > input,
+.main-shell.lang-km .att-search-inner-container .ant-picker-input > input,
+.main-shell.lang-km .search-inner-container .ant-btn,
+.main-shell.lang-km .sticky-search .ant-btn,
+.main-shell.lang-km .att-search-inner-container .ant-btn {
+  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
+}
+
+.main-shell.lang-km .student-table-card,
+.main-shell.lang-km .student-table-card .ant-table,
+.main-shell.lang-km .student-table-card .ant-table-thead > tr > th,
+.main-shell.lang-km .student-table-card .ant-table-tbody > tr > td,
+.main-shell.lang-km .student-table-card .ant-tag,
+.main-shell.lang-km .official-table,
+.main-shell.lang-km .official-table .ant-table-thead > tr > th,
+.main-shell.lang-km .official-table .ant-table-tbody > tr > td,
+.main-shell.lang-km .official-table .ant-tag {
+  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -47,6 +125,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+html[lang="km"] .ant-btn,
+html[lang="km"] button {
+  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
+}
+
+html[lang="en"] .ant-btn,
+html[lang="en"] button {
+  font-family: Arial, sans-serif !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -58,4 +146,30 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Global action-icon style: blue edit + red delete, icon-only look */
+.anticon-edit,
+.anticon-delete {
+  font-size: 17px !important;
+}
+
+.ant-btn .anticon-edit,
+.ant-btn .anticon-delete {
+  font-size: 17px !important;
+}
+
+.ant-btn .anticon-edit {
+  color: #2563eb;
+}
+
+.ant-btn .anticon-delete {
+  color: #ef4444;
+}
+
+.ant-btn-text .anticon-edit,
+.ant-btn-link .anticon-edit,
+.ant-btn-text .anticon-delete,
+.ant-btn-link .anticon-delete {
+  line-height: 1;
 }

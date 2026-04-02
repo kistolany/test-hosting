@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Layout, ConfigProvider, theme as antdTheme, Grid } from "antd";
 import { Outlet } from "react-router-dom";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 import Sidebar from "./Sidebar";
 import Header from "./Header";
@@ -21,6 +22,7 @@ const MainPage = () => {
   const isMobile = !screens.lg;
   const [collapsed, setCollapsed] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const { lang } = useLanguage();
   const { defaultAlgorithm, darkAlgorithm } = antdTheme;
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const MainPage = () => {
 
   return (
     <ConfigProvider theme={{ algorithm: isDark ? darkAlgorithm : defaultAlgorithm }}>
-      <Layout className={`main-shell ${isDark ? "theme-dark" : "theme-light"}`}>
+      <Layout className={`main-shell lang-${lang} ${isDark ? "theme-dark" : "theme-light"}`}>
         
         <Sidebar 
           collapsed={collapsed} 

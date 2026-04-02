@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../i18n/LanguageContext";
 import {
   Button, Form, Row, Col, Select, Card, Table, Tag, Space, Pagination,
   Typography, Tooltip, message, Modal, Input,
 } from "antd";
 import {
-  SwapLeftOutlined, SearchOutlined, DeleteOutlined, 
+  SwapLeftOutlined, SearchOutlined, DeleteFilled, 
   CheckCircleOutlined, ClearOutlined, UserOutlined, TeamOutlined,
 } from "@ant-design/icons";
 
@@ -13,6 +14,7 @@ const { Title, Text } = Typography;
 
 const SortingPage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [filterForm] = Form.useForm();
   const [enrollForm] = Form.useForm(); 
 
@@ -248,15 +250,15 @@ const SortingPage = () => {
         <Form className="student-search-form" form={filterForm} layout="vertical" onFinish={handleSearch}>
           <Row gutter={[12, 12]} align="bottom">
             <Col xs={24} sm={12} md={8} lg={5}>
-              <Form.Item label="Search Name / ID" name="searchText">
-                <Input placeholder="Search name or student ID..." prefix={<SearchOutlined />} allowClear />
+              <Form.Item label={t("filters.searchNameId")} name="searchText">
+                <Input placeholder={t("filters.searchNameOrStudentId")} prefix={<SearchOutlined />} allowClear />
               </Form.Item>
             </Col>
-            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label="Faculty" name="faculty"><Select placeholder="Faculty" allowClear><Select.Option value="it">IT</Select.Option><Select.Option value="law">Law</Select.Option></Select></Form.Item></Col>
-            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label="Major" name="major"><Select placeholder="Major" allowClear><Select.Option value="cs">CS</Select.Option><Select.Option value="ba">BA</Select.Option></Select></Form.Item></Col>
-            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label="Batch" name="batch" rules={[{ required: true, message: "Select Batch" }]}><Select placeholder="Batch" allowClear><Select.Option value="20">20</Select.Option></Select></Form.Item></Col>
-            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label="Year" name="year" rules={[{ required: true, message: "Select Year" }]}><Select placeholder="Year" allowClear><Select.Option value="1">1</Select.Option></Select></Form.Item></Col>
-            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label="Class" name="class"><Select placeholder="Class" allowClear><Select.Option value="A1">A1</Select.Option></Select></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label={t("filters.faculty")} name="faculty"><Select placeholder={t("filters.selectFaculty")} allowClear><Select.Option value="it">IT</Select.Option><Select.Option value="law">Law</Select.Option></Select></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label={t("filters.major")} name="major"><Select placeholder={t("filters.selectMajor")} allowClear><Select.Option value="cs">CS</Select.Option><Select.Option value="ba">BA</Select.Option></Select></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label={t("filters.batch")} name="batch"><Select placeholder={t("filters.selectBatch")} allowClear><Select.Option value="20">20</Select.Option></Select></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label={t("filters.year")} name="year"><Select placeholder={t("filters.selectYear")} allowClear><Select.Option value="1">1</Select.Option></Select></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={3}><Form.Item label={t("filters.class")} name="class"><Select placeholder={t("filters.selectClass")} allowClear><Select.Option value="A1">A1</Select.Option></Select></Form.Item></Col>
             <Col xs={24} sm={12} md={8} lg={4}>
               <Form.Item label={<span style={{ visibility: "hidden" }}>Actions</span>} style={{ marginBottom: 12 }}>
                 <div style={{ display: "flex", gap: 10, justifyContent: "space-between", padding: "0 6px" }}>
@@ -266,10 +268,10 @@ const SortingPage = () => {
                     icon={<SearchOutlined />}
                     style={{ backgroundColor: '#070f7a', width: 132 }}
                   >
-                    Search
+                    {t("actions.search")}
                   </Button>
                   <Button icon={<ClearOutlined />} onClick={handleClear} style={{ width: 132 }}>
-                    Clear
+                    {t("actions.clear")}
                   </Button>
                 </div>
               </Form.Item>

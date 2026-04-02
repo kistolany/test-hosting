@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import { 
   UserOutlined, BookOutlined, ReadOutlined, 
-  TeamOutlined, SaveOutlined, EditOutlined, DeleteOutlined 
+  TeamOutlined, SaveOutlined, EditFilled, DeleteFilled 
 } from '@ant-design/icons';
 
 const { Text } = Typography;
@@ -130,9 +130,9 @@ const Academic = () => {
       width: 100,
       render: (_, record) => (
         <Space size="small">
-          <Button size="small" type="text" icon={<EditOutlined />} onClick={() => onEdit(record)} />
+          <Button size="small" type="text" icon={<EditFilled />} onClick={() => onEdit(record)} />
           <Popconfirm title="Delete?" onConfirm={() => onDelete(record.key)}>
-            <Button size="small" type="text" danger icon={<DeleteOutlined />} />
+            <Button size="small" type="text" danger icon={<DeleteFilled />} />
           </Popconfirm>
         </Space>
       )

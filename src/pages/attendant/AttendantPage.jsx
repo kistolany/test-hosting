@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { 
-  SearchOutlined, EditOutlined, 
+  SearchOutlined, EditFilled, 
   PrinterOutlined, ClearOutlined,
   EyeOutlined, ArrowLeftOutlined,
   UserOutlined, BookOutlined
@@ -10,6 +10,7 @@ import {
   Table, Button, Flex, Space, Skeleton, 
   theme, Form, Row, Col, Select, Tag, Radio, message, Typography, Card, Progress, Statistic, Empty
 } from "antd";
+import { useLanguage } from "../../i18n/LanguageContext";
 const { Text, Title } = Typography;
 const PRIMARY_COLOR = '#070f7a';
 
@@ -19,6 +20,7 @@ const AttendancePage = () => {
   const { token } = theme.useToken();
   const navigate = useNavigate();
   const { isDark } = useOutletContext();
+  const { t } = useLanguage();
   
   const [editingKey, setEditingKey] = useState("");
   const [searchSummary, setSearchSummary] = useState(null);
@@ -243,7 +245,7 @@ const AttendancePage = () => {
           {isEditing(record) ? (
             <Button type="primary" size="small" onClick={() => setEditingKey("")} style={{ backgroundColor: '#52c41a' }}>Save</Button>
           ) : (
-            <Button type="text" icon={<EditOutlined style={{ color: '#1677ff' }} />} onClick={() => setEditingKey(record.key)} />
+            <Button type="text" icon={<EditFilled style={{ color: '#1677ff' }} />} onClick={() => setEditingKey(record.key)} />
           )}
         </Space>
       )
@@ -344,19 +346,19 @@ const AttendancePage = () => {
 }}>
         <Form form={form} layout="vertical" style={{ background: token.colorFillAlter, borderRadius: token.borderRadiusLG, padding: "20px"}}>
           <Row gutter={[24, 24]}>
-            <Col xs={24} sm={12} md={4}><Form.Item name="batch" label="Batch"><Select allowClear placeholder="Batch" options={[{value: '26', label: 'B26'}, {value: '27', label: 'B27'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="studyYear" label="Year"><Select allowClear placeholder="Year" options={[{value: '1', label: 'Year 1'}, {value: '2', label: 'Year 2'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="semester" label="Semester"><Select allowClear placeholder="Semester" options={[{value: '1', label: 'Sem 1'}, {value: '2', label: 'Sem 2'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={6}><Form.Item name="faculty" label="Faculty"><Select allowClear placeholder="Faculty" options={[{value: 'IT', label: 'IT'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={6}><Form.Item name="major" label="Major"><Select allowClear placeholder="Major" options={[{value: 'SNA', label: 'SNA'}, {value: 'English', label: 'English'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={6}><Form.Item name="subject" label="Subject"><Select allowClear placeholder="Subject" options={academicSetup.map(a => ({value: a.subject, label: a.subject}))}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="studyDay" label="Study Day"><Select allowClear placeholder="Day" options={[{value: 'ចន្ទ-សុក្រ', label: 'ចន្ទ-សុក្រ'}, {value: 'សៅរ៍-អាទិត្យ', label: 'សៅរ៍-អាទិត្យ'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="shift" label="Shift"><Select allowClear placeholder="Shift" options={[{value: 'ព្រឹក', label: 'ព្រឹក'}, {value: 'ល្ងាច', label: 'ល្ងាច'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="batch" label={t("filters.batch")}><Select allowClear placeholder={t("filters.selectBatch")} options={[{value: '26', label: 'B26'}, {value: '27', label: 'B27'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="studyYear" label={t("filters.year")}><Select allowClear placeholder={t("filters.selectYear")} options={[{value: '1', label: 'Year 1'}, {value: '2', label: 'Year 2'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="semester" label={t("filters.semester")}><Select allowClear placeholder={t("filters.selectSemester")} options={[{value: '1', label: 'Sem 1'}, {value: '2', label: 'Sem 2'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={6}><Form.Item name="faculty" label={t("filters.faculty")}><Select allowClear placeholder={t("filters.selectFaculty")} options={[{value: 'IT', label: 'IT'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={6}><Form.Item name="major" label={t("filters.major")}><Select allowClear placeholder={t("filters.selectMajor")} options={[{value: 'SNA', label: 'SNA'}, {value: 'English', label: 'English'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={6}><Form.Item name="subject" label={t("filters.subject")}><Select allowClear placeholder={t("filters.selectSubject")} options={academicSetup.map(a => ({value: a.subject, label: a.subject}))}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="studyDay" label={t("filters.studyDay")}><Select allowClear placeholder={t("filters.day")} options={[{value: 'ចន្ទ-សុក្រ', label: 'ចន្ទ-សុក្រ'}, {value: 'សៅរ៍-អាទិត្យ', label: 'សៅរ៍-អាទិត្យ'}]}/></Form.Item></Col>
+            <Col xs={24} sm={12} md={4}><Form.Item name="shift" label={t("filters.shift")}><Select allowClear placeholder={t("filters.selectShift")} options={[{value: 'ព្រឹក', label: 'ព្រឹក'}, {value: 'ល្ងាច', label: 'ល្ងាច'}]}/></Form.Item></Col>
           <Flex gap="middle" style={{ marginTop:'30px' }}>
-            <Button type="primary" icon={<SearchOutlined />} onClick={handleSearch} style={{ backgroundColor: PRIMARY_COLOR }}>Search Student</Button>
-            <Button icon={<EyeOutlined />} onClick={() => setShowMajorReport(true)} disabled={!searchSummary}>View Report</Button>
+            <Button type="primary" icon={<SearchOutlined />} onClick={handleSearch} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.searchStudent")}</Button>
+            <Button icon={<EyeOutlined />} onClick={() => setShowMajorReport(true)} disabled={!searchSummary}>{t("actions.viewReport")}</Button>
             <Button icon={<ClearOutlined/>} onClick={handleClear}></Button>
-            <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: PRIMARY_COLOR, color: 'white' }}>Print List</Button>
+            <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: PRIMARY_COLOR, color: 'white' }}>{t("actions.printList")}</Button>
           </Flex>
           </Row>
           

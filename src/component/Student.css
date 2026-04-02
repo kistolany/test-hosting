@@ -527,6 +527,75 @@
   box-shadow: 0 0 0 3px rgba(59, 97, 255, 0.18), 0 2px 8px rgba(37, 99, 235, 0.2) !important;
 }
 
+.student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #dc2626 !important;
+}
+
+.student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text:hover,
+.student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text:focus {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #ef4444 !important;
+}
+
+.student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text:active {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #b91c1c !important;
+}
+
+.student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #1d4ed8 !important;
+}
+
+.student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text:hover,
+.student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text:focus {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #2563eb !important;
+}
+
+.student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text:active {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #1e40af !important;
+}
+
+.student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text .anticon,
+.student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text .anticon {
+  font-size: 17px;
+}
+
+.theme-dark .student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text {
+  color: #60a5fa !important;
+}
+
+.theme-dark .student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text {
+  color: #f87171 !important;
+}
+
 @media screen {
 }
 
@@ -704,6 +773,22 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.register-student-form .ant-form-item-label > label,
+.register-student-form .ant-input,
+.register-student-form .ant-input-affix-wrapper,
+.register-student-form .ant-input-number,
+.register-student-form .ant-input-number-input,
+.register-student-form .ant-select-selector,
+.register-student-form .ant-select-selection-item,
+.register-student-form .ant-select-selection-placeholder,
+.register-student-form .ant-picker,
+.register-student-form .ant-picker-input > input,
+.register-student-form .ant-mentions,
+.register-student-form .ant-btn {
+  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
+}
+
 .ant-col{
     font-family: "Battambang", system-ui;
   font-weight: 100;
@@ -1005,7 +1090,7 @@ width: 60%;
 .sort-header-title {
   margin: 8px 0 0 0 !important;
   color: #160579 !important;
-  font-family: "Khmer moul", serif !important;
+  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
   font-size: 28px !important;
   text-align: center;
 }
@@ -1013,6 +1098,7 @@ width: 60%;
 .sort-header-subtitle {
   display: block;
   text-align: center;
+  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
 }
 
 .sort-card {
@@ -1175,10 +1261,24 @@ width: 60%;
   border-bottom-color: #334155 !important;
 }
 
+.theme-dark .sort-container .student-table-overflow .ant-table-thead > tr > th,
+.theme-dark .sort-container .student-table-overflow .ant-table-thead > tr > th.ant-table-cell-fix-left,
+.theme-dark .sort-container .student-table-overflow .ant-table-thead > tr > th.ant-table-cell-fix-right {
+  background: linear-gradient(180deg, #1f2f6b 0%, #0f1fb7 100%) !important;
+  color: #e5e7eb !important;
+  border-color: #1f2f6b !important;
+}
+
 .theme-dark .sort-container .ant-table-tbody > tr > td {
   background: #111827 !important;
   color: #e5e7eb !important;
   border-bottom-color: #334155 !important;
+}
+
+.theme-dark .sort-container .student-table-overflow .ant-table-tbody > tr > td.ant-table-cell-fix-left,
+.theme-dark .sort-container .student-table-overflow .ant-table-tbody > tr > td.ant-table-cell-fix-right {
+  background: #111827 !important;
+  border-color: #334155 !important;
 }
 
 .theme-dark .sort-container .ant-pagination .ant-pagination-item,

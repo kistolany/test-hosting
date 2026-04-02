@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './i18n/LanguageContext.jsx';
 
 // Layouts
 import MainPage from './component/layouts/MainPage.jsx';
@@ -35,41 +36,43 @@ import Form from './pages/enrollment/Form.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<LoginPage />} />
-        {/* <Route path="/register" element={<RegisterPage />} /> */}
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LoginPage />} />
+          {/* <Route path="/register" element={<RegisterPage />} /> */}
 
-        {/* Private Routes (Inside MainPage Layout) */}
-        <Route element={<MainPage />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/userManage" element={<UserManage />} />
-          <Route path="/roleManage" element={<RoleManage />} />
-          <Route path="/auditLog" element={<AuditLog />} />
-          <Route path="/profile" element={<ProfileSettings />} />
-          <Route path="/student" element={<StudentPage />} />
-          <Route path="/studentPrint" element={<StudentPrintPage />} />
-          <Route path="/sortingpage" element={<SortingPage />} />
-          <Route path="/createStudent" element={<CreateStudent />} />
-          <Route path="/scholarExam" element={<ScholarExam />} />
-          <Route path="/scholarExamPrint" element={<ScholarExamPrintPage />} />
-          <Route path="/resultScholar" element={<ResultScholar />} />
-          {/* <Route path="/sortConfirm" element={<SortConfirm />} /> */}
-          <Route path="/academic" element={<Academic />} />
-          <Route path="/scholarshipForm" element={<ScholarshipForm />} />
-          <Route path="/receipt" element={<Receipt />} />
-          <Route path="/cover" element={<Cover />} />
-          <Route path="/enrollmentForm" element={<Form />} />
-          <Route path="/enrollmentReciept" element={<Reciept />} />
-          <Route path="/score" element={<ScorePage />} />
-          <Route path="/scoreTeacher" element={<ScoreByTeacher />} />
-          <Route path="/attendant" element={<AttendantPage />} />
-          <Route path="/listNameExam" element={<ListNameExam />} />
-          <Route path="/searchForm" element={<SearchForm />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          {/* Private Routes (Inside MainPage Layout) */}
+          <Route element={<MainPage />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/userManage" element={<UserManage />} />
+            <Route path="/roleManage" element={<RoleManage />} />
+            <Route path="/auditLog" element={<AuditLog />} />
+            <Route path="/profile" element={<ProfileSettings />} />
+            <Route path="/student" element={<StudentPage />} />
+            <Route path="/studentPrint" element={<StudentPrintPage />} />
+            <Route path="/sortingpage" element={<SortingPage />} />
+            <Route path="/createStudent" element={<CreateStudent />} />
+            <Route path="/scholarExam" element={<ScholarExam />} />
+            <Route path="/scholarExamPrint" element={<ScholarExamPrintPage />} />
+            <Route path="/resultScholar" element={<ResultScholar />} />
+            {/* <Route path="/sortConfirm" element={<SortConfirm />} /> */}
+            <Route path="/academic" element={<Academic />} />
+            <Route path="/scholarshipForm" element={<ScholarshipForm />} />
+            <Route path="/receipt" element={<Receipt />} />
+            <Route path="/cover" element={<Cover />} />
+            <Route path="/enrollmentForm" element={<Form />} />
+            <Route path="/enrollmentReciept" element={<Reciept />} />
+            <Route path="/score" element={<ScorePage />} />
+            <Route path="/scoreTeacher" element={<ScoreByTeacher />} />
+            <Route path="/attendant" element={<AttendantPage />} />
+            <Route path="/listNameExam" element={<ListNameExam />} />
+            <Route path="/searchForm" element={<SearchForm />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

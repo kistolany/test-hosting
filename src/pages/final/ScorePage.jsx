@@ -4,18 +4,20 @@ import {
   SearchOutlined, 
   ClearOutlined, 
   PlusOutlined, 
-  EditOutlined, 
-  DeleteOutlined 
+  EditFilled, 
+  DeleteFilled 
 } from '@ant-design/icons';
 import { 
   Table, Button, Flex, Form, Row, Col, Select, Typography, Card, Tag, ConfigProvider, Popconfirm, Tooltip
 } from "antd";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const { Text } = Typography;
 const PRIMARY_COLOR = '#070f7a';
 
 const AdminScorePage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -89,7 +91,7 @@ const AdminScorePage = () => {
       render: (_, r) => (
         <Flex gap="small" justify="center">
           <Tooltip title="Edit">
-            <Button type="text" icon={<EditOutlined />} onClick={() => console.log("Edit student:", r.ID)} />
+            <Button type="text" icon={<EditFilled />} onClick={() => console.log("Edit student:", r.ID)} />
           </Tooltip>
           <Tooltip title="Delete">
             <Popconfirm 
@@ -98,7 +100,7 @@ const AdminScorePage = () => {
               okText="Yes"
               cancelText="No"
             >
-              <Button type="text" danger icon={<DeleteOutlined />} />
+              <Button type="text" danger icon={<DeleteFilled />} />
             </Popconfirm>
           </Tooltip>
         </Flex>
@@ -112,38 +114,38 @@ const AdminScorePage = () => {
         <Form form={form} layout="vertical" onFinish={handleSearch}>
           <Row gutter={[12, 10]} align="bottom">
             <Col xs={24} sm={12} md={8} lg={3}>
-              <Form.Item name="yearLevel" label="Year" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Year" options={[{ value: '១', label: 'ឆ្នាំទី១' }, { value: '២', label: 'ឆ្នាំទី២' }]} />
+              <Form.Item name="yearLevel" label={t("filters.year")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectYear")} options={[{ value: '១', label: 'ឆ្នាំទី១' }, { value: '២', label: 'ឆ្នាំទី២' }]} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={3}>
-              <Form.Item name="batch" label="Batch" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Batch" options={[{ value: '4', label: '4' }]} />
+              <Form.Item name="batch" label={t("filters.batch")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectBatch")} options={[{ value: '4', label: '4' }]} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={3}>
-              <Form.Item name="semester" label="Semester" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Sem" options={[{ value: '1', label: '1' }]} />
+              <Form.Item name="semester" label={t("filters.semester")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectSemester")} options={[{ value: '1', label: '1' }]} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={4}>
-              <Form.Item name="studyYear" label="Study Year" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Study Year" options={[{ value: '២០២៨-២០២៩', label: '២០២៨-២០២៩' }]} />
+              <Form.Item name="studyYear" label={t("filters.studyYear")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectStudyYear")} options={[{ value: '២០២៨-២០២៩', label: '២០២៨-២០២៩' }]} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={4}>
-              <Form.Item name="faculty" label="Faculty" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Faculty" options={[{ value: 'សិល្បៈ មនុស្សសាស្ត្រ និងភាសា', label: 'សិល្បៈ...' }]} />
+              <Form.Item name="faculty" label={t("filters.faculty")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectFaculty")} options={[{ value: 'សិល្បៈ មនុស្សសាស្ត្រ និងភាសា', label: 'សិល្បៈ...' }]} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={4}>
-              <Form.Item name="major" label="Major" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Major" options={[{ value: 'បង្រៀនភាសាអង់គ្លេស', label: 'បង្រៀន...' }]} />
+              <Form.Item name="major" label={t("filters.major")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectMajor")} options={[{ value: 'បង្រៀនភាសាអង់គ្លេស', label: 'បង្រៀន...' }]} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={3}>
-              <Form.Item name="shift" label="Shift" style={{ marginBottom: 12 }}>
-                <Select allowClear placeholder="Select Shift" options={[{ value: 'ព្រឹក', label: 'ព្រឹក' }, { value: 'រសៀល', label: 'រសៀល' }]} />
+              <Form.Item name="shift" label={t("filters.shift")} style={{ marginBottom: 12 }}>
+                <Select allowClear placeholder={t("filters.selectShift")} options={[{ value: 'ព្រឹក', label: 'ព្រឹក' }, { value: 'រសៀល', label: 'រសៀល' }]} />
               </Form.Item>
             </Col>
           </Row>
@@ -152,7 +154,7 @@ const AdminScorePage = () => {
             <Col span={24}>
               <Form.Item style={{ marginBottom: 6 }}>
                 <Flex className="student-search-actions" justify="flex-start" gap="small">
-                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>Search</Button>
+                  <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.search")}</Button>
                   <Button icon={<ClearOutlined />} onClick={() => { form.resetFields(); setData(initialProcessedData); }} />
                   <Button 
                     type="primary" 
@@ -160,7 +162,7 @@ const AdminScorePage = () => {
                     onClick={() => navigate("/ResultScholar")}
                     style={{ backgroundColor: PRIMARY_COLOR, minWidth: 120 }}
                   >
-                    Result
+                    {t("actions.result")}
                   </Button>
                 </Flex>
               </Form.Item>

@@ -1,0 +1,196 @@
+{
+  "header": {
+    "title": {
+      "en": "Welcome",
+      "km": "សូមស្វាគមន៍"
+    },
+    "subtitle": {
+      "en": "Student Management Portal",
+      "km": "ប្រព័ន្ធគ្រប់គ្រងនិស្សិត"
+    },
+    "searchPlaceholder": {
+      "en": "Search",
+      "km": "ស្វែងរក"
+    },
+    "darkMode": {
+      "en": "Dark Mode",
+      "km": "មុខងារងងឹត"
+    },
+    "lightMode": {
+      "en": "Light Mode",
+      "km": "មុខងារភ្លឺ"
+    },
+    "profileSettings": {
+      "en": "Profile Settings",
+      "km": "កំណត់ប្រវត្តិរូប"
+    },
+    "logout": {
+      "en": "Logout",
+      "km": "ចាកចេញ"
+    }
+  },
+  "language": {
+    "en": {
+      "en": "English",
+      "km": "អង់គ្លេស"
+    },
+    "km": {
+      "en": "Khmer",
+      "km": "ខ្មែរ"
+    }
+  },
+  "navigation": {
+    "dashboard": {
+      "en": "Dashboard",
+      "km": "ផ្ទាំងគ្រប់គ្រង"
+    },
+    "student": {
+      "en": "Student",
+      "km": "និស្សិត"
+    },
+    "listStudent": {
+      "en": "List Student",
+      "km": "បញ្ជីនិស្សិត"
+    },
+    "registerStudent": {
+      "en": "Register Student",
+      "km": "ចុះឈ្មោះនិស្សិត"
+    },
+    "scholarshipExam": {
+      "en": "Scholarship Exam",
+      "km": "ប្រឡងអាហារូបករណ៍"
+    },
+    "sortStudent": {
+      "en": "Sort Student",
+      "km": "តម្រៀបនិស្សិត"
+    },
+    "academic": {
+      "en": "Academic",
+      "km": "អប់រំ"
+    },
+    "scholarship": {
+      "en": "Scholarship",
+      "km": "អាហារូបករណ៍"
+    },
+    "enrollment": {
+      "en": "Enrollment",
+      "km": "ចុះឈ្មោះ"
+    },
+    "final": {
+      "en": "Final",
+      "km": "ផ្នែកបញ្ចប់"
+    },
+    "form": {
+      "en": "Form",
+      "km": "ទម្រង់"
+    },
+    "receipt": {
+      "en": "Receipt",
+      "km": "បង្កាន់ដៃ"
+    },
+    "cover": {
+      "en": "Cover",
+      "km": "គម្រប"
+    },
+    "listName": {
+      "en": "List Name",
+      "km": "បញ្ជីឈ្មោះ"
+    },
+    "score": {
+      "en": "Score",
+      "km": "ពិន្ទុ"
+    },
+    "scoreByTeacher": {
+      "en": "Score By Teacher",
+      "km": "ពិន្ទុតាមគ្រូ"
+    },
+    "attendant": {
+      "en": "Attendant",
+      "km": "វត្តមាន"
+    },
+    "setting": {
+      "en": "Setting",
+      "km": "ការកំណត់"
+    },
+    "manageUser": {
+      "en": "Manage User",
+      "km": "គ្រប់គ្រងអ្នកប្រើ"
+    },
+    "manageRole": {
+      "en": "Manage Role",
+      "km": "គ្រប់គ្រងតួនាទី"
+    },
+    "auditLog": {
+      "en": "Audit Log",
+      "km": "កំណត់ហេតុប្រព័ន្ធ"
+    },
+    "profile": {
+      "en": "Profile",
+      "km": "ប្រវត្តិរូប"
+    },
+    "searchForm": {
+      "en": "Search Form",
+      "km": "ទម្រង់ស្វែងរក"
+    }
+  },
+  "university": {
+    "nameKh": {
+      "en": "Cambodia University of Management and Technology",
+      "km": "សាកលវិទ្យាល័យកម្ពុជាគ្រប់គ្រង និងបច្ចេកវិទ្យា"
+    },
+    "nameEn": {
+      "en": "CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY",
+      "km": "សាកលវិទ្យាល័យកម្ពុជាគ្រប់គ្រង និងបច្ចេកវិទ្យា"
+    }
+  },
+  "filters": {
+    "year": { "en": "Year", "km": "ឆ្នាំ" },
+    "batch": { "en": "Batch", "km": "ជំនាន់" },
+    "semester": { "en": "Semester", "km": "ឆមាស" },
+    "studyYear": { "en": "Study Year", "km": "ឆ្នាំសិក្សា" },
+    "faculty": { "en": "Faculty", "km": "មហាវិទ្យាល័យ" },
+    "major": { "en": "Major", "km": "ជំនាញ" },
+    "shift": { "en": "Shift", "km": "វេន" },
+    "class": { "en": "Class", "km": "ថ្នាក់" },
+    "searchNameId": { "en": "Search Name / ID", "km": "ស្វែងរកឈ្មោះ / អត្តលេខ" },
+    "searchNameOrStudentId": { "en": "Search name or student ID...", "km": "ស្វែងរកឈ្មោះ ឬ អត្តលេខនិស្សិត..." },
+    "subject": { "en": "Subject", "km": "មុខវិជ្ជា" },
+    "studyDay": { "en": "Study Day", "km": "ថ្ងៃសិក្សា" },
+    "day": { "en": "Day", "km": "ថ្ងៃ" },
+    "examDate": { "en": "Exam Date", "km": "កាលបរិច្ឆេទប្រឡង" },
+    "examTime": { "en": "Exam Time", "km": "ម៉ោងប្រឡង" },
+    "select": { "en": "Select", "km": "ជ្រើសរើស" },
+    "selectYear": { "en": "Select Year", "km": "ជ្រើសរើសឆ្នាំ" },
+    "selectBatch": { "en": "Select Batch", "km": "ជ្រើសរើសជំនាន់" },
+    "selectSemester": { "en": "Select Semester", "km": "ជ្រើសរើសឆមាស" },
+    "selectStudyYear": { "en": "Select Study Year", "km": "ជ្រើសរើសឆ្នាំសិក្សា" },
+    "selectFaculty": { "en": "Select Faculty", "km": "ជ្រើសរើសមហាវិទ្យាល័យ" },
+    "selectMajor": { "en": "Select Major", "km": "ជ្រើសរើសជំនាញ" },
+    "selectShift": { "en": "Select Shift", "km": "ជ្រើសរើសវេន" },
+    "selectSubject": { "en": "Select Subject", "km": "ជ្រើសរើសមុខវិជ្ជា" },
+    "selectClass": { "en": "Select Class", "km": "ជ្រើសរើសថ្នាក់" }
+  },
+  "actions": {
+    "search": { "en": "Search", "km": "ស្វែងរក" },
+    "clear": { "en": "Clear", "km": "សម្អាត" },
+    "cancel": { "en": "Cancel", "km": "បោះបង់" },
+    "print": { "en": "Print", "km": "បោះពុម្ព" },
+    "addNew": { "en": "Add New", "km": "បន្ថែមថ្មី" },
+    "submit": { "en": "Submit", "km": "បញ្ជូន" },
+    "updateStudent": { "en": "Update Student", "km": "កែប្រែនិស្សិត" },
+    "result": { "en": "Result", "km": "លទ្ធផល" },
+    "saveScores": { "en": "Save Scores", "km": "រក្សាទុកពិន្ទុ" },
+    "searchStudent": { "en": "Search Student", "km": "ស្វែងរកនិស្សិត" },
+    "viewReport": { "en": "View Report", "km": "មើលរបាយការណ៍" },
+    "printList": { "en": "Print List", "km": "បោះពុម្ពបញ្ជី" }
+  },
+  "status": {
+    "pass": { "en": "PASS", "km": "ជាប់" },
+    "fail": { "en": "FAIL", "km": "ធ្លាក់" },
+    "pending": { "en": "PENDING", "km": "កំពុងរង់ចាំ" }
+  },
+  "studentType": {
+    "scholarship": { "en": "Scholarship", "km": "អាហារូបករណ៍" },
+    "pay": { "en": "Pay", "km": "បង់ថ្លៃ" }
+  }
+}

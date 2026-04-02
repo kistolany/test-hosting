@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Table, Button, Modal, Form, Input, Select, Space, Tag, message, Card, Typography, Divider, Upload } from "antd";
-import { UserAddOutlined, EditOutlined, DeleteOutlined, UserOutlined, MailOutlined, LockOutlined, PlusOutlined, CameraOutlined } from "@ant-design/icons";
+import { UserAddOutlined, EditFilled, DeleteFilled, UserOutlined, MailOutlined, LockOutlined, PlusOutlined, CameraOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
@@ -91,9 +91,9 @@ const UserManagement = () => {
       align: 'right',
       render: (_, record) => (
         <Space>
-          <Button type="link" icon={<EditOutlined />} onClick={() => showModal(record)}>Edit</Button>
+          <Button type="link" icon={<EditFilled />} onClick={() => showModal(record)}>Edit</Button>
           <Divider type="vertical" />
-          <Button type="link" danger icon={<DeleteOutlined />} onClick={() => {}}>Delete</Button>
+          <Button type="link" danger icon={<DeleteFilled />} onClick={() => {}}>Delete</Button>
         </Space>
       ),
     },

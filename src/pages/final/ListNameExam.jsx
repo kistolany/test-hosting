@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { 
   SearchOutlined, 
   PlusOutlined, 
-  EditOutlined, 
-  DeleteOutlined, 
+  EditFilled, 
+  DeleteFilled, 
   PrinterOutlined, 
   ClearOutlined
 } from '@ant-design/icons';
@@ -11,6 +11,7 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import {
   Table, Button, Space, ConfigProvider, theme, Form, Row, Col, Select, Popconfirm, DatePicker, TimePicker, Flex
 } from "antd";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const { RangePicker } = DatePicker;
 
@@ -18,6 +19,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
   const navigate = useNavigate();
   const { token } = theme.useToken();
   const [form] = Form.useForm();
+  const { t } = useLanguage();
 
   // Ensures dropdowns always have data even after filtering
   const getOptions = (key) => {
@@ -35,40 +37,40 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
       >
         <Row gutter={[12, 0]} align="bottom">
           <Col xs={24} md={8}>
-            <Form.Item name="major" label="Major" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Select Major" options={getOptions('major')} />
+            <Form.Item name="major" label={t("filters.major")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectMajor")} options={getOptions('major')} />
             </Form.Item>
           </Col>
           <Col xs={12} md={5}>
-            <Form.Item name="batch" label="Batch" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Batch" options={getOptions('batch')} />
+            <Form.Item name="batch" label={t("filters.batch")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectBatch")} options={getOptions('batch')} />
             </Form.Item>
           </Col>
           <Col xs={12} md={4}>
-            <Form.Item name="year" label="Year" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Year" options={getOptions('year')} />
+            <Form.Item name="year" label={t("filters.year")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectYear")} options={getOptions('year')} />
             </Form.Item>
           </Col>
           <Col xs={12} md={4}>
-            <Form.Item name="semester" label="Semester" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Sem..." options={getOptions('semester')} />
+            <Form.Item name="semester" label={t("filters.semester")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectSemester")} options={getOptions('semester')} />
             </Form.Item>
           </Col>
           <Col xs={12} md={3}>
-            <Form.Item name="shift" label="Shift" style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder="Shift" options={getOptions('shift')} />
+            <Form.Item name="shift" label={t("filters.shift")} style={{ marginBottom: 12 }}>
+              <Select allowClear placeholder={t("filters.selectShift")} options={getOptions('shift')} />
             </Form.Item>
           </Col>
         </Row>
 
         <Row gutter={[12, 0]} align="bottom">
           <Col xs={24} md={5}>
-            <Form.Item name="examDateRange" label="Exam Date" style={{ marginBottom: 12 }}>
+            <Form.Item name="examDateRange" label={t("filters.examDate")} style={{ marginBottom: 12 }}>
               <RangePicker style={{ width: '100%' }} format="DD-MM-YYYY" />
             </Form.Item>
           </Col>
           <Col xs={24} md={5}>
-            <Form.Item name="examTime" label="Exam Time" style={{ marginBottom: 12 }}>
+            <Form.Item name="examTime" label={t("filters.examTime")} style={{ marginBottom: 12 }}>
               <TimePicker.RangePicker style={{ width: '100%' }} format="HH:mm" />
             </Form.Item>
           </Col>
@@ -81,7 +83,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
                 icon={<SearchOutlined />}
                 style={{ backgroundColor: '#070f7a', minWidth: 120 }}
               >
-                Search
+                {t("actions.search")}
               </Button>
               <Button
                 icon={<ClearOutlined/>}
@@ -93,7 +95,7 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
                 onClick={() => window.print()}
                 style={{ backgroundColor: '#070f7a', color: "white", minWidth: 100 }}
               >
-                Print
+                {t("actions.print")}
               </Button>
 
             </Flex>
@@ -209,13 +211,13 @@ const FinalExam = () => {
         align: "center",
         render: (_, record) => (
           <Space>
-            <Button type="text" size="small" icon={<EditOutlined />} onClick={() => navigate(`/createStudent${record.key}`)} />
+            <Button type="text" size="small" icon={<EditFilled />} onClick={() => navigate(`/createStudent${record.key}`)} />
             <Popconfirm title="លុប?" onConfirm={() => {
                 const updated = masterData.filter(i => i.key !== record.key);
                 setMasterData(updated);
                 if(filteredData) setFilteredData(updated.filter(i => filteredData.some(f => f.key === i.key)));
             }}>
-              <Button type="text" size="small" danger icon={<DeleteOutlined />} />
+              <Button type="text" size="small" danger icon={<DeleteFilled />} />
             </Popconfirm>
           </Space>
         ),

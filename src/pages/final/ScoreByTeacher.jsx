@@ -3,11 +3,13 @@ import { SaveOutlined, SearchOutlined, ClearOutlined } from '@ant-design/icons';
 import { 
   Table, Button, Flex, Form, Row, Col, Select, InputNumber, Card, Typography, ConfigProvider, Tag, message 
 } from "antd";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const { Text } = Typography;
 const PRIMARY_COLOR = '#070f7a';
 
 const TeacherScorePage = () => {
+  const { t } = useLanguage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -106,27 +108,27 @@ const TeacherScorePage = () => {
       <div className="search-inner-container sticky-search no-print">
         <Form form={form} layout="vertical">
           <Row gutter={[10, 10]}>
-            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="batch" label="Batch"><Select placeholder="Batch" options={[{value:'4', label:'4'}]} /></Form.Item></Col>
-            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="year" label="Year"><Select placeholder="Year" options={[{value:'៤', label:'៤'}]} /></Form.Item></Col>
-            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="semester" label="Semester"><Select placeholder="Sem" options={[{value:'1', label:'1'}]} /></Form.Item></Col>
-            <Col xs={24} sm={12} md={8} lg={5}><Form.Item name="major" label="Major"><Select placeholder="Select Major" /></Form.Item></Col>
-            <Col xs={24} sm={12} md={8} lg={4}><Form.Item name="subject" label="Subject"><Select placeholder="Select Subject" /></Form.Item></Col>
-            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="studyDay" label="Day"><Select placeholder="Mon-Fri" options={[{value:'Mon-Fri', label:'Mon-Fri'}]} /></Form.Item></Col>
-            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="shift" label="Shift"><Select placeholder="Morning" options={[{value:'ព្រឹក', label:'ព្រឹក'}]} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="batch" label={t("filters.batch")}><Select placeholder={t("filters.selectBatch")} options={[{value:'4', label:'4'}]} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="year" label={t("filters.year")}><Select placeholder={t("filters.selectYear")} options={[{value:'៤', label:'៤'}]} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="semester" label={t("filters.semester")}><Select placeholder={t("filters.selectSemester")} options={[{value:'1', label:'1'}]} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={5}><Form.Item name="major" label={t("filters.major")}><Select placeholder={t("filters.selectMajor")} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={8} lg={4}><Form.Item name="subject" label={t("filters.subject")}><Select placeholder={t("filters.selectSubject")} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="studyDay" label={t("filters.day")}><Select placeholder={t("filters.day")} options={[{value:'Mon-Fri', label:'Mon-Fri'}]} /></Form.Item></Col>
+            <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="shift" label={t("filters.shift")}><Select placeholder={t("filters.selectShift")} options={[{value:'ព្រឹក', label:'ព្រឹក'}]} /></Form.Item></Col>
           </Row>
 
           <Row>
             <Col span={24}>
               <Flex gap="small" justify="flex-start" style={{ marginBottom: 10 }}>
-                <Button type="primary" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>Search</Button>
-                <Button icon={<ClearOutlined />} onClick={() => form.resetFields()}>Clear</Button>
+                <Button type="primary" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.search")}</Button>
+                <Button icon={<ClearOutlined />} onClick={() => form.resetFields()}>{t("actions.clear")}</Button>
                 <Button 
                   type="primary" 
                   icon={<SaveOutlined />} 
                   style={{ backgroundColor: PRIMARY_COLOR, marginLeft: 'auto' }}
                   onClick={() => message.success("Scores saved and calculated with Admin Attendance!")}
                 >
-                  Save Scores
+                  {t("actions.saveScores")}
                 </Button>
               </Flex>
             </Col>

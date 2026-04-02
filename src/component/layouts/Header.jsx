@@ -10,6 +10,7 @@ import {
   MenuUnfoldOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const { Header: AntHeader } = Layout;
 
@@ -17,22 +18,23 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
   const navigate = useNavigate();
   const { token: { colorBgContainer } } = antdTheme.useToken();
   const [searchValue, setSearchValue] = useState("");
+  const { lang, setLanguage, t, fontClass } = useLanguage();
 
   const globalPages = useMemo(
     () => [
-      { value: "/dashboard", label: "Dashboard" },
-      { value: "/student", label: "Student" },
-      { value: "/academic", label: "Academic" },
-      { value: "/scholarshipForm", label: "Scholarship Form" },
-      { value: "/enrollmentForm", label: "Enrollment Form" },
-      { value: "/attendant", label: "Attendant" },
-      { value: "/listNameExam", label: "Final" },
-      { value: "/userManage", label: "Manage User" },
-      { value: "/roleManage", label: "Manage Role" },
-      { value: "/auditLog", label: "Audit Log" },
-      { value: "/profile", label: "Profile" },
+      { value: "/dashboard", label: t("navigation.dashboard") },
+      { value: "/student", label: t("navigation.student") },
+      { value: "/academic", label: t("navigation.academic") },
+      { value: "/scholarshipForm", label: t("navigation.scholarship") },
+      { value: "/enrollmentForm", label: t("navigation.enrollment") },
+      { value: "/attendant", label: t("navigation.attendant") },
+      { value: "/listNameExam", label: t("navigation.final") },
+      { value: "/userManage", label: t("navigation.manageUser") },
+      { value: "/roleManage", label: t("navigation.manageRole") },
+      { value: "/auditLog", label: t("navigation.auditLog") },
+      { value: "/profile", label: t("navigation.profile") },
     ],
-    []
+    [t]
   );
 
   const navigateBySearch = (path) => {
@@ -53,12 +55,12 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
   // we handle the logic in the onClick handler.
   const userMenuItems = [
     { 
-      label: "Profile Settings", 
+      label: t("header.profileSettings"), 
       key: "profile", 
       icon: <SettingOutlined /> 
     },
     { 
-      label: "Logout", 
+      label: t("header.logout"), 
       key: "logout", 
       icon: <LogoutOutlined />, 
       danger: true 
@@ -104,16 +106,35 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
           <Input
             allowClear
             prefix={<SearchOutlined style={{ color: "#8c8c8c" }} />}
-            placeholder="Search"
+            placeholder={t("header.searchPlaceholder")}
             onPressEnter={(e) => navigateBySearch(e.target.value)}
           />
         </AutoComplete>
       </div>
 
       <Space size={25} className="header-actions">
+        <Space size={6} className="header-language-switch">
+          <Button
+            size="small"
+            type="default"
+            className={`lang-switch-btn ${lang === "en" ? "active" : ""}`}
+            onClick={() => setLanguage("en")}
+          >
+            EN
+          </Button>
+          <Button
+            size="small"
+            type="default"
+            className={`lang-switch-btn ${lang === "km" ? "active" : ""}`}
+            onClick={() => setLanguage("km")}
+          >
+            ខ្មែរ
+          </Button>
+        </Space>
+
         <Space size={8}>
-          <span style={{ color: isDark ? "#fff" : "#000" }}>
-            {isDark ? "Dark Mode" : "Light Mode"}
+          <span className={fontClass("body")} style={{ color: isDark ? "#fff" : "#000" }}>
+            {isDark ? t("header.darkMode") : t("header.lightMode")}
           </span>
           <Switch
             checked={isDark}
