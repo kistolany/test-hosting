@@ -90,7 +90,7 @@
     },
     "cover": {
       "en": "Cover",
-      "km": "គម្រប"
+      "km": "ប្រវត្តិរូប"
     },
     "listName": {
       "en": "List Name",
@@ -101,8 +101,8 @@
       "km": "ពិន្ទុ"
     },
     "scoreByTeacher": {
-      "en": "Score By Teacher",
-      "km": "ពិន្ទុតាមគ្រូ"
+      "en": "Create Score",
+      "km": "បញ្ចូលពិន្ទុ"
     },
     "attendant": {
       "en": "Attendant",

@@ -6,6 +6,8 @@ import {
   DownOutlined,
   LogoutOutlined,
   SettingOutlined,
+  SunOutlined,
+  MoonFilled,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   BellOutlined,
@@ -19,7 +21,7 @@ const { Header: AntHeader } = Layout;
 const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
   const navigate = useNavigate();
   const { token: { colorBgContainer } } = antdTheme.useToken();
-  const { lang, setLanguage, t, fontClass } = useLanguage();
+  const { lang, setLanguage, t } = useLanguage();
   const [notifications, setNotifications] = useState(() => readNotifications());
   const [searchText, setSearchText] = useState("");
 
@@ -138,14 +140,12 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
         </Space>
 
         <Space size={8}>
-          <span className={fontClass("body")} style={{ color: isDark ? "#fff" : "#000" }}>
-            {isDark ? t("header.darkMode") : t("header.lightMode")}
-          </span>
           <Switch
+            className="theme-mode-switch"
             checked={isDark}
             onChange={(val) => setIsDark(val)}
-            checkedChildren="ON"
-            unCheckedChildren="OFF"
+            checkedChildren={<MoonFilled className="theme-mode-icon" />}
+            unCheckedChildren={<SunOutlined className="theme-mode-icon" />}
           />
         </Space>
 
