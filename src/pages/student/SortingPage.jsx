@@ -245,7 +245,10 @@ const SortingPage = () => {
         </div>
       </div>
 
-      <div className="search-inner-container sticky-search no-print" style={{ width: "calc(100% - 10px)", maxWidth: "1400px", marginBottom: 12, marginRight: 10 }}>
+      <div
+        className="search-inner-container sticky-search no-print"
+        style={{ width: "calc(100% - 40px)", maxWidth: "1400px", margin: "0 auto 12px" }}
+      >
         <Form className="student-search-form" form={filterForm} layout="vertical" onFinish={handleSearch}>
           <Row gutter={[5, 5]} align="bottom">
             <Col xs={24} sm={12} md={8} lg={5}>
@@ -279,7 +282,12 @@ const SortingPage = () => {
         </Form>
       </div>
 
-      <Row className="sort-inline-row" gutter={[16, 12]} align="top">
+      <Row
+        className="sort-inline-row"
+        gutter={[16, 12]}
+        align="top"
+        style={{ width: "calc(100% - 40px)", maxWidth: "1400px", margin: "20px auto 0" }}
+      >
         <Col xs={24} md={16} lg={17}>
           <Card bordered={false} className="user-card-main student-table-card sort-card" style={{ width: '100%', maxWidth: '100%' }}>
             <Table 
