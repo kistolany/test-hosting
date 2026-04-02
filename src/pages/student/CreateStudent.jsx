@@ -76,17 +76,16 @@ const CreateStudent = () => {
       style={{ width: "100%", padding: "20px" }}
     >
       <Row gutter={[16, 0]}>
-      <Col xs={24}>
-          <Form.Item>
+        <Col xs={24}>
+          <div className="create-student-topbar">
             <Button onClick={() => navigate("/student")} htmlType="button">
               <SwapLeftOutlined />
               {tr("Back", "ត្រឡប់")}
             </Button>
-          </Form.Item>
-        </Col>
-       <Col xs={24} sm={24} md={24} lg={24}>
-          <div className="headerText" style={{ color:'#070f7a ' }}>
-            {isEdit ? tr("Update Student Information", "កែប្រែព័ត៌មាននិស្សិត") : tr("Register Student", "ចុះឈ្មោះនិស្សិត")}
+            <div className="headerText" style={{ color: "#070f7a" }}>
+              {isEdit ? tr("Update Student Information", "កែប្រែព័ត៌មាននិស្សិត") : tr("Register Student", "ចុះឈ្មោះនិស្សិត")}
+            </div>
+            <div className="create-student-topbar-spacer" aria-hidden="true" />
           </div>
         </Col>
 

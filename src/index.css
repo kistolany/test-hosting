@@ -173,3 +173,47 @@ html[lang="en"] button {
 .ant-btn-link .anticon-delete {
   line-height: 1;
 }
+
+/* Global table and filter shadows across the app */
+.main-shell .ant-table-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.main-shell .ant-table-container {
+  border-radius: inherit;
+}
+
+.main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
+  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn) {
+  box-shadow: 0 5px 14px rgba(15, 23, 42, 0.1);
+}
+
+.main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
+  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn):hover {
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+}
+
+.main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
+  :is(.ant-select.ant-select-focused, .ant-select.ant-select-open, .ant-picker-focused, .ant-input:focus, .ant-input-affix-wrapper-focused, .ant-input-number-focused, .ant-mentions-focused, .ant-btn:focus, .ant-btn:focus-visible) {
+  box-shadow: 0 0 0 3px rgba(59, 97, 255, 0.16), 0 10px 22px rgba(15, 23, 42, 0.16);
+}
+
+.theme-dark .main-shell .ant-table-wrapper {
+  box-shadow: 0 12px 26px rgba(2, 6, 23, 0.55);
+}
+
+.theme-dark .main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
+  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn) {
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.5);
+}
+
+.theme-dark .main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
+  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn):hover {
+  box-shadow: 0 9px 20px rgba(2, 6, 23, 0.6);
+}
+
+.theme-dark .main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
+  :is(.ant-select.ant-select-focused, .ant-select.ant-select-open, .ant-picker-focused, .ant-input:focus, .ant-input-affix-wrapper-focused, .ant-input-number-focused, .ant-mentions-focused, .ant-btn:focus, .ant-btn:focus-visible) {
+  box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2), 0 12px 24px rgba(2, 6, 23, 0.62);
+}

@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Layout, Space, Switch, Dropdown, Avatar, theme as antdTheme, Button, AutoComplete, Input } from "antd";
+import { Layout, Space, Switch, Dropdown, Avatar, theme as antdTheme, Button } from "antd";
 import {
   UserOutlined,
   DownOutlined,
@@ -8,7 +8,6 @@ import {
   SettingOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  SearchOutlined,
 } from "@ant-design/icons";
 import { useLanguage } from "../../i18n/LanguageContext";
 
@@ -17,39 +16,7 @@ const { Header: AntHeader } = Layout;
 const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
   const navigate = useNavigate();
   const { token: { colorBgContainer } } = antdTheme.useToken();
-  const [searchValue, setSearchValue] = useState("");
   const { lang, setLanguage, t, fontClass } = useLanguage();
-
-  const globalPages = useMemo(
-    () => [
-      { value: "/dashboard", label: t("navigation.dashboard") },
-      { value: "/student", label: t("navigation.student") },
-      { value: "/academic", label: t("navigation.academic") },
-      { value: "/scholarshipForm", label: t("navigation.scholarship") },
-      { value: "/enrollmentForm", label: t("navigation.enrollment") },
-      { value: "/attendant", label: t("navigation.attendant") },
-      { value: "/listNameExam", label: t("navigation.final") },
-      { value: "/userManage", label: t("navigation.manageUser") },
-      { value: "/roleManage", label: t("navigation.manageRole") },
-      { value: "/auditLog", label: t("navigation.auditLog") },
-      { value: "/profile", label: t("navigation.profile") },
-    ],
-    [t]
-  );
-
-  const navigateBySearch = (path) => {
-    const target = String(path || "").trim().toLowerCase();
-    const found = globalPages.find(
-      (page) =>
-        page.value.toLowerCase() === target ||
-        page.label.toLowerCase() === target
-    );
-
-    if (found) {
-      navigate(found.value);
-      setSearchValue("");
-    }
-  };
 
   // Define menu items inside or outside; if they need to navigate, 
   // we handle the logic in the onClick handler.
@@ -91,25 +58,6 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
           onClick={() => setCollapsed(!collapsed)}
           aria-label="Toggle sidebar"
         />
-
-        <AutoComplete
-          className="header-global-search"
-          value={searchValue}
-          options={globalPages}
-          onSelect={(value) => navigateBySearch(value)}
-          onSearch={(value) => setSearchValue(value)}
-          filterOption={(inputValue, option) =>
-            String(option?.label || "").toLowerCase().includes(inputValue.toLowerCase()) ||
-            String(option?.value || "").toLowerCase().includes(inputValue.toLowerCase())
-          }
-        >
-          <Input
-            allowClear
-            prefix={<SearchOutlined style={{ color: "#8c8c8c" }} />}
-            placeholder={t("header.searchPlaceholder")}
-            onPressEnter={(e) => navigateBySearch(e.target.value)}
-          />
-        </AutoComplete>
       </div>
 
       <Space size={25} className="header-actions">

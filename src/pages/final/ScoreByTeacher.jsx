@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SaveOutlined, SearchOutlined, ClearOutlined } from '@ant-design/icons';
 import { 
-  Table, Button, Flex, Form, Row, Col, Select, InputNumber, Card, Typography, ConfigProvider, Tag, message 
+  Table, Button, Flex, Form, Row, Col, Select, InputNumber, Card, Typography, ConfigProvider, Tag, message, Pagination 
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
 
@@ -12,6 +12,8 @@ const TeacherScorePage = () => {
   const { t } = useLanguage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const PAGE_SIZE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
   // MOCK DATA: attScore comes from Admin, others start at 0 for Teacher to fill
   const initialStudents = [
@@ -20,6 +22,9 @@ const TeacherScorePage = () => {
   ];
 
   const [dataSource, setDataSource] = useState(initialStudents);
+  const totalPages = Math.max(1, Math.ceil(dataSource.length / PAGE_SIZE));
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const paginatedData = dataSource.slice(startIndex, startIndex + PAGE_SIZE);
 
   const handleScoreChange = (value, key, field) => {
     const newData = [...dataSource];
@@ -31,7 +36,7 @@ const TeacherScorePage = () => {
   };
 
   const columns = [
-    { title: "ល.រ", width: 60, align: "center", fixed: "left", render: (_, __, i) => i + 1 },
+    { title: "ល.រ", width: 60, align: "center", fixed: "left", render: (_, __, i) => startIndex + i + 1 },
     { title: "អត្តលេខ", dataIndex: "ID", width: 100, align: "center", fixed: "left" },
     { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: 180, fixed: "left" },
     { title: "អក្សរឡាតាំង", dataIndex: "name", width: 180 },
@@ -63,25 +68,57 @@ const TeacherScorePage = () => {
       title: "Class", 
       width: 90, 
       align: "center",
-      render: (_, r) => <InputNumber min={0} max={10} value={r.classScore} onChange={(v) => handleScoreChange(v, r.key, 'classScore')} />
+      render: (_, r) => (
+        <InputNumber
+          min={0}
+          max={10}
+          value={r.classScore}
+          onChange={(v) => handleScoreChange(v, r.key, 'classScore')}
+          style={{ width: "100%" }}
+        />
+      )
     },
     { 
       title: "Assign", 
       width: 90, 
       align: "center",
-      render: (_, r) => <InputNumber min={0} max={10} value={r.assignment} onChange={(v) => handleScoreChange(v, r.key, 'assignment')} />
+      render: (_, r) => (
+        <InputNumber
+          min={0}
+          max={10}
+          value={r.assignment}
+          onChange={(v) => handleScoreChange(v, r.key, 'assignment')}
+          style={{ width: "100%" }}
+        />
+      )
     },
     { 
       title: "Mid", 
       width: 90, 
       align: "center",
-      render: (_, r) => <InputNumber min={0} max={20} value={r.midterm} onChange={(v) => handleScoreChange(v, r.key, 'midterm')} />
+      render: (_, r) => (
+        <InputNumber
+          min={0}
+          max={20}
+          value={r.midterm}
+          onChange={(v) => handleScoreChange(v, r.key, 'midterm')}
+          style={{ width: "100%" }}
+        />
+      )
     },
     { 
       title: "Final", 
       width: 90, 
       align: "center",
-      render: (_, r) => <InputNumber min={0} max={50} value={r.final} onChange={(v) => handleScoreChange(v, r.key, 'final')} />
+      render: (_, r) => (
+        <InputNumber
+          min={0}
+          max={50}
+          value={r.final}
+          onChange={(v) => handleScoreChange(v, r.key, 'final')}
+          style={{ width: "100%" }}
+        />
+      )
     },
 
     // --- FINAL TOTAL (Calculation) ---
@@ -104,10 +141,10 @@ const TeacherScorePage = () => {
   ];
 
   return (
-    <div className="student-page-wrapper student-list-page-wrapper">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
       <div className="search-inner-container sticky-search no-print">
         <Form form={form} layout="vertical">
-          <Row gutter={[10, 10]}>
+          <Row gutter={[10, 5]}>
             <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="batch" label={t("filters.batch")}><Select placeholder={t("filters.selectBatch")} options={[{value:'4', label:'4'}]} /></Form.Item></Col>
             <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="year" label={t("filters.year")}><Select placeholder={t("filters.selectYear")} options={[{value:'៤', label:'៤'}]} /></Form.Item></Col>
             <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="semester" label={t("filters.semester")}><Select placeholder={t("filters.selectSemester")} options={[{value:'1', label:'1'}]} /></Form.Item></Col>
@@ -117,20 +154,22 @@ const TeacherScorePage = () => {
             <Col xs={24} sm={12} md={4} lg={3}><Form.Item name="shift" label={t("filters.shift")}><Select placeholder={t("filters.selectShift")} options={[{value:'ព្រឹក', label:'ព្រឹក'}]} /></Form.Item></Col>
           </Row>
 
-          <Row>
+          <Row gutter={[12, 5]}>
             <Col span={24}>
-              <Flex gap="small" justify="flex-start" style={{ marginBottom: 10 }}>
-                <Button type="primary" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.search")}</Button>
-                <Button icon={<ClearOutlined />} onClick={() => form.resetFields()}>{t("actions.clear")}</Button>
-                <Button 
-                  type="primary" 
-                  icon={<SaveOutlined />} 
-                  style={{ backgroundColor: PRIMARY_COLOR, marginLeft: 'auto' }}
-                  onClick={() => message.success("Scores saved and calculated with Admin Attendance!")}
-                >
-                  {t("actions.saveScores")}
-                </Button>
-              </Flex>
+              <Form.Item style={{ marginBottom: 6 }}>
+                <Flex className="student-search-actions" gap="small" justify="flex-start" wrap="wrap">
+                  <Button type="primary" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.search")}</Button>
+                  <Button icon={<ClearOutlined />} onClick={() => form.resetFields()}>{t("actions.clear")}</Button>
+                  <Button 
+                    type="primary" 
+                    icon={<SaveOutlined />} 
+                    style={{ backgroundColor: PRIMARY_COLOR }}
+                    onClick={() => message.success("Scores saved and calculated with Admin Attendance!")}
+                  >
+                    {t("actions.saveScores")}
+                  </Button>
+                </Flex>
+              </Form.Item>
             </Col>
           </Row>
         </Form>
@@ -148,14 +187,27 @@ const TeacherScorePage = () => {
         }}
       >
         <Card className="user-card-main student-table-card" bordered={false}>
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            loading={loading}
-            scroll={{ x: "max-content", y: "calc(100vh - 450px)" }}
-            pagination={false}
-            bordered
-          />
+          <div className="student-table-overflow-x">
+            <Table
+              className="score-teacher-table"
+              columns={columns}
+              dataSource={paginatedData}
+              loading={loading}
+              scroll={{ x: 1400, y: 420 }}
+              pagination={false}
+              bordered
+              style={{ minWidth: 1400 }}
+            />
+          </div>
+          <div className="student-table-pagination no-print">
+            <Pagination
+              current={currentPage}
+              pageSize={PAGE_SIZE}
+              total={dataSource.length}
+              showSizeChanger={false}
+              onChange={(page) => setCurrentPage(Math.min(page, totalPages))}
+            />
+          </div>
         </Card>
       </ConfigProvider>
     </div>

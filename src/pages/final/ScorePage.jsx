@@ -8,7 +8,7 @@ import {
   DeleteFilled 
 } from '@ant-design/icons';
 import { 
-  Table, Button, Flex, Form, Row, Col, Select, Typography, Card, Tag, ConfigProvider, Popconfirm, Tooltip
+  Table, Button, Flex, Form, Row, Col, Select, Typography, Card, Tag, ConfigProvider, Popconfirm, Tooltip, Pagination
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
 
@@ -20,6 +20,8 @@ const AdminScorePage = () => {
   const { t } = useLanguage();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const PAGE_SIZE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
   const masterData = [
     { key: "1", ID: "B260013", nameKhmer: "អាត ភីយ៉ា", name: "ART PHIYA", gender: "F", dob: "11-Jan-06", yearLevel: "១", batch: "4", semester: "1", studyYear: "២០២៨-២០២៩", faculty: "សិល្បៈ មនុស្សសាស្ត្រ និងភាសា", major: "បង្រៀនភាសាអង់គ្លេស", shift: "ព្រឹក", attScore: 9.5, teacherTotal: 85, isDisqualified: false },
@@ -32,6 +34,9 @@ const AdminScorePage = () => {
   })).sort((a, b) => b.finalTotal - a.finalTotal).map((s, index) => ({ ...s, rank: index + 1 }));
 
   const [data, setData] = useState(initialProcessedData);
+  const totalPages = Math.max(1, Math.ceil(data.length / PAGE_SIZE));
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const paginatedData = data.slice(startIndex, startIndex + PAGE_SIZE);
 
   const handleSearch = (values) => {
     setLoading(true);
@@ -54,12 +59,13 @@ const AdminScorePage = () => {
 
     setTimeout(() => { 
       setData(results); 
+      setCurrentPage(1);
       setLoading(false); 
     }, 400);
   };
 
   const columns = [
-    { title: "ល.រ", width: 70, align: "center", fixed: "left", render: (_, __, i) => i + 1 },
+    { title: "ល.រ", width: 70, align: "center", fixed: "left", render: (_, __, i) => startIndex + i + 1 },
     { title: "អត្តលេខ", dataIndex: "ID", width: 110, align: "center", fixed: "left" },
     { title: "គោត្តនាម និងនាម", dataIndex: "nameKhmer", width: 200, fixed: "left" },
     { title: "អក្សរឡាតាំង", dataIndex: "name", width: 180 },
@@ -88,6 +94,7 @@ const AdminScorePage = () => {
       width: 120,
       align: 'center',
       fixed: 'right',
+      className: "score-action-column",
       render: (_, r) => (
         <Flex gap="small" justify="center">
           <Tooltip title="Edit">
@@ -109,10 +116,10 @@ const AdminScorePage = () => {
   ];
 
   return (
-    <div className="student-page-wrapper student-list-page-wrapper">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
       <div className="search-inner-container sticky-search no-print">
         <Form form={form} layout="vertical" onFinish={handleSearch}>
-          <Row gutter={[12, 10]} align="bottom">
+          <Row gutter={[12, 5]} align="bottom">
             <Col xs={24} sm={12} md={8} lg={3}>
               <Form.Item name="yearLevel" label={t("filters.year")} style={{ marginBottom: 12 }}>
                 <Select allowClear placeholder={t("filters.selectYear")} options={[{ value: '១', label: 'ឆ្នាំទី១' }, { value: '២', label: 'ឆ្នាំទី២' }]} />
@@ -150,12 +157,12 @@ const AdminScorePage = () => {
             </Col>
           </Row>
 
-          <Row gutter={[12, 10]}>
+          <Row gutter={[12, 5]}>
             <Col span={24}>
               <Form.Item style={{ marginBottom: 6 }}>
-                <Flex className="student-search-actions" justify="flex-start" gap="small">
+                <Flex className="student-search-actions" justify="flex-start" gap="small" wrap="wrap">
                   <Button type="primary" htmlType="submit" icon={<SearchOutlined />} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.search")}</Button>
-                  <Button icon={<ClearOutlined />} onClick={() => { form.resetFields(); setData(initialProcessedData); }} />
+                  <Button icon={<ClearOutlined />} onClick={() => { form.resetFields(); setData(initialProcessedData); setCurrentPage(1); }} />
                   <Button 
                     type="primary" 
                     icon={<PlusOutlined />} 
@@ -183,14 +190,27 @@ const AdminScorePage = () => {
         }}
       >
         <Card className="user-card-main student-table-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
-          <Table
-            columns={columns}
-            dataSource={data}
-            loading={loading}
-            scroll={{ x: "max-content", y: "calc(100vh - 430px)" }}
-            pagination={false}
-            bordered={false}
-          />
+          <div className="student-table-overflow-x">
+            <Table
+              className="score-admin-table"
+              columns={columns}
+              dataSource={paginatedData}
+              loading={loading}
+              scroll={{ x: 1450, y: 420 }}
+              pagination={false}
+              bordered={false}
+              style={{ minWidth: 1450 }}
+            />
+          </div>
+          <div className="student-table-pagination no-print">
+            <Pagination
+              current={currentPage}
+              pageSize={PAGE_SIZE}
+              total={data.length}
+              showSizeChanger={false}
+              onChange={(page) => setCurrentPage(Math.min(page, totalPages))}
+            />
+          </div>
         </Card>
       </ConfigProvider>
     </div>

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SearchOutlined, PlusOutlined, EditFilled, DeleteFilled, PrinterOutlined, ClearOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusOutlined, EditFilled, DeleteFilled, PrinterOutlined, ClearOutlined, EyeOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../i18n/LanguageContext";
 import {
   Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag, Pagination
 } from "antd";
+import StudentPreviewModal from "./StudentPreviewModal";
 
 // --- Sub-component for the Search Form ---
 const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
@@ -216,6 +217,9 @@ const StudentPage = () => {
     });
   };
 
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewStudent, setPreviewStudent] = useState(null);
+
   const columns = [
     {
       title: "ល.រ",
@@ -268,11 +272,21 @@ const StudentPage = () => {
       title: "សកម្មភាព",
       key: "action",
       className: "action-column no-print",
-      width: 90,
+      width: 120,
       fixed: "right",
       align: "center",
       render: (_, record) => (
         <Space>
+          <Button
+            type="text"
+            size="small"
+            icon={<EyeOutlined />}
+            onClick={() => {
+              setPreviewStudent(record);
+              setPreviewOpen(true);
+            }}
+            title="Preview"
+          />
           <Button
             type="text"
             size="small"
@@ -325,6 +339,7 @@ const StudentPage = () => {
           />
         </div>
       </Card>
+      <StudentPreviewModal open={previewOpen} student={previewStudent} onClose={() => setPreviewOpen(false)} />
     </div>
   );
 };

@@ -57,6 +57,12 @@
   max-width: 1400px;
 }
 
+.student-page-wrapper .search-inner-container.sticky-search {
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .student-page-wrapper .sticky-search {
   position: static;
   top: auto;
@@ -247,6 +253,54 @@
 .student-list-page-wrapper .student-table-overflow .ant-table-thead > tr > th.ant-table-cell-fix-right-first::after,
 .student-list-page-wrapper .student-table-overflow .ant-table-tbody > tr > td.ant-table-cell-fix-right-first::after {
   box-shadow: inset -8px 0 8px -8px rgba(15, 31, 183, 0.35);
+}
+
+/* Score pages: keep fixed-right column stable while table scrolls on Y */
+.score-admin-table .ant-table-cell-fix-right,
+.score-admin-table .ant-table-cell-fix-right-first,
+.score-admin-table .ant-table-cell-fix-right-last,
+.score-teacher-table .ant-table-cell-fix-right,
+.score-teacher-table .ant-table-cell-fix-right-first,
+.score-teacher-table .ant-table-cell-fix-right-last {
+  background: #ffffff !important;
+  z-index: 4;
+}
+
+.score-admin-table .ant-table-thead > tr > th.ant-table-cell-fix-right,
+.score-admin-table .ant-table-thead > tr > th.ant-table-cell-fix-right-first,
+.score-admin-table .ant-table-thead > tr > th.ant-table-cell-fix-right-last,
+.score-teacher-table .ant-table-thead > tr > th.ant-table-cell-fix-right,
+.score-teacher-table .ant-table-thead > tr > th.ant-table-cell-fix-right-first,
+.score-teacher-table .ant-table-thead > tr > th.ant-table-cell-fix-right-last {
+  z-index: 6;
+}
+
+.score-admin-table .score-action-column {
+  background: #ffffff !important;
+}
+
+.score-admin-table .ant-table-cell-fix-right-first::after,
+.score-admin-table .ant-table-cell-fix-right-last::after,
+.score-teacher-table .ant-table-cell-fix-right-first::after,
+.score-teacher-table .ant-table-cell-fix-right-last::after {
+  box-shadow: inset -8px 0 8px -8px rgba(15, 23, 42, 0.3);
+}
+
+.theme-dark .score-admin-table .ant-table-cell-fix-right,
+.theme-dark .score-admin-table .ant-table-cell-fix-right-first,
+.theme-dark .score-admin-table .ant-table-cell-fix-right-last,
+.theme-dark .score-teacher-table .ant-table-cell-fix-right,
+.theme-dark .score-teacher-table .ant-table-cell-fix-right-first,
+.theme-dark .score-teacher-table .ant-table-cell-fix-right-last,
+.theme-dark .score-admin-table .score-action-column {
+  background: #111827 !important;
+}
+
+.theme-dark .score-admin-table .ant-table-cell-fix-right-first::after,
+.theme-dark .score-admin-table .ant-table-cell-fix-right-last::after,
+.theme-dark .score-teacher-table .ant-table-cell-fix-right-first::after,
+.theme-dark .score-teacher-table .ant-table-cell-fix-right-last::after {
+  box-shadow: inset -8px 0 8px -8px rgba(2, 6, 23, 0.5);
 }
 
 .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar {
@@ -512,19 +566,48 @@
 .student-page-wrapper .student-search-form .ant-select-selector {
   background: #ffffff !important;
   border: 1px solid #b8c5ff !important;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.14) !important;
+  box-shadow: 0 5px 14px rgba(30, 64, 175, 0.12) !important;
   border-radius: 8px !important;
+}
+
+.student-page-wrapper .student-search-form .ant-input,
+.student-page-wrapper .student-search-form .ant-input-affix-wrapper,
+.student-page-wrapper .student-search-form .ant-input-number,
+.student-page-wrapper .student-search-form .ant-picker,
+.student-page-wrapper .student-search-form .ant-mentions {
+  border: 1px solid #b8c5ff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 5px 14px rgba(30, 64, 175, 0.12) !important;
 }
 
 .student-page-wrapper .student-search-form .ant-select:hover .ant-select-selector {
   border-color: #7c96ff !important;
-  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.18) !important;
+  box-shadow: 0 7px 18px rgba(37, 99, 235, 0.18) !important;
 }
 
 .student-page-wrapper .student-search-form .ant-select-focused .ant-select-selector,
 .student-page-wrapper .student-search-form .ant-select-open .ant-select-selector {
   border-color: #3b61ff !important;
-  box-shadow: 0 0 0 3px rgba(59, 97, 255, 0.18), 0 2px 8px rgba(37, 99, 235, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(59, 97, 255, 0.18), 0 8px 20px rgba(37, 99, 235, 0.2) !important;
+}
+
+.student-page-wrapper .student-search-form .ant-input:focus,
+.student-page-wrapper .student-search-form .ant-input-affix-wrapper-focused,
+.student-page-wrapper .student-search-form .ant-input-number-focused,
+.student-page-wrapper .student-search-form .ant-picker-focused,
+.student-page-wrapper .student-search-form .ant-mentions-focused {
+  border-color: #3b61ff !important;
+  box-shadow: 0 0 0 3px rgba(59, 97, 255, 0.18), 0 8px 20px rgba(37, 99, 235, 0.2) !important;
+}
+
+.student-page-wrapper .student-search-actions .ant-btn {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+
+.student-page-wrapper .student-search-actions .ant-btn:hover,
+.student-page-wrapper .student-search-actions .ant-btn:focus,
+.student-page-wrapper .student-search-actions .ant-btn:focus-visible {
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
 }
 
 .student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text {
@@ -586,6 +669,212 @@
 .student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text .anticon,
 .student-page-wrapper .action-delete-btn.ant-btn.ant-btn-text .anticon {
   font-size: 17px;
+}
+
+.student-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 8, 23, 0.55);
+  padding: 18px;
+}
+
+.student-preview-popup {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  border: 1px solid #dbeafe;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 28px 50px rgba(15, 23, 42, 0.35);
+  padding: 18px 18px 16px;
+}
+
+.student-preview-close {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.student-preview-close:hover {
+  color: #0f172a;
+}
+
+.student-preview-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #dbeafe;
+  padding-bottom: 12px;
+}
+
+.student-preview-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  padding: 6px;
+}
+
+.student-preview-head-text h2 {
+  margin: 0;
+  color: #0b1c85;
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.student-preview-head-text p {
+  margin: 3px 0 0;
+  color: #475569;
+  font-size: 13px;
+}
+
+.student-preview-body {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.student-preview-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.student-preview-photo,
+.student-preview-photo-fallback {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  border: 2px solid #93c5fd;
+}
+
+.student-preview-photo {
+  object-fit: cover;
+  background: #e2e8f0;
+}
+
+.student-preview-photo-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  font-weight: 700;
+  color: #1d4ed8;
+  background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 100%);
+}
+
+.student-preview-id {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e3a8a;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+}
+
+.student-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+}
+
+.student-preview-grid > div {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #0f172a;
+  font-size: 14px;
+  word-break: break-word;
+  background: #ffffff;
+}
+
+.student-preview-grid > div > span {
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.student-preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.student-preview-btn {
+  border: 1px solid #1d4ed8;
+  background: #1d4ed8;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.student-preview-btn:hover {
+  background: #1e40af;
+  border-color: #1e40af;
+}
+
+.theme-dark .student-preview-popup {
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  border-color: #334155;
+}
+
+.theme-dark .student-preview-head {
+  border-bottom-color: #334155;
+}
+
+.theme-dark .student-preview-head-text h2 {
+  color: #dbeafe;
+}
+
+.theme-dark .student-preview-head-text p {
+  color: #94a3b8;
+}
+
+.theme-dark .student-preview-grid > div {
+  background: #1f2937;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.theme-dark .student-preview-grid > div > span {
+  color: #93c5fd;
+}
+
+@media (max-width: 768px) {
+  .student-preview-popup {
+    padding: 14px 12px;
+    border-radius: 12px;
+  }
+
+  .student-preview-body {
+    grid-template-columns: 1fr;
+  }
+
+  .student-preview-photo-wrap {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .student-preview-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .theme-dark .student-page-wrapper .action-edit-btn.ant-btn.ant-btn-text {
@@ -658,7 +947,16 @@
 .theme-dark .student-page-wrapper .student-search-form .ant-select-selector {
   background: #111827 !important;
   border-color: #3b4b69 !important;
-  box-shadow: 0 2px 8px rgba(2, 6, 23, 0.45) !important;
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.5) !important;
+}
+
+.theme-dark .student-page-wrapper .student-search-form .ant-input,
+.theme-dark .student-page-wrapper .student-search-form .ant-input-affix-wrapper,
+.theme-dark .student-page-wrapper .student-search-form .ant-input-number,
+.theme-dark .student-page-wrapper .student-search-form .ant-picker,
+.theme-dark .student-page-wrapper .student-search-form .ant-mentions {
+  border-color: #3b4b69 !important;
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.5) !important;
 }
 
 .theme-dark .student-page-wrapper .student-search-form .ant-select:hover .ant-select-selector {
@@ -668,7 +966,26 @@
 .theme-dark .student-page-wrapper .student-search-form .ant-select-focused .ant-select-selector,
 .theme-dark .student-page-wrapper .student-search-form .ant-select-open .ant-select-selector {
   border-color: #5b7cff !important;
-  box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2), 0 2px 10px rgba(2, 6, 23, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2), 0 10px 22px rgba(2, 6, 23, 0.55) !important;
+}
+
+.theme-dark .student-page-wrapper .student-search-form .ant-input:focus,
+.theme-dark .student-page-wrapper .student-search-form .ant-input-affix-wrapper-focused,
+.theme-dark .student-page-wrapper .student-search-form .ant-input-number-focused,
+.theme-dark .student-page-wrapper .student-search-form .ant-picker-focused,
+.theme-dark .student-page-wrapper .student-search-form .ant-mentions-focused {
+  border-color: #5b7cff !important;
+  box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2), 0 10px 22px rgba(2, 6, 23, 0.55) !important;
+}
+
+.theme-dark .student-page-wrapper .student-search-actions .ant-btn {
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.55);
+}
+
+.theme-dark .student-page-wrapper .student-search-actions .ant-btn:hover,
+.theme-dark .student-page-wrapper .student-search-actions .ant-btn:focus,
+.theme-dark .student-page-wrapper .student-search-actions .ant-btn:focus-visible {
+  box-shadow: 0 12px 24px rgba(2, 6, 23, 0.65);
 }
 
 .theme-dark .student-print-page-wrapper .student-print-actions {
@@ -765,6 +1082,26 @@
 
 
 /*createStudent*/
+.register-student-form {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.create-student-topbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.create-student-topbar-spacer {
+  width: 96px;
+}
+
 .headerText{
   display: flex;
   font-size: 24px;
@@ -772,6 +1109,28 @@
   font-family: "Moul", serif;
   font-weight: 400;
   font-style: normal;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .create-student-topbar {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    margin-top: 20px;
+  }
+
+  .create-student-topbar .ant-btn {
+    justify-self: start;
+  }
+
+  .create-student-topbar-spacer {
+    display: none;
+  }
+
+  .headerText {
+    justify-content: flex-start !important;
+    font-size: 20px;
+  }
 }
 
 .register-student-form .ant-form-item-label > label,
@@ -787,6 +1146,92 @@
 .register-student-form .ant-mentions,
 .register-student-form .ant-btn {
   font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
+}
+
+.register-student-form .ant-input,
+.register-student-form .ant-input-affix-wrapper,
+.register-student-form .ant-input-number,
+.register-student-form .ant-mentions,
+.register-student-form .ant-picker,
+.register-student-form .ant-select-selector {
+  border-radius: 8px !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+.register-student-form .ant-select {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+.register-student-form .ant-select:hover {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12) !important;
+}
+
+.register-student-form .ant-btn {
+  border-radius: 8px !important;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12) !important;
+}
+
+.register-student-form .ant-btn:hover,
+.register-student-form .ant-btn:focus,
+.register-student-form .ant-btn:focus-visible {
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18) !important;
+}
+
+.register-student-form .ant-input:focus,
+.register-student-form .ant-input-affix-wrapper-focused,
+.register-student-form .ant-input-number-focused,
+.register-student-form .ant-mentions-focused,
+.register-student-form .ant-picker-focused,
+.register-student-form .ant-select-focused .ant-select-selector,
+.register-student-form .ant-select-open .ant-select-selector {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 8px 20px rgba(15, 23, 42, 0.12) !important;
+  border-color: #3b82f6 !important;
+}
+
+.register-student-form .ant-select.ant-select-focused,
+.register-student-form .ant-select.ant-select-open {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 8px 20px rgba(15, 23, 42, 0.12) !important;
+}
+
+.theme-dark .register-student-form {
+  background: #111827;
+  border-color: #334155;
+  box-shadow: 0 14px 32px rgba(2, 6, 23, 0.5);
+}
+
+.theme-dark .register-student-form .ant-input,
+.theme-dark .register-student-form .ant-input-affix-wrapper,
+.theme-dark .register-student-form .ant-input-number,
+.theme-dark .register-student-form .ant-mentions,
+.theme-dark .register-student-form .ant-picker,
+.theme-dark .register-student-form .ant-select-selector {
+  border-color: #334155 !important;
+  box-shadow: 0 4px 12px rgba(2, 6, 23, 0.45) !important;
+}
+
+.theme-dark .register-student-form .ant-select {
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.5) !important;
+}
+
+.theme-dark .register-student-form .ant-select:hover {
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.58) !important;
+}
+
+.theme-dark .register-student-form .ant-select.ant-select-focused,
+.theme-dark .register-student-form .ant-select.ant-select-open {
+  box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2), 0 10px 22px rgba(2, 6, 23, 0.6) !important;
+}
+
+.theme-dark .register-student-form .ant-btn {
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.5) !important;
+}
+
+.theme-dark .register-student-form .ant-btn:hover,
+.theme-dark .register-student-form .ant-btn:focus,
+.theme-dark .register-student-form .ant-btn:focus-visible {
+  box-shadow: 0 12px 26px rgba(2, 6, 23, 0.65) !important;
 }
 
 .ant-col{
