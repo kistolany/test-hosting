@@ -7,7 +7,7 @@ import {
 } from "antd";
 import {
   SwapLeftOutlined, SearchOutlined,
-  ClearOutlined, UserOutlined,
+  ClearOutlined,
 } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
@@ -231,17 +231,9 @@ const SortingPage = () => {
           <Button type="default" icon={<SwapLeftOutlined />} onClick={() => navigate(-1)}>{t("actions.back")}</Button>
         </div>
         <div className="sort-header-text">
-          <Title className="sort-header-title" level={3}>{t("sortPage.title")}</Title>
-          <Text type="secondary" className="sort-header-subtitle">{t("sortPage.subtitle")}</Text>
-        </div>
-        <div className="sort-header-right">
-          <div className="sort-pending-inline sort-khmer-text">
-            <span className="sort-pending-label">{t("sortPage.pendingStudents")}</span>
-            <span className="sort-pending-value">
-              <UserOutlined style={{ fontSize: 16 }} />
-              <span>{waitingStudents.length}</span>
-            </span>
-          </div>
+          <Title className="sort-header-title" level={3}>
+            {t("sortPage.subtitle")}
+          </Title>
         </div>
       </div>
 
