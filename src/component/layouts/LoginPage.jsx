@@ -1,7 +1,10 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input, Card, Typography } from 'antd';
+import { Button, Checkbox, Form, Input, Card, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { pushNotification, writeCurrentUser } from '../../utils/notifications';
+import { pushAuditLog } from '../../utils/auditLogs';
+import { findMockUser } from '../../data/mockAuthUsers';
 
 const { Title, Text } = Typography;
 
@@ -9,8 +12,37 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    console.log('Login Success:', values);
-    localStorage.setItem("token", "fake-token");
+    const matchedUser = findMockUser(values?.username, values?.password);
+    if (!matchedUser) {
+      message.error('Invalid username or password (mock account).');
+      return;
+    }
+
+    const username = matchedUser.username;
+    const role = matchedUser.role;
+
+    writeCurrentUser({ username, role });
+
+    pushAuditLog({
+      action: 'Login',
+      module: 'Auth',
+      description: `${username || 'User'} logged in as ${role}.`,
+      after: JSON.stringify({ username, role }),
+    });
+
+    if (role === 'admin') {
+      pushNotification({
+        title: 'Admin Login',
+        message: `Admin ${username || 'user'} logged in.`,
+        route: '/dashboard',
+        audienceRoles: ['admin'],
+        excludeUsers: username ? [username] : [],
+        createdBy: username,
+        type: 'admin-login',
+      });
+    }
+
+    localStorage.setItem("token", `fake-token-${username}`);
     navigate("/dashboard"); 
   };
 

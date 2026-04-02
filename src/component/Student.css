@@ -1571,6 +1571,8 @@ width: 60%;
   font-family: "Battambang", "Noto Sans Khmer", sans-serif !important;
   font-size: 28px !important;
   text-align: center;
+  white-space: pre-line;
+  line-height: 1.25;
 }
 
 .sort-header-subtitle {
@@ -1685,6 +1687,13 @@ width: 60%;
 .sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-left-last::after,
 .sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-left-last::after {
   box-shadow: inset 8px 0 8px -8px rgba(148, 163, 184, 0.45);
+}
+
+.sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-left-last::after,
+.sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-left-last::after,
+.sort-waiting-table .ant-table-thead > tr > th.ant-table-cell-fix-right-first::after,
+.sort-waiting-table .ant-table-tbody > tr > td.ant-table-cell-fix-right-first::after {
+  box-shadow: none !important;
 }
 
 .sort-container .sort-waiting-table .ant-table-body,
@@ -1852,12 +1861,16 @@ width: 60%;
   background: #0b1220;
 }
 
-.theme-dark .sort-header-title,
 .theme-dark .sort-khmer-text,
 .theme-dark .sort-header-wrapper .ant-typography,
 .theme-dark .sort-container .ant-typography,
 .theme-dark .sort-container .ant-statistic-title {
   color: #e5e7eb !important;
+}
+
+.theme-dark .sort-header-title,
+.theme-dark .sort-container.sort-lang-km .sort-header-title {
+  color: #ffffff !important;
 }
 
 .theme-dark .sort-container .ant-card {

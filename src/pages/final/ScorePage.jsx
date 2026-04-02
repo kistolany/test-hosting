@@ -11,6 +11,7 @@ import {
   Table, Button, Flex, Form, Row, Col, Select, Typography, Card, Tag, ConfigProvider, Popconfirm, Tooltip, Pagination
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
+import { pushAuditLog } from "../../utils/auditLogs";
 
 const { Text } = Typography;
 const PRIMARY_COLOR = '#070f7a';
@@ -103,7 +104,16 @@ const AdminScorePage = () => {
           <Tooltip title="Delete">
             <Popconfirm 
               title="Delete this record?" 
-              onConfirm={() => setData(data.filter(item => item.key !== r.key))}
+              onConfirm={() => {
+                setData(data.filter(item => item.key !== r.key));
+                pushAuditLog({
+                  action: "Delete",
+                  module: "Final Score",
+                  description: `Deleted score row for ${r.nameKhmer || r.name || r.ID || r.key}.`,
+                  before: JSON.stringify({ id: r.ID, key: r.key, nameKhmer: r.nameKhmer, name: r.name }),
+                  after: null,
+                });
+              }}
               okText="Yes"
               cancelText="No"
             >

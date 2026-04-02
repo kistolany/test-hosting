@@ -25,6 +25,7 @@ import {
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
 import { pushNotification } from "../../utils/notifications";
+import { pushAuditLog } from "../../utils/auditLogs";
 
 const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
   const [form] = Form.useForm();
@@ -445,6 +446,14 @@ const ScholarExam = () => {
         route: "/sortingpage",
       });
     }
+
+    pushAuditLog({
+      action: "Update",
+      module: "Scholar Exam",
+      description: `Updated scholar status for ${targetStudent?.nameKhmer || targetStudent?.name || key}.`,
+      before: JSON.stringify({ status: previousStatus }),
+      after: JSON.stringify({ status: nextStatus }),
+    });
   };
 
   const onPrint = () => {
@@ -585,6 +594,18 @@ const ScholarExam = () => {
               if (filteredData) {
                 setFilteredData(updated.filter((i) => filteredData.some((f) => f.key === i.key)));
               }
+              pushAuditLog({
+                action: "Delete",
+                module: "Scholar Exam",
+                description: `Deleted scholar exam row for ${record.nameKhmer || record.name || record.ID || record.key}.`,
+                before: JSON.stringify({
+                  id: record.ID,
+                  key: record.key,
+                  nameKhmer: record.nameKhmer,
+                  name: record.name,
+                }),
+                after: null,
+              });
             }}
           >
             <Button

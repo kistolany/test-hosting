@@ -126,22 +126,20 @@ const SortingPage = () => {
   const columnTextStyle = { fontSize: '13px', fontWeight: '500' };
 
   const commonColumns = [
-    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">អត្តលេខ</Text>, dataIndex: "id", key: "id", width: 90, render: (text) => <Text style={columnTextStyle}>{text}</Text> },
-    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ឈ្មោះខ្មែរ</Text>, dataIndex: "nameKh", key: "nameKh", width: 150, render: (text) => <Text style={{ ...columnTextStyle, color: '#070f7a' }}>{text}</Text> },
-    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ឈ្មោះឡាតាំង</Text>, dataIndex: "nameEn", key: "nameEn", width: 150, render: (text) => <Text style={columnTextStyle}>{text}</Text> },
+    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">អត្តលេខ</Text>, dataIndex: "id", key: "id", width: 80, render: (text) => <Text style={columnTextStyle}>{text}</Text> },
+    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ឈ្មោះខ្មែរ</Text>, dataIndex: "nameKh", key: "nameKh", width: 120, render: (text) => <Text style={{ ...columnTextStyle, color: '#070f7a' }}>{text}</Text> },
     { 
-      title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ភេទ</Text>, dataIndex: "gender", key: "gender", width: 70, align: 'center',
+      title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ភេទ</Text>, dataIndex: "gender", key: "gender", width: 60, align: 'center',
       render: (gender) => (
         <Tag color={gender === "M" ? "geekblue" : "volcano"} style={{ fontSize: '12px', padding: '1px 8px' }}>
           {gender === "M" ? "ប្រុស" : "ស្រី"}
         </Tag>
       ),
     },
-    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ថ្ងៃខែឆ្នាំកំណើត</Text>, dataIndex: "dob", key: "dob", width: 130, render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
-    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ជំនាញ</Text>, dataIndex: "major", key: "major", width: 90, render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
-    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">លេខទូរស័ព្ទ</Text>, dataIndex: "phone", key: "phone", width: 130, render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
+    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ថ្ងៃខែឆ្នាំកំណើត</Text>, dataIndex: "dob", key: "dob", width: 110, render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
+    { title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ជំនាញ</Text>, dataIndex: "major", key: "major", width: 70, render: (text) => <Text style={{...columnTextStyle, textTransform: 'uppercase'}}>{text}</Text> },
     { 
-      title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ប្រភេទនិស្សិត</Text>, dataIndex: "type", key: "type", width: 110,
+      title: <Text strong style={{ fontSize: '13px', color: '#ffffff' }} className="sort-khmer-text">ប្រភេទនិស្សិត</Text>, dataIndex: "type", key: "type", width: 92,
       render: (type) => (
         <Tag color={type === "Scholarship" ? "gold" : "cyan"} style={{ fontSize: '12px' }}>
           {type === "Scholarship" ? "Scholarship" : "Pay"}
@@ -150,10 +148,7 @@ const SortingPage = () => {
     },
   ];
 
-  const waitingColumns = [
-    ...commonColumns,
-    { key: "action", width: 70, fixed: 'right', align: 'center' }
-  ];
+  const waitingColumns = [...commonColumns];
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const pagedWaitingStudents = waitingStudents.slice(startIndex, startIndex + PAGE_SIZE);
@@ -288,13 +283,12 @@ const SortingPage = () => {
                 selectedRowKeys, 
                 onChange: setSelectedRowKeys,
                 columnClassName: "no-print",
-                fixed: true,
-                columnWidth: 42,
+                columnWidth: 34,
               }} 
               columns={waitingColumns} 
               dataSource={pagedWaitingStudents} 
               pagination={false}
-              scroll={{ x: 1200, y: 390 }}
+              scroll={{ x: 980, y: 390 }}
               bordered={false}
             />
 

@@ -21,6 +21,7 @@ import {
 } from "@ant-design/icons";
 import { useLanguage } from "../../i18n/LanguageContext";
 import { pushNotification } from "../../utils/notifications";
+import { pushAuditLog } from "../../utils/auditLogs";
 
 const { RangePicker } = DatePicker;
 
@@ -80,6 +81,26 @@ const CreateStudent = () => {
       pushNotification({
         title: isEdit ? "Student Type Updated" : "New PAY Student",
         message: `${studentName} requires enrollment processing.`,
+      });
+    }
+
+    if (isEdit) {
+      pushAuditLog({
+        action: "Update",
+        module: "Students",
+        description: `Updated student ${studentName}.`,
+        before: student ? JSON.stringify({
+          id: student.ID,
+          nameKhmer: student.nameKhmer,
+          name: student.name,
+          studentType: student.studentType || student.StudentType,
+        }) : null,
+        after: JSON.stringify({
+          id: values.Input,
+          nameKhmer: values.NameKhmer,
+          name: values.NameEnglish,
+          studentType: values.StudentType,
+        }),
       });
     }
 

@@ -19,7 +19,7 @@ const { Sider } = Layout;
 const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, fontClass } = useLanguage();
+  const { t, fontClass, lang } = useLanguage();
   const isSettingActive = ["/userManage", "/roleManage", "/auditLog"].includes(location.pathname);
 
   const menuItems = [
@@ -152,7 +152,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
           menu={{ items: settingMenuItems, onClick: handleSettingClick }}
           trigger={["click"]}
           placement="topRight"
-          overlayClassName={`setting-popup-menu ${isDark ? "setting-popup-menu-dark" : ""}`}
+          overlayClassName={`setting-popup-menu setting-popup-menu-${lang} ${isDark ? "setting-popup-menu-dark" : ""}`}
         >
           <button
             type="button"

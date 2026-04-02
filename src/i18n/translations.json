@@ -24,6 +24,34 @@
       "en": "Profile Settings",
       "km": "កំណត់ប្រវត្តិរូប"
     },
+    "noNotifications": {
+      "en": "No notifications",
+      "km": "មិនមានសារជូនដំណឹង"
+    },
+    "clearAll": {
+      "en": "Clear All",
+      "km": "លុបទាំងអស់"
+    },
+    "select": {
+      "en": "Select",
+      "km": "ជ្រើសរើស"
+    },
+    "cancelSelect": {
+      "en": "Cancel Select",
+      "km": "បោះបង់ជ្រើសរើស"
+    },
+    "clearSelected": {
+      "en": "Clear Selected",
+      "km": "លុបដែលបានជ្រើស"
+    },
+    "newLabel": {
+      "en": "NEW",
+      "km": "ថ្មី"
+    },
+    "previewedLabel": {
+      "en": "PREVIEWED",
+      "km": "បានមើល"
+    },
     "logout": {
       "en": "Logout",
       "km": "ចាកចេញ"
@@ -196,7 +224,67 @@
   },
   "sortPage": {
     "title": { "en": "All Student List", "km": "បញ្ជីឈ្មោះនិស្សិតទាំងអស់" },
-    "subtitle": { "en": "Manage and arrange student enrollment by section", "km": "គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ" },
+    "subtitle": { "en": "Manage and arrange student\nenrollment by section", "km": "គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ" },
     "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" }
+  },
+  "userManage": {
+    "title": { "en": "Staff Users", "km": "អ្នកប្រើបុគ្គលិក" },
+    "addUser": { "en": "Add User", "km": "បន្ថែមអ្នកប្រើ" },
+    "totalStaff": { "en": "Total Staff", "km": "បុគ្គលិកសរុប" },
+    "active": { "en": "Active", "km": "កំពុងដំណើរការ" },
+    "inactive": { "en": "Inactive", "km": "មិនដំណើរការ" },
+    "roles": { "en": "Roles", "km": "តួនាទី" },
+    "tablePreview": { "en": "Table Preview", "km": "មើលតារាង" },
+    "resultsAvailable": { "en": "results available", "km": "លទ្ធផលមាន" },
+    "searchPlaceholder": { "en": "Search...", "km": "ស្វែងរក..." },
+    "rows": { "en": "ROWS", "km": "ជួរ" },
+    "columns": {
+      "name": { "en": "Name", "km": "ឈ្មោះ" },
+      "email": { "en": "Email", "km": "អ៊ីមែល" },
+      "phone": { "en": "Phone", "km": "ទូរស័ព្ទ" },
+      "role": { "en": "Role", "km": "តួនាទី" },
+      "status": { "en": "Status", "km": "ស្ថានភាព" },
+      "lastLogin": { "en": "Last Login", "km": "ចូលប្រើចុងក្រោយ" },
+      "joined": { "en": "Joined", "km": "កាលបរិច្ឆេទចូល" },
+      "action": { "en": "Action", "km": "សកម្មភាព" }
+    },
+    "modal": {
+      "addUser": { "en": "Add User", "km": "បន្ថែមអ្នកប្រើ" },
+      "updateUser": { "en": "Update User", "km": "កែប្រែអ្នកប្រើ" },
+      "viewUser": { "en": "User Detail", "km": "ព័ត៌មានអ្នកប្រើ" },
+      "profileInfo": { "en": "User Profile", "km": "ប្រវត្តិរូបអ្នកប្រើ" },
+      "deleteTitle": { "en": "Delete this user?", "km": "លុបអ្នកប្រើនេះមែនទេ?" },
+      "saveChanges": { "en": "Save Changes", "km": "រក្សាទុកការកែប្រែ" },
+      "createUser": { "en": "Create User", "km": "បង្កើតអ្នកប្រើ" }
+    },
+    "form": {
+      "photo": { "en": "Photo", "km": "រូបភាព" },
+      "uploadPhoto": { "en": "Upload Profile Picture", "km": "បញ្ចូលរូបភាពប្រវត្តិរូប" },
+      "fullName": { "en": "Full Name", "km": "ឈ្មោះពេញ" },
+      "fullNamePlaceholder": { "en": "e.g., Chan Sopheak", "km": "ឧ. ចាន់ សុភ័ក្ត្រ" },
+      "emailUsername": { "en": "Email / Username", "km": "អ៊ីមែល / ឈ្មោះអ្នកប្រើ" },
+      "emailPlaceholder": { "en": "username@cumt.edu.kh", "km": "username@cumt.edu.kh" },
+      "phone": { "en": "Phone", "km": "ទូរស័ព្ទ" },
+      "phonePlaceholder": { "en": "+855 12 000 001", "km": "+855 12 000 001" },
+      "password": { "en": "Password", "km": "ពាក្យសម្ងាត់" },
+      "role": { "en": "Role", "km": "តួនាទី" },
+      "status": { "en": "Status", "km": "ស្ថានភាព" },
+      "required": { "en": "Required", "km": "ត្រូវបំពេញ" },
+      "validEmail": { "en": "Please enter a valid email", "km": "សូមបញ្ចូលអ៊ីមែលត្រឹមត្រូវ" },
+      "setPassword": { "en": "Please set a password", "km": "សូមកំណត់ពាក្យសម្ងាត់" },
+      "keepPassword": { "en": "Leave blank to keep current password.", "km": "ទុកទទេដើម្បីរក្សាពាក្យសម្ងាត់បច្ចុប្បន្ន។" }
+    },
+    "roleOptions": {
+      "admin": { "en": "Admin", "km": "អ្នកគ្រប់គ្រង" },
+      "cashier": { "en": "Cashier", "km": "គណនេយ្យករ" },
+      "orderManager": { "en": "Order Manager", "km": "អ្នកគ្រប់គ្រងការបញ្ជាទិញ" },
+      "finance": { "en": "Finance", "km": "ហិរញ្ញវត្ថុ" },
+      "support": { "en": "Support", "km": "ជំនួយ" }
+    },
+    "messages": {
+      "userUpdated": { "en": "User updated successfully", "km": "បានកែប្រែអ្នកប្រើដោយជោគជ័យ" },
+      "userCreated": { "en": "New user account created", "km": "បានបង្កើតគណនីអ្នកប្រើថ្មី" },
+      "userDeleted": { "en": "User deleted", "km": "បានលុបអ្នកប្រើ" }
+    }
   }
 }

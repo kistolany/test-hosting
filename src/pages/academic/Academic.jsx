@@ -7,6 +7,7 @@ import {
   UserOutlined, BookOutlined, ReadOutlined, 
   TeamOutlined, SaveOutlined, EditFilled, DeleteFilled 
 } from '@ant-design/icons';
+import { pushAuditLog } from '../../utils/auditLogs';
 
 const { Text } = Typography;
 const PRIMARY_COLOR = '#070f7a';
@@ -53,20 +54,36 @@ const Academic = () => {
   };
 
   const onDelete = (key) => {
+    const target = dataSource.find((item) => item.key === key) || null;
     const deleteRecursive = (data) => data
       .filter(item => item.key !== key)
       .map(item => item.children ? { ...item, children: deleteRecursive(item.children) } : item);
     setDataSource(deleteRecursive(dataSource));
+    pushAuditLog({
+      action: "Delete",
+      module: "Academic",
+      description: `Deleted academic record ${target?.name || key}.`,
+      before: target ? JSON.stringify(target) : JSON.stringify({ key }),
+      after: null,
+    });
   };
 
   const onFinish = (values) => {
     if (editingRecord) {
+      const before = editingRecord;
       const updateRecursive = (data) => data.map(item => {
         if (item.key === editingRecord.key) return { ...item, ...values, name: activeModal === 'class' ? values.room : values.name };
         if (item.children) return { ...item, children: updateRecursive(item.children) };
         return item;
       });
       setDataSource(updateRecursive(dataSource));
+      pushAuditLog({
+        action: "Update",
+        module: "Academic",
+        description: `Updated academic record ${before?.name || editingRecord.key}.`,
+        before: JSON.stringify(before),
+        after: JSON.stringify({ ...before, ...values, name: activeModal === 'class' ? values.room : values.name }),
+      });
     } else {
       const newKey = Date.now().toString();
       const finalName = activeModal === 'class' ? values.room : values.name;

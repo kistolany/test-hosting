@@ -12,6 +12,7 @@ import {
   Table, Button, Space, ConfigProvider, theme, Form, Row, Col, Select, Popconfirm, DatePicker, TimePicker, Flex
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
+import { pushAuditLog } from "../../utils/auditLogs";
 
 const { RangePicker } = DatePicker;
 
@@ -199,6 +200,13 @@ const FinalExam = () => {
             onChange={(e) => {
               const updated = masterData.map(item => item.key === record.key ? { ...item, Note: e.target.value } : item);
               setMasterData(updated);
+              pushAuditLog({
+                action: "Update",
+                module: "Final List",
+                description: `Updated note for ${record.nameKhmer || record.name || record.key}.`,
+                before: JSON.stringify({ note: record.Note || "" }),
+                after: JSON.stringify({ note: e.target.value }),
+              });
             }}
           />
         )
@@ -216,6 +224,13 @@ const FinalExam = () => {
                 const updated = masterData.filter(i => i.key !== record.key);
                 setMasterData(updated);
                 if(filteredData) setFilteredData(updated.filter(i => filteredData.some(f => f.key === i.key)));
+                pushAuditLog({
+                  action: "Delete",
+                  module: "Final List",
+                  description: `Deleted final list row for ${record.nameKhmer || record.name || record.key}.`,
+                  before: JSON.stringify({ id: record.key, nameKhmer: record.nameKhmer, name: record.name }),
+                  after: null,
+                });
             }}>
               <Button type="text" size="small" danger icon={<DeleteFilled />} />
             </Popconfirm>

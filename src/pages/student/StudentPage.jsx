@@ -6,6 +6,7 @@ import {
   Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag, Pagination
 } from "antd";
 import StudentPreviewModal from "./StudentPreviewModal";
+import { pushAuditLog } from "../../utils/auditLogs";
 
 // --- Sub-component for the Search Form ---
 const AdvancedSearchForm = ({ onSearch, onClear, onPrint, initialData }) => {
@@ -297,6 +298,18 @@ const StudentPage = () => {
               const updated = masterData.filter(i => i.key !== record.key);
               setMasterData(updated);
               if (filteredData) setFilteredData(updated.filter(i => filteredData.some(f => f.key === i.key)));
+              pushAuditLog({
+                action: "Delete",
+                module: "Students",
+                description: `Deleted student ${record.nameKhmer || record.name || record.ID || record.key}.`,
+                before: JSON.stringify({
+                  id: record.ID,
+                  nameKhmer: record.nameKhmer,
+                  name: record.name,
+                  key: record.key,
+                }),
+                after: null,
+              });
           }}>
             <Button type="text" size="small" danger icon={<DeleteFilled />} />
           </Popconfirm>

@@ -1,197 +1,317 @@
 import React, { useMemo, useState } from "react";
-import { Card, Typography, Space, Button, Modal, Form, Input, Checkbox, message } from "antd";
-import {
-  PlusCircleOutlined,
-  EyeOutlined,
-  EditOutlined,
-  TeamOutlined,
-  UnorderedListOutlined,
-  FileTextOutlined,
-  UserAddOutlined,
-  IdcardOutlined,
-  CalendarOutlined,
-  SolutionOutlined,
-} from "@ant-design/icons";
+import { Card, Button, Modal, Form, Input, InputNumber, message } from "antd";
+import { CheckOutlined, CloseOutlined, SafetyOutlined, TeamOutlined, PlusOutlined, EditOutlined } from "@ant-design/icons";
+import { pushAuditLog } from "../../utils/auditLogs";
 
-const { Title, Text } = Typography;
+const permissionColumns = ["VIEW", "CREATE", "EDIT", "DELETE", "APPROVE", "EXPORT"];
+const defaultModules = ["Dashboard", "Products", "Orders", "Customers", "Inventory", "Reports", "Users", "Settings"];
 
-const permissionCatalog = [
-  { key: "student.view", label: "View Student", icon: <EyeOutlined /> },
-  { key: "student.create", label: "Create Student", icon: <UserAddOutlined /> },
-  { key: "student.edit", label: "Edit Student", icon: <EditOutlined /> },
-  { key: "attendance.list", label: "List Attendance", icon: <UnorderedListOutlined /> },
-  { key: "attendance.manage", label: "Manage Attendance", icon: <CalendarOutlined /> },
-  { key: "academic.view", label: "View Academic", icon: <FileTextOutlined /> },
-  { key: "scholarship.list", label: "List Scholarship", icon: <SolutionOutlined /> },
-  { key: "enrollment.view", label: "View Enrollment", icon: <IdcardOutlined /> },
-  { key: "role.manage", label: "Manage Role", icon: <TeamOutlined /> },
+const initialRoleCards = [
+  {
+    id: "admin",
+    name: "Admin",
+    description: "Full access to all modules and settings.",
+    users: 1,
+    modules: [
+      { name: "Dashboard", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Products", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Orders", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Customers", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Inventory", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Reports", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Users", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Settings", permissions: [1, 1, 1, 1, 1, 1] },
+    ],
+  },
+  {
+    id: "product-manager",
+    name: "Product Manager",
+    description: "Manage products, categories, and brands.",
+    users: 1,
+    modules: [
+      { name: "Dashboard", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Products", permissions: [1, 1, 1, 1, 0, 1] },
+      { name: "Orders", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Customers", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Inventory", permissions: [1, 1, 1, 0, 0, 1] },
+      { name: "Reports", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Users", permissions: [0, 0, 0, 0, 0, 0] },
+      { name: "Settings", permissions: [0, 0, 0, 0, 0, 0] },
+    ],
+  },
+  {
+    id: "sales-manager",
+    name: "Sales Manager",
+    description: "Oversee orders, customers, and sales reporting.",
+    users: 2,
+    modules: [
+      { name: "Dashboard", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Products", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Orders", permissions: [1, 1, 1, 1, 1, 1] },
+      { name: "Customers", permissions: [1, 1, 1, 0, 0, 1] },
+      { name: "Inventory", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Reports", permissions: [1, 0, 0, 0, 1, 1] },
+      { name: "Users", permissions: [0, 0, 0, 0, 0, 0] },
+      { name: "Settings", permissions: [0, 0, 0, 0, 0, 0] },
+    ],
+  },
+  {
+    id: "support",
+    name: "Support",
+    description: "Handle customer issues and monitor order status.",
+    users: 3,
+    modules: [
+      { name: "Dashboard", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Products", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Orders", permissions: [1, 0, 1, 0, 0, 0] },
+      { name: "Customers", permissions: [1, 0, 1, 0, 0, 0] },
+      { name: "Inventory", permissions: [0, 0, 0, 0, 0, 0] },
+      { name: "Reports", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Users", permissions: [0, 0, 0, 0, 0, 0] },
+      { name: "Settings", permissions: [0, 0, 0, 0, 0, 0] },
+    ],
+  },
+  {
+    id: "viewer",
+    name: "Viewer",
+    description: "Read-only access to dashboard and reports.",
+    users: 4,
+    modules: [
+      { name: "Dashboard", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Products", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Orders", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Customers", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Inventory", permissions: [1, 0, 0, 0, 0, 0] },
+      { name: "Reports", permissions: [1, 0, 0, 0, 0, 1] },
+      { name: "Users", permissions: [0, 0, 0, 0, 0, 0] },
+      { name: "Settings", permissions: [0, 0, 0, 0, 0, 0] },
+    ],
+  },
 ];
 
 const RoleManage = () => {
-  const [roles, setRoles] = useState([
-    {
-      id: 1,
-      name: "Admin",
-      key: "admin",
-      permissions: [
-        "student.view",
-        "student.create",
-        "student.edit",
-        "attendance.list",
-        "attendance.manage",
-        "academic.view",
-        "scholarship.list",
-        "enrollment.view",
-        "role.manage",
-      ],
-    },
-    {
-      id: 2,
-      name: "Manager",
-      key: "manager",
-      permissions: [
-        "student.view",
-        "student.create",
-        "attendance.list",
-        "academic.view",
-        "enrollment.view",
-      ],
-    },
-    {
-      id: 3,
-      name: "Editor",
-      key: "editor",
-      permissions: ["student.view", "student.edit", "attendance.list", "academic.view"],
-    },
-    {
-      id: 4,
-      name: "Viewer",
-      key: "viewer",
-      permissions: ["student.view", "attendance.list", "academic.view"],
-    },
-  ]);
+  const [roles, setRoles] = useState(initialRoleCards);
+  const [roleModalOpen, setRoleModalOpen] = useState(false);
+  const [editingRoleId, setEditingRoleId] = useState(null);
+  const [roleForm] = Form.useForm();
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [form] = Form.useForm();
+  const editingRole = useMemo(() => roles.find((role) => role.id === editingRoleId) || null, [roles, editingRoleId]);
 
-  const openModal = () => {
-    form.resetFields();
-    form.setFieldsValue({ permissions: [] });
-    setModalOpen(true);
+  const openCreateRole = () => {
+    setEditingRoleId(null);
+    roleForm.resetFields();
+    roleForm.setFieldsValue({ users: 1 });
+    setRoleModalOpen(true);
   };
 
-  const handleSave = (values) => {
-    const payload = {
-      ...values,
-      key: String(values.key || "").trim().toLowerCase(),
-      permissions: values.permissions || [],
-    };
-
-    setRoles((prev) => [...prev, { id: Date.now(), ...payload }]);
-    message.success("Role created");
-    setModalOpen(false);
+  const openEditRole = (role) => {
+    setEditingRoleId(role.id);
+    roleForm.setFieldsValue({
+      name: role.name,
+      description: role.description,
+      users: role.users,
+    });
+    setRoleModalOpen(true);
   };
 
-  const permissionOptions = useMemo(
-    () =>
-      permissionCatalog.map((item) => ({
-        value: item.key,
-        label: (
-          <span className="role-perm-option-label">
-            {item.icon}
-            <span>{item.label}</span>
-          </span>
-        ),
-      })),
-    []
-  );
+  const handleSaveRole = async () => {
+    try {
+      const values = await roleForm.validateFields();
 
-  const permissionLabelMap = useMemo(
-    () => Object.fromEntries(permissionCatalog.map((item) => [item.key, item.label])),
-    []
-  );
+      if (!editingRoleId) {
+        const newRole = {
+          id: `role-${Date.now()}`,
+          name: values.name,
+          description: values.description,
+          users: values.users,
+          modules: defaultModules.map((name) => ({
+            name,
+            permissions: [0, 0, 0, 0, 0, 0],
+          })),
+        };
+        setRoles((prev) => [...prev, newRole]);
+        pushAuditLog({
+          action: "Create",
+          module: "Roles",
+          description: `Created role ${values.name}.`,
+          after: JSON.stringify({
+            role: values.name,
+            users: values.users,
+          }),
+        });
+        message.success("Role created successfully");
+      } else {
+        const previous = editingRole
+          ? {
+              name: editingRole.name,
+              description: editingRole.description,
+              users: editingRole.users,
+            }
+          : null;
 
-  const updateRolePermissions = (roleId, permissions) => {
+        setRoles((prev) =>
+          prev.map((role) =>
+            role.id === editingRoleId
+              ? {
+                  ...role,
+                  name: values.name,
+                  description: values.description,
+                  users: values.users,
+                }
+              : role
+          )
+        );
+        pushAuditLog({
+          action: "Update",
+          module: "Roles",
+          description: `Updated role ${values.name}.`,
+          before: previous ? JSON.stringify(previous) : null,
+          after: JSON.stringify({
+            name: values.name,
+            description: values.description,
+            users: values.users,
+          }),
+        });
+        message.success("Role updated successfully");
+      }
+
+      setRoleModalOpen(false);
+      roleForm.resetFields();
+      setEditingRoleId(null);
+    } catch (error) {
+      // Form validation handles message display.
+    }
+  };
+
+  const togglePermission = (roleId, moduleName, permissionIndex) => {
+    const targetRole = roles.find((role) => role.id === roleId);
+    const targetModule = targetRole?.modules.find((module) => module.name === moduleName);
+    const previousValue = targetModule?.permissions?.[permissionIndex] ? 1 : 0;
+
     setRoles((prev) =>
-      prev.map((role) => (role.id === roleId ? { ...role, permissions: permissions || [] } : role))
+      prev.map((role) => {
+        if (role.id !== roleId) return role;
+        return {
+          ...role,
+          modules: role.modules.map((module) => {
+            if (module.name !== moduleName) return module;
+            const next = [...module.permissions];
+            next[permissionIndex] = next[permissionIndex] ? 0 : 1;
+            return { ...module, permissions: next };
+          }),
+        };
+      })
     );
+
+    pushAuditLog({
+      action: "Update",
+      module: "Roles",
+      description: `Updated ${permissionColumns[permissionIndex]} permission for ${moduleName} in role ${targetRole?.name || "Unknown"}.`,
+      before: JSON.stringify({
+        module: moduleName,
+        permission: permissionColumns[permissionIndex],
+        enabled: Boolean(previousValue),
+      }),
+      after: JSON.stringify({
+        module: moduleName,
+        permission: permissionColumns[permissionIndex],
+        enabled: !Boolean(previousValue),
+      }),
+    });
   };
 
   return (
-    <div className="user-container role-manage-page">
+    <div className="user-container role-manage-page rolev2-page">
       <div className="user-wrapper">
-        <div className="role-header-bar">
-          <Title level={2} className="role-title">Roles</Title>
-          <Button
-            type="text"
-            className="role-add-btn"
-            icon={<PlusCircleOutlined />}
-            onClick={() => openModal()}
-            aria-label="Add role"
-          />
+        <div className="rolev2-toolbar">
+          <Button type="primary" className="rolev2-add-btn" icon={<PlusOutlined />} onClick={openCreateRole}>
+            Create Role
+          </Button>
         </div>
 
-        <Space direction="vertical" size={12} style={{ width: "100%" }}>
+        <div className="rolev2-stack">
           {roles.map((role) => (
-            <Card key={role.id} className="user-card-main role-manage-card role-card-item" bordered={false}>
-              <div className="role-card-head">
-                <div>
-                  <Text className="role-name-text">{role.name}</Text>
-                  <Text type="secondary" className="role-key-text">@{role.key}</Text>
+            <Card key={role.id} className="rolev2-card" bordered={false}>
+              <div className="rolev2-head">
+                <div className="rolev2-head-main">
+                  <span className="rolev2-shield"><SafetyOutlined /></span>
+                  <div>
+                    <h3 className="rolev2-title">{role.name}</h3>
+                    <p className="rolev2-subtitle">{role.description}</p>
+                  </div>
                 </div>
-                <Text className="role-permission-count">{role.permissions.length} permissions</Text>
+                <div className="rolev2-head-actions">
+                  <span className="rolev2-user-badge">
+                    <TeamOutlined /> {role.users} {role.users > 1 ? "users" : "user"}
+                  </span>
+                  <Button type="text" className="rolev2-edit-btn" icon={<EditOutlined />} onClick={() => openEditRole(role)}>
+                    Edit
+                  </Button>
+                </div>
               </div>
 
-              <Form layout="vertical" className="role-inline-form">
-                <Form.Item label="Permission Set" style={{ marginBottom: 0 }}>
-                  <Checkbox.Group
-                    options={permissionOptions}
-                    value={role.permissions}
-                    onChange={(vals) => updateRolePermissions(role.id, vals)}
-                    className="role-permission-grid"
-                  />
-                </Form.Item>
-                <div className="role-permission-summary">
-                  Enabled: {role.permissions.map((key) => permissionLabelMap[key]).filter(Boolean).join(", ") || "No permissions selected"}
-                </div>
-              </Form>
+              <div className="rolev2-table-wrap">
+                <table className="rolev2-table">
+                  <thead>
+                    <tr>
+                      <th>MODULE</th>
+                      {permissionColumns.map((column) => (
+                        <th key={`${role.id}-${column}`}>{column}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {role.modules.map((module) => (
+                      <tr key={`${role.id}-${module.name}`}>
+                        <td>{module.name}</td>
+                        {module.permissions.map((canAccess, index) => (
+                          <td key={`${role.id}-${module.name}-${permissionColumns[index]}`}>
+                            <button
+                              type="button"
+                              className={`rolev2-perm-btn ${canAccess ? "is-on" : "is-off"}`}
+                              onClick={() => togglePermission(role.id, module.name, index)}
+                              aria-label={`${permissionColumns[index]} ${module.name}`}
+                            >
+                              {canAccess ? (
+                                <CheckOutlined className="rolev2-check" />
+                              ) : (
+                                <CloseOutlined className="rolev2-cross" />
+                              )}
+                            </button>
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </Card>
           ))}
-        </Space>
+        </div>
       </div>
 
       <Modal
-        title="Create Role"
-        open={modalOpen}
-        onCancel={() => setModalOpen(false)}
-        onOk={() => form.submit()}
-        centered
-        width={560}
+        title={editingRole ? "Update Role" : "Create Role"}
+        open={roleModalOpen}
+        onCancel={() => {
+          setRoleModalOpen(false);
+          setEditingRoleId(null);
+          roleForm.resetFields();
+        }}
+        onOk={handleSaveRole}
+        okText={editingRole ? "Update" : "Create"}
       >
-        <Form form={form} layout="vertical" onFinish={handleSave} style={{ marginTop: 16 }}>
-          <Form.Item name="name" label="Role Name" rules={[{ required: true, message: "Role name is required" }]}> 
-            <Input placeholder="e.g. Registrar" />
+        <Form form={roleForm} layout="vertical" style={{ marginTop: 12 }}>
+          <Form.Item name="name" label="Role Name" rules={[{ required: true, message: "Please input role name" }]}> 
+            <Input placeholder="Example: Sales Manager" />
           </Form.Item>
 
-          <Form.Item
-            name="key"
-            label="Role Key"
-            rules={[{ required: true, message: "Role key is required" }]}
-            extra="Use lowercase key for internal role mapping"
-          >
-            <Input placeholder="e.g. registrar" />
+          <Form.Item name="description" label="Description" rules={[{ required: true, message: "Please input role description" }]}> 
+            <Input placeholder="Example: Manage sales operations" />
           </Form.Item>
 
-          <Form.Item name="permissions" label="Permissions" rules={[{ required: true, message: "Select at least one permission" }]}> 
-            <Checkbox.Group className="role-permission-list">
-              <Space direction="vertical" style={{ width: "100%" }}>
-                {permissionCatalog.map((permission) => (
-                  <Checkbox key={permission.key} value={permission.key}>
-                    {permission.label}
-                  </Checkbox>
-                ))}
-              </Space>
-            </Checkbox.Group>
+          <Form.Item name="users" label="Users" rules={[{ required: true, message: "Please input total users" }]}> 
+            <InputNumber min={1} style={{ width: "100%" }} />
           </Form.Item>
         </Form>
       </Modal>
