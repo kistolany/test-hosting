@@ -199,7 +199,7 @@ const AdminScorePage = () => {
           },
         }}
       >
-        <Card className="user-card-main student-table-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
+        <Card className="user-card-main student-table-card" bordered={false} style={{ width: '100%' }}>
           <div className="student-table-overflow-x">
             <Table
               className="score-admin-table"

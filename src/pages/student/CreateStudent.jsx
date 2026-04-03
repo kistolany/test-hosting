@@ -133,7 +133,7 @@ const CreateStudent = () => {
         </Col>
 
         {/* --- Added Student Type Option Here --- */}
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} sm={12} md={8} lg={6} style={{ marginInlineStart: "auto" }}>
           <Form.Item 
             label={tr("Student Type", "ប្រភេទនិស្សិត")} 
             name="StudentType" 

@@ -333,7 +333,7 @@ const StudentPage = () => {
     <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg student-list-top-shift-15">
       <AdvancedSearchForm onSearch={handleSearch} onClear={handleClear} onPrint={handlePrintPage} initialData={masterData} />
 
-      <Card ref={tableTopRef} className="user-card-main student-table-card sort-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
+      <Card ref={tableTopRef} className="user-card-main student-table-card sort-card" bordered={false} style={{ width: '100%' }}>
         <div className="student-table-overflow-x">
           <div className="student-table-overflow scholar-exam-table-overflow">
             <Table

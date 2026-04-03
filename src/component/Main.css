@@ -5,51 +5,40 @@ body{
     
 }
 
-/* Let browser pick native scrollbar colors from system light/dark theme */
+/* Compact system-blue scrollbar for the sidebar menu */
 .sidebar-menu-scroll {
   color-scheme: light dark;
-  scrollbar-color: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #eaf2ff;
 }
 
-/* Blue gradient scrollbar theme */
-.sidebar-menu-scroll {
-  scrollbar-width: auto;
-  scrollbar-color: #1d4ed8 #dbeafe;
-}
-
-.sidebar-menu-scroll::-webkit-scrollbar,
 .sidebar-menu-scroll::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
-.sidebar-menu-scroll::-webkit-scrollbar-track,
 .sidebar-menu-scroll::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, #e0ecff 0%, #c7dcff 100%);
+  background: #eaf2ff;
   border-radius: 999px;
 }
 
-.sidebar-menu-scroll::-webkit-scrollbar-thumb,
 .sidebar-menu-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 55%, #1e40af 100%);
+  background: #3b82f6;
   border-radius: 999px;
-  border: 2px solid #dbeafe;
+  border: 1px solid #eaf2ff;
 }
 
-.sidebar-menu-scroll::-webkit-scrollbar-thumb:hover,
 .sidebar-menu-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
+  background: #2563eb;
 }
 
-.sidebar-menu-scroll::-webkit-scrollbar-button,
 .sidebar-menu-scroll::-webkit-scrollbar-button {
   display: none;
   width: 0;
   height: 0;
 }
 
-.theme-dark .sidebar-menu-scroll,
 .theme-dark .sidebar-menu-scroll {
-  scrollbar-color: #2563eb #0f172a;
+  scrollbar-color: #60a5fa #0f172a;
 }
 
 .theme-dark .main-shell,
@@ -58,15 +47,58 @@ body{
   background: #0b1220 !important;
 }
 
-.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-track,
-.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-track {
-  background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+.content {
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb #dbeafe;
 }
 
-.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-thumb,
+.content::-webkit-scrollbar {
+  width: 7px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #dbeafe;
+  border-radius: 999px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 999px;
+  border: 1px solid #dbeafe;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
+}
+
+.theme-dark .content {
+  scrollbar-color: #3b82f6 #0f172a;
+}
+
+.theme-dark .content::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.theme-dark .content::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-color: #0f172a;
+}
+
+.theme-dark .content::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
 .theme-dark .sidebar-menu-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
-  border-color: #111827;
+  background: #60a5fa;
+  border-color: #0f172a;
+}
+
+.theme-dark .sidebar-menu-scroll::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
 }
 .main-shell {
   min-height: 100vh;
@@ -102,20 +134,25 @@ body{
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  direction: ltr !important;
+  width: calc(100% + 10px);
+  margin-right: -10px;
   padding-bottom: 8px;
-  padding-right: 6px;
+  padding-right: 0;
+  padding-left: 0;
   margin-bottom: 20px;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
 }
 
 .sidebar-menu-scroll .ant-menu {
+  padding-right: 18px;
   border-inline-end: none;
 }
 
 .sidebar-menu-scroll .ant-menu-item,
 .sidebar-menu-scroll .ant-menu-submenu-title {
-  margin-right: 6px !important;
+  margin-right: 0 !important;
   font-weight: 400 !important;
 }
 
@@ -126,7 +163,8 @@ body{
 }
 
 body.student-list-only-table-scroll .content {
-  overflow-y: hidden !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -315,12 +353,7 @@ body.student-list-only-table-scroll .content {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  border-bottom: 1px solid #e5e7eb;
 } 
-
-.theme-dark .ant-layout-header {
-  border-bottom: 1px solid #0b2a4a;
-}
 
 .header-actions {
   margin-left: auto;
@@ -721,6 +754,53 @@ body.student-list-only-table-scroll .content {
   width: 310px;
 }
 
+.header-global-search-dropdown {
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+}
+
+.header-global-search-dropdown .ant-select-item {
+  border-radius: 8px;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.header-global-search-dropdown .ant-select-item-option-active:not(.ant-select-item-option-selected) {
+  background: #f1f5f9;
+}
+
+.header-global-search-dropdown .ant-select-item-option-selected {
+  background: #dbeafe;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.header-global-search-dropdown-dark {
+  border-color: #334155;
+  background: #111827;
+  box-shadow: 0 16px 30px rgba(2, 6, 23, 0.55);
+}
+
+.header-global-search-dropdown-dark .ant-select-item {
+  color: #e2e8f0;
+}
+
+.header-global-search-dropdown-dark .ant-select-item-option-active:not(.ant-select-item-option-selected) {
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.header-global-search-dropdown-dark .ant-select-item-option-selected {
+  background: rgba(59, 130, 246, 0.32);
+  color: #bfdbfe;
+}
+
+.header-global-search-dropdown-dark .ant-empty-description {
+  color: #94a3b8;
+}
+
 .header-global-search .ant-input-affix-wrapper,
 .header-global-search .ant-input {
   height: 28px !important;
@@ -859,12 +939,13 @@ body.student-list-only-table-scroll .content {
 }
 
 .content {
-    margin: 24px 16px;
-    padding: 24px;
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+  --content-inner-padding: clamp(16px, 1.8vw, 24px);
+  margin: 24px 40px;
+  padding: var(--content-inner-padding);
+  flex: 1;
+  min-height: 280px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
 }
 
@@ -943,8 +1024,8 @@ transition: 0.2s;
 
 @media (max-width: 992px) {
   .content {
-    margin: 16px 10px;
-    padding: 16px;
+    margin: 16px clamp(12px, 3vw, 20px);
+    padding: clamp(12px, 3vw, 16px);
   }
 
   .app-sider {

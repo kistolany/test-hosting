@@ -140,6 +140,10 @@
       "en": "Attendant",
       "km": "វត្តមាន"
     },
+    "users": {
+      "en": "Users",
+      "km": "អ្នកប្រើប្រាស់"
+    },
     "setting": {
       "en": "Setting",
       "km": "ការកំណត់"
@@ -240,6 +244,26 @@
     "subtitle": {
       "en": "Select a class to manage students and class information.",
       "km": "ជ្រើសរើសថ្នាក់ ដើម្បីគ្រប់គ្រងនិស្សិត និងព័ត៌មានថ្នាក់។"
+    },
+    "searchClassPlaceholder": {
+      "en": "Search by class, major, year, or shift...",
+      "km": "ស្វែងរកតាមថ្នាក់ ជំនាញ ឆ្នាំ ឬ វេន..."
+    },
+    "allMajors": {
+      "en": "All majors",
+      "km": "ជំនាញទាំងអស់"
+    },
+    "allYears": {
+      "en": "All years",
+      "km": "ឆ្នាំទាំងអស់"
+    },
+    "allShifts": {
+      "en": "All shifts",
+      "km": "វេនទាំងអស់"
+    },
+    "emptyState": {
+      "en": "No classes match your filter.",
+      "km": "មិនមានថ្នាក់ត្រូវនឹងតម្រងរបស់អ្នកទេ។"
     }
   },
   "userManage": {

@@ -54,7 +54,7 @@
 
 .search-inner-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: none;
 }
 
 .student-page-wrapper .search-inner-container.sticky-search {
@@ -76,7 +76,7 @@
 
 .student-list-page-wrapper.student-list-auto-bg .search-inner-container.sticky-search {
   width: 100%;
-  max-width: 1400px;
+  max-width: none;
   margin-left: 0;
   margin-right: 0;
   padding: 8px 10px 6px;
@@ -147,7 +147,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
-  max-width: 1400px;
+  max-width: none;
 }
 
 /* Student list plain table (no filled background blocks) */
@@ -226,6 +226,31 @@
   position: relative;
   scrollbar-width: thin;
   scrollbar-color: #2563eb #dbeafe;
+}
+
+/* Main page scrollbar style for Student List / Scholar Exam / Sorting pages */
+body.student-list-only-table-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #071634;
+}
+
+body.student-list-only-table-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.student-list-only-table-scroll::-webkit-scrollbar-track {
+  background: #071634;
+  border-radius: 999px;
+}
+
+body.student-list-only-table-scroll::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 999px;
+  border: 1px solid #071634;
+}
+
+body.student-list-only-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
 }
 
 .student-list-page-wrapper .student-table-overflow-x {
@@ -312,13 +337,13 @@
 }
 
 .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 .student-list-page-wrapper .student-table-overflow-x::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar-track {
@@ -332,21 +357,21 @@
 }
 
 .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
+  background: #2563eb;
   border-radius: 999px;
 }
 
 .student-list-page-wrapper .student-table-overflow-x::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
+  background: #2563eb;
   border-radius: 999px;
 }
 
 .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%);
+  background: #1d4ed8;
 }
 
 .student-list-page-wrapper .student-table-overflow-x::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%);
+  background: #1d4ed8;
 }
 
 .student-list-page-wrapper .student-table-overflow .ant-table-tbody > tr > td {
@@ -637,11 +662,11 @@
 }
 
 .theme-dark .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%);
+  background: #3b82f6;
 }
 
 .theme-dark .student-list-page-wrapper .student-table-overflow-x::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%);
+  background: #3b82f6;
 }
 
 .theme-dark .student-list-page-wrapper.student-list-auto-bg .student-table-card .ant-table,

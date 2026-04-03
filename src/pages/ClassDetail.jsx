@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import Header from "../components/Header";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { SummaryCards } from "../components/Cards";
-import Filters from "../components/Filters";
 import StudentTable from "../components/StudentTable";
 import Modal from "../components/Modal";
 import Toast from "../components/Toast";
@@ -31,11 +30,6 @@ function ClassDetail({ classes, onUpdateClass }) {
 
   const classItem = classes.find((item) => item.id === Number(id));
   const [students, setStudents] = useState(classItem?.students ?? []);
-  const [search, setSearch] = useState("");
-  const [gender, setGender] = useState("All");
-  const [major, setMajor] = useState("All");
-  const [year, setYear] = useState("All");
-  const [shift, setShift] = useState("All");
   const [activeTab, setActiveTab] = useState("Students");
 
   const [toast, setToast] = useState({ show: false, message: "" });
@@ -102,48 +96,6 @@ function ClassDetail({ classes, onUpdateClass }) {
     return () => clearTimeout(timer);
   }, [highlightStudentId, students]);
 
-  const filteredStudents = useMemo(() => {
-    return students.filter((student) => {
-      const matchedSearch = student.name.toLowerCase().includes(search.toLowerCase());
-      const matchedGender = gender === "All" || student.gender === gender;
-      const matchedMajor = major === "All" || student.major === major;
-      const matchedYear = year === "All" || student.year === year;
-      const matchedShift = shift === "All" || student.shift === shift;
-      return matchedSearch && matchedGender && matchedMajor && matchedYear && matchedShift;
-    });
-  }, [students, search, gender, major, year, shift]);
-
-  const majorOptions = useMemo(
-    () =>
-      Array.from(
-        new Set([
-          ...classPrograms.map((item) => item.major),
-          ...students.map((student) => student.major)
-        ].filter(Boolean))
-      ),
-    [classPrograms, students]
-  );
-  const yearOptions = useMemo(
-    () =>
-      Array.from(
-        new Set([
-          ...classPrograms.map((item) => item.year),
-          ...students.map((student) => student.year)
-        ].filter(Boolean))
-      ),
-    [classPrograms, students]
-  );
-  const shiftOptions = useMemo(
-    () =>
-      Array.from(
-        new Set([
-          ...classPrograms.map((item) => item.shift),
-          ...students.map((student) => student.shift)
-        ].filter(Boolean))
-      ),
-    [classPrograms, students]
-  );
-
   if (!classItem) {
     return (
       <main className="grid min-h-screen place-items-center bg-slate-100 px-4">
@@ -191,26 +143,131 @@ function ClassDetail({ classes, onUpdateClass }) {
     showSuccess("Class updated");
   };
 
+  const subjectList = Array.isArray(classItem.subjects) ? classItem.subjects : [];
+
+  const deleteProgram = (indexToDelete) => {
+    const sourcePrograms =
+      Array.isArray(classItem.programs) && classItem.programs.length > 0
+        ? classItem.programs
+        : classPrograms;
+
+    if (sourcePrograms.length <= 1) return;
+
+    const nextPrograms = sourcePrograms.filter((_, index) => index !== indexToDelete);
+    const firstProgram = nextPrograms[0] || { major: classItem.major, year: classItem.year, shift: classItem.shift };
+
+    onUpdateClass(classItem.id, {
+      programs: nextPrograms,
+      major: firstProgram.major,
+      year: firstProgram.year,
+      shift: firstProgram.shift
+    });
+
+    showSuccess("Program deleted");
+  };
+
+  const editSubject = (indexToEdit) => {
+    const currentName = subjectList[indexToEdit] || "";
+    const nextName = window.prompt("Edit subject", currentName);
+
+    if (nextName === null) return;
+
+    const trimmedName = nextName.trim();
+    if (!trimmedName || trimmedName === currentName) return;
+
+    const nextSubjects = subjectList.map((subject, index) => (
+      index === indexToEdit ? trimmedName : subject
+    ));
+
+    onUpdateClass(classItem.id, { subjects: nextSubjects });
+    showSuccess("Subject updated");
+  };
+
+  const deleteSubject = (indexToDelete) => {
+    const nextSubjects = subjectList.filter((_, index) => index !== indexToDelete);
+    onUpdateClass(classItem.id, { subjects: nextSubjects });
+    showSuccess("Subject deleted");
+  };
+
+  const addSubject = () => {
+    const nextName = window.prompt("New subject name", "");
+
+    if (nextName === null) return;
+
+    const trimmedName = nextName.trim();
+    if (!trimmedName) return;
+
+    onUpdateClass(classItem.id, { subjects: [...subjectList, trimmedName] });
+    showSuccess("Subject added");
+  };
+
   return (
-    <main className="min-h-screen bg-transparent px-4 py-6 sm:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col gap-5">
-        <Header
-          classItem={{ ...classItem, ...classForm }}
-          onOpenEdit={() => setClassModalOpen(true)}
-          backPath="/classes"
-        />
+    <main className="min-h-screen bg-transparent py-6">
+      <div className="flex w-full flex-col gap-5">
+        <div className="relative mb-[15px] flex min-h-[40px] items-center">
+          <button
+            type="button"
+            onClick={() => navigate("/classes")}
+            className="w-fit rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+          >
+            Back
+          </button>
+          <h1 className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-2xl font-bold text-blue-700">
+            Class {classItem.name}
+          </h1>
+        </div>
+
         <SummaryCards classItem={{ ...classItem, ...classForm }} studentsCount={students.length} />
 
-        <section className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-          <h3 className="mb-3 text-sm font-semibold text-slate-700">Programs in this class</h3>
-          <div className="flex flex-wrap gap-2">
+        <section className="w-full max-w-[410px] self-end rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <h3 className="text-sm font-semibold text-blue-700">Programs in this class</h3>
+            <button
+              type="button"
+              onClick={() => setClassModalOpen(true)}
+              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
+            >
+              New
+            </button>
+          </div>
+          <div className="space-y-2">
+            <div className="grid grid-cols-[1.35fr_0.65fr_0.95fr_56px] gap-x-2 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+              <span>Major</span>
+              <span className="text-center">Year</span>
+              <span className="text-center">Shift</span>
+              <span className="text-center">Action</span>
+            </div>
             {classPrograms.map((program, index) => (
-              <span
+              <div
                 key={`${program.major}-${program.year}-${program.shift}-${index}`}
-                className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700"
+                className="grid grid-cols-[1.35fr_0.65fr_0.95fr_56px] items-center gap-x-2 rounded-xl border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700"
               >
-                {program.major} | {program.year} | {program.shift}
-              </span>
+                <span className="break-words pr-2 leading-snug">{program.major}</span>
+                <span className="text-center leading-snug">{program.year}</span>
+                <span className="text-center leading-snug">{program.shift}</span>
+                <div className="flex w-[64px] items-center justify-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setClassForm({ major: program.major, year: program.year, shift: program.shift });
+                      setClassModalOpen(true);
+                    }}
+                    className="rounded-md p-1 text-blue-600 transition hover:bg-blue-50"
+                    aria-label="Edit program"
+                  >
+                    <EditOutlined />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => deleteProgram(index)}
+                    className="rounded-md p-1 text-rose-600 transition hover:bg-rose-50"
+                    aria-label="Delete program"
+                    disabled={classPrograms.length <= 1}
+                  >
+                    <DeleteOutlined />
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </section>
@@ -236,23 +293,8 @@ function ClassDetail({ classes, onUpdateClass }) {
 
         {activeTab === "Students" && (
           <>
-            <Filters
-              search={search}
-              gender={gender}
-              major={major}
-              year={year}
-              shift={shift}
-              majorOptions={majorOptions}
-              yearOptions={yearOptions}
-              shiftOptions={shiftOptions}
-              onSearchChange={setSearch}
-              onGenderChange={setGender}
-              onMajorChange={setMajor}
-              onYearChange={setYear}
-              onShiftChange={setShift}
-            />
             <StudentTable
-              students={filteredStudents}
+              students={students}
               highlightStudentId={highlightStudentId}
               onSaveInline={saveInlineEdit}
               onDeleteRequest={openDeleteModal}
@@ -261,17 +303,53 @@ function ClassDetail({ classes, onUpdateClass }) {
         )}
 
         {activeTab === "Subjects" && (
-          <section className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h3 className="mb-3 text-lg font-bold text-slate-900">Subjects</h3>
-            <div className="flex flex-wrap gap-2">
-              {classItem.subjects.map((subject) => (
-                <span
-                  key={subject}
-                  className="rounded-full bg-cyan-100 px-3 py-1 text-sm font-medium text-cyan-800"
-                >
-                  {subject}
-                </span>
-              ))}
+          <section className="w-full max-w-[410px] self-end rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <h3 className="text-sm font-semibold text-blue-700">Subjects</h3>
+              <button
+                type="button"
+                onClick={addSubject}
+                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
+              >
+                New
+              </button>
+            </div>
+            <div className="space-y-2">
+              <div className="grid grid-cols-[1fr_64px] gap-x-2 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                <span>Name</span>
+                <span className="text-center">Action</span>
+              </div>
+
+              {subjectList.length === 0 ? (
+                <div className="px-3 py-2 text-xs text-slate-500">No subjects</div>
+              ) : (
+                subjectList.map((subject, index) => (
+                  <div
+                    key={`${subject}-${index}`}
+                    className="grid grid-cols-[1fr_64px] items-center gap-x-2 rounded-xl border border-slate-200 px-3 py-2 text-xs font-medium text-slate-700"
+                  >
+                    <span className="break-words pr-2 leading-snug">{subject}</span>
+                    <div className="flex w-[64px] items-center justify-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => editSubject(index)}
+                        className="rounded-md p-1 text-blue-600 transition hover:bg-blue-50"
+                        aria-label="Edit subject"
+                      >
+                        <EditOutlined />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => deleteSubject(index)}
+                        className="rounded-md p-1 text-rose-600 transition hover:bg-rose-50"
+                        aria-label="Delete subject"
+                      >
+                        <DeleteOutlined />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </section>
         )}

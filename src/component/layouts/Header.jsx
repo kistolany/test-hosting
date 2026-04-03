@@ -214,6 +214,7 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
         />
         <AutoComplete
           className="header-global-search-autocomplete"
+          popupClassName={`header-global-search-dropdown ${isDark ? "header-global-search-dropdown-dark" : ""}`}
           value={searchText}
           options={searchOptions}
           onSearch={setSearchText}

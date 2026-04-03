@@ -88,15 +88,39 @@ export function ClassCard({ classItem, onView }) {
 }
 
 export function SummaryCards({ classItem, studentsCount }) {
+  const programRecords =
+    Array.isArray(classItem.programs) && classItem.programs.length > 0
+      ? classItem.programs
+      : [{ major: classItem.major, year: classItem.year, shift: classItem.shift }];
+
+  const studentRecords = Array.isArray(classItem.students) ? classItem.students : [];
+
+  const majorSet = new Set();
+  const yearSet = new Set();
+  const shiftSet = new Set();
+
+  const collectTotals = (major, year, shift) => {
+    if (major) majorSet.add(major);
+    if (year) yearSet.add(year);
+    if (shift) shiftSet.add(shift);
+  };
+
+  programRecords.forEach((item) => collectTotals(item.major, item.year, item.shift));
+  studentRecords.forEach((student) => collectTotals(student.major, student.year, student.shift));
+
+  // Preserve one value for each category when records are empty.
+  collectTotals(classItem.major, classItem.year, classItem.shift);
+
   const cards = [
     { label: "Total Students", value: studentsCount },
-    { label: "Total Subjects", value: classItem.subjects.length },
-    { label: "Year", value: classItem.year },
-    { label: "Shift", value: classItem.shift }
+    { label: "Total Subjects", value: Array.isArray(classItem.subjects) ? classItem.subjects.length : 0 },
+    { label: "Total major", value: majorSet.size },
+    { label: "Total year", value: yearSet.size },
+    { label: "Totall shift", value: shiftSet.size }
   ];
 
   return (
-    <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {cards.map((card) => (
         <div key={card.label} className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
           <p className="text-sm text-slate-500">{card.label}</p>

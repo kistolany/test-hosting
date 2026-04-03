@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Dropdown } from "antd";
+import { Layout, Menu } from "antd";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   ReadOutlined,
@@ -7,10 +7,10 @@ import {
   FormOutlined,
   CheckSquareOutlined,
   SettingOutlined,
+  UserOutlined,
+  TeamOutlined,
+  AuditOutlined,
   LogoutOutlined,
-  DownOutlined,
-  SafetyCertificateOutlined,
-  FileSearchOutlined,
 } from "@ant-design/icons";
 import { useLanguage } from "../../i18n/LanguageContext";
 
@@ -19,8 +19,7 @@ const { Sider } = Layout;
 const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, fontClass, lang } = useLanguage();
-  const isSettingActive = ["/userManage", "/roleManage", "/auditLog"].includes(location.pathname);
+  const { t, fontClass } = useLanguage();
   const selectedMenuKey = location.pathname.startsWith("/class/") ? "/classes" : location.pathname;
 
   const menuItems = [
@@ -67,32 +66,29 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
       ],
     },
     { key: "/attendant", icon: <CheckSquareOutlined />, label: <span className={fontClass("body")}>{t("navigation.attendant")}</span> },
+    {
+      key: "sub-users",
+      label: <span className={fontClass("body")}>{t("navigation.users")}</span>,
+      icon: <UserOutlined />,
+      children: [
+        {
+          key: "/userManage",
+          icon: <UserOutlined />,
+          label: <span className={fontClass("body")}>{t("navigation.manageUser")}</span>,
+        },
+        {
+          key: "/roleManage",
+          icon: <TeamOutlined />,
+          label: <span className={fontClass("body")}>{t("navigation.manageRole")}</span>,
+        },
+        {
+          key: "/auditLog",
+          icon: <AuditOutlined />,
+          label: <span className={fontClass("body")}>{t("navigation.auditLog")}</span>,
+        },
+      ],
+    },
   ];
-
-  const settingMenuItems = [
-    {
-      key: "/userManage",
-      icon: <SettingOutlined />,
-      label: <span className={fontClass("body")}>{t("navigation.manageUser")}</span>,
-    },
-    {
-      key: "/roleManage",
-      icon: <SafetyCertificateOutlined />,
-      label: <span className={fontClass("body")}>{t("navigation.manageRole")}</span>,
-    },
-    {
-      key: "/auditLog",
-      icon: <FileSearchOutlined />,
-      label: <span className={fontClass("body")}>{t("navigation.auditLog")}</span>,
-    },
-  ];
-
-  const handleSettingClick = ({ key }) => {
-    navigate(key);
-    if (isMobile) {
-      setCollapsed(true);
-    }
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -150,26 +146,14 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
 
       <div className="sidebar-bottom-user">
         <div className="sidebar-bottom-divider" />
-        <Dropdown
-          menu={{ items: settingMenuItems, onClick: handleSettingClick }}
-          trigger={["click"]}
-          placement="topRight"
-          overlayClassName={`setting-popup-menu setting-popup-menu-${lang} ${isDark ? "setting-popup-menu-dark" : ""}`}
+        <button
+          type="button"
+          className={`sidebar-bottom-link sidebar-setting-toggle ${collapsed ? "collapsed" : ""}`}
+          aria-label="Setting"
         >
-          <button
-            type="button"
-            className={`sidebar-bottom-link sidebar-setting-toggle ${isSettingActive ? "active" : ""} ${collapsed ? "collapsed" : ""}`}
-            aria-label="Open setting menu"
-          >
-            <SettingOutlined />
-            {!collapsed && (
-              <>
-                <span className={fontClass("body")}>{t("navigation.setting")}</span>
-                <span className="setting-toggle-icon"><DownOutlined /></span>
-              </>
-            )}
-          </button>
-        </Dropdown>
+          <SettingOutlined />
+          {!collapsed && <span className={fontClass("body")}>{t("navigation.setting")}</span>}
+        </button>
 
         <button
           type="button"
