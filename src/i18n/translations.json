@@ -140,6 +140,14 @@
       "en": "Attendant",
       "km": "វត្តមាន"
     },
+    "takeAttendant": {
+      "en": "Take Attendant",
+      "km": "ចុះវត្តមាន"
+    },
+    "attendantList": {
+      "en": "Attendance List",
+      "km": "បញ្ជីវត្តមាន"
+    },
     "users": {
       "en": "Users",
       "km": "អ្នកប្រើប្រាស់"

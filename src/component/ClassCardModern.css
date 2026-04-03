@@ -43,12 +43,13 @@
 
 .class-card-modern .program-list {
   display: grid;
-  align-content: start;
+  align-content: center;
 }
 
 .class-card-modern .program-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 0.9rem;
   padding: 0.9rem 0;
   border-bottom: 1px solid #dde6f3;
@@ -80,12 +81,13 @@
 .class-card-modern .program-content {
   min-width: 0;
   width: 100%;
+  text-align: center;
 }
 
 .class-card-modern .program-head {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .class-card-modern .program-major {
@@ -103,7 +105,7 @@
   margin-top: 0.24rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0.56rem;
   flex-wrap: wrap;
 }
@@ -139,6 +141,7 @@
   color: #6b7280;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.24rem;
   line-height: 1.2;
 }

@@ -20,6 +20,7 @@ import ResultScholar from "./pages/student/ResultScholar.jsx";
 import ScorePage from "./pages/final/ScorePage.jsx";
 import ScoreByTeacher from "./pages/final/ScoreByTeacher.jsx";
 import AttendantPage from "./pages/attendant/AttendantPage.jsx";
+import AttendantListPage from "./pages/attendant/AttendantListPage.jsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.jsx";
 import Academic from "./pages/academic/academic.jsx";
 import ScholarshipForm from "./pages/scholarship/ScholarshipForm.jsx";
@@ -135,7 +136,6 @@ function App() {
             <Route path="/enrollmentReciept" element={<Reciept />} />
             <Route path="/score" element={<ScorePage />} />
             <Route path="/scoreTeacher" element={<ScoreByTeacher />} />
-            <Route path="/attendant" element={<AttendantPage />} />
             <Route path="/attendant/take" element={<AttendantPage />} />
             <Route path="/attendant/list" element={<AttendantListPage />} />
             <Route path="/listNameExam" element={<ListNameExam />} />
