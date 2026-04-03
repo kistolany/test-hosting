@@ -263,7 +263,7 @@ const ResultScholar = () => {
         <Skeleton loading={loading} active>
           <div className="document-title-block" style={{ textAlign: 'center', margin: '20px 0' }}>
             <div className="document-header" style={{ textAlign: 'center', marginBottom: 20 }}>
-              <div className="khmer-moul" style={{ fontSize: 16 }}>
+              <div className="khmer-moul" style={{ fontSize: 10, marginTop: '-10px', paddingBottom: '20px' }}>
                 បញ្ជីរាយនាមបេក្ខជនប្រឡងជាប់អាហារូបករណ៍ ១០០%
               </div>
               <div className="khmer-moul" style={{ fontSize: 14 }}>ថ្នាក់បរិញ្ញាបត្រ ឆ្នាំសិក្សា {headerData.studyYear}</div>

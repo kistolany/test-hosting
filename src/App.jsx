@@ -123,7 +123,10 @@ function App() {
             <Route path="/scholarshipForm" element={<ScholarshipForm />} />
             <Route path="/receipt" element={<Receipt />} />
             <Route path="/cover" element={<Cover />} />
-            <Route path="/enrollmentForm" element={<Form />} />
+            <Route
+              path="/enrollmentForm"
+              element={<Form classes={classes} onUpdateClass={updateClassById} />}
+            />
             <Route path="/enrollmentReciept" element={<Reciept />} />
             <Route path="/score" element={<ScorePage />} />
             <Route path="/scoreTeacher" element={<ScoreByTeacher />} />

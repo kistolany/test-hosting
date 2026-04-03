@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Form,
   Input,
@@ -8,15 +8,14 @@ import {
   Button,
   Space,
   Image,
-  Select,
+  message,
   theme,
 } from "antd";
-import {
-  PrinterOutlined,
-  SearchOutlined, ClearOutlined
-} from "@ant-design/icons";
+import { PrinterOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import flourishSign from "../../assets/image_69b387.png";
 import SearchToolbar from "../../component/layouts/SearchForm";
+import { pushNotification } from "../../utils/notifications";
 const { Title, Text } = Typography;
 
 // --- UPDATED: 5 FAKE STUDENTS DATA ---
@@ -34,9 +33,15 @@ const HeaderDecorative = () => (
   </div>
 );
 
-const EnrollmentForm = () => {
+const EnrollmentForm = ({ classes = [], onUpdateClass }) => {
+  const navigate = useNavigate();
   const { token } = theme.useToken();
   const [searchForm] = Form.useForm();
+
+  const classA1 = useMemo(
+    () => classes.find((item) => item.id === 1 || String(item.name || "").trim().toUpperCase() === "A1"),
+    [classes]
+  );
   
   // Start with an empty array.
   const [studentList, setStudentList] = useState([]); 
@@ -61,7 +66,63 @@ const EnrollmentForm = () => {
   };
 
   const onFinish = (values) => {
-    console.log("Application Data:", values);
+    if (!classA1) {
+      message.error("Class A1 not found.");
+      return;
+    }
+
+    const studentName = String(values.name_en || values.name_kh || "").trim();
+    if (!studentName) {
+      message.warning("Please fill student name before enrollment.");
+      return;
+    }
+
+    const fallbackProgram = Array.isArray(classA1.programs) && classA1.programs.length > 0
+      ? classA1.programs[0]
+      : {
+          major: classA1.major || "General",
+          year: classA1.year || "Year 1",
+          shift: classA1.shift || "Morning"
+        };
+
+    const rawGender = String(values.gender || "").trim().toLowerCase();
+    const gender = rawGender === "female" || rawGender === "f" || rawGender.includes("ស្រី")
+      ? "Female"
+      : "Male";
+
+    const yearValue = String(values.year_val || "").trim();
+    const studentId = String(values.student_id || "").trim() || `s-${Date.now()}`;
+
+    const enrolledStudent = {
+      id: studentId,
+      name: studentName,
+      gender,
+      dob: String(values.dob || "").trim() || new Date().toISOString().slice(0, 10),
+      major: String(values.major || "").trim() || fallbackProgram.major,
+      year: yearValue ? `Year ${yearValue}` : fallbackProgram.year,
+      shift: String(values.time || "").trim() || fallbackProgram.shift
+    };
+
+    const currentStudents = classA1.students || [];
+    const hasStudent = currentStudents.some((student) => student.id === enrolledStudent.id);
+    const nextStudents = hasStudent
+      ? currentStudents.map((student) => (student.id === enrolledStudent.id ? { ...student, ...enrolledStudent } : student))
+      : [...currentStudents, enrolledStudent];
+
+    if (typeof onUpdateClass === "function") {
+      onUpdateClass(classA1.id, { students: nextStudents });
+    }
+
+    const route = `/class/${classA1.id}?highlight=${encodeURIComponent(enrolledStudent.id)}`;
+    pushNotification({
+      title: "Enrollment Completed",
+      message: `${enrolledStudent.name} enrolled in Class ${classA1.name}.`,
+      route,
+      type: "class-enrollment"
+    });
+
+    message.success(`Student enrolled to Class ${classA1.name}`);
+    navigate(route);
   };
 
   // Logic: If studentList is empty (no search yet), use an array with one empty object to show 1 blank form.
@@ -239,6 +300,15 @@ const EnrollmentForm = () => {
             <div className="form-footer enroll-footer">
               <div className="footer-address">អាសយដ្ឋានៈ អគារលេខ១៤៧ក ផ្លូវឥដ្ឋច្រាស សង្កាត់ទួលសង្កែទី២ ខណ្ឌឫស្សីកែវ រាជធានីភ្នំពេញ</div>
               <div className="footer-contact">Hot Line: 023 902 220 | FAX: 023 902 221 | E-mail: cumt.cambodia@gmail.com</div>
+            </div>
+
+            <div style={{ marginTop: "16px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
+              <Button type="primary" htmlType="submit" className="search-button">
+                Enroll to Class A1
+              </Button>
+              <Button htmlType="button" icon={<PrinterOutlined />} onClick={() => window.print()}>
+                Print Form
+              </Button>
             </div>
           </div>
         </Form>

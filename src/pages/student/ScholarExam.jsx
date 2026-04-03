@@ -6,6 +6,8 @@ import {
   PlusOutlined,
   EditFilled,
   DeleteFilled,
+  LeftOutlined,
+  RightOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import {
@@ -21,7 +23,6 @@ import {
   Col,
   Select,
   Card,
-  Pagination,
 } from "antd";
 import { useLanguage } from "../../i18n/LanguageContext";
 import { pushNotification } from "../../utils/notifications";
@@ -465,6 +466,13 @@ const ScholarExam = () => {
     });
   };
 
+  const goToPage = (nextPage) => {
+    const safePage = Math.max(1, Math.min(totalPages, nextPage));
+    if (safePage === currentPage) return;
+    setCurrentPage(safePage);
+    tableTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const pagedData = useMemo(() => {
     return finalTableData.slice(startIndex, startIndex + PAGE_SIZE);
@@ -621,7 +629,7 @@ const ScholarExam = () => {
   ];
 
   return (
-    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg student-list-top-shift-15">
       <AdvancedSearchForm
         onSearch={handleSearch}
         onClear={handleClear}
@@ -636,14 +644,15 @@ const ScholarExam = () => {
         style={{ width: "100%", maxWidth: "1400px" }}
       >
         <div className="student-table-overflow-x">
-          <div className="student-table-overflow" style={{ overflowY: "auto", maxHeight: 390 }}>
+          <div className="student-table-overflow scholar-exam-table-overflow">
             <Table
               columns={columns}
               dataSource={pagedData}
               loading={false}
               bordered={false}
               pagination={false}
-              style={{ minWidth: 1860 }}
+              scroll={{ x: "max-content" }}
+              style={{ width: "max-content", minWidth: "100%" }}
               rowKey={(record, index) =>
                 `${record.ID || "row"}-${startIndex + index}`
               }
@@ -651,16 +660,29 @@ const ScholarExam = () => {
           </div>
         </div>
 
-        <div className="student-table-pagination no-print">
-          <Pagination
-            current={currentPage}
-            pageSize={PAGE_SIZE}
-            total={finalTableData.length}
-            showSizeChanger={false}
-            onChange={(page) => {
-              setCurrentPage(page);
-              tableTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
+        <div className="student-table-pagination no-print scholar-exam-pagination">
+          <Button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="scholar-exam-page-btn scholar-exam-page-btn-arrow"
+            aria-label="Previous page"
+            icon={<LeftOutlined />}
+          />
+
+          <Button
+            className="scholar-exam-page-btn scholar-exam-page-btn-current"
+            disabled
+            aria-current="page"
+          >
+            {currentPage}
+          </Button>
+
+          <Button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            className="scholar-exam-page-btn scholar-exam-page-btn-arrow"
+            aria-label="Next page"
+            icon={<RightOutlined />}
           />
         </div>
       </Card>

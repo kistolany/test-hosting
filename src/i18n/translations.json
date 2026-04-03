@@ -229,7 +229,8 @@
   "sortPage": {
     "title": { "en": "All Student List", "km": "បញ្ជីឈ្មោះនិស្សិតទាំងអស់" },
     "subtitle": { "en": "Manage and arrange student\nenrollment by section", "km": "គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ" },
-    "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" }
+    "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" },
+    "selectedLabel": { "en": "selected", "km": "បានជ្រើស" }
   },
   "userManage": {
     "title": { "en": "Staff Users", "km": "អ្នកប្រើបុគ្គលិក" },

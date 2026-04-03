@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SearchOutlined, PlusOutlined, EditFilled, DeleteFilled, PrinterOutlined, ClearOutlined, EyeOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusOutlined, EditFilled, DeleteFilled, PrinterOutlined, ClearOutlined, EyeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../i18n/LanguageContext";
 import {
-  Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag, Pagination
+  Table, Button, Flex, Space, ConfigProvider, Form, Row, Col, Select, Popconfirm, Card, Tag
 } from "antd";
 import StudentPreviewModal from "./StudentPreviewModal";
 import { pushAuditLog } from "../../utils/auditLogs";
@@ -218,6 +218,13 @@ const StudentPage = () => {
     });
   };
 
+  const goToPage = (nextPage) => {
+    const safePage = Math.max(1, Math.min(totalPages, nextPage));
+    if (safePage === currentPage) return;
+    setCurrentPage(safePage);
+    tableTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewStudent, setPreviewStudent] = useState(null);
 
@@ -291,6 +298,7 @@ const StudentPage = () => {
           <Button
             type="text"
             size="small"
+            className="action-edit-btn"
             icon={<EditFilled />}
             onClick={() => navigate("/createStudent", { state: { mode: "edit", student: record } })}
           />
@@ -322,12 +330,12 @@ const StudentPage = () => {
   const paginatedTableData = finalTableData.slice(startIndex, startIndex + PAGE_SIZE);
 
   return (
-    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg student-list-top-shift-15">
       <AdvancedSearchForm onSearch={handleSearch} onClear={handleClear} onPrint={handlePrintPage} initialData={masterData} />
 
       <Card ref={tableTopRef} className="user-card-main student-table-card sort-card" bordered={false} style={{ width: '100%', maxWidth: '1400px' }}>
         <div className="student-table-overflow-x">
-          <div className="student-table-overflow" style={{ overflowY: "auto", maxHeight: 390 }}>
+          <div className="student-table-overflow scholar-exam-table-overflow">
             <Table
               columns={columns}
               dataSource={paginatedTableData}
@@ -335,20 +343,34 @@ const StudentPage = () => {
               loading={loading}
               pagination={false}
               bordered={false}
-              style={{ minWidth: 1560 }}
+              scroll={{ x: "max-content" }}
+              style={{ width: "max-content", minWidth: "100%" }}
             />
           </div>
         </div>
-        <div className="student-table-pagination no-print">
-          <Pagination
-            current={currentPage}
-            pageSize={PAGE_SIZE}
-            total={finalTableData.length}
-            showSizeChanger={false}
-            onChange={(page) => {
-              setCurrentPage(page);
-              tableTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
+        <div className="student-table-pagination no-print scholar-exam-pagination">
+          <Button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="scholar-exam-page-btn scholar-exam-page-btn-arrow"
+            aria-label="Previous page"
+            icon={<LeftOutlined />}
+          />
+
+          <Button
+            className="scholar-exam-page-btn scholar-exam-page-btn-current"
+            disabled
+            aria-current="page"
+          >
+            {currentPage}
+          </Button>
+
+          <Button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            className="scholar-exam-page-btn scholar-exam-page-btn-arrow"
+            aria-label="Next page"
+            icon={<RightOutlined />}
           />
         </div>
       </Card>

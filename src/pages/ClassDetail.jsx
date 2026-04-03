@@ -49,8 +49,6 @@ function ClassDetail({ classes, onUpdateClass }) {
     shift: classItem?.shift ?? ""
   });
 
-  const [addForm, setAddForm] = useState({ name: "", gender: "Male", dob: "", major: "", year: "", shift: "" });
-  const [isAdding, setIsAdding] = useState(false);
   const [highlightStudentId, setHighlightStudentId] = useState(searchParams.get("highlight") || "");
 
   const classPrograms = useMemo(() => {
@@ -79,12 +77,6 @@ function ClassDetail({ classes, onUpdateClass }) {
     }));
     setStudents(normalizedStudents);
     setClassForm({ major: classItem.major, year: classItem.year, shift: classItem.shift });
-    setAddForm((prev) => ({
-      ...prev,
-      major: prev.major || defaultProgram.major,
-      year: prev.year || defaultProgram.year,
-      shift: prev.shift || defaultProgram.shift
-    }));
   }, [classItem?.id]);
 
   useEffect(() => {
@@ -179,37 +171,6 @@ function ClassDetail({ classes, onUpdateClass }) {
     playSuccessSound();
   };
 
-  const addStudent = () => {
-    if (!addForm.name.trim() || !addForm.dob) return;
-
-    setIsAdding(true);
-    window.setTimeout(() => {
-      const newStudent = {
-        id: `s-${Date.now()}`,
-        name: addForm.name.trim(),
-        gender: addForm.gender,
-        dob: addForm.dob,
-        major: addForm.major,
-        year: addForm.year,
-        shift: addForm.shift
-      };
-
-      setStudents((prev) => [...prev, newStudent]);
-      setAddForm({
-        name: "",
-        gender: "Male",
-        dob: "",
-        major: addForm.major || defaultProgram.major,
-        year: addForm.year || defaultProgram.year,
-        shift: addForm.shift || defaultProgram.shift
-      });
-      setIsAdding(false);
-      setHighlightStudentId(newStudent.id);
-      navigate(`/class/${classItem.id}?highlight=${newStudent.id}`);
-      showSuccess("Student added");
-    }, 800);
-  };
-
   const saveInlineEdit = (studentId, draft) => {
     setStudents((prev) =>
       prev.map((student) => (student.id === studentId ? { ...student, ...draft } : student))
@@ -275,76 +236,6 @@ function ClassDetail({ classes, onUpdateClass }) {
 
         {activeTab === "Students" && (
           <>
-            <section className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-3 xl:grid-cols-7">
-                <input
-                  type="text"
-                  value={addForm.name}
-                  onChange={(event) => setAddForm((prev) => ({ ...prev, name: event.target.value }))}
-                  placeholder="Student name"
-                  className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
-                />
-                <select
-                  value={addForm.gender}
-                  onChange={(event) => setAddForm((prev) => ({ ...prev, gender: event.target.value }))}
-                  className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <input
-                  type="date"
-                  value={addForm.dob}
-                  onChange={(event) => setAddForm((prev) => ({ ...prev, dob: event.target.value }))}
-                  className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
-                />
-                <select
-                  value={addForm.major}
-                  onChange={(event) => setAddForm((prev) => ({ ...prev, major: event.target.value }))}
-                  className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
-                >
-                  {majorOptions.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  value={addForm.year}
-                  onChange={(event) => setAddForm((prev) => ({ ...prev, year: event.target.value }))}
-                  className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
-                >
-                  {yearOptions.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  value={addForm.shift}
-                  onChange={(event) => setAddForm((prev) => ({ ...prev, shift: event.target.value }))}
-                  className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
-                >
-                  {shiftOptions.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  onClick={addStudent}
-                  disabled={isAdding}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-600 px-3 py-2 text-sm font-semibold text-white disabled:opacity-70"
-                >
-                  {isAdding ? (
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  ) : null}
-                  {isAdding ? "Adding..." : "Add Student"}
-                </button>
-              </div>
-            </section>
-
             <Filters
               search={search}
               gender={gender}

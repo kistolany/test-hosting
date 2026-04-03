@@ -278,7 +278,7 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
                   {visibleNotifications.map((item) => {
                     const isSelected = selectedIds.includes(item.id);
                     return (
-                    <div className={`header-notification-row ${isSelected ? "selected" : ""}`} key={item.id}>
+                    <div className={`header-notification-row ${isSelected ? "selected" : ""} ${item.read ? "read" : "unread"}`} key={item.id}>
                       {selectMode && (
                         <Checkbox
                           checked={isSelected}
@@ -287,7 +287,7 @@ const Header = ({ isDark, setIsDark, collapsed, setCollapsed }) => {
                       )}
                       <button
                         type="button"
-                        className={`header-notification-item ${isSelected ? "selected" : ""}`}
+                        className={`header-notification-item ${isSelected ? "selected" : ""} ${item.read ? "read" : "unread"}`}
                         onClick={() => handleNotificationClick(item)}
                       >
                         <div className="header-notification-title-row">
