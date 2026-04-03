@@ -192,7 +192,7 @@ function ClassDetail({ classes, onUpdateClass }) {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-100 to-cyan-50 px-4 py-6 sm:px-8">
+    <main className="min-h-screen bg-transparent px-4 py-6 sm:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-5">
         <Header
           classItem={{ ...classItem, ...classForm }}

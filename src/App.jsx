@@ -42,7 +42,7 @@ function normalizeClassData(rawClasses) {
 
   const defaultsById = new Map(DEFAULT_CLASSES.map((item) => [item.id, item]));
 
-  return rawClasses.map((rawItem) => {
+  const normalizedSavedClasses = rawClasses.map((rawItem) => {
     const fallback = defaultsById.get(rawItem.id);
 
     const programs =
@@ -76,6 +76,11 @@ function normalizeClassData(rawClasses) {
       shift: rawItem.shift || fallback?.shift || baseProgram.shift
     };
   });
+
+  const existingIds = new Set(normalizedSavedClasses.map((classItem) => classItem.id));
+  const missingDefaultClasses = DEFAULT_CLASSES.filter((classItem) => !existingIds.has(classItem.id));
+
+  return [...normalizedSavedClasses, ...missingDefaultClasses];
 }
 
 function App() {

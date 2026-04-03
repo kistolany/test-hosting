@@ -232,6 +232,16 @@
     "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" },
     "selectedLabel": { "en": "selected", "km": "បានជ្រើស" }
   },
+  "classManagementPage": {
+    "title": {
+      "en": "Student Management",
+      "km": "គ្រប់គ្រងនិស្សិត"
+    },
+    "subtitle": {
+      "en": "Select a class to manage students and class information.",
+      "km": "ជ្រើសរើសថ្នាក់ ដើម្បីគ្រប់គ្រងនិស្សិត និងព័ត៌មានថ្នាក់។"
+    }
+  },
   "userManage": {
     "title": { "en": "Staff Users", "km": "អ្នកប្រើបុគ្គលិក" },
     "addUser": { "en": "Add User", "km": "បន្ថែមអ្នកប្រើ" },
