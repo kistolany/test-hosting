@@ -5,8 +5,8 @@
 
 .att-search-inner-container {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto 20px;
+  max-width: none;
+  margin: 0 0 20px;
   padding: 8px 10px 6px;
   box-sizing: border-box;
   background: #f8fafc;

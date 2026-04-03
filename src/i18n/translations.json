@@ -80,6 +80,10 @@
       "en": "List Student",
       "km": "បញ្ជីនិស្សិត"
     },
+    "classManagement": {
+      "en": "Class Management",
+      "km": "គ្រប់គ្រងថ្នាក់"
+    },
     "registerStudent": {
       "en": "Register Student",
       "km": "ចុះឈ្មោះនិស្សិត"
@@ -136,13 +140,9 @@
       "en": "Attendant",
       "km": "វត្តមាន"
     },
-    "takeAttendant": {
-      "en": "Take Attendant",
-      "km": "ចុះវត្តមាន"
-    },
-    "attendantList": {
-      "en": "Attendance List",
-      "km": "បញ្ជីវត្តមាន"
+    "users": {
+      "en": "Users",
+      "km": "អ្នកប្រើប្រាស់"
     },
     "setting": {
       "en": "Setting",
@@ -233,7 +233,38 @@
   "sortPage": {
     "title": { "en": "All Student List", "km": "បញ្ជីឈ្មោះនិស្សិតទាំងអស់" },
     "subtitle": { "en": "Manage and arrange student\nenrollment by section", "km": "គ្រប់គ្រង និងចាត់ចែងនិស្សិតចូលតាមផ្នែកនីមួយៗ" },
-    "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" }
+    "pendingStudents": { "en": "Pending Students", "km": "និស្សិតកំពុងរង់ចាំ" },
+    "selectedLabel": { "en": "selected", "km": "បានជ្រើស" }
+  },
+  "classManagementPage": {
+    "title": {
+      "en": "Student Management",
+      "km": "គ្រប់គ្រងនិស្សិត"
+    },
+    "subtitle": {
+      "en": "Select a class to manage students and class information.",
+      "km": "ជ្រើសរើសថ្នាក់ ដើម្បីគ្រប់គ្រងនិស្សិត និងព័ត៌មានថ្នាក់។"
+    },
+    "searchClassPlaceholder": {
+      "en": "Search by class, major, year, or shift...",
+      "km": "ស្វែងរកតាមថ្នាក់ ជំនាញ ឆ្នាំ ឬ វេន..."
+    },
+    "allMajors": {
+      "en": "All majors",
+      "km": "ជំនាញទាំងអស់"
+    },
+    "allYears": {
+      "en": "All years",
+      "km": "ឆ្នាំទាំងអស់"
+    },
+    "allShifts": {
+      "en": "All shifts",
+      "km": "វេនទាំងអស់"
+    },
+    "emptyState": {
+      "en": "No classes match your filter.",
+      "km": "មិនមានថ្នាក់ត្រូវនឹងតម្រងរបស់អ្នកទេ។"
+    }
   },
   "userManage": {
     "title": { "en": "Staff Users", "km": "អ្នកប្រើបុគ្គលិក" },

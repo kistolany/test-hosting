@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../i18n/LanguageContext";
 import {
-  Button, Form, Row, Col, Select, Card, Table, Tag, Pagination,
+  Button, Form, Row, Col, Select, Card, Table, Tag,
   Typography, message, Input,
 } from "antd";
 import {
   SwapLeftOutlined, SearchOutlined,
   ClearOutlined,
+  UserOutlined,
+  LeftOutlined,
+  RightOutlined,
 } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
@@ -16,19 +19,26 @@ const SortingPage = () => {
   const navigate = useNavigate();
   const { t, lang } = useLanguage();
   const [filterForm] = Form.useForm();
-  const [enrollForm] = Form.useForm(); 
 
   const initialStudents = [
     { key: "1", id: "STU-001", nameKh: "ហេង សុវណ្ណ", nameEn: "Heng Sovann", gender: "M", dob: "2002-05-20", phone: "012 345 678", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1", type: "Scholarship", note: "Full Scholarship" },
     { key: "2", id: "STU-002", nameKh: "លី ម៉ារីណា", nameEn: "Ly Marina", gender: "F", dob: "2003-11-12", phone: "098 765 432", faculty: "law", major: "ba", batch: "21", year: "2", class: "B1", type: "Pay", note: "" },
     { key: "3", id: "STU-003", nameKh: "កែវ វិសាល", nameEn: "Keo Visal", gender: "M", dob: "2001-01-30", phone: "010 111 222", faculty: "it", major: "cs", batch: "20", year: "1", class: "A1", type: "Scholarship", note: "50% Discount" },
+    { key: "4", id: "STU-004", nameKh: "សេង វុទ្ធី", nameEn: "Seng Vuthy", gender: "M", dob: "2002-08-17", phone: "086 222 101", faculty: "law", major: "ba", batch: "22", year: "2", class: "A2", type: "Pay", note: "" },
+    { key: "5", id: "STU-005", nameKh: "ផាន ស្រីពៅ", nameEn: "Phan Srey Pov", gender: "F", dob: "2003-02-03", phone: "097 552 116", faculty: "it", major: "cs", batch: "22", year: "2", class: "A3", type: "Scholarship", note: "25% Discount" },
+    { key: "6", id: "STU-006", nameKh: "ហួត ចាន់ណា", nameEn: "Huot Channa", gender: "M", dob: "2001-10-09", phone: "012 802 663", faculty: "it", major: "cs", batch: "21", year: "3", class: "A4", type: "Pay", note: "" },
+    { key: "7", id: "STU-007", nameKh: "យិន សុភី", nameEn: "Yin Sophea", gender: "F", dob: "2002-04-25", phone: "099 443 250", faculty: "law", major: "ba", batch: "21", year: "1", class: "A5", type: "Scholarship", note: "50% Discount" },
+    { key: "8", id: "STU-008", nameKh: "ចិន វាសនា", nameEn: "Chin Veasna", gender: "M", dob: "2003-07-14", phone: "077 114 870", faculty: "it", major: "cs", batch: "23", year: "1", class: "A6", type: "Pay", note: "" },
+    { key: "9", id: "STU-009", nameKh: "លីម រតនា", nameEn: "Lim Rattana", gender: "F", dob: "2002-12-01", phone: "015 900 445", faculty: "law", major: "ba", batch: "22", year: "2", class: "A7", type: "Scholarship", note: "Full Scholarship" },
   ];
 
   const [waitingStudents, setWaitingStudents] = useState(initialStudents); 
   const [enrolledStudents, setEnrolledStudents] = useState([]); 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const PAGE_SIZE = 5;
+  const [selectedClassName, setSelectedClassName] = useState("A1");
+  const PAGE_SIZE = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const classNameOptions = Array.from({ length: 30 }, (_, index) => `A${index + 1}`);
 
   useEffect(() => {
     document.body.classList.add("student-list-only-table-scroll");
@@ -43,52 +53,48 @@ const SortingPage = () => {
   //   return num.toString().split('').map(digit => khmerNumbers[digit] || digit).join('');
   // };
 
-  const onConfirmEnroll = async () => {
-    try {
-      if (selectedRowKeys.length === 0) {
-        message.warning({ content: "សូមជ្រើសរើសនិស្សិតដើម្បីបន្ត!", className: "sort-khmer-text" });
-        return;
-      }
-
-      const values = await enrollForm.validateFields();
-      const registerValues = filterForm.getFieldsValue(["batch", "year"]);
-      const moving = waitingStudents
-        .filter((s) => selectedRowKeys.includes(s.key))
-        .map((student) => ({
-          ...student,
-          batch: registerValues.batch || student.batch,
-          year: registerValues.year || student.year,
-          class: values.class,
-        }));
-
-      if (moving.length === 0) {
-        message.error({
-          content: "Enrollment fail: មិនមាននិស្សិតត្រូវបែងចែក!",
-          className: "sort-khmer-text",
-        });
-        return;
-      }
-
-      setEnrolledStudents((prev) => [...prev, ...moving]);
-      setWaitingStudents((prev) => prev.filter((s) => !selectedRowKeys.includes(s.key)));
-
-      setSelectedRowKeys([]);
-      enrollForm.resetFields();
-
-      message.success({
-        content: `Enrollment success: បានបែងចែកនិស្សិត ${moving.length} នាក់រួចរាល់!`,
-        className: "sort-khmer-text",
-      });
-
-      setTimeout(() => {
-        navigate("/student");
-      }, 900);
-    } catch (error) {
-      message.error({
-        content: "Enrollment fail: សូមពិនិត្យព័ត៌មានហើយព្យាយាមម្តងទៀត!",
-        className: "sort-khmer-text",
-      });
+  const onConfirmEnroll = () => {
+    if (selectedRowKeys.length === 0) {
+      message.warning({ content: "សូមជ្រើសរើសនិស្សិតដើម្បីបន្ត!", className: "sort-khmer-text" });
+      return;
     }
+
+    if (!selectedClassName) {
+      message.warning({ content: "សូមជ្រើសរើសថ្នាក់!", className: "sort-khmer-text" });
+      return;
+    }
+
+    const registerValues = filterForm.getFieldsValue(["batch", "year"]);
+    const moving = waitingStudents
+      .filter((s) => selectedRowKeys.includes(s.key))
+      .map((student) => ({
+        ...student,
+        batch: registerValues.batch || student.batch,
+        year: registerValues.year || student.year,
+        class: selectedClassName,
+      }));
+
+    if (moving.length === 0) {
+      message.error({
+        content: "Enrollment fail: មិនមាននិស្សិតត្រូវបែងចែក!",
+        className: "sort-khmer-text",
+      });
+      return;
+    }
+
+    setEnrolledStudents((prev) => [...prev, ...moving]);
+    setWaitingStudents((prev) => prev.filter((s) => !selectedRowKeys.includes(s.key)));
+
+    setSelectedRowKeys([]);
+
+    message.success({
+      content: `Enrollment success: បានបែងចែកនិស្សិត ${moving.length} នាក់រួចរាល់!`,
+      className: "sort-khmer-text",
+    });
+
+    setTimeout(() => {
+      navigate("/classes");
+    }, 900);
   };
 
   const handleSearch = (values) => {
@@ -152,7 +158,20 @@ const SortingPage = () => {
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const pagedWaitingStudents = waitingStudents.slice(startIndex, startIndex + PAGE_SIZE);
+  const totalPages = Math.max(1, Math.ceil(waitingStudents.length / PAGE_SIZE));
   const canEnroll = selectedRowKeys.length > 0;
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const goToPage = (nextPage) => {
+    const safePage = Math.max(1, Math.min(totalPages, nextPage));
+    if (safePage === currentPage) return;
+    setCurrentPage(safePage);
+  };
 
   const enrolledColumns = [
     ...commonColumns,
@@ -234,7 +253,7 @@ const SortingPage = () => {
 
       <div
         className="search-inner-container sticky-search no-print"
-        style={{ width: "calc(100% - 40px)", maxWidth: "1400px", margin: "0 auto 12px" }}
+        style={{ width: "100%", margin: "0 0 12px" }}
       >
         <Form className="student-search-form" form={filterForm} layout="vertical" onFinish={handleSearch}>
           <Row gutter={[5, 5]} align="bottom">
@@ -273,7 +292,7 @@ const SortingPage = () => {
         className="sort-inline-row"
         gutter={[16, 12]}
         align="top"
-        style={{ width: "calc(100% - 40px)", maxWidth: "1400px", margin: "20px auto 0" }}
+        style={{ width: "100%", margin: "20px 0 0" }}
       >
         <Col xs={24} md={16} lg={17}>
           <Card bordered={false} className="user-card-main student-table-card sort-card" style={{ width: '100%', maxWidth: '100%' }}>
@@ -288,19 +307,32 @@ const SortingPage = () => {
               columns={waitingColumns} 
               dataSource={pagedWaitingStudents} 
               pagination={false}
-              scroll={{ x: 980, y: 390 }}
               bordered={false}
             />
 
-            <div className="student-table-pagination no-print">
-              <Pagination
-                current={currentPage}
-                pageSize={PAGE_SIZE}
-                total={waitingStudents.length}
-                showSizeChanger={false}
-                onChange={(page) => {
-                  setCurrentPage(page);
-                }}
+            <div className="student-table-pagination no-print scholar-exam-pagination">
+              <Button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="scholar-exam-page-btn scholar-exam-page-btn-arrow"
+                aria-label="Previous page"
+                icon={<LeftOutlined />}
+              />
+
+              <Button
+                className="scholar-exam-page-btn scholar-exam-page-btn-current"
+                disabled
+                aria-current="page"
+              >
+                {currentPage}
+              </Button>
+
+              <Button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage >= totalPages}
+                className="scholar-exam-page-btn scholar-exam-page-btn-arrow"
+                aria-label="Next page"
+                icon={<RightOutlined />}
               />
             </div>
           </Card>
@@ -310,40 +342,50 @@ const SortingPage = () => {
           <Card className="sort-enroll-side-card shadow-lg shadow-slate-900/10 ring-1 ring-slate-200/80 rounded-xl" bordered={false}>
             <div className="sort-enroll-modal-title sort-khmer-text mb-3">
               <span>{t("navigation.enrollment")}</span>
-              <span className="sort-enroll-modal-count">បានជ្រើសរើស: {selectedRowKeys.length} នាក់</span>
+              <span className="sort-enroll-modal-count" aria-live="polite">
+                <UserOutlined className="sort-enroll-count-icon" />
+                <span className="sort-enroll-count-number">{selectedRowKeys.length}</span>
+                <span className="sort-enroll-count-label">{t("sortPage.selectedLabel")}</span>
+              </span>
             </div>
 
-            <Form form={enrollForm} layout="vertical">
-              <Form.Item label="Class" name="class" rules={[{ required: true }]}>
-                <Select
-                  placeholder="Class"
-                  className="shadow-sm"
-                  showSearch
-                  allowClear
-                  optionFilterProp="children"
-                >
-                  <Select.Option value="A1">A1</Select.Option>
-                  <Select.Option value="B1">B1</Select.Option>
-                </Select>
-              </Form.Item>
+            <div className="sort-class-list-label">
+              <span className="sort-class-required">*</span> Class
+            </div>
 
-              <div className="flex flex-col gap-2 mt-1">
-                <Button className="shadow-md" style={{ width: "100%" }} onClick={() => { setSelectedRowKeys([]); enrollForm.resetFields(); }}>
-                  {t("actions.cancel")}
-                </Button>
-                <Button
-                  type="primary"
-                  className="shadow-md"
-                  style={canEnroll
-                    ? { backgroundColor: '#070f7a', borderColor: '#070f7a', color: '#ffffff', width: "100%" }
-                    : { backgroundColor: '#cbd5e1', borderColor: '#cbd5e1', color: '#475569', width: "100%" }}
-                  onClick={onConfirmEnroll}
-                  disabled={!canEnroll}
+            <div className="sort-class-grid" role="listbox" aria-label="Class list">
+              {classNameOptions.map((className) => (
+                <button
+                  key={className}
+                  type="button"
+                  className={`sort-class-chip ${selectedClassName === className ? "active" : ""}`}
+                  onClick={() => setSelectedClassName(className)}
+                  aria-selected={selectedClassName === className}
                 >
-                  {t("navigation.enrollment")}
-                </Button>
-              </div>
-            </Form>
+                  {className}
+                </button>
+              ))}
+            </div>
+
+            <div className="sort-enroll-action-row">
+              <Button
+                className="sort-enroll-cancel-btn"
+                onClick={() => {
+                  setSelectedRowKeys([]);
+                  setSelectedClassName(null);
+                }}
+              >
+                {t("actions.cancel")}
+              </Button>
+              <Button
+                type="primary"
+                className="sort-enroll-submit-btn"
+                onClick={onConfirmEnroll}
+                disabled={!canEnroll || !selectedClassName}
+              >
+                {t("navigation.enrollment")}
+              </Button>
+            </div>
           </Card>
         </Col>
       </Row>

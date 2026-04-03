@@ -1,30 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+Khmer:wght@400;500;700&family=Sora:wght@600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Manrope", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
-  font-family: "Khmer OS Moul Light";
-  src: local("Khmer OS Moul Light"), local("KhmerOSMoulLight");
-  font-display: swap;
+* {
+  box-sizing: border-box;
 }
 
-@font-face {
-  font-family: "Khmer Moul Light";
-  src: local("Khmer Moul Light"), local("KhmerMoulLight"), local("Khmer OS Moul Light"), local("KhmerOSMoulLight");
-  font-display: swap;
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #0f172a;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Sora", sans-serif;
 }
 
 @font-face {
@@ -33,195 +35,24 @@
   font-display: swap;
 }
 
-.i18n-title,
-.i18n-body {
-  transition: font-family 0.2s ease;
+@font-face {
+  font-family: "Khmer OS Moul Light";
+  src: local("Khmer OS Muol Light"), local("Khmer OS Moul Light"),
+    local("KhmerOSMuolLight"), local("KhmerOSMoulLight");
+  font-display: swap;
 }
 
-.main-shell.lang-en .i18n-title,
-.main-shell.lang-en .i18n-body {
-  font-family: Arial, sans-serif !important;
+.khmer-moul-light {
+  font-family: "Khmer OS Moul Light" !important;
 }
 
-.main-shell.lang-km,
-.main-shell.lang-km .i18n-body,
-.main-shell.lang-km .ant-menu-title-content,
-.main-shell.lang-km .ant-dropdown-menu-title-content,
-.main-shell.lang-km .ant-btn,
-.main-shell.lang-km .ant-input,
-.main-shell.lang-km .ant-select-selection-item,
-.main-shell.lang-km .ant-select-item-option-content,
-.main-shell.lang-km .ant-typography {
-  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
-  letter-spacing: 0 !important;
-  word-spacing: 0.03em;
-}
-
-.main-shell.lang-km .i18n-title,
-.main-shell.lang-km .span1,
-.main-shell.lang-km .dashboard {
-  font-family: "Khmer OS Moul Light", "Noto Sans Khmer", serif !important;
-  line-height: 1.45;
-}
-
-/* Force Khmer filter UI font on all pages when km is active */
-.main-shell.lang-km .search-inner-container,
-.main-shell.lang-km .sticky-search,
-.main-shell.lang-km .att-search-inner-container,
-.main-shell.lang-km .search-form,
-.main-shell.lang-km .search-inner-container .ant-form-item-label > label,
-.main-shell.lang-km .sticky-search .ant-form-item-label > label,
-.main-shell.lang-km .att-search-inner-container .ant-form-item-label > label,
-.main-shell.lang-km .search-inner-container .ant-select-selection-item,
-.main-shell.lang-km .sticky-search .ant-select-selection-item,
-.main-shell.lang-km .att-search-inner-container .ant-select-selection-item,
-.main-shell.lang-km .search-inner-container .ant-select-selection-placeholder,
-.main-shell.lang-km .sticky-search .ant-select-selection-placeholder,
-.main-shell.lang-km .att-search-inner-container .ant-select-selection-placeholder,
-.main-shell.lang-km .search-inner-container .ant-picker-input > input,
-.main-shell.lang-km .sticky-search .ant-picker-input > input,
-.main-shell.lang-km .att-search-inner-container .ant-picker-input > input,
-.main-shell.lang-km .search-inner-container .ant-btn,
-.main-shell.lang-km .sticky-search .ant-btn,
-.main-shell.lang-km .att-search-inner-container .ant-btn {
+html[lang="km"] body,
+html[lang="km"] body * {
   font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
 }
 
-.main-shell.lang-km .student-table-card,
-.main-shell.lang-km .student-table-card .ant-table,
-.main-shell.lang-km .student-table-card .ant-table-thead > tr > th,
-.main-shell.lang-km .student-table-card .ant-table-tbody > tr > td,
-.main-shell.lang-km .student-table-card .ant-tag,
-.main-shell.lang-km .official-table,
-.main-shell.lang-km .official-table .ant-table-thead > tr > th,
-.main-shell.lang-km .official-table .ant-table-tbody > tr > td,
-.main-shell.lang-km .official-table .ant-tag {
-  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-html[lang="km"] .ant-btn,
-html[lang="km"] button {
-  font-family: "Khmer OS Battambang", "Noto Sans Khmer", sans-serif !important;
-}
-
-html[lang="en"] .ant-btn,
-html[lang="en"] button {
-  font-family: Arial, sans-serif !important;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-/* Global action-icon style: blue edit + red delete, icon-only look */
-.anticon-edit,
-.anticon-delete {
-  font-size: 17px !important;
-}
-
-.ant-btn .anticon-edit,
-.ant-btn .anticon-delete {
-  font-size: 17px !important;
-}
-
-.ant-btn .anticon-edit {
-  color: #2563eb;
-}
-
-.ant-btn .anticon-delete {
-  color: #ef4444;
-}
-
-.ant-btn-text .anticon-edit,
-.ant-btn-link .anticon-edit,
-.ant-btn-text .anticon-delete,
-.ant-btn-link .anticon-delete {
-  line-height: 1;
-}
-
-/* Global table and filter shadows across the app */
-.main-shell .ant-table-wrapper {
-  border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-}
-
-.main-shell .ant-table-container {
-  border-radius: inherit;
-}
-
-.main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
-  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn) {
-  box-shadow: 0 5px 14px rgba(15, 23, 42, 0.1);
-}
-
-.main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
-  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn):hover {
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
-}
-
-.main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
-  :is(.ant-select.ant-select-focused, .ant-select.ant-select-open, .ant-picker-focused, .ant-input:focus, .ant-input-affix-wrapper-focused, .ant-input-number-focused, .ant-mentions-focused, .ant-btn:focus, .ant-btn:focus-visible) {
-  box-shadow: 0 0 0 3px rgba(59, 97, 255, 0.16), 0 10px 22px rgba(15, 23, 42, 0.16);
-}
-
-.theme-dark .main-shell .ant-table-wrapper {
-  box-shadow: 0 12px 26px rgba(2, 6, 23, 0.55);
-}
-
-.theme-dark .main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
-  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn) {
-  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.5);
-}
-
-.theme-dark .main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
-  :is(.ant-select, .ant-picker, .ant-input, .ant-input-affix-wrapper, .ant-input-number, .ant-mentions, .ant-btn):hover {
-  box-shadow: 0 9px 20px rgba(2, 6, 23, 0.6);
-}
-
-.theme-dark .main-shell :is(.search-inner-container, .sticky-search, .att-search-inner-container, .search-form, .student-search-form, .att-search-form)
-  :is(.ant-select.ant-select-focused, .ant-select.ant-select-open, .ant-picker-focused, .ant-input:focus, .ant-input-affix-wrapper-focused, .ant-input-number-focused, .ant-mentions-focused, .ant-btn:focus, .ant-btn:focus-visible) {
-  box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2), 0 12px 24px rgba(2, 6, 23, 0.62);
 }

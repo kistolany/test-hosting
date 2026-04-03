@@ -62,15 +62,7 @@ const MainPage = () => {
 
 const ContentWrapper = ({ isDark }) => {
   return (
-    <Content
-      className="content"
-      style={{ 
-        margin: '24px 16px',
-        padding: 24,
-        minHeight: 280,
-        overflowY: "auto"
-      }}
-    >
+    <Content className="content">
       <div style={{ color: isDark ? "#fff" : "#000" }}>
         <Outlet context={{ isDark }}/>
       </div>
