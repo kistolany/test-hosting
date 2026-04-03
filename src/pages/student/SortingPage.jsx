@@ -81,7 +81,7 @@ const SortingPage = () => {
       });
 
       setTimeout(() => {
-        navigate("/student");
+        navigate("/classes");
       }, 900);
     } catch (error) {
       message.error({

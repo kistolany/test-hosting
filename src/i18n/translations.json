@@ -80,6 +80,10 @@
       "en": "List Student",
       "km": "បញ្ជីនិស្សិត"
     },
+    "classManagement": {
+      "en": "Class Management",
+      "km": "គ្រប់គ្រងថ្នាក់"
+    },
     "registerStudent": {
       "en": "Register Student",
       "km": "ចុះឈ្មោះនិស្សិត"

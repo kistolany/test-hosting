@@ -21,6 +21,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
   const navigate = useNavigate();
   const { t, fontClass, lang } = useLanguage();
   const isSettingActive = ["/userManage", "/roleManage", "/auditLog"].includes(location.pathname);
+  const selectedMenuKey = location.pathname.startsWith("/class/") ? "/classes" : location.pathname;
 
   const menuItems = [
     {
@@ -29,6 +30,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
       icon: <GiftOutlined />,
       children: [
         { key: "/student", label: <span className={fontClass("body")}>{t("navigation.listStudent")}</span> },
+        { key: "/classes", label: <span className={fontClass("body")}>{t("navigation.classManagement")}</span> },
         { key: "/createStudent", label: <span className={fontClass("body")}>{t("navigation.registerStudent")}</span> },
         { key: "/scholarExam", label: <span className={fontClass("body")}>{t("navigation.scholarshipExam")}</span> },
         { key: "/sortingpage", label: <span className={fontClass("body")}>{t("navigation.sortStudent")}</span> },
@@ -140,7 +142,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
               setCollapsed(true);
             }
           }}
-          selectedKeys={[location.pathname]}
+          selectedKeys={[selectedMenuKey]}
           mode="inline"
           items={menuItems}
         />
