@@ -29,82 +29,125 @@ const AdvancedSearchForm = ({ onSearch, onClear, fullData }) => {
   };
 
   return (
-    <div className="search-inner-container sticky-search no-print">
-      <Form 
-        form={form} 
-        style={{ background: token.colorFillAlter, borderRadius: token.borderRadiusLG, padding: "20px", marginBottom: 20 }} 
-        layout="vertical" 
-        onFinish={onSearch}
-      >
-        <Row gutter={[12, 0]} align="bottom">
-          <Col xs={24} md={8}>
-            <Form.Item name="major" label={t("filters.major")} style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder={t("filters.selectMajor")} options={getOptions('major')} />
-            </Form.Item>
-          </Col>
-          <Col xs={12} md={5}>
-            <Form.Item name="batch" label={t("filters.batch")} style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder={t("filters.selectBatch")} options={getOptions('batch')} />
-            </Form.Item>
-          </Col>
-          <Col xs={12} md={4}>
-            <Form.Item name="year" label={t("filters.year")} style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder={t("filters.selectYear")} options={getOptions('year')} />
-            </Form.Item>
-          </Col>
-          <Col xs={12} md={4}>
-            <Form.Item name="semester" label={t("filters.semester")} style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder={t("filters.selectSemester")} options={getOptions('semester')} />
-            </Form.Item>
-          </Col>
-          <Col xs={12} md={3}>
-            <Form.Item name="shift" label={t("filters.shift")} style={{ marginBottom: 12 }}>
-              <Select allowClear placeholder={t("filters.selectShift")} options={getOptions('shift')} />
-            </Form.Item>
-          </Col>
-        </Row>
+      <div className="att-search-inner-container">
+  <Form 
+    form={form} 
+    layout="vertical" 
+    onFinish={onSearch}
+  >
+    {/* Row 1: Primary Filters */}
+    <Row gutter={[16, 0]} align="bottom">
+      <Col lg={4} xs={12} md={8}>
+        <Form.Item name="major" label={t("filters.major")} style={{ marginBottom: 5,marginTop: 5 }}>
+          <Select 
+            size="middle" // Can change to "large" if preferred
+            allowClear 
+            placeholder={t("filters.selectMajor")} 
+            options={getOptions('major')} 
+          />
+        </Form.Item>
+      </Col>
+      <Col lg={4} xs={12} md={8} >
+        <Form.Item name="subject" label={t("filters.subject")} style={{ marginBottom: 12 }}>
+          <Select 
+            size="middle" 
+            allowClear 
+            placeholder={t("filters.selectSubject")} 
+            options={getOptions('subject')} 
+          />
+        </Form.Item>
+      </Col>
+      <Col lg={3} xs={12} md={5}>
+        <Form.Item name="batch" label={t("filters.batch")} style={{ marginBottom: 12 }}>
+          <Select 
+            size="middle" 
+            allowClear 
+            placeholder={t("filters.selectBatch")} 
+            options={getOptions('batch')} 
+          />
+        </Form.Item>
+      </Col>
+      <Col lg={3} xs={12} md={4}>
+        <Form.Item name="year" label={t("filters.year")} style={{ marginBottom: 12 }}>
+          <Select 
+            size="middle" 
+            allowClear 
+            placeholder={t("filters.selectYear")} 
+            options={getOptions('year')} 
+          />
+        </Form.Item>
+      </Col>
+      <Col lg={2} xs={12} md={4}>
+        <Form.Item name="semester" label={t("filters.semester")} style={{ marginBottom: 12 }}>
+          <Select 
+            size="middle" 
+            allowClear 
+            placeholder={t("filters.selectSemester")} 
+            options={getOptions('semester')} 
+          />
+        </Form.Item>
+      </Col>
 
-        <Row gutter={[12, 0]} align="bottom">
-          <Col xs={24} md={5}>
-            <Form.Item name="examDateRange" label={t("filters.examDate")} style={{ marginBottom: 12 }}>
-              <RangePicker style={{ width: '100%' }} format="DD-MM-YYYY" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={5}>
-            <Form.Item name="examTime" label={t("filters.examTime")} style={{ marginBottom: 12 }}>
-              <TimePicker.RangePicker style={{ width: '100%' }} format="HH:mm" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={14}>
-            <Form.Item label=" " style={{ marginBottom: 12 }}>
-            <Flex gap="small"  wrap>
-              <Button
-                type="primary"
-                htmlType="submit"
-                icon={<SearchOutlined />}
-                style={{ backgroundColor: '#070f7a', minWidth: 120 }}
-              >
-                {t("actions.search")}
-              </Button>
-              <Button
-                icon={<ClearOutlined/>}
-                onClick={() => { form.resetFields(); onClear(); }}
-                style={{ minWidth: 44 }}
-              />
-              <Button
-                icon={<PrinterOutlined />}
-                onClick={() => window.print()}
-                style={{ backgroundColor: '#070f7a', color: "white", minWidth: 100 }}
-              >
-                {t("actions.print")}
-              </Button>
+      <Col xs={24} md={7} lg={4}>
+        <Form.Item name="examDateRange" label={t("filters.examDate")} style={{ marginBottom: 12 }}>
+          <RangePicker 
+            size="middle" 
+            style={{ width: '100%' }} 
+            format="DD-MM-YYYY" 
+          />
+        </Form.Item>
+      </Col>
+      <Col xs={24} md={7} lg={4}>
+        <Form.Item name="examTime" label={t("filters.examTime")} style={{ marginBottom: 12 }}>
+          <TimePicker.RangePicker 
+            size="middle" 
+            style={{ width: '100%' }} 
+            format="HH:mm" 
+          />
+        </Form.Item>
+      </Col>
+    </Row>
 
-            </Flex>
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-    </div>
+    {/* Row 2: DateTime & Buttons */}
+    <Row gutter={[16, 0]} align="bottom">
+
+      {/* Buttons Column */}
+      <Col xs={24} md={14} lg={16}>
+        <Form.Item label=" " style={{ marginBottom: 5 }}>
+          <Flex gap="small" wrap="wrap">
+            <Button
+              size="middle"
+              type="primary"
+              htmlType="submit"
+              icon={<SearchOutlined />}
+              style={{ backgroundColor: '#070f7a', minWidth: 100 }}
+            >
+              {t("actions.search")}
+            </Button>
+            
+            <Button
+              size="middle"
+              icon={<ClearOutlined/>}
+              onClick={() => { form.resetFields(); onClear(); }}
+              style={{ width: 40 }}
+            />
+            
+            <Button
+              size="middle"
+              icon={<PrinterOutlined />}
+              onClick={() => window.print()}
+              style={{ backgroundColor: '#070f7a', color: "white", minWidth: 100 }}
+            >
+              {t("actions.print")}
+            </Button>
+          </Flex>
+        </Form.Item>
+      </Col>
+    </Row>
+  </Form>
+</div>
+    
+    
   );
 };
 

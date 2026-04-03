@@ -64,7 +64,15 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
         { key: "/scoreTeacher", label: <span className={fontClass("body")}>{t("navigation.scoreByTeacher")}</span> },
       ],
     },
-    { key: "/attendant", icon: <CheckSquareOutlined />, label: <span className={fontClass("body")}>{t("navigation.attendant")}</span> },
+    {
+      key: "subAttendant",
+      label: <span className={fontClass("body")}>{t("navigation.attendant")}</span>,
+      icon: <CheckSquareOutlined />,
+      children: [
+        { key: "/attendant/take", label: <span className={fontClass("body")}>{t("navigation.takeAttendant")}</span> },
+        { key: "/attendant/list", label: <span className={fontClass("body")}>{t("navigation.attendantList")}</span> },
+      ],
+    }
   ];
 
   const settingMenuItems = [

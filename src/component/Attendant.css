@@ -210,9 +210,19 @@
 }
 
 .att-list-header {
-  text-align: center;
-  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 16px;
   color: #000;
+  gap: 8px;
+}
+
+.att-list-content {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 12px;
 }
 
 .att-list-header h2, .att-list-header h3 {

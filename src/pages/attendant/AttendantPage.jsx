@@ -14,53 +14,33 @@ import { useLanguage } from "../../i18n/LanguageContext";
 const { Text, Title } = Typography;
 const PRIMARY_COLOR = '#070f7a';
 
-const AttendancePage = () => {
-  const [form] = Form.useForm();
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-  const { isDark } = useOutletContext();
-  const { t } = useLanguage();
-  
-  const [editingKey, setEditingKey] = useState("");
-  const [searchSummary, setSearchSummary] = useState(null);
-  const [viewingStudent, setViewingStudent] = useState(null); 
-  const [showMajorReport, setShowMajorReport] = useState(false);
-
-  // --- MOCK ACADEMIC DATA & STUDENT DATA ---
-  const academicSetup = [
-    { subject: "Web Development", teacher: "លោកគ្រូ សុផល" },
-    { subject: "Network Administration", teacher: "អ្នកគ្រូ សុភា" },
-    { subject: "Database Management", teacher: "លោកគ្រូ រតនៈ" },
-    { subject: "Cyber Security", teacher: "លោកគ្រូ ចាន់ត្រា" },
-    { subject: "English for IT", teacher: "អ្នកគ្រូ ម៉ារី" },
-  ];
-
-  const studentsBase = [
-    { id: "B260013", nameKh: "អាត ភីយ៉ា", nameEn: "At Phiya", gender: "ស្រី", dob: "12-May-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260014", nameKh: "ហានួន ហុយស្នា", nameEn: "Hanoun Hoysna", gender: "ប្រុស", dob: "20-Jan-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260015", nameKh: "ចាន់ សុខា", nameEn: "Chan Sokha", gender: "ប្រុស", dob: "15-Mar-2003", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260016", nameKh: "លី ម៉ារីណា", nameEn: "Ly Marina", gender: "ស្រី", dob: "05-Jul-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260017", nameKh: "សេង ហុង", nameEn: "Seng Hong", gender: "ប្រុស", dob: "30-Nov-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260018", nameKh: "មាស សុភ័ក្ត្រ", nameEn: "Meas Sopheak", gender: "ស្រី", dob: "14-Feb-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260019", nameKh: "ណុប រតនា", nameEn: "Nop Rothana", gender: "ប្រុស", dob: "22-Jun-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260020", nameKh: "ហ៊ាន ម៉ារី", nameEn: "Hean Mary", gender: "ស្រី", dob: "09-Sep-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260021", nameKh: "សុខ វីរៈ", nameEn: "Sok Virak", gender: "ប្រុស", dob: "11-Dec-2003", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260022", nameKh: "កែវ សុវណ្ណ", nameEn: "Keo Sovan", gender: "ប្រុស", dob: "30-Apr-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260023", nameKh: "ថន ស្រីនិច", nameEn: "Thorn Sreynich", gender: "ស្រី", dob: "05-Aug-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260024", nameKh: "រ៉េត សម្បត្តិ", nameEn: "Reth Sambath", gender: "ប្រុស", dob: "19-May-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260025", nameKh: "ស៊ឹម ដានី", nameEn: "Sim Dany", gender: "ស្រី", dob: "27-Oct-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
-    { id: "B260026", nameKh: "ឡុង សុជាតិ", nameEn: "Long Socheat", gender: "ប្រុស", dob: "12-Jan-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+const academicSetup = [
+  { subject: "Web Development", teacher: "លោកគ្រូ សុផល" },
+  { subject: "Network Administration", teacher: "អ្នកគ្រូ សុភា" },
+  { subject: "Database Management", teacher: "លោកគ្រូ រតនៈ" },
+  { subject: "Cyber Security", teacher: "លោកគ្រូ ចាន់ត្រា" },
+  { subject: "English for IT", teacher: "អ្នកគ្រូ ម៉ារី" },
 ];
 
-  // Generating 25 records (5 students x 5 subjects each)
+const studentsBase = [
+  { id: "B260013", nameKh: "អាត ភីយ៉ា", nameEn: "At Phiya", gender: "ស្រី", dob: "12-May-2004", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+  { id: "B260014", nameKh: "ហានួន ហុយស្នា", nameEn: "Hanoun Hoysna", gender: "ប្រុស", dob: "20-Jan-2005", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+  { id: "B260015", nameKh: "ចាន់ សុខា", nameEn: "Chan Sokha", gender: "ប្រុស", dob: "15-Mar-2003", batch: "26", year: "1", sem: "1", faculty: "IT", major: "SNA", day: "ចន្ទ-សុក្រ", shift: "ព្រឹក" },
+];
+
+const getInitialAttendanceData = () => {
   const initialData = [];
   studentsBase.forEach((std, sIdx) => {
     academicSetup.forEach((course, cIdx) => {
-      // Create some random attendance for demo
       const mockAttendance = Array(30).fill('Att');
-      if (sIdx === 0 && cIdx === 0) mockAttendance[2] = 'A', mockAttendance[5] = 'A', mockAttendance[8] = 'P', mockAttendance[10] = 'A'; // 4 absences = ណែនាំ
-      if (sIdx === 1 && cIdx === 1) { // 9 absences = ធ្វើកិច្ចសន្យា
-        for(let i=0; i<9; i++) mockAttendance[i] = 'A';
+      if (sIdx === 0 && cIdx === 0) {
+        mockAttendance[2] = 'A';
+        mockAttendance[5] = 'A';
+        mockAttendance[8] = 'P';
+        mockAttendance[10] = 'A';
+      }
+      if (sIdx === 1 && cIdx === 1) {
+        for (let i = 0; i < 9; i++) mockAttendance[i] = 'A';
       }
 
       initialData.push({
@@ -80,13 +60,47 @@ const AttendancePage = () => {
         shift: std.shift,
         subject: course.subject,
         teacher: course.teacher,
-        attendance: mockAttendance
+        attendance: mockAttendance,
       });
     });
   });
+  return initialData;
+};
 
-  const [allData, setAllData] = useState(initialData);
+const AttendancePage = () => {
+  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { isDark } = useOutletContext();
+  const { t } = useLanguage();
+
+  const [editingKey, setEditingKey] = useState("");
+  const [searchSummary, setSearchSummary] = useState(null);
+  const [showMajorReport, setShowMajorReport] = useState(false);
+
+  // Academic template is imported from AttendanceDataset, initial data is provided by getInitialAttendanceData().
+
+  const [allData, setAllData] = useState(() => {
+    const saved = localStorage.getItem("attendanceRecords");
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (error) {
+        console.warn("Invalid attendanceRecords in localStorage", error);
+      }
+    }
+    return getInitialAttendanceData();
+  });
+
   const [filteredData, setFilteredData] = useState(allData);
+
+  useEffect(() => {
+    localStorage.setItem("attendanceRecords", JSON.stringify(allData));
+  }, [allData]);
+
+  useEffect(() => {
+    setFilteredData(allData);
+  }, [allData]);
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 800);
@@ -237,7 +251,6 @@ const AttendancePage = () => {
             type="text" 
             icon={<EyeOutlined style={{ color: PRIMARY_COLOR }} />} 
             onClick={() => {
-                setViewingStudent(record);
                 setShowMajorReport(true);
             }} 
           />
@@ -288,7 +301,7 @@ const AttendancePage = () => {
       <div style={{ padding: '30px', background: isDark ? '#0b1220' : '#fff', minHeight: '100vh' }}>
         <Flex justify="space-between" className="no-print" style={{ marginBottom: 20 }}>
           <Button icon={<ArrowLeftOutlined />} onClick={() => setShowMajorReport(false)}>Back</Button>
-          <Button type="primary" icon={<PrinterOutlined />} onClick={() => window.print()} style={{ background: PRIMARY_COLOR }}>បោះពុម្ព (Print)</Button>
+          <Button type="primary" icon={<PrinterOutlined />} onClick={() => window.print()} style={{ background: PRIMARY_COLOR }}>Print</Button>
         </Flex>
 
       <div className="official-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -339,34 +352,79 @@ const AttendancePage = () => {
 
   return (
     <div className="att-page-wrapper">
-      <div className="att-search-inner-container">
+<div className="att-search-inner-container">
         <Form form={form} layout="vertical" className="att-search-form">
-          <Row gutter={[24, 10]}>
-            <Col xs={24} sm={12} md={4}><Form.Item name="batch" label={t("filters.batch")}><Select allowClear placeholder={t("filters.selectBatch")} options={[{value: '26', label: 'B26'}, {value: '27', label: 'B27'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="studyYear" label={t("filters.year")}><Select allowClear placeholder={t("filters.selectYear")} options={[{value: '1', label: 'Year 1'}, {value: '2', label: 'Year 2'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="semester" label={t("filters.semester")}><Select allowClear placeholder={t("filters.selectSemester")} options={[{value: '1', label: 'Sem 1'}, {value: '2', label: 'Sem 2'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={6}><Form.Item name="faculty" label={t("filters.faculty")}><Select allowClear placeholder={t("filters.selectFaculty")} options={[{value: 'IT', label: 'IT'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={6}><Form.Item name="major" label={t("filters.major")}><Select allowClear placeholder={t("filters.selectMajor")} options={[{value: 'SNA', label: 'SNA'}, {value: 'English', label: 'English'}]}/></Form.Item></Col>
-          </Row>
-
-          <Row gutter={[24, 10]} align="bottom">
-            <Col xs={24} sm={12} md={6}><Form.Item name="subject" label={t("filters.subject")}><Select allowClear placeholder={t("filters.selectSubject")} options={academicSetup.map(a => ({value: a.subject, label: a.subject}))}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="studyDay" label={t("filters.studyDay")}><Select allowClear placeholder={t("filters.day")} options={[{value: 'ចន្ទ-សុក្រ', label: 'ចន្ទ-សុក្រ'}, {value: 'សៅរ៍-អាទិត្យ', label: 'សៅរ៍-អាទិត្យ'}]}/></Form.Item></Col>
-            <Col xs={24} sm={12} md={4}><Form.Item name="shift" label={t("filters.shift")}><Select allowClear placeholder={t("filters.selectShift")} options={[{value: 'ព្រឹក', label: 'ព្រឹក'}, {value: 'ល្ងាច', label: 'ល្ងាច'}]}/></Form.Item></Col>
-            <Col xs={24} sm={24} md={10}>
-              <Form.Item label=" ">
-                <Flex gap="middle" className="att-search-actions" wrap="wrap">
-                  <Button type="primary" icon={<SearchOutlined />} onClick={handleSearch} style={{ backgroundColor: PRIMARY_COLOR }}>{t("actions.searchStudent")}</Button>
-                  <Button icon={<EyeOutlined />} onClick={() => setShowMajorReport(true)} disabled={!searchSummary}>{t("actions.viewReport")}</Button>
-                  <Button icon={<ClearOutlined/>} onClick={handleClear}></Button>
-                  <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: PRIMARY_COLOR, color: 'white' }}>{t("actions.printList")}</Button>
-                </Flex>
+          <Row gutter={[16, 8]}>
+            <Col xs={12} sm={8} md={4} lg={2}>
+              <Form.Item name="batch" label={t("filters.batch")}>
+                <Select allowClear placeholder="Batch" options={[{value: '26', label: 'B26'}]}/>
               </Form.Item>
             </Col>
+            <Col xs={12} sm={8} md={4} lg={2}>
+              <Form.Item name="studyYear" label={t("filters.year")}>
+                <Select allowClear placeholder="Year" options={[{value: '1', label: 'Year 1'}]}/>
+              </Form.Item>
+            </Col>
+            <Col xs={12} sm={8} md={4} lg={2}>
+              <Form.Item name="semester" label={t("filters.semester")}>
+                <Select allowClear placeholder="Sem" options={[{value: '1', label: 'Sem 1'}]}/>
+              </Form.Item>
+            </Col>
+            <Col xs={12} sm={8} md={6} lg={4}>
+              <Form.Item name="faculty" label={t("filters.faculty")}>
+                <Select allowClear placeholder="Faculty" options={[{value: 'IT', label: 'IT'}]}/>
+              </Form.Item>
+            </Col>
+            <Col xs={12} sm={8} md={6} lg={4}>
+              <Form.Item name="major" label={t("filters.major")}>
+                <Select allowClear placeholder="Major" options={[{value: 'SNA', label: 'SNA'}]}/>
+              </Form.Item>
+            </Col>
+            <Col xs={12} sm={8} md={8} lg={4}>
+              <Form.Item name="subject" label={t("filters.subject")}>
+                <Select allowClear placeholder="Subject" options={academicSetup.map(a => ({value: a.subject, label: a.subject}))}/>
+              </Form.Item>
+            </Col>
+            <Col xs={12} sm={6} md={4} lg={3}>
+              <Form.Item name="studyDay" label={t("filters.studyDay")}>
+                <Select allowClear placeholder="Day" options={[{value: 'ចន្ទ-សុក្រ', label: 'ចន្ទ-សុក្រ'}]}/>
+              </Form.Item>
+            </Col>
+            <Col xs={12} sm={6} md={4} lg={3}>
+              <Form.Item name="shift" label={t("filters.shift")}>
+                <Select allowClear placeholder="Shift" options={[{value: 'ព្រឹក', label: 'ព្រឹក'}]}/>
+              </Form.Item>
+            </Col>
+            
           </Row>
-          
+        
+          <Row gutter={[16, 8]} align="bottom">
+            
+            <Col xs={24} sm={24} md={24} lg={24} style={{ marginBottom: '5px',marginTop: '15px' }}>
+              <Flex gap="small" wrap="wrap" justify={{ xs: 'flex-start', md: 'flex-end' }}>
+                <Button type="primary" icon={<SearchOutlined />} onClick={handleSearch} style={{ backgroundColor: PRIMARY_COLOR }}>
+                  {t("search")}
+                </Button>
+                <Button icon={<ClearOutlined/>} onClick={handleClear} />
+                <Button icon={<EyeOutlined />} onClick={() => setShowMajorReport(true)} disabled={!searchSummary}>
+                  {t("Report")}
+                </Button>
+                <Button 
+          icon={<BookOutlined />} 
+          onClick={() => navigate("/attendant/list")}
+          style={{ borderRadius: '4px' }}
+        >
+          {t("List") || "List"}
+        </Button>
+                <Button icon={<PrinterOutlined />} onClick={() => window.print()} style={{ backgroundColor: PRIMARY_COLOR, color: 'white' }}>
+                  {t("print")}
+                </Button>
+              </Flex>
+            </Col>
+          </Row>
         </Form>
       </div>
+
 
       {searchSummary && (
         <div style={{ textAlign: 'center', marginBottom: 30, color: isDark ? '#e5e7eb' : '#000' }}>
