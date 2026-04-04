@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import { 
   UserOutlined, BookOutlined, ReadOutlined, 
-  TeamOutlined, SaveOutlined, EditFilled, DeleteFilled 
+  SaveOutlined, EditFilled, DeleteFilled 
 } from '@ant-design/icons';
 import { pushAuditLog } from '../../utils/auditLogs';
 
@@ -72,7 +72,7 @@ const Academic = () => {
     if (editingRecord) {
       const before = editingRecord;
       const updateRecursive = (data) => data.map(item => {
-        if (item.key === editingRecord.key) return { ...item, ...values, name: activeModal === 'class' ? values.room : values.name };
+        if (item.key === editingRecord.key) return { ...item, ...values, name: values.name };
         if (item.children) return { ...item, children: updateRecursive(item.children) };
         return item;
       });
@@ -82,11 +82,11 @@ const Academic = () => {
         module: "Academic",
         description: `Updated academic record ${before?.name || editingRecord.key}.`,
         before: JSON.stringify(before),
-        after: JSON.stringify({ ...before, ...values, name: activeModal === 'class' ? values.room : values.name }),
+        after: JSON.stringify({ ...before, ...values, name: values.name }),
       });
     } else {
       const newKey = Date.now().toString();
-      const finalName = activeModal === 'class' ? values.room : values.name;
+      const finalName = values.name;
       setDataSource([...dataSource, { ...values, name: finalName, key: newKey, level: activeModal }]);
     }
     handleCancel();
@@ -106,7 +106,7 @@ const Academic = () => {
       key: 'level',
       width: 120,
       render: (level) => {
-        const colors = { faculty: 'blue', major: 'geekblue', subject: 'green', class: 'purple' };
+        const colors = { faculty: 'blue', major: 'geekblue', subject: 'green' };
         return <Tag color={colors[level]}>{level.toUpperCase()}</Tag>;
       }
     },
@@ -147,7 +147,13 @@ const Academic = () => {
       width: 100,
       render: (_, record) => (
         <Space size="small">
-          <Button size="small" type="text" icon={<EditFilled />} onClick={() => onEdit(record)} />
+          <Button
+            size="small"
+            type="text"
+            className="academic-edit-btn"
+            icon={<EditFilled />}
+            onClick={() => onEdit(record)}
+          />
           <Popconfirm title="Delete?" onConfirm={() => onDelete(record.key)}>
             <Button size="small" type="text" danger icon={<DeleteFilled />} />
           </Popconfirm>
@@ -158,16 +164,24 @@ const Academic = () => {
 
   return (
     <ConfigProvider theme={{ token: { colorPrimary: PRIMARY_COLOR } }}>
-      <Flex justify="center" align="flex-start" style={{ padding: '30px 10px' }}>
-        <Card bordered={false} style={{ width: '100%', maxWidth: 1100, borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+      <div style={{ width: '100%', padding: 0, boxSizing: 'border-box' }}>
+        <Card
+          bordered={false}
+          styles={{ body: { padding: 0 } }}
+          style={{
+            width: '100%',
+            borderRadius: 12,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.06)'
+          }}
+        >
           <Flex gap="small" wrap="wrap" style={{ marginBottom: 20 }}>
             <Button className='ant-btn-head' type="primary" ghost icon={<UserOutlined />} onClick={() => setActiveModal('faculty')}>+ Faculty</Button>
             <Button className='ant-btn-head' type="primary" ghost icon={<BookOutlined />} onClick={() => setActiveModal('major')}>+ Major</Button>
             <Button className='ant-btn-head' type="primary" ghost icon={<ReadOutlined />} onClick={() => setActiveModal('subject')}>+ Subject</Button>
-            <Button className='ant-btn-head' type="primary" ghost icon={<TeamOutlined />} onClick={() => setActiveModal('class')}>+ Class</Button>
           </Flex>
 
           <Table 
+            className="academic-table"
             size="large" 
             columns={columns} 
             dataSource={dataSource} 
@@ -216,19 +230,9 @@ const Academic = () => {
                 </>
               )}
 
-              {activeModal === 'class' ? (
-                <>
-                  <Flex gap={10}>
-                  </Flex>
-                  <Form.Item name="room" label="Room" rules={[{ required: true }]}>
-                    <Input placeholder="Enter Room (e.g. Room 302)" />
-                  </Form.Item>
-                </>
-              ) : (
-                <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-                  <Input placeholder={`Enter ${activeModal} name`} />
-                </Form.Item>
-              )}
+              <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+                <Input placeholder={`Enter ${activeModal} name`} />
+              </Form.Item>
 
               <Form.Item style={{ textAlign: 'right', marginBottom: 0 }}>
                 <Space>
@@ -239,7 +243,7 @@ const Academic = () => {
             </Form>
           </Modal>
         </Card>
-      </Flex>
+      </div>
     </ConfigProvider>
   );
 };

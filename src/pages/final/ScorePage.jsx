@@ -126,7 +126,7 @@ const AdminScorePage = () => {
   ];
 
   return (
-    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg score-admin-page">
       <div className="search-inner-container sticky-search no-print">
         <Form form={form} layout="vertical" onFinish={handleSearch}>
           <Row gutter={[12, 5]} align="bottom">
@@ -199,7 +199,7 @@ const AdminScorePage = () => {
           },
         }}
       >
-        <Card className="user-card-main student-table-card" bordered={false} style={{ width: '100%' }}>
+        <Card className="user-card-main student-table-card score-admin-card" bordered={false} style={{ width: '100%' }}>
           <div className="student-table-overflow-x">
             <Table
               className="score-admin-table"

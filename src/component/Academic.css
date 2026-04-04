@@ -1,9 +1,70 @@
 /*academic*/
 .ant-btn-head{
-   width: 255px !important;
+   width: auto !important;
+   flex: 1 1 calc(25% - 8px);
+   min-width: 180px;
    background-color: #070f7a;
    color: aliceblue;
 }
+
+@media (max-width: 992px) {
+   .ant-btn-head {
+      flex-basis: calc(50% - 8px);
+   }
+}
+
+@media (max-width: 576px) {
+   .ant-btn-head {
+      flex-basis: 100%;
+   }
+}
+
 .ant-table-thead > tr > th {
    font-size: 14px !important;
+}
+
+.academic-edit-btn.ant-btn {
+   color: #1677ff !important;
+}
+
+.academic-edit-btn.ant-btn:hover,
+.academic-edit-btn.ant-btn:focus {
+   color: #0958d9 !important;
+}
+
+.academic-table .ant-table-thead > tr > th {
+   color: #0f172a !important;
+   background: #f3f4f6 !important;
+   border-color: #d1d5db !important;
+}
+
+.academic-table .ant-table-tbody > tr > td {
+   color: #0f172a;
+}
+
+.theme-dark .academic-table .ant-table,
+.theme-dark .academic-table .ant-table-container,
+.theme-dark .academic-table .ant-table-content {
+   background: #0f172a;
+}
+
+.theme-dark .academic-table .ant-table-thead > tr > th {
+   color: #e5e7eb !important;
+   background: #1f2937 !important;
+   border-color: #334155 !important;
+}
+
+.theme-dark .academic-table .ant-table-tbody > tr > td {
+   color: #e2e8f0 !important;
+   background: #111827;
+   border-color: #334155 !important;
+}
+
+.theme-dark .academic-table .ant-table-tbody > tr:hover > td,
+.theme-dark .academic-table .ant-table-tbody > tr.ant-table-row-hover > td {
+   background: #1b2434 !important;
+}
+
+.theme-dark .academic-table .ant-table-filter-trigger {
+   color: #94a3b8;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, ConfigProvider, theme as antdTheme, Grid } from "antd";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useLanguage } from "../../i18n/LanguageContext";
 
 import Sidebar from "./Sidebar";
@@ -61,8 +61,11 @@ const MainPage = () => {
 };
 
 const ContentWrapper = ({ isDark }) => {
+  const location = useLocation();
+  const isAcademicRoute = location.pathname === "/academic";
+
   return (
-    <Content className="content">
+    <Content className={`content${isAcademicRoute ? " content-academic" : ""}`}>
       <div style={{ color: isDark ? "#fff" : "#000" }}>
         <Outlet context={{ isDark }}/>
       </div>

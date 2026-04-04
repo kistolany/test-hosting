@@ -29,13 +29,20 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
       icon: <GiftOutlined />,
       children: [
         { key: "/student", label: <span className={fontClass("body")}>{t("navigation.listStudent")}</span> },
-        { key: "/classes", label: <span className={fontClass("body")}>{t("navigation.classManagement")}</span> },
         { key: "/createStudent", label: <span className={fontClass("body")}>{t("navigation.registerStudent")}</span> },
         { key: "/scholarExam", label: <span className={fontClass("body")}>{t("navigation.scholarshipExam")}</span> },
         { key: "/sortingpage", label: <span className={fontClass("body")}>{t("navigation.sortStudent")}</span> },
       ],
     },
-    { key: "/academic", icon: <ReadOutlined />, label: <span className={fontClass("body")}>{t("navigation.academic")}</span> },
+    {
+      key: "sub-academic",
+      label: <span className={fontClass("body")}>{t("navigation.academic")}</span>,
+      icon: <ReadOutlined />,
+      children: [
+        { key: "/academic", label: <span className={fontClass("body")}>{t("navigation.academic")}</span> },
+        { key: "/classes", label: <span className={fontClass("body")}>{t("navigation.classManagement")}</span> },
+      ],
+    },
     {
       key: "sub2",
       label: <span className={fontClass("body")}>{t("navigation.scholarship")}</span>,

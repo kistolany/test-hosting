@@ -939,14 +939,20 @@ body.student-list-only-table-scroll .content {
 }
 
 .content {
+  --content-side-margin: 40px;
   --content-inner-padding: clamp(16px, 1.8vw, 24px);
-  margin: 24px 40px;
+  margin: 24px var(--content-side-margin);
   padding: var(--content-inner-padding);
   flex: 1;
   min-height: 280px;
   overflow-y: auto;
   overflow-x: hidden;
 
+}
+
+.content.content-academic {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .dashboard {
@@ -1024,8 +1030,14 @@ transition: 0.2s;
 
 @media (max-width: 992px) {
   .content {
-    margin: 16px clamp(12px, 3vw, 20px);
+    --content-side-margin: clamp(12px, 3vw, 20px);
+    margin: 16px var(--content-side-margin);
     padding: clamp(12px, 3vw, 16px);
+  }
+
+  .content.content-academic {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .app-sider {

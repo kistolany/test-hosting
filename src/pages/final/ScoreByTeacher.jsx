@@ -141,7 +141,7 @@ const TeacherScorePage = () => {
   ];
 
   return (
-    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg">
+    <div className="student-page-wrapper student-list-page-wrapper student-list-auto-bg score-teacher-page">
       <div className="search-inner-container sticky-search no-print">
         <Form form={form} layout="vertical">
           <Row gutter={[10, 5]}>
@@ -186,7 +186,7 @@ const TeacherScorePage = () => {
           },
         }}
       >
-        <Card className="user-card-main student-table-card" bordered={false}>
+        <Card className="user-card-main student-table-card score-teacher-card" bordered={false}>
           <div className="student-table-overflow-x">
             <Table
               className="score-teacher-table"

@@ -336,6 +336,70 @@ body.student-list-only-table-scroll::-webkit-scrollbar-thumb:hover {
   box-shadow: inset -8px 0 8px -8px rgba(2, 6, 23, 0.5);
 }
 
+/* Score pages: color support for both light/dark themes */
+.score-admin-page .score-admin-table .ant-table-tbody > tr > td,
+.score-teacher-page .score-teacher-table .ant-table-tbody > tr > td {
+  color: #0f172a;
+  border-color: #e2e8f0 !important;
+}
+
+.score-admin-page .score-admin-table .ant-table-filter-trigger,
+.score-teacher-page .score-teacher-table .ant-table-filter-trigger {
+  color: #e2e8f0;
+}
+
+
+.theme-dark .score-admin-page .score-admin-card.ant-card,
+.theme-dark .score-admin-page .score-admin-card .ant-card-body,
+.theme-dark .score-teacher-page .score-teacher-card.ant-card,
+.theme-dark .score-teacher-page .score-teacher-card .ant-card-body {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .score-admin-page .score-admin-table .ant-table,
+.theme-dark .score-admin-page .score-admin-table .ant-table-container,
+.theme-dark .score-admin-page .score-admin-table .ant-table-content,
+.theme-dark .score-admin-page .score-admin-table .ant-table-body,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-container,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-content,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-body {
+  background: #0f172a !important;
+}
+
+.theme-dark .score-admin-page .score-admin-table .ant-table-thead > tr > th,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-thead > tr > th {
+  color: #e5e7eb !important;
+  background: linear-gradient(180deg, #1f2f6b 0%, #1230b8 100%) !important;
+  border-color: #3553b7 !important;
+}
+
+.theme-dark .score-admin-page .score-admin-table .ant-table-tbody > tr > td,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-tbody > tr > td {
+  color: #e2e8f0 !important;
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .score-admin-page .score-admin-table .ant-table-tbody > tr:hover > td,
+.theme-dark .score-admin-page .score-admin-table .ant-table-tbody > tr.ant-table-row-hover > td,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-tbody > tr:hover > td,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-tbody > tr.ant-table-row-hover > td {
+  background: #1b2434 !important;
+}
+
+.theme-dark .score-admin-page .score-admin-table .ant-table-cell-fix-right,
+.theme-dark .score-admin-page .score-admin-table .ant-table-cell-fix-right-first,
+.theme-dark .score-admin-page .score-admin-table .ant-table-cell-fix-right-last,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-cell-fix-right,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-cell-fix-right-first,
+.theme-dark .score-teacher-page .score-teacher-table .ant-table-cell-fix-right-last,
+.theme-dark .score-admin-page .score-admin-table .score-action-column {
+  background: #111827 !important;
+}
+
+
 .student-list-page-wrapper .student-table-overflow::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -1208,6 +1272,57 @@ body.student-list-only-table-scroll::-webkit-scrollbar-thumb:hover {
 .theme-dark .student-list-page-wrapper .student-table-card .ant-table-tbody > tr > td,
 .theme-dark .student-list-page-wrapper .student-table-card .ant-table-tbody > tr:hover > td {
   background: transparent !important;
+}
+
+/* Final override: keep Create Score and List Score readable in dark mode */
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-card.ant-card,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-card .ant-card-body,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-card.ant-card,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-card .ant-card-body {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-container,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-content,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-body,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-container,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-content,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-body {
+  background: #0f172a !important;
+}
+
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-thead > tr > th,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-thead > tr > th {
+  color: #e5e7eb !important;
+  background: linear-gradient(180deg, #1f2f6b 0%, #1230b8 100%) !important;
+  border-color: #3553b7 !important;
+}
+
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-tbody > tr > td,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-tbody > tr > td {
+  color: #e2e8f0 !important;
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-tbody > tr:hover > td,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-tbody > tr.ant-table-row-hover > td,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-tbody > tr:hover > td,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-tbody > tr.ant-table-row-hover > td {
+  background: #1b2434 !important;
+}
+
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-cell-fix-right,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-cell-fix-right-first,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .ant-table-cell-fix-right-last,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-cell-fix-right,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-cell-fix-right-first,
+.theme-dark .student-list-page-wrapper.score-teacher-page .score-teacher-table .ant-table-cell-fix-right-last,
+.theme-dark .student-list-page-wrapper.score-admin-page .score-admin-table .score-action-column {
+  background: #111827 !important;
 }
 @media (max-width: 700px) {
   .student-page-wrapper .student-search-actions {
