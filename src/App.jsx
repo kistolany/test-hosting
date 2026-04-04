@@ -22,7 +22,7 @@ import ScoreByTeacher from "./pages/final/ScoreByTeacher.jsx";
 import AttendantPage from "./pages/attendant/AttendantPage.jsx";
 import AttendantListPage from "./pages/attendant/AttendantListPage.jsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.jsx";
-import Academic from "./pages/academic/academic.jsx";
+import Academic from "./pages/academic/Academic.jsx";
 import ScholarshipForm from "./pages/scholarship/ScholarshipForm.jsx";
 import Receipt from "./pages/scholarship/Receipt.jsx";
 import Cover from "./pages/scholarship/Cover.jsx";
@@ -37,6 +37,7 @@ import ClassDetail from "./pages/ClassDetail.jsx";
 import { DEFAULT_CLASSES } from "./data/classSeed.js";
 
 const STORAGE_KEY = "sms-classes-v1";
+const MAX_PROGRAMS_PER_CLASS = 4;
 
 function normalizeClassData(rawClasses) {
   if (!Array.isArray(rawClasses)) return DEFAULT_CLASSES;
@@ -106,6 +107,82 @@ function App() {
     );
   };
 
+  const createClass = (newClassDraft) => {
+    const normalizedName = String(newClassDraft?.name || "").trim();
+    if (!normalizedName) return null;
+
+    const classNameExists = classes.some(
+      (classItem) => String(classItem.name || "").trim().toLowerCase() === normalizedName.toLowerCase()
+    );
+    if (classNameExists) return null;
+
+    const incomingPrograms = Array.isArray(newClassDraft?.programs) ? newClassDraft.programs : [];
+    const normalizedPrograms = [];
+    const majorKeySet = new Set();
+
+    incomingPrograms.forEach((program) => {
+      if (normalizedPrograms.length >= MAX_PROGRAMS_PER_CLASS) {
+        return;
+      }
+
+      const major = String(program?.major || "").trim();
+      const year = String(program?.year || "").trim();
+      const shift = String(program?.shift || "").trim();
+
+      if (!major || !year || !shift) {
+        return;
+      }
+
+      const majorKey = major.toLowerCase();
+      if (majorKeySet.has(majorKey)) {
+        return;
+      }
+
+      majorKeySet.add(majorKey);
+      normalizedPrograms.push({ major, year, shift });
+    });
+
+    const fallbackProgram = normalizedPrograms[0] || {
+      major: "General",
+      year: "Year 1",
+      shift: "Morning"
+    };
+
+    if (normalizedPrograms.length === 0) {
+      normalizedPrograms.push(fallbackProgram);
+    }
+
+    const normalizedSubjects = [];
+    const subjectKeySet = new Set();
+
+    (Array.isArray(newClassDraft?.subjects) ? newClassDraft.subjects : []).forEach((subject) => {
+      const cleanedSubject = String(subject || "").trim();
+      if (!cleanedSubject) return;
+
+      const subjectKey = cleanedSubject.toLowerCase();
+      if (subjectKeySet.has(subjectKey)) return;
+
+      subjectKeySet.add(subjectKey);
+      normalizedSubjects.push(cleanedSubject);
+    });
+
+    const nextId = classes.reduce((maxId, classItem) => Math.max(maxId, Number(classItem.id) || 0), 0) + 1;
+
+    const newClass = {
+      id: nextId,
+      name: normalizedName,
+      major: fallbackProgram.major,
+      year: fallbackProgram.year,
+      shift: fallbackProgram.shift,
+      programs: normalizedPrograms,
+      subjects: normalizedSubjects,
+      students: []
+    };
+
+    setClasses((prev) => [...prev, newClass]);
+    return newClass;
+  };
+
   return (
     <LanguageProvider>
       <BrowserRouter>
@@ -141,7 +218,7 @@ function App() {
             <Route path="/listNameExam" element={<ListNameExam />} />
             <Route path="/searchForm" element={<SearchForm />} />
 
-            <Route path="/classes" element={<ClassList classes={classes} />} />
+            <Route path="/classes" element={<ClassList classes={classes} onCreateClass={createClass} />} />
             <Route
               path="/class/:id"
               element={<ClassDetail classes={classes} onUpdateClass={updateClassById} />}

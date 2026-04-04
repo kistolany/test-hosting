@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { 
   Button, Flex, Table, Tag, Card, Modal, Form, 
   Input, Select, ConfigProvider, Space, Popconfirm, Typography
@@ -11,11 +11,63 @@ import { pushAuditLog } from '../../utils/auditLogs';
 
 const { Text } = Typography;
 const PRIMARY_COLOR = '#070f7a';
+const YEAR_OPTIONS = [1, 2, 3, 4].map((year) => ({ label: `Year ${year}`, value: year }));
+const SHIFT_OPTIONS = [
+  { label: 'Morning', value: 'Morning' },
+  { label: 'Evening', value: 'Evening' },
+  { label: 'Sunday-Saturday', value: 'Sunday-Saturday' },
+];
+const SEMESTER_OPTIONS = [
+  { label: 'Sem 1', value: 1 },
+  { label: 'Sem 2', value: 2 },
+];
+
+const SELECT_WITH_SEARCH_PROPS = {
+  showSearch: true,
+  optionFilterProp: 'label',
+  filterOption: (input, option) => `${option?.label ?? ''}`.toLowerCase().includes(input.toLowerCase()),
+};
+
+const buildHierarchyOptions = (items) => {
+  const facultiesMap = new Map();
+  const majorsMap = new Map();
+
+  const walk = (nodes, activeFaculty = null) => {
+    nodes.forEach((node) => {
+      const nodeName = node.name?.trim();
+      const nextFaculty = node.level === 'faculty' ? nodeName : activeFaculty;
+
+      if (node.level === 'faculty' && nodeName) {
+        facultiesMap.set(nodeName, { label: nodeName, value: nodeName });
+      }
+
+      if (node.level === 'major' && nodeName) {
+        majorsMap.set(nodeName, {
+          label: nodeName,
+          value: nodeName,
+          faculty: node.faculty || nextFaculty || null,
+        });
+      }
+
+      if (Array.isArray(node.children) && node.children.length > 0) {
+        walk(node.children, nextFaculty);
+      }
+    });
+  };
+
+  walk(items);
+
+  return {
+    faculties: Array.from(facultiesMap.values()),
+    majors: Array.from(majorsMap.values()),
+  };
+};
 
 const Academic = () => {
   const [activeModal, setActiveModal] = useState(null); 
   const [editingRecord, setEditingRecord] = useState(null);
   const [form] = Form.useForm();
+  const selectedFaculty = Form.useWatch('faculty', form);
 
   const [dataSource, setDataSource] = useState([
     {
@@ -42,6 +94,27 @@ const Academic = () => {
       ]
     },
   ]);
+
+  const { faculties, majors } = useMemo(() => buildHierarchyOptions(dataSource), [dataSource]);
+
+  const facultyOptions = useMemo(
+    () => (faculties.length > 0 ? faculties : [{ label: 'Faculty of Science', value: 'Faculty of Science' }]),
+    [faculties]
+  );
+
+  const subjectMajorOptions = useMemo(() => {
+    const allMajors = majors.map(({ faculty, ...majorOption }) => majorOption);
+
+    if (!selectedFaculty) {
+      return allMajors;
+    }
+
+    const filteredByFaculty = majors
+      .filter((major) => !major.faculty || major.faculty === selectedFaculty)
+      .map(({ faculty, ...majorOption }) => majorOption);
+
+    return filteredByFaculty.length > 0 ? filteredByFaculty : allMajors;
+  }, [majors, selectedFaculty]);
 
   const handleCancel = () => {
     setActiveModal(null);
@@ -117,7 +190,7 @@ const Academic = () => {
       dataIndex: 'year',
       key: 'year',
       width: 120,
-      filters: [1, 2, 3, 4].map(y => ({ text: `Year ${y}`, value: y })),
+      filters: YEAR_OPTIONS.map(({ label, value }) => ({ text: label, value })),
       onFilter: (value, record) => {
         if (record.level === 'major' || record.level === 'subject') {
           return record.year === value;
@@ -222,22 +295,21 @@ const Academic = () => {
               {activeModal === 'major' && (
                 <>
                   <Form.Item name="faculty" label="Faculty" rules={[{ required: true }]}>
-                    <Select placeholder="Choose Faculty">
-                      <Select.Option value="science">Science</Select.Option>
-                    </Select>
+                    <Select
+                      placeholder="Choose Faculty"
+                      options={facultyOptions}
+                      {...SELECT_WITH_SEARCH_PROPS}
+                    />
                   </Form.Item>
                   <Flex gap={10}>
                     <Form.Item name="year" label="Year" rules={[{ required: true }]} style={{ flex: 1 }}>
-                      <Select placeholder="Select Year" options={[1, 2, 3, 4].map(y => ({ label: `Year ${y}`, value: y }))} />
+                      <Select placeholder="Select Year" options={YEAR_OPTIONS} {...SELECT_WITH_SEARCH_PROPS} />
                     </Form.Item>
                     <Form.Item name="shift" label="Shift" rules={[{ required: true }]} style={{ flex: 1 }}>
                       <Select
                         placeholder="Select Shift"
-                        options={[
-                          { label: 'Morning', value: 'Morning' },
-                          { label: 'Evening', value: 'Evening' },
-                          { label: 'Sunday-Saturday', value: 'Sunday-Saturday' },
-                        ]}
+                        options={SHIFT_OPTIONS}
+                        {...SELECT_WITH_SEARCH_PROPS}
                       />
                     </Form.Item>
                   </Flex>
@@ -247,21 +319,26 @@ const Academic = () => {
               {activeModal === 'subject' && (
                 <>
                   <Form.Item name="faculty" label="Faculty" rules={[{ required: true }]}>
-                    <Select placeholder="Choose Faculty">
-                      <Select.Option value="science">Science</Select.Option>
-                    </Select>
+                    <Select
+                      placeholder="Choose Faculty"
+                      options={facultyOptions}
+                      {...SELECT_WITH_SEARCH_PROPS}
+                    />
                   </Form.Item>
                   <Form.Item name="major" label="Major" rules={[{ required: true }]}>
-                    <Select placeholder="Choose Major">
-                      <Select.Option value="cs">Computer Science</Select.Option>
-                    </Select>
+                    <Select
+                      placeholder="Choose Major"
+                      options={subjectMajorOptions}
+                      disabled={subjectMajorOptions.length === 0}
+                      {...SELECT_WITH_SEARCH_PROPS}
+                    />
                   </Form.Item>
                   <Flex gap={10}>
                     <Form.Item name="year" label="Year" rules={[{ required: true }]} style={{ flex: 1 }}>
-                      <Select placeholder="Select Year" options={[1, 2, 3, 4].map(y => ({ label: `Year ${y}`, value: y }))} />
+                      <Select placeholder="Select Year" options={YEAR_OPTIONS} {...SELECT_WITH_SEARCH_PROPS} />
                     </Form.Item>
                     <Form.Item name="semester" label="Semester" rules={[{ required: true }]} style={{ flex: 1 }}>
-                      <Select placeholder="Select Sem" options={[{ label: 'Sem 1', value: 1 }, { label: 'Sem 2', value: 2 }]} />
+                      <Select placeholder="Select Sem" options={SEMESTER_OPTIONS} {...SELECT_WITH_SEARCH_PROPS} />
                     </Form.Item>
                   </Flex>
                 </>
