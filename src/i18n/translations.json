@@ -177,6 +177,73 @@
       "km": "ទម្រង់ស្វែងរក"
     }
   },
+  "dashboard": {
+    "kpi": {
+      "totalStudents": { "en": "Total Students", "km": "និស្សិតសរុប" },
+      "availableStaff": { "en": "Available Staff", "km": "បុគ្គលិកមានស្រាប់" },
+      "avgStudyCost": { "en": "Avg Study Cost", "km": "ថ្លៃសិក្សាមធ្យម" },
+      "availableClasses": { "en": "Available Classes", "km": "ថ្នាក់ដែលមាន" },
+      "activeStudents": { "en": "Active Students", "km": "និស្សិតសកម្ម" },
+      "inactiveStudents": { "en": "Inactive Students", "km": "និស្សិតអសកម្ម" },
+      "newStudents": { "en": "New Students", "km": "និស្សិតថ្មី" },
+      "returningStudents": { "en": "Returning Students", "km": "និស្សិតត្រឡប់" },
+      "trendUp": { "en": "Up", "km": "កើនឡើង" },
+      "trendDown": { "en": "Down", "km": "ថយចុះ" }
+    },
+    "titles": {
+      "trend": { "en": "New vs. Returning Students Trend", "km": "និន្នាការនិស្សិតថ្មី និងនិស្សិតត្រឡប់" },
+      "gender": { "en": "Students by Gender", "km": "និស្សិតតាមភេទ" },
+      "admission": { "en": "Admission Time", "km": "ពេលវេលាចូលរៀន" },
+      "byDepartment": { "en": "Students by Department", "km": "និស្សិតតាមផ្នែក" }
+    },
+    "period": {
+      "week": { "en": "Show by week", "km": "បង្ហាញតាមសប្តាហ៍" },
+      "month": { "en": "Show by month", "km": "បង្ហាញតាមខែ" },
+      "semester": { "en": "Show by semester", "km": "បង្ហាញតាមឆមាស" },
+      "year": { "en": "Show by year", "km": "បង្ហាញតាមឆ្នាំ" },
+      "badge": {
+        "week": { "en": "This week", "km": "សប្តាហ៍នេះ" },
+        "month": { "en": "This month", "km": "ខែនេះ" },
+        "semester": { "en": "This semester", "km": "ឆមាសនេះ" },
+        "year": { "en": "This year", "km": "ឆ្នាំនេះ" }
+      }
+    },
+    "trend": {
+      "newStudents": { "en": "New Students", "km": "និស្សិតថ្មី" },
+      "returningStudents": { "en": "Returning Students", "km": "និស្សិតត្រឡប់" }
+    },
+    "gender": {
+      "female": { "en": "Female", "km": "ស្រី" },
+      "male": { "en": "Male", "km": "ប្រុស" }
+    },
+    "table": {
+      "department": { "en": "Department", "km": "ផ្នែក" },
+      "students": { "en": "Students", "km": "និស្សិត" }
+    },
+    "departments": {
+      "computerScience": { "en": "Computer Science", "km": "វិទ្យាសាស្ត្រកុំព្យូទ័រ" },
+      "businessManagement": { "en": "Business Management", "km": "គ្រប់គ្រងអាជីវកម្ម" },
+      "informationSystems": { "en": "Information Systems", "km": "ប្រព័ន្ធព័ត៌មាន" }
+    },
+    "highlight": {
+      "week": { "en": "Students this week", "km": "និស្សិតសប្តាហ៍នេះ" },
+      "month": { "en": "Students this month", "km": "និស្សិតខែនេះ" },
+      "semester": { "en": "Students this semester", "km": "និស្សិតឆមាសនេះ" },
+      "year": { "en": "Students this year", "km": "និស្សិតឆ្នាំនេះ" }
+    },
+    "messages": {
+      "loading": { "en": "Loading dashboard...", "km": "កំពុងផ្ទុកផ្ទាំងគ្រប់គ្រង..." },
+      "empty": { "en": "No dashboard data available.", "km": "មិនមានទិន្នន័យផ្ទាំងគ្រប់គ្រងទេ។" },
+      "errorTitle": { "en": "Dashboard Error", "km": "កំហុសផ្ទាំងគ្រប់គ្រង" },
+      "loadError": { "en": "Failed to load dashboard data.", "km": "មិនអាចផ្ទុកទិន្នន័យផ្ទាំងគ្រប់គ្រងបានទេ។" }
+    },
+    "a11y": {
+      "periodSelect": { "en": "Select dashboard period", "km": "ជ្រើសរយៈពេលផ្ទាំងគ្រប់គ្រង" },
+      "trendChart": { "en": "Student trend chart", "km": "គំនូសតាងនិន្នាការនិស្សិត" },
+      "genderChart": { "en": "Students by gender chart", "km": "គំនូសតាងនិស្សិតតាមភេទ" },
+      "admissionChart": { "en": "Admission time chart", "km": "គំនូសតាងពេលវេលាចូលរៀន" }
+    }
+  },
   "university": {
     "nameKh": {
       "en": "Cambodia University of Management and Technology",

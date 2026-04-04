@@ -27,6 +27,8 @@ const Academic = () => {
           key: '1-1',
           name: 'Computer Science',
           level: 'major',
+          year: 1,
+          shift: 'Morning',
           children: [
             { 
               key: '1-1-1', 
@@ -117,12 +119,30 @@ const Academic = () => {
       width: 120,
       filters: [1, 2, 3, 4].map(y => ({ text: `Year ${y}`, value: y })),
       onFilter: (value, record) => {
-        if (record.level === 'subject') {
+        if (record.level === 'major' || record.level === 'subject') {
           return record.year === value;
         }
         return true; // Keep Faculty/Major visible when filtering
       },
-      render: (year, record) => (record.level === 'subject') ? (year ? `Year ${year}` : '-') : '-'
+      render: (year, record) => (record.level === 'major' || record.level === 'subject') ? (year ? `Year ${year}` : '-') : '-'
+    },
+    {
+      title: 'Shift',
+      dataIndex: 'shift',
+      key: 'shift',
+      width: 150,
+      filters: [
+        { text: 'Morning', value: 'Morning' },
+        { text: 'Evening', value: 'Evening' },
+        { text: 'Sunday-Saturday', value: 'Sunday-Saturday' },
+      ],
+      onFilter: (value, record) => {
+        if (record.level === 'major') {
+          return record.shift === value;
+        }
+        return true;
+      },
+      render: (shift, record) => (record.level === 'major') ? (shift || '-') : '-'
     },
     { 
       title: 'Semester',
@@ -200,11 +220,28 @@ const Academic = () => {
           >
             <Form form={form} layout="vertical" onFinish={onFinish}>
               {activeModal === 'major' && (
-                <Form.Item name="faculty" label="Faculty" rules={[{ required: true }]}>
-                  <Select placeholder="Choose Faculty">
-                    <Select.Option value="science">Science</Select.Option>
-                  </Select>
-                </Form.Item>
+                <>
+                  <Form.Item name="faculty" label="Faculty" rules={[{ required: true }]}>
+                    <Select placeholder="Choose Faculty">
+                      <Select.Option value="science">Science</Select.Option>
+                    </Select>
+                  </Form.Item>
+                  <Flex gap={10}>
+                    <Form.Item name="year" label="Year" rules={[{ required: true }]} style={{ flex: 1 }}>
+                      <Select placeholder="Select Year" options={[1, 2, 3, 4].map(y => ({ label: `Year ${y}`, value: y }))} />
+                    </Form.Item>
+                    <Form.Item name="shift" label="Shift" rules={[{ required: true }]} style={{ flex: 1 }}>
+                      <Select
+                        placeholder="Select Shift"
+                        options={[
+                          { label: 'Morning', value: 'Morning' },
+                          { label: 'Evening', value: 'Evening' },
+                          { label: 'Sunday-Saturday', value: 'Sunday-Saturday' },
+                        ]}
+                      />
+                    </Form.Item>
+                  </Flex>
+                </>
               )}
 
               {activeModal === 'subject' && (

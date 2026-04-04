@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 function StudentTable({
   students,
@@ -22,22 +23,24 @@ function StudentTable({
 
   return (
     <section className="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
-      <table className="min-w-full text-left text-sm">
+      {/* Adjust min-w-[980px] to control when horizontal scroll starts in Class Detail. */}
+      <table className="mx-auto w-full min-w-[980px] text-left text-[clamp(11px,0.85vw,14px)]">
         <thead className="bg-slate-100 text-slate-600">
           <tr>
-            <th className="px-4 py-3">Name</th>
-            <th className="px-4 py-3">Gender</th>
-            <th className="px-4 py-3">DOB</th>
-            <th className="px-4 py-3">Major</th>
-            <th className="px-4 py-3">Year</th>
-            <th className="px-4 py-3">Shift</th>
-            <th className="px-4 py-3">Action</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Student ID</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Name</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Gender</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">DOB</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Major</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Year</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Shift</th>
+            <th className="whitespace-nowrap px-3 py-2.5 font-semibold md:px-4 md:py-3">Action</th>
           </tr>
         </thead>
         <tbody>
           {students.length === 0 ? (
             <tr>
-              <td colSpan={7} className="px-4 py-8 text-center text-slate-500">
+              <td colSpan={8} className="px-4 py-8 text-center text-slate-500">
                 No students found.
               </td>
             </tr>
@@ -54,23 +57,24 @@ function StudentTable({
                     isHighlighted ? "bg-emerald-50" : "bg-white"
                   }`}
                 >
-                  <td className="px-4 py-3">
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">{student.id}</td>
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">
                     {isEditing ? (
                       <input
                         value={draft.name}
                         onChange={(event) => setDraft((prev) => ({ ...prev, name: event.target.value }))}
-                        className="w-full rounded-md border border-slate-300 px-2 py-1"
+                        className="w-full rounded-md border border-slate-300 px-2 py-1 text-[inherit]"
                       />
                     ) : (
                       student.name
                     )}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">
                     {isEditing ? (
                       <select
                         value={draft.gender}
                         onChange={(event) => setDraft((prev) => ({ ...prev, gender: event.target.value }))}
-                        className="rounded-md border border-slate-300 px-2 py-1"
+                        className="rounded-md border border-slate-300 px-2 py-1 text-[inherit]"
                       >
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -79,27 +83,29 @@ function StudentTable({
                       student.gender
                     )}
                   </td>
-                  <td className="px-4 py-3">{student.dob}</td>
-                  <td className="px-4 py-3">{student.major}</td>
-                  <td className="px-4 py-3">{student.year}</td>
-                  <td className="px-4 py-3">{student.shift}</td>
-                  <td className="px-4 py-3">
-                    <div className="flex gap-2">
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">{student.dob}</td>
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">{student.major}</td>
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">{student.year}</td>
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">{student.shift}</td>
+                  <td className="whitespace-nowrap px-3 py-2.5 md:px-4 md:py-3">
+                    <div className="flex items-center gap-1">
                       {isEditing ? (
                         <>
                           <button
                             type="button"
                             onClick={saveEdit}
-                            className="rounded-md bg-cyan-600 px-3 py-1 text-xs font-medium text-white"
+                            className="rounded-md p-1.5 text-cyan-600 transition hover:bg-cyan-50"
+                            aria-label="Save student"
                           >
-                            Save
+                            <CheckOutlined />
                           </button>
                           <button
                             type="button"
                             onClick={() => setEditingId(null)}
-                            className="rounded-md border border-slate-300 px-3 py-1 text-xs"
+                            className="rounded-md p-1.5 text-slate-500 transition hover:bg-slate-100"
+                            aria-label="Cancel editing"
                           >
-                            Cancel
+                            <CloseOutlined />
                           </button>
                         </>
                       ) : (
@@ -107,16 +113,18 @@ function StudentTable({
                           <button
                             type="button"
                             onClick={() => startEdit(student)}
-                            className="rounded-md border border-slate-300 px-3 py-1 text-xs"
+                            className="rounded-md p-1.5 text-blue-600 transition hover:bg-blue-50"
+                            aria-label="Edit student"
                           >
-                            Edit
+                            <EditOutlined />
                           </button>
                           <button
                             type="button"
                             onClick={() => onDeleteRequest(student)}
-                            className="rounded-md bg-rose-600 px-3 py-1 text-xs font-medium text-white"
+                            className="rounded-md p-1.5 text-rose-600 transition hover:bg-rose-50"
+                            aria-label="Delete student"
                           >
-                            Delete
+                            <DeleteOutlined />
                           </button>
                         </>
                       )}
