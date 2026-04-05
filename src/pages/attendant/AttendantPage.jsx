@@ -305,12 +305,12 @@ const AttendancePage = () => {
         </Flex>
 
       <div className="official-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div className="uni-logo-section" style={{ textAlign: 'center' }}>
+          <div className="uni-logo-section" style={{ textAlign: 'center',justifyItems:'center' }}>
             <img src="/asset/image/logo.png" alt="logo" className="print-logo" style={{ width: 80, filter: isDark ? "brightness(0) invert(1)" : "none" }} />
             <div className="khmer-moul" style={{ fontSize: 11 }}>សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</div>
             <div style={{ fontSize: 9, fontWeight: 'bold', color: isDark ? '#e5e7eb' : '#070f7a' }}>CAMBODIA UNIVERSITY OF MANAGEMENT AND TECHNOLOGY</div>
           </div>
-          <div className="kingdom-section" style={{ textAlign: 'center' }}>
+          <div className="kingdom-section" style={{ textAlign: 'center',justifyItems:'center' }}>
             <div className="khmer-moul" style={{ fontSize: 14 }}>ព្រះរាជាណាចក្រកម្ពុជា</div>
             <div className="khmer-moul" style={{ fontSize: 14 }}>ជាតិ សាសនា ព្រះមហាក្សត្រ</div>
             <img src="/src/assets/devider.png" alt="divider" style={{ width: '90px', marginTop: 5 }} />

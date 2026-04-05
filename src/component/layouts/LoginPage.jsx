@@ -50,7 +50,7 @@ const LoginPage = () => {
     <div className='login'>
       <Card className="login-card">
         {/* Header Section */}
-        <div style={{ textAlign: 'center', marginBottom: '25px',marginTop:'0px' }}>
+        <div style={{ textAlign: 'center', justifyItems:'center',marginBottom: '25px',marginTop:'0px' }}>
           <img 
             src="asset/image/logo.png" 
             alt="CUMT Logo" 

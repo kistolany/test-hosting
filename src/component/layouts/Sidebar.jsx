@@ -62,16 +62,7 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
         { key: "/enrollmentReciept", label: <span className={fontClass("body")}>{t("navigation.receipt")}</span> },
       ],
     },
-    {
-      key: "sub4",
-      label: <span className={fontClass("body")}>{t("navigation.final")}</span>,
-      icon: <FormOutlined />,
-      children: [
-        { key: "/listNameExam", label: <span className={fontClass("body")}>{t("navigation.listName")}</span> },
-        { key: "/score", label: <span className={fontClass("body")}>{t("navigation.score")}</span> },
-        { key: "/scoreTeacher", label: <span className={fontClass("body")}>{t("navigation.scoreByTeacher")}</span> },
-      ],
-    },
+    
     {
       key: "subAttendant",
       label: <span className={fontClass("body")}>{t("navigation.attendant")}</span>,
@@ -79,6 +70,17 @@ const Sidebar = ({ collapsed, setCollapsed, isDark, isMobile }) => {
       children: [
         { key: "/attendant/take", label: <span className={fontClass("body")}>{t("navigation.takeAttendant")}</span> },
         { key: "/attendant/list", label: <span className={fontClass("body")}>{t("navigation.attendantList")}</span> },
+      ],
+    },
+    {
+      key: "sub4",
+      label: <span className={fontClass("body")}>{t("navigation.final")}</span>,
+      icon: <FormOutlined />,
+      children: [
+        { key: "/listNameExam", label: <span className={fontClass("body")}>{t("navigation.listName")}</span> },
+        { key: "/scoreTeacher", label: <span className={fontClass("body")}>{t("Add Score")}</span> },
+        { key: "/resultFinal", label: <span className={fontClass("body")}>{t("Result")}</span> },
+        { key: "/ListNameReexam", label: <span className={fontClass("body")}>{t("Re-exam List")}</span> },
       ],
     },
     {
