@@ -17,7 +17,7 @@ import CreateStudent from "./pages/student/CreateStudent.jsx";
 import ScholarExam from "./pages/student/ScholarExam.jsx";
 import ScholarExamPrintPage from "./pages/student/ScholarExamPrintPage.jsx";
 import ResultScholar from "./pages/student/ResultScholar.jsx";
-import ScorePage from "./pages/final/ScorePage.jsx";
+import ResultFinal from "./pages/final/ResultFinal.jsx";
 import ScoreByTeacher from "./pages/final/ScoreByTeacher.jsx";
 import AttendantPage from "./pages/attendant/AttendantPage.jsx";
 import AttendantListPage from "./pages/attendant/AttendantListPage.jsx";
@@ -29,6 +29,10 @@ import Cover from "./pages/scholarship/Cover.jsx";
 import Reciept from "./pages/enrollment/Reciept.jsx";
 import SortingPage from "./pages/student/SortingPage.jsx";
 import ListNameExam from "./pages/final/ListNameExam.jsx";
+import ListNamePrint from "./pages/final/ListNamePrint.jsx";
+import ResultFinalPrint from "./pages/final/ResultFinalPrint.jsx";
+import ListNameReexam from "./pages/final/ListNameReexam.jsx";
+import ListNameReexamPrint from "./pages/final/ListNameReexamPrint.jsx";
 import SearchForm from "./component/layouts/SearchForm.jsx";
 import Form from "./pages/enrollment/Form.jsx";
 
@@ -211,11 +215,15 @@ function App() {
               element={<Form classes={classes} onUpdateClass={updateClassById} />}
             />
             <Route path="/enrollmentReciept" element={<Reciept />} />
-            <Route path="/score" element={<ScorePage />} />
+            <Route path="/resultFinal" element={<ResultFinal />} />
             <Route path="/scoreTeacher" element={<ScoreByTeacher />} />
             <Route path="/attendant/take" element={<AttendantPage />} />
             <Route path="/attendant/list" element={<AttendantListPage />} />
             <Route path="/listNameExam" element={<ListNameExam />} />
+            <Route path="/final/ListNamePrint" element={<ListNamePrint />} />
+            <Route path="/finalResultPrint" element={<ResultFinalPrint />} />
+            <Route path="/ListNameReexam" element={<ListNameReexam />} />
+            <Route path="/ReexamPrint" element={<ListNameReexamPrint />} />
             <Route path="/searchForm" element={<SearchForm />} />
 
             <Route path="/classes" element={<ClassList classes={classes} onCreateClass={createClass} />} />

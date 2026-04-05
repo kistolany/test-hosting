@@ -223,7 +223,7 @@ const EnrollmentForm = ({ classes = [], onUpdateClass }) => {
               </Col>
             </Row>
 
-            <div className="enroll-formal-center-header" style={{ lineHeight: 1 }}>
+            <div className="enroll-formal-center-header" style={{ lineHeight: 2 }}>
               <Title className="form-main-title">សូមគោរពជូន</Title>
               <Title className="form-main-title">ឯកឧត្តមបណ្ឌិត សាកលវិទ្យាធិការ នៃសាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា</Title>
               <Text className="enroll-en-sub">To H.E Dr. Rector of Cambodia University of Management and Technology</Text>
@@ -269,7 +269,7 @@ const EnrollmentForm = ({ classes = [], onUpdateClass }) => {
               </Col>
             </Row>
 
-            <div className="enroll-footer-notes" style={{ lineHeight: 1 }}> 
+            <div className="enroll-footer-notes" style={{ lineHeight: 2 }}> 
               <p>ខ្ញុំបាទ/នាងខ្ញុំសូមសន្យា នឹងគោរពគោលការណ៍ និងបទបញ្ជាផ្ទៃក្នុងទាំងអស់របស់សាកលវិទ្យាល័យកម្ពុជា គ្រប់គ្រង និងបច្ចេកវិទ្យា។</p>
               <p className="enroll-en-sub">I acknowledge that I have to adhere the policies, regulation and all requirements for admission for university's rules.</p>
               <p className="enroll-mt-20">សូម <b>ឯកឧត្តមបណ្ឌិត សាកលវិទ្យាធិការ</b> មេត្តាពិនិត្យអនុញ្ញាតឱ្យខ្ញុំបាទ/នាងខ្ញុំ បានចុះឈ្មោះចូលសិក្សានៅមហាវិទ្យាល័យដែលមានជំនាញដូចខាងលើដោយក្តីអនុគ្រោះ។</p>
@@ -300,15 +300,6 @@ const EnrollmentForm = ({ classes = [], onUpdateClass }) => {
             <div className="form-footer enroll-footer">
               <div className="footer-address">អាសយដ្ឋានៈ អគារលេខ១៤៧ក ផ្លូវឥដ្ឋច្រាស សង្កាត់ទួលសង្កែទី២ ខណ្ឌឫស្សីកែវ រាជធានីភ្នំពេញ</div>
               <div className="footer-contact">Hot Line: 023 902 220 | FAX: 023 902 221 | E-mail: cumt.cambodia@gmail.com</div>
-            </div>
-
-            <div style={{ marginTop: "16px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
-              <Button type="primary" htmlType="submit" className="search-button">
-                Enroll to Class A1
-              </Button>
-              <Button htmlType="button" icon={<PrinterOutlined />} onClick={() => window.print()}>
-                Print Form
-              </Button>
             </div>
           </div>
         </Form>

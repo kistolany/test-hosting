@@ -8,14 +8,13 @@ const SearchToolbar = ({ form, onSearch, fields, data, onClear, token }) => {
   const { t } = useLanguage();
 
   return (
-  <div className="sticky-search no-print">
+  <div className="sticky-search no-print att-search-inner-container">
     <Form
       form={form}
       onFinish={onSearch}
       layout="vertical"
       className="search-form"
       style={{
-        background: token.colorFillAlter,
         padding: "24px",
         borderRadius: token.borderRadiusLG,
       }}
